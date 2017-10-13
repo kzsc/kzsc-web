@@ -1,0 +1,20 @@
+.main-content-grid{
+    padding-right: 15% !important;
+    padding-left: 15% !important;
+    margin-top: 50px !important;
+}
+
+.news-image{
+    width: 200px;
+    height: 200px;
+}
+
+.grid-element{
+    font-size: 18px;
+    height:500px;
+}
+
+.grid-element.sub{
+    height: 300px;
+}
+

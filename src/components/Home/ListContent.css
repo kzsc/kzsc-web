@@ -1,0 +1,18 @@
+.list-content{
+    padding-left: 15% !important;
+    padding-right: 15% !important;
+    margin-top:100px !important;
+}
+
+.list-row{
+    height: 300px;
+}
+
+.grid-item{
+    font-size: 18px;
+}
+
+
+h2{
+    text-align:left;
+}
