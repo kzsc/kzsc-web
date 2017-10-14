@@ -26,3 +26,6 @@ this will start app in development mode, the app will be served to **http://loca
 **Your all setup to start coding!**  
 Take a look at the code in src, this is where we will be writing most of our JavaScript code  
 for this project.
+
+For this project we'll also be using Semantic UI React
+For documentation check out the website at: `https://react.semantic-ui.com/introduction`
