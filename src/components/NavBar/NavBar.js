@@ -16,8 +16,13 @@ class NavBar extends Component{
         <div>
             <Menu pointing secondary size="massive" className="navbar">
                 <Menu.Menu position="left" compact={true}>
-                    <Menu.Item>
-                        <img src={logo} className="icon" id="kzsc-icon"/>
+                    <Menu.Item
+                    className="nav-item"
+                    name="home"
+                    onClick={this.handleItemClick}>
+                       <NavLink to='./'>
+                          <img src={logo} className="icon" id="kzsc-icon"/>
+                       </NavLink>
                     </Menu.Item>
                     <Menu.Item className="nav-item kzsc-nav-link left"
                     name='home'
