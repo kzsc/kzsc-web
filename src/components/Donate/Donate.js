@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Button, Form} from 'semantic-ui-react';
+import {Container, Button, Form, Grid} from 'semantic-ui-react';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
 import bag from './kzsc-bag.jpg';
@@ -7,7 +7,7 @@ import buttons from './kzsc-buttons.jpg';
 
 
 const states = [
-    {key:'AL', text:'Alabama', value:'alabama' },{key:'AK', text:'Alaska', value:'alaska' }, 
+    {key:'AL', text:'Alabama', name:'sstate', value:'alabama' },{key:'AK', text:'Alaska', value:'alaska' }, 
     {key:'AZ', text:'Arizona', value:'arizona'}, {key:'AR', text: 'Arkansas', value: 'arkansas'},
     {key:'CA', text: 'California', value: 'california'},{key:'CO', text: 'Colorado', value: 'colorado'},
     {key:'CT', text: 'Connecticut', value: 'connecticut'},{key:'DE', text: 'Delaware', value: 'delaware'},
@@ -34,14 +34,28 @@ const states = [
     {key:'WY', text: 'Wyoming', value: 'wyoming'}
 ];
 
+const sizes = [
+    {key: 's', text:'Small', value:'small'}, {key: 'm', text:'Medium', value:'medium'}, 
+    {key: 'l', text:'Large', value:'large'}, {key: 'xl', text:'X-Large', value:'x-large'}, 
+    {key: '2xl', text:'2XL', value:'2x-large'}   
+];
+
+const info = [];
+
 class Donate extends Component{
     constructor(props){
         super(props);
         this.state = {
            content: "donate",
-           info: []
+           fname: "", lname: "", 
+           email:"", pnumber: "", 
+           city: "", zip: "", sstate:"",
+           cname: "", ccnum: "",
+           expdate: "", scode: "",
         }
         this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.setInfo = this.setInfo.bind(this);
     }
 
     toggle(value){
@@ -51,7 +65,20 @@ class Donate extends Component{
             })
         }
     }
-
+    
+    handleChange = (e, { value }) => {
+        if(e.target.name === undefined){
+            this.setState({ sstate: value });
+        }else this.setState({ [e.target.name]: value }); 
+    };
+    
+    setInfo(){
+        for(let key in this.state){
+           info.push(this.state[key]);
+        }
+        console.log(info);
+    }
+  
     donateContent(){
         return(
             <div className="div-donate">
@@ -71,19 +98,40 @@ class Donate extends Component{
         return(
             <div className="div-donate">
                 <p className="donate-text">Help us keep noncommercial community radio on the air by purchasing merchandise!</p>
-                    <div>
-                        <Button size="massive">Stuff1</Button>
-                        <Button size="massive">Daily "Fiddy"</Button>
-                        <Button size="massive">Buck-a-day</Button>
-                        <Button size="massive">50 years of KZSC</Button>
-                        <Button size="massive">KZSC Sustainer</Button>
-                    </div>
+                    <Grid columns='equal' divided stackable>
+                        <Grid.Row>
+                            <Grid.Column>
+                                <div>
+                                    <img className="images" src={shirt} />
+                                    <div className="div-beneath-img">
+                                        <Form>
+                                            <Form.Select options={sizes} placeholder="Size"></Form.Select>
+                                        </Form>
+                                        <Button color="red"> Add </Button>
+                                    </div>
+                                </div>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <div>
+                                    <img className="images" src={bag} />
+                                    <div className="div-beneath-img">
+                                        <Button color="red"> Add </Button>
+                                    </div>
+                                </div>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <div>
+                                    <img className="images" src={buttons} />
+                                    <div className="div-beneath-img">
+                                        <Button color="red"> Add </Button>
+                                    </div>
+                                </div>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
             </div>
         );
     }
-
-
-
 
     render(){
         return(
@@ -100,43 +148,40 @@ class Donate extends Component{
                         <div>
                         <Form className="form-container"> 
                             <Form.Group inline>
-                                <Form.Input className="form-input" label="First Name" placeholder="First Name"/>
-                                <Form.Input className="form-input" label="Last Name" placeholder="Last Name"/>
+                                <Form.Input className="form-input" label="First Name" placeholder="First Name" name="fname" value={this.state.fname} onChange={this.handleChange}/>
+                                <Form.Input className="form-input" label="Last Name"  placeholder="Last Name" name="lname" value={this.state.lname} onChange={this.handleChange}/>
                             </Form.Group>
                             <Form.Group inline>
-                                <Form.Input className="form-input" label="Email Address" placeholder="Email Address"/>
-                                <Form.Input className="form-input" label="Phone Number" placeholder="Phone Number"/>
+                                <Form.Input className="form-input" label="Email Address" placeholder="Email Address" name="email" value={this.state.email} onChange={this.handleChange}/>
+                                <Form.Input className="form-input" label="Phone Number" placeholder="Phone Number" name="pnumber" value={this.state.pnumber} onChange={this.handleChange}/>
                             </Form.Group>
                             <Form.Group inline>
-                                <Form.Input label="City" placeholder="City"/>
-                                <Form.Input label="ZIP Code" placeholder="ZIP Code"/>
-                                <Form.Select label="State" options={states} placeholder="State" />
+                                <Form.Input label="City" placeholder="City" name="city" value={this.state.city} onChange={this.handleChange}/>
+                                <Form.Input label="ZIP Code" placeholder="ZIP Code" name="zip" value={this.state.zip} onChange={this.handleChange}/>
+                                <Form.Select label="State" options={states} placeholder="State" name="sstate" value={this.state.sstate} onChange={this.handleChange}/>
                             </Form.Group>
                         </Form>
                         </div>
-                        <div>This is where the selection content will go </div>
+
                     </div>
                     <span className="content-header">Credit Card Info </span>
                     <div className="personal-form">
                         <div>
                         <Form className="form-container"> 
                             <Form.Group inline>
-                                <Form.Input className="form-input" label="Cardholder Name" placeholder="Name on card"/>
-                                <Form.Input className="form-input" label="Credit Card Number" placeholder="Number"/>
+                                <Form.Input className="form-input" label="Cardholder Name" placeholder="Name on card" name="cname" value={this.state.cname} onChange={this.handleChange}/>
+                                <Form.Input className="form-input" label="Credit Card Number" placeholder="Number" name="ccnum" value={this.state.ccnum} onChange={this.handleChange}/>
                             </Form.Group>
                             <Form.Group inline>
-                                <Form.Input className="form-input" label="Expiration Date" placeholder="Expiration Date"/>
-                                <Form.Input className="form-input" label="Card Security Code" placeholder="000"/>
+                                <Form.Input className="form-input" label="Expiration Date" placeholder="Expiration Date" name="expdate" value={this.state.expdate} onChange={this.handleChange}/>
+                                <Form.Input className="form-input" label="Card Security Code" placeholder="000" name="scode" value={this.state.scode} onChange={this.handleChange} />
                             </Form.Group>
                         </Form>
                         </div>
-                        <div>This is where the selection content will go </div>
                     </div>
-
-
                     <div>
-                     Final Information about Purchase 
-                     <Button color="red"> Submit </Button>
+                     Check out information for user
+                     <Button color="red" onClick={this.setInfo}> Submit </Button>
                     </div>
             </Container>
         ); 

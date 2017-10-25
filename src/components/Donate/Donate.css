@@ -54,3 +54,13 @@
 div.ui.input{
     width: 100% !important;
 }
+
+.images{
+    width: 200px; 
+    height: 200px;
+}
+
+.div-beneath-img{
+    width:100%;
+    background-color: #e0e1e2;
+}
