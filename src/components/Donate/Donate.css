@@ -5,12 +5,13 @@
 .donate-text{
     font-size: 24px;
 }
-
 .content-btns{
     float:left;
     width: 50%;
     margin-bottom: 20px;
+    padding-right: 10px;
 }
+
 .donate-btn{
     font-size: 24px !important;
     width: 100%;
@@ -19,6 +20,12 @@
 .div-donate{
    margin-bottom: 20px;
 }
+
+.donateDesc{
+    font-size: 24px;
+    margin-top: 20px;
+}
+
 
 .content-header{
     display: block;
@@ -32,18 +39,22 @@
 .personal-form{
     padding-top: 20px;
     padding-left: 20px;
+    padding-bottom: 20px;
     border: 2px solid black;
     border-radius: 5px;
 }
 
 .form-container{
-    width: 50%;
     text-align: left !important;
     font-size: 16px !important;
 }
 
 .form-input{
     width: 50%;
+}
+
+.form-input2{
+    width: 25%;
 }
 
 .selection.dropdown>.dropdown.icon{
@@ -63,4 +74,12 @@ div.ui.input{
 .div-beneath-img{
     width:100%;
     background-color: #e0e1e2;
+}
+
+.div-checkout{
+    margin-top:20px !important;
+}
+
+.checkout{
+    display: inline-block;
 }
