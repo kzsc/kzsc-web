@@ -2,10 +2,6 @@
  * used in: NavBar.js
  */
 
-.navbar{
-    /*padding-top: 5px !important;*/
-}
-
 .nav-item {
     font-weight: 600 !important;
     font-size: 20px;
@@ -28,11 +24,11 @@
   font-size: 2em !important;
 }
 
-#kzsc-icon{
-
-    width: 3.6em;
-}
-
 a{
     color: black !important;
+}
+
+#kzsc-icon {
+    padding-top: 10px 1.14285714em !important;
+    width: 3.6em;
 }
