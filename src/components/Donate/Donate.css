@@ -26,7 +26,6 @@
     margin-top: 20px;
 }
 
-
 .content-header{
     display: block;
     text-align: left;
@@ -66,10 +65,20 @@ div.ui.input{
     width: 100% !important;
 }
 
+.merch-btn{
+    background-color: #FFFFFF !important;
+}
+
 .images{
     width: 200px; 
     height: 200px;
 }
+
+.images:hover{
+    cursor: pointer;
+}
+
+
 
 .div-beneath-img{
     width:100%;
@@ -80,6 +89,43 @@ div.ui.input{
     margin-top:20px !important;
 }
 
-.checkout{
-    display: inline-block;
+.donation-desc{
+    font-size: 24px;
+}
+
+.fa-dollar{
+    position: absolute;
+    top: 8px;
+    height: 1.25em;
+    width: 1.25em;
+}
+
+.donation-amount-box{
+    padding-left:15px;
+    font-size: 24px;
+    width: 200px;
+}
+
+.item-header{
+    display: inline-flex;
+}
+
+.list-item{
+    text-align: left;
+}
+
+.list-image{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+.list-header{
+    font-size: 24px;
+    margin-top:15px !important;
+    margin-bottom: 20px !important;
+}
+
+.list-description{
+    font-size: 16px;
+    margin-bottom: 10px !important;
 }

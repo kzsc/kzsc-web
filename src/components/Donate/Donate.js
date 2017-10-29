@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, Grid, Column } from 'semantic-ui-react';
+import { Container, Button, Form, Grid, Column, List, Image } from 'semantic-ui-react';
+import FaDollar from 'react-icons/lib/fa/dollar';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
 import bag from './kzsc-bag.jpg';
@@ -42,57 +43,78 @@ const sizes = [
 
 const info = [];
 
+const productDesc = [
+    { key: 'shirt', header: 'KZSC 88 point 1 Tee', img:{shirt}, desc: "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station."}, 
+    { key: 'bag', header: 'KZSC Canvas Tote Bag', img:{bag}, desc: "One of KZSC’s most enduring and popular designs, the “PEEL SLOWLY AND SEE” Banana Slug was inspired by Andy Warhol’s cover design for the debut LP by The Velvet Underground. Now KZSC offers a revamp of the design on this sturdy canvas tote bag designed to haul LPs, groceries, or whatever you please.  Its 15.5″ x 14.5″ x 7″ roomy design is topped off with generous 11 inch handles for over-the-shoulder style."},
+    { key: 'buttons',header: 'KZSC Buttons', img:{buttons},  desc: "Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive."}
+]; 
+
 class Donate extends Component {
     constructor(props) {
         super(props);
         this.state = {
             content: "donate",
-            donateDesc: "Support KZSC by donating $88.10",
+            donateDesc: "Celebrate 88.1 FM -- 20,000 watts of good will",
             fname: "", lname: "",
             email: "", pnumber: "",
             city: "", zip: "", sstate: "",
             cname: "", ccnum: "",
             expdate: "", scode: "",
+            amount: 88.10,
+            items: []
         }
         this.toggle = this.toggle.bind(this);
         this.showDesc = this.showDesc.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleAmt = this.handleAmt.bind(this);
         this.setInfo = this.setInfo.bind(this);
+        this.getItem = this.getItem.bind(this);
+        this.notinCart = this.notinCart.bind(this);
+        this.addToCart = this.addToCart.bind(this);
+        this.removeItem = this.removeItem.bind(this);
+
     }
 
-    toggle(req) {
-        if (req != this.state.content) {
+
+    toggle(value) {
+        if (value != this.state.content) {
             this.setState({
-                content: req
+                content: value
             })
         }
     }
 
     showDesc(e, req) {
+        e.preventDefault();
         switch (req) {
             case '88.1':
                 this.setState({
-                    donateDesc: "Help KZSC stay on the airwaves by donating $88.10"
+                    donateDesc: "Celebrate 88.1 FM -- 20,000 watts of good will", 
+                    amount: 88.10
                 })
                 break;
             case 'daily-fiddy':
                 this.setState({
-                    donateDesc: "Help KZSC stay on the airwaves by donating 182.50"
+                    donateDesc: "Fund next 50 years of Student-run Community Radio, with a daily \"Fiddy\" cents", 
+                    amount: 182.50
                 })
                 break;
             case 'buck-a-day':
                 this.setState({
-                    donateDesc: "Help KZSC stay on the airwaves by donating $365"
+                    donateDesc: "Put a Susan B Anthony in the slot every day to keep the KZSC Jukebox jumping!",
+                    amount: 365.00
                 })
                 break;
             case '50-years-of-kzsc':
                 this.setState({
-                    donateDesc: "Help KZSC stay on the airwaves by donating $600"
+                    donateDesc: "Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50", 
+                    amount: 600.00
                 })
                 break;
             case 'kzsc-sustainer':
                 this.setState({
-                    donateDesc: "Help KZSC stay on the airwaves by donating $1057.20"
+                    donateDesc: "Celebrate KZSC FM with a monthly donation of $88.10", 
+                    amount: 1057.20
                 })
                 break;
             default:
@@ -101,12 +123,64 @@ class Donate extends Component {
         }
     }
 
+    /* Get item description */
+    getItem(value){
+        for(let i = 0; i < productDesc.length; i++){
+            if(value == productDesc[i].key){ 
+                return productDesc[i];
+            }
+        }
+    }
+
+    /* Check that the current item selected is not already in cart */
+    notinCart(arr, value){
+        if(arr.length != 0){
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i].id == value ){ 
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /* Add item to the cart */
+    addToCart(value){
+        let arr = this.state.items;
+        let item = this.getItem(value);
+        if(this.notinCart(arr, value)){
+            arr.push({ id: item.key, header: item.header, img: item.img, desc: item.desc});
+            this.setState({
+                items: arr
+            })
+        }
+    }
+
+    /* Remove item from cart */
+    removeItem(value){
+        let arr = this.state.items;
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i].id == value){
+                arr.splice(i, 1);
+            }
+        }
+        this.setState({
+            items: arr
+        })
+    }
+
 
     handleChange = (e, { value }) => {
         if (e.target.name === undefined) {
             this.setState({ sstate: value });
         } else this.setState({ [e.target.name]: value });
     };
+
+    handleAmt(e){
+        this.setState({
+            amount: e.target.value
+        });
+    }
 
     setInfo() {
         let arr = []
@@ -119,20 +193,32 @@ class Donate extends Component {
         console.log(arr);
     }
 
+
     donateContent() {
         return (
             <div className="div-donate">
                 <p className="donate-text">Help us keep noncommercial community radio on the air with a secure pledge today!</p>
                 <div>
-                    <Button color="red" size="massive" onClick={(e) => this.showDesc(e, "88.1")}>88.1 FM</Button>
-                    <Button color="orange" size="massive" onClick={(e) => this.showDesc(e, "daily-fiddy")}>Daily "Fiddy"</Button>
-                    <Button color="purple" size="massive" onClick={(e) => this.showDesc(e, "buck-a-day")}>Buck-a-day</Button>
-                    <Button color="green" size="massive" onClick={(e) => this.showDesc(e, "50-years-of-kzsc")}>50 years of KZSC</Button>
-                    <Button color="teal" size="massive" onClick={(e) => this.showDesc(e, "kzsc-sustainer")}>KZSC Sustainer</Button>
+                    <Button color="red" size="huge" onClick={(e) => this.showDesc(e, "88.1")}>88.1 FM</Button>
+                    <Button color="orange" size="huge" onClick={(e) => this.showDesc(e, "daily-fiddy")}>Daily "Fiddy"</Button>
+                    <Button color="purple" size="huge" onClick={(e) => this.showDesc(e, "buck-a-day")}>Buck-a-day</Button>
+                    <Button color="green" size="huge" onClick={(e) => this.showDesc(e, "50-years-of-kzsc")}>50 years of KZSC</Button>
+                    <Button color="teal" size="huge" onClick={(e) => this.showDesc(e, "kzsc-sustainer")}>KZSC Sustainer</Button>
+                    <Button color="teal" size="huge" onClick={(e) => this.showDesc(e, "kzsc-sustainer")}>Other</Button>
                 </div>
                 <div className="donateDesc"> {this.state.donateDesc}</div>
             </div>
         )
+    }
+
+    donateAmount(){
+        return(
+            <div>
+                <span className="donation-desc"> Donation Amount </span> 
+                <FaDollar  className="fa-dollar"/>
+                <input type="number" className="donation-amount-box" value={this.state.amount} onChange={this.handleAmt} />
+            </div>   
+        );
     }
 
     merchandiseContent() {
@@ -143,33 +229,31 @@ class Donate extends Component {
                     <Grid.Row>
                         <Grid.Column>
                             <div>
-                                <img className="images" src={shirt} />
-                                {/*<div className="div-beneath-img">
-
-                                        <Button color="red"> Add </Button>
-                                    </div>*/}
+                                <Button className="merch-btn" onClick={() => this.addToCart('shirt')} ><img className="images" src={shirt} /></Button>
                             </div>
                         </Grid.Column>
                         <Grid.Column>
                             <div>
-                                <img className="images" src={bag} />
-                                {/*<div className="div-beneath-img">
-                                        <Button color="red"> Add </Button>
-                                    </div>*/}
+                                <Button className="merch-btn" onClick={() => this.addToCart('bag')}><img className="images" src={bag} /></Button>
                             </div>
                         </Grid.Column>
                         <Grid.Column>
                             <div>
-                                <img className="images" src={buttons} />
-                                {/*<div className="div-beneath-img">
-                                        <Button color="red"> Add </Button>
-                                    </div>*/}
+                                <Button className="merch-btn" onClick={() => this.addToCart('buttons')}><img className="images" src={buttons} /></Button>
                             </div>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
             </div>
         );
+    }
+
+    merchandiseCart(){
+        return(
+            <div>
+                <ItemList items={this.state.items} remove={this.removeItem}/>
+            </div>
+        )
     }
 
     render() {
@@ -211,7 +295,7 @@ class Donate extends Component {
                                             <Form.Input className="form-input" label="Credit Card Number" placeholder="Number" name="ccnum" value={this.state.ccnum} onChange={this.handleChange} />
                                         </Form.Group>
                                         <Form.Group inline>
-                                            <Form.Input className="form-input" label="Expiration Date" placeholder="Expiration Date" name="expdate" value={this.state.expdate} onChange={this.handleChange} />
+                                            <Form.Input className="form-input" label="Expiration Date" placeholder="Expiration Date" name="expdate" type="date" value={this.state.expdate} onChange={this.handleChange} />
                                             <Form.Input className="form-input" label="Card Security Code" placeholder="000" name="scode" value={this.state.scode} onChange={this.handleChange} />
                                         </Form.Group>
                                     </Form>
@@ -219,12 +303,49 @@ class Donate extends Component {
                             </Grid.Row>
                         </Grid>
                     </div>
-
                 </div>
                 <div className="div-checkout">
-                    <Button color="red" onClick={() => this.setInfo()}>Confirm donation</Button>
-                </div>
+                    <Grid columns= 'equal' stackable>
+                        <Grid.Row>
+                            <Grid.Column> 
+                                {this.state.content == "donate" ? this.donateAmount() : this.merchandiseCart()}
+                            </Grid.Column>
+                            <Grid.Column> 
+                                <Button color="red" onClick={() => this.setInfo()}>Confirm Donation</Button> 
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </div>  
             </Container>
+        );""
+    }
+}
+
+class ItemList extends Component{
+
+    render(){
+        return (
+            <div>
+            <h1> Current Cart </h1>
+            <List>
+                {this.props.items.map(item => (
+                    <List.Item key={item.id} className="list-item">
+                    {console.log(item.img) }
+                        <List.Content>
+                            <div className="item-header">
+                                <Image className="list-image" src={item.img[item.id]} />
+                                <List.Header className="list-header"> {item.header} </List.Header>
+                            </div>
+                            <List.Description className="list-description"> {item.desc} </List.Description>
+                            <div>
+                                <Button className="remove-btn" onClick={() => this.props.remove(item.id)}>Remove</Button>
+                            </div>
+                        </List.Content>
+                        <hr/>
+                    </List.Item>
+                ))}
+            </List>
+            </div>
         );
     }
 }
