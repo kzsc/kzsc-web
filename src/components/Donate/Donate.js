@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Button, Form, Grid, Column, List, Image } from 'semantic-ui-react';
-import FaDollar from 'react-icons/lib/fa/dollar';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
 import bag from './kzsc-bag.jpg';
@@ -44,10 +43,10 @@ const sizes = [
 const info = [];
 
 const productDesc = [
-    { key: 'shirt', header: 'KZSC 88 point 1 Tee', img:{shirt}, desc: "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station."}, 
+    { key: 'shirt', header: 'KZSC 88 point 1 Tee', img:{shirt}, desc: "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station."},
     { key: 'bag', header: 'KZSC Canvas Tote Bag', img:{bag}, desc: "One of KZSC’s most enduring and popular designs, the “PEEL SLOWLY AND SEE” Banana Slug was inspired by Andy Warhol’s cover design for the debut LP by The Velvet Underground. Now KZSC offers a revamp of the design on this sturdy canvas tote bag designed to haul LPs, groceries, or whatever you please.  Its 15.5″ x 14.5″ x 7″ roomy design is topped off with generous 11 inch handles for over-the-shoulder style."},
     { key: 'buttons',header: 'KZSC Buttons', img:{buttons},  desc: "Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive."}
-]; 
+];
 
 class Donate extends Component {
     constructor(props) {
@@ -89,13 +88,13 @@ class Donate extends Component {
         switch (req) {
             case '88.1':
                 this.setState({
-                    donateDesc: "Celebrate 88.1 FM -- 20,000 watts of good will", 
+                    donateDesc: "Celebrate 88.1 FM -- 20,000 watts of good will",
                     amount: 88.10
                 })
                 break;
             case 'daily-fiddy':
                 this.setState({
-                    donateDesc: "Fund next 50 years of Student-run Community Radio, with a daily \"Fiddy\" cents", 
+                    donateDesc: "Fund next 50 years of Student-run Community Radio, with a daily \"Fiddy\" cents",
                     amount: 182.50
                 })
                 break;
@@ -107,13 +106,13 @@ class Donate extends Component {
                 break;
             case '50-years-of-kzsc':
                 this.setState({
-                    donateDesc: "Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50", 
+                    donateDesc: "Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50",
                     amount: 600.00
                 })
                 break;
             case 'kzsc-sustainer':
                 this.setState({
-                    donateDesc: "Celebrate KZSC FM with a monthly donation of $88.10", 
+                    donateDesc: "Celebrate KZSC FM with a monthly donation of $88.10",
                     amount: 1057.20
                 })
                 break;
@@ -126,7 +125,7 @@ class Donate extends Component {
     /* Get item description */
     getItem(value){
         for(let i = 0; i < productDesc.length; i++){
-            if(value == productDesc[i].key){ 
+            if(value == productDesc[i].key){
                 return productDesc[i];
             }
         }
@@ -136,7 +135,7 @@ class Donate extends Component {
     notinCart(arr, value){
         if(arr.length != 0){
             for(let i = 0; i < arr.length; i++){
-                if(arr[i].id == value ){ 
+                if(arr[i].id == value ){
                     return false;
                 }
             }
@@ -214,10 +213,9 @@ class Donate extends Component {
     donateAmount(){
         return(
             <div>
-                <span className="donation-desc"> Donation Amount </span> 
-                <FaDollar  className="fa-dollar"/>
+                <span className="donation-desc"> Donation Amount </span>
                 <input type="number" className="donation-amount-box" value={this.state.amount} onChange={this.handleAmt} />
-            </div>   
+            </div>
         );
     }
 
@@ -307,15 +305,15 @@ class Donate extends Component {
                 <div className="div-checkout">
                     <Grid columns= 'equal' stackable>
                         <Grid.Row>
-                            <Grid.Column> 
+                            <Grid.Column>
                                 {this.state.content == "donate" ? this.donateAmount() : this.merchandiseCart()}
                             </Grid.Column>
-                            <Grid.Column> 
-                                <Button color="red" onClick={() => this.setInfo()}>Confirm Donation</Button> 
+                            <Grid.Column>
+                                <Button color="red" onClick={() => this.setInfo()}>Confirm Donation</Button>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                </div>  
+                </div>
             </Container>
         );""
     }

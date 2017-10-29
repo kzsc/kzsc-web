@@ -1,28 +1,6 @@
 import React, {Component} from 'react';
 import { Container, Button, Form, Grid, Column } from 'semantic-ui-react';
 import './Schedule.css';
-// import shirt from './kzsc-shirt.jpg';
-// import bag from './kzsc-bag.jpg';
-// import buttons from './kzsc-buttons.jpg';
-/*
-class Schedule extends Component{
-    render(){
-        return(
-            <div>  Component, To be filled</div>
-        );
-    }
-}
-
-export default Schedule;
-/*
-/* ----------------------------------------------------------- */
-const states = [
-    { key: 'AL', text: 'Alabama', name: 'sstate', value: 'alabama' }
-];
-
-const sizes = [
-    { key: 's', text: 'Small', value: 'small' }
-];
 
 const info = [];
 
@@ -123,9 +101,9 @@ class Schedule extends Component {
                     <Button color="orange" size="massive" onClick={(e) => this.showDesc(e, "monday")}>Monday</Button>
                     <Button color="purple" size="massive" onClick={(e) => this.showDesc(e, "tuesday")}>Tuesday</Button>
                     <Button color="green" size="massive" onClick={(e) => this.showDesc(e, "wednesday")}>Wednesday</Button>
-                    <Button color="teal" size="massive" onClick={(e) => this.showDesc(e, "thursday")}>Thursday</Button>
-                    <Button color="teal" size="massive" onClick={(e) => this.showDesc(e, "friday")}>Friday</Button>
-                    <Button color="teal" size="massive" onClick={(e) => this.showDesc(e, "saturday")}>Saturday</Button>
+                    <Button color="red" size="massive" onClick={(e) => this.showDesc(e, "thursday")}>Thursday</Button>
+                    <Button color="orange" size="massive" onClick={(e) => this.showDesc(e, "friday")}>Friday</Button>
+                    <Button color="purple" size="massive" onClick={(e) => this.showDesc(e, "saturday")}>Saturday</Button>
                 </div>
                 <div className="donateDesc"> {this.state.donateDesc}</div>
             </div>
