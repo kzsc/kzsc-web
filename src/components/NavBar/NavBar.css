@@ -28,16 +28,14 @@
   font-size: 2em !important;
 }
 
-#kzsc-icon{
-
-    width: 3.6em;
-}
-
 a{
     color: black !important;
 }
 
 #kzsc-icon {
-    padding-top: 10px 1.14285714em !important;
-    width: 3.6em;
+  width: 2.9em;
+}
+
+#kzsc-icon-container {
+  padding-bottom: .65em;
 }

@@ -19,7 +19,8 @@ class NavBar extends Component{
                     <Menu.Item
                     className="nav-item"
                     name="home"
-                    onClick={this.handleItemClick}>
+                    onClick={this.handleItemClick}
+                    id="kzsc-icon-container">
                        <NavLink to='./'>
                           <img src={logo} className="icon" id="kzsc-icon"/>
                        </NavLink>
