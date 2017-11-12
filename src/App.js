@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home.js';
@@ -10,25 +10,24 @@ import Studio from './components/Studio/Studio';
 import Concert from './components/Concert/Concert';
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
+import Sponsor from './components/Sponsor/Sponsor';
 
 class App extends Component {
   render() {
     return (
-      <Router>
-
+      <BrowserRouter>
         <div className="App">
           <NavBar/>
-            <Route path='/' render={ () => <Redirect to='/home' /> } />
-            <Route path='/home' component={Home} />
-            <Route path='/listen' component ={Listen} />
-            <Route path='/donate' component ={Donate} />
-            <Route path='/schedule' component ={Schedule} />
-            <Route path='/studio' component ={Studio} />
-            <Route path='/concert' component ={Concert} />
-            <Route path='/about' component ={About} />
-          <Footer/>
+            <Route exact path='/home' render={() => <Home /> } />
+            <Route path='/listen' render={() => <Listen /> } />
+            <Route path='/donate' render={() => <Donate /> } />
+            <Route path='/schedule' render={() => <Schedule /> } />
+            <Route path='/studio' render={() => <Studio /> }/>
+            <Route path='/concert' render={() => <Concert /> } />
+            <Route path='/about' render={() => <About /> } />
+          <Footer/> 
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
