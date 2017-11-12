@@ -1,9 +1,12 @@
+/* Navigation Bar Style
+ * used in: NavBar.js
+ */
 
 .navbar{
     /*padding-top: 5px !important;*/
 }
 
-.nav-item{
+.nav-item {
     font-weight: 600 !important;
     font-size: 20px;
 }
@@ -13,7 +16,12 @@
 }
 
 .kzsc-nav-link {
-  padding: 10px 15px 22px 15px !important;
+  padding: 24px 15px 22px 15px !important;
+}
+
+.kzsc-nav-link:hover {
+  border-bottom-color: #000 !important;
+  background: #f2f2f2 !important;
 }
 
 .icon {
@@ -27,4 +35,9 @@
 
 a{
     color: black !important;
+}
+
+#kzsc-icon {
+    padding-top: 10px 1.14285714em !important;
+    width: 3.6em;
 }

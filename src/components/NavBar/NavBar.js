@@ -16,8 +16,13 @@ class NavBar extends Component{
         <div>
             <Menu pointing secondary size="massive" className="navbar">
                 <Menu.Menu position="left" compact={true}>
-                    <Menu.Item>
-                        <img src={logo} className="icon" id="kzsc-icon"/>
+                    <Menu.Item
+                    className="nav-item"
+                    name="home"
+                    onClick={this.handleItemClick}>
+                       <NavLink to='./'>
+                          <img src={logo} className="icon" id="kzsc-icon"/>
+                       </NavLink>
                     </Menu.Item>
                     <Menu.Item className="nav-item kzsc-nav-link left"
                     name='home'
@@ -57,35 +62,6 @@ class NavBar extends Component{
 export default NavBar;
 
 /* Removed Content
-
-<Menu.Item
-className="nav-item left"
-name='schedule'
-active={activeItem === 'schedule'}
-onClick={this.handleItemClick}>
-    <NavLink to='./schedule'> Schedule & Playlists </NavLink>
-</Menu.Item>
-<Menu.Item
-className="nav-item left"
-name='studio'
-active={activeItem === 'studio'}
-onClick={this.handleItemClick}>
-    <NavLink to='./studio'> Studio Rental </NavLink>
-</Menu.Item>
-<Menu.Item
-className="nav-item left"
-name='concert'
-active={activeItem === 'concert'}
-onClick={this.handleItemClick}>
-    <NavLink to='./concert'> Concert Calendar </NavLink>
-</Menu.Item>
-<Menu.Item
-className="nav-item left"
-name='about'
-active={activeItem === 'about'}
-onClick={this.handleItemClick}>
-    <NavLink to='./about'> About </NavLink>
-</Menu.Item>
 
 <Menu.Item className="nav-item kzsc-nav-icon right">
     <Icon name="search" className="icon"/>
