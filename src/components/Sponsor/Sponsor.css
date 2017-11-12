@@ -1,0 +1,26 @@
+.grid-css{
+    padding-right: 15% !important;
+    padding-left: 15% !important;
+    margin-top: 50px !important;
+}
+
+#h1-title{
+    border-style: none;
+    border-bottom: solid 1px black;
+    padding-left: 0;
+}
+
+
+.p-desc{
+    font-size: 18px;
+    text-align: left;
+}
+
+.p-color{
+    color: #d54821;
+}
+
+.fa-icon{
+    font-size: 1.75em;
+    margin-left: .25em;
+}

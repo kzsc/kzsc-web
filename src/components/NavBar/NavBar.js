@@ -39,7 +39,6 @@ class NavBar extends Component{
                     onClick={this.handleItemClick}>
                        <NavLink to='listen'> Listen </NavLink>
                     </Menu.Item>
-
                 </Menu.Menu>
 
                 <Menu.Menu

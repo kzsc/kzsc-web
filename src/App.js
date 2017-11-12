@@ -10,6 +10,7 @@ import Studio from './components/Studio/Studio';
 import Concert from './components/Concert/Concert';
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
+import Sponsor from './components/Sponsor/Sponsor';
 
 class App extends Component {
   render() {
