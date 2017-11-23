@@ -99,3 +99,21 @@
   box-sizing: inherit;
   cursor: auto;
 }
+
+#kzsc-support-footer .footer-item-list {
+  text-align: left;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#kzsc-support-footer .footer-item-list a {
+  color: #bbbbbb !important;
+  font-size: 16px;
+}
+
+#kzsc-support-footer .footer-item-list a:hover {
+  color: #eeeeee !important;
+}
+
+#kzsc-contact-footer .footer-icon-list i {
+  color: #000000;
+}

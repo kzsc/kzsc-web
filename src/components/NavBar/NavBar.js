@@ -15,7 +15,7 @@ class NavBar extends Component{
         return(
         <div>
             <Menu pointing secondary size="massive" className="navbar">
-                <Menu.Menu position="left" compact={true}>
+                <Menu.Menu position="left" compact={true} id="kzsc-menu">
                     <Menu.Item
                     className="nav-item"
                     name="home"
