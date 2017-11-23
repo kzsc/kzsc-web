@@ -45,34 +45,6 @@ class NavBar extends Component{
                     onClick={this.handleItemClick}>
                        <NavLink to='listen'> Listen </NavLink>
                     </Menu.Item>
-                    <Menu.Item
-                    className="nav-item kzsc-nav-link left"
-                    name='schedule'
-                    active={activeItem === 'schedule'}
-                    onClick={this.handleItemClick}>
-                        <NavLink to='./schedule'> Schedule & Playlists </NavLink>
-                    </Menu.Item>
-                    <Menu.Item
-                    className="nav-item kzsc-nav-link left"
-                    name='studio'
-                    active={activeItem === 'studio'}
-                    onClick={this.handleItemClick}>
-                        <NavLink to='./studio'> Studio Rental </NavLink>
-                    </Menu.Item>
-                    <Menu.Item
-                    className="nav-item kzsc-nav-link left"
-                    name='concert'
-                    active={activeItem === 'concert'}
-                    onClick={this.handleItemClick}>
-                        <NavLink to='./concert'> Concert Calendar </NavLink>
-                    </Menu.Item>
-                    <Menu.Item
-                    className="nav-item kzsc-nav-link left"
-                    name='about'
-                    active={activeItem === 'about'}
-                    onClick={this.handleItemClick}>
-                        <NavLink to='./about'> About </NavLink>
-                    </Menu.Item>
                 </Menu.Menu>
 
                 <Menu.Menu
