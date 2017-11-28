@@ -5,25 +5,10 @@ import './Blog.css';
 import imgDefault from './kzsc.jpg';
 var i = Math.floor(Math.random() * 93) + 1;
 
-
-
-
-
-
 class Blog extends Component {
     constructor(props) {
         super(props);
-
     }
-
-
-
-
-
-
-
-
-
 
     blogContent() {
       i = (i+7)%93;

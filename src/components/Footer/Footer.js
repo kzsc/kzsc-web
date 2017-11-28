@@ -27,7 +27,33 @@ class Footer extends Component{
         </div>
       )
   }
+
   secondColumn() {
+      return (
+        <div className="footer-title">Top Products</div>
+      )
+  }
+
+  thirdColumn() {
+      return (
+        <div>
+          <div className="footer-title">Support Us</div>
+          <div id="kzsc-support-footer" className="footer-list">
+            <div className="footer-item-list">
+              <NavLink to='donate'>Donate</NavLink>
+            </div>
+            <div className="footer-item-list">
+              <NavLink to='donate'>Store</NavLink>
+            </div>
+            <div className="footer-item-list">
+              <NavLink to='donate'>Business Underwriting</NavLink>
+            </div>
+          </div>
+        </div>
+      )
+  }
+
+  fourthColumn() {
       return (
         <div>
           <div className="footer-title">Contact Us</div>
@@ -59,31 +85,6 @@ class Footer extends Component{
             </div>
           </div>
         </div>
-      )
-  }
-
-  thirdColumn() {
-      return (
-        <div>
-          <div className="footer-title">Support Us</div>
-          <div id="kzsc-support-footer" className="footer-list">
-            <div className="footer-item-list">
-              <NavLink to='donate'>Donate</NavLink>
-            </div>
-            <div className="footer-item-list">
-              <NavLink to='donate'>Store</NavLink>
-            </div>
-            <div className="footer-item-list">
-              <NavLink to='donate'>Business Underwriting</NavLink>
-            </div>
-          </div>
-        </div>
-      )
-  }
-
-  fourthColumn() {
-      return (
-        <div className="footer-title">Top Products</div>
       )
   }
 
