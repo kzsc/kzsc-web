@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List, Grid} from 'semantic-ui-react';
+import { Responsive, List, Grid} from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
@@ -91,18 +91,18 @@ class Footer extends Component{
   render(){
       return(
           <div className="footer">
-              <Grid className="footer-block">
+              <Grid columns={4} className="footer-block" divided>
                   <Grid.Row className="footer-row" columns={4}>
-                      <Grid.Column className="left-column footer-item" width={4}>
+                      <Grid.Column className="left-column footer-item">
                           {this.firstColumn()}
                       </Grid.Column>
-                      <Grid.Column className="left-column footer-item" width={4}>
+                      <Grid.Column className="left-column footer-item">
                           {this.secondColumn()}
                       </Grid.Column>
-                      <Grid.Column className="left-column footer-item" width={4}>
+                      <Grid.Column className="left-column footer-item">
                           {this.thirdColumn()}
                       </Grid.Column>
-                      <Grid.Column className="footer-item" width={4}>
+                      <Grid.Column className="footer-item">
                           {this.fourthColumn()}
                       </Grid.Column>
                   </Grid.Row>

@@ -22,13 +22,13 @@ class NavBar extends Component{
                     id="kzsc-icon-container">
                         <img src={logo} className="icon" id="kzsc-icon"/>
                     </Menu.Item>
-                    <Menu.Item as={NavLink} to='./home'
-                    className="active item nav-item kzsc-nav-link left"
+                    <Menu.Item as={NavLink} to='/home'
+                    className="item nav-item kzsc-nav-link left"
                     active={activeItem === 'home'}
                     onClick={this.handleItemClick}>
                         Home
                     </Menu.Item>
-                    <Menu.Item as={NavLink} to='./donate'
+                    <Menu.Item as={NavLink} to='/donate'
                     className="nav-item kzsc-nav-link left"
                     active={activeItem === 'donate'}
                     onClick={this.handleItemClick}>
