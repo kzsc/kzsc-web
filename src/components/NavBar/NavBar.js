@@ -20,7 +20,7 @@ class NavBar extends Component{
                     className="nav-item"
                     name="home"
                     onClick={this.handleItemClick}>
-                       <NavLink to='./'>
+                       <NavLink to='./home'>
                           <img src={logo} className="icon" id="kzsc-icon"/>
                        </NavLink>
                     </Menu.Item>
@@ -45,7 +45,6 @@ class NavBar extends Component{
                        <NavLink to='listen'> Listen </NavLink>
                     </Menu.Item>
                 </Menu.Menu>
-
                 <Menu.Menu
                 position="right"
                 compact={true}>

@@ -48,6 +48,8 @@ const productDesc = [
     { key: 'buttons',header: 'KZSC Buttons', img:{buttons},  desc: "Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive."}
 ];
 
+// Stripe API 
+
 class Donate extends Component {
     constructor(props) {
         super(props);
@@ -73,7 +75,6 @@ class Donate extends Component {
         this.removeItem = this.removeItem.bind(this);
 
     }
-
 
     toggle(value) {
         if (value != this.state.content) {
