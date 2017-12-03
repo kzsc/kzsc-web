@@ -15,12 +15,15 @@ class NavBar extends Component{
         return(
         <div>
             <Menu pointing secondary size="massive" className="navbar">
-                <Menu.Menu position="left" compact={true} id="kzsc-menu">
-                    <Menu.Item as={NavLink} to='./' name="home"
-                    className="item nav-item"
-                    onClick={this.handleItemClick}
-                    id="kzsc-icon-container">
-                        <img src={logo} className="icon" id="kzsc-icon"/>
+
+                <Menu.Menu position="left" compact={true}>
+                    <Menu.Item
+                    className="nav-item"
+                    name="home"
+                    onClick={this.handleItemClick}>
+                       <NavLink to='./home'>
+                          <img src={logo} className="icon" id="kzsc-icon"/>
+                       </NavLink>
                     </Menu.Item>
                     <Menu.Item as={NavLink} to='/home'
                     className="item nav-item kzsc-nav-link left"
@@ -49,7 +52,6 @@ class NavBar extends Component{
                        Blog
                     </Menu.Item>
                 </Menu.Menu>
-
                 <Menu.Menu
                 position="right"
                 compact={true}>
