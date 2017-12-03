@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
+
+
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home.js';
@@ -12,6 +14,7 @@ import Concert from './components/Concert/Concert';
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import Sponsor from './components/Sponsor/Sponsor';
+import StoreCheckout from './components/StoreCheckout/StoreCheckout';
 
 class App extends Component {
   render() {
@@ -28,7 +31,10 @@ class App extends Component {
             <Route path='/studio' render={() => <Studio /> }/>
             <Route path='/concert' render={() => <Concert /> } />
             <Route path='/about' render={() => <About /> } />
-          <Footer/>
+
+            <Route path='/sponsor' render={() => <Sponsor /> } />
+            <Route path='/store' render={() =>  <StoreCheckout /> } />
+          <Footer/> 
         </div>
       </BrowserRouter>
     );
