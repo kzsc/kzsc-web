@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home.js';
 import Listen from './components/Listen/Listen';
 import Donate from './components/Donate/Donate';
+import Blog from './components/Blog/Blog';
 import Schedule from './components/Schedule/Schedule';
 import Studio from './components/Studio/Studio';
 import Concert from './components/Concert/Concert';
@@ -22,12 +23,15 @@ class App extends Component {
         <div className="App">
           <NavBar/>
             <Route exact path='/home' render={() => <Home /> } />
+            <Route exact path='/' render={() => <Home /> } />
             <Route path='/listen' render={() => <Listen /> } />
             <Route path='/donate' render={() => <Donate /> } />
+            <Route path='/blog' render={() => <Blog /> } />
             <Route path='/schedule' render={() => <Schedule /> } />
             <Route path='/studio' render={() => <Studio /> }/>
             <Route path='/concert' render={() => <Concert /> } />
             <Route path='/about' render={() => <About /> } />
+
             <Route path='/sponsor' render={() => <Sponsor /> } />
             <Route path='/store' render={() =>  <StoreCheckout /> } />
           <Footer/> 

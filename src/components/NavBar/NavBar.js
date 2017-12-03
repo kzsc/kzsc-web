@@ -15,6 +15,7 @@ class NavBar extends Component{
         return(
         <div>
             <Menu pointing secondary size="massive" className="navbar">
+
                 <Menu.Menu position="left" compact={true}>
                     <Menu.Item
                     className="nav-item"
@@ -24,25 +25,31 @@ class NavBar extends Component{
                           <img src={logo} className="icon" id="kzsc-icon"/>
                        </NavLink>
                     </Menu.Item>
-                    <Menu.Item className="nav-item kzsc-nav-link left"
-                    name='home'
+                    <Menu.Item as={NavLink} to='./home'
+                    className="active item nav-item kzsc-nav-link left"
                     active={activeItem === 'home'}
                     onClick={this.handleItemClick}>
-                       <NavLink to='./home'> Home </NavLink>
+                        Home
                     </Menu.Item>
-                    <Menu.Item
+                    <Menu.Item as={NavLink} to='./donate'
                     className="nav-item kzsc-nav-link left"
-                    name='donate'
                     active={activeItem === 'donate'}
                     onClick={this.handleItemClick}>
-                        <NavLink to='./donate'> Donate </NavLink>
+                        Donate
                     </Menu.Item>
-                    <Menu.Item
+                    <Menu.Item as={NavLink} to='/listen'
                     className="nav-item kzsc-nav-link left"
                     name='listen'
                     active={activeItem === 'listen'}
                     onClick={this.handleItemClick}>
-                       <NavLink to='listen'> Listen </NavLink>
+                       Listen
+                    </Menu.Item>
+                    <Menu.Item as={NavLink} to='/blog'
+                    className="nav-item kzsc-nav-link left"
+                    name='blog'
+                    active={activeItem === 'blog'}
+                    onClick={this.handleItemClick}>
+                       Blog
                     </Menu.Item>
                 </Menu.Menu>
                 <Menu.Menu
@@ -64,5 +71,13 @@ export default NavBar;
 
 <Menu.Item className="nav-item kzsc-nav-icon right">
     <Icon name="search" className="icon"/>
+</Menu.Item>
+
+<Menu.Item
+className="nav-item kzsc-nav-link left"
+name='blog'
+active={activeItem === 'blog'}
+onClick={this.handleItemClick}>
+   <NavLink to='blog'> Blog </NavLink>
 </Menu.Item>
 */
