@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
             });
     spinitron.getRegularShowsInfo({ When: 'now' }, function (error, response) {
     console.log(response.results[0].ShowName); 
-    
      });
 });
 
