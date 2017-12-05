@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Button, Form, Grid, Column, List, Image } from 'semantic-ui-react';
+import StripeCheckout from 'react-stripe-checkout';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
 import bag from './kzsc-bag.jpg';
@@ -75,6 +76,18 @@ class Donate extends Component {
         this.removeItem = this.removeItem.bind(this);
 
     }
+
+    onToken = (token) => {
+        fetch('/payment', {
+          method: 'POST',
+          body: JSON.stringify(token),
+        }).then(response => {
+            console.log(response);
+        //   response.json().then(data => {
+        //     alert(`We are in business, ${data.email}`);
+        //   });
+        });
+      }
 
     toggle(value) {
         if (value != this.state.content) {
@@ -289,14 +302,7 @@ class Donate extends Component {
                                 </Grid.Column>
                                 <Grid.Column>
                                     <Form className="form-container">
-                                        <Form.Group inline>
-                                            <Form.Input className="form-input" label="Cardholder Name" placeholder="Name on card" name="cname" value={this.state.cname} onChange={this.handleChange} />
-                                            <Form.Input className="form-input" label="Credit Card Number" placeholder="Number" name="ccnum" value={this.state.ccnum} onChange={this.handleChange} />
-                                        </Form.Group>
-                                        <Form.Group inline>
-                                            <Form.Input className="form-input" label="Expiration Date" placeholder="Expiration Date" name="expdate" type="date" value={this.state.expdate} onChange={this.handleChange} />
-                                            <Form.Input className="form-input" label="Card Security Code" placeholder="000" name="scode" value={this.state.scode} onChange={this.handleChange} />
-                                        </Form.Group>
+                                        <StripeCheckout token={this.onToken} stripeKey=""  />
                                     </Form>
                                 </Grid.Column>
                             </Grid.Row>

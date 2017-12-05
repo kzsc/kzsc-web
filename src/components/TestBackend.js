@@ -9,7 +9,6 @@ class TestBackend extends Component{
           .then(users => this.setState({ users }));
 
         fetch('/spinitron');
-          
       }
     
       render() {
