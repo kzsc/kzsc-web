@@ -225,10 +225,87 @@ class Schedule extends Component {
                           </Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            Monday text
+                          <Segment>
+                            Generations<br/>
+                            Nightwuds<br/>
+                            12:00 - 2:00 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            2:00 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Its All Good<br/>
+                            Bruce<br/>
+                            6:00 - 9:00 am
+                          </Segment>
+                          <Segment>
+                            Every Shade of Blue<br/>
+                            Morganic<br/>
+                            9:00 - 11:00 am
+                          </Segment>
+                          <Segment>
+                            World of Tunes<br/>
+                            MoKay / Mu<br/>
+                            11:00 - 12:30 pm
+                          </Segment>
+                          <Segment>
+                            Suburban Relapse<br/>
+                            DJ Gata<br/>
+                            12:30 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Cruise Control<br/>
+                            Iyzard<br/>
+                            2:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            Unfiltered Camels<br/>
+                            Brant Herrett / David Anton Savage<br/>
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 7:30 pm
+                          </Segment>
+                          <Segment>
+                            Closet Free Radio<br/>
+                            DJ Kai Dragon / RICHARD<br/>
+                            7:00 - 8:30 pm
+                          </Segment>
+                          <Segment>
+                            The Yangtze River<br/>
+                            Mu<br/>
+                            8:30 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            Melination<br/>
+                            kaviar<br/>
+                            10:00 - 11:00 pm
+                          </Segment>
+                          <Segment>
+                            Thats Fresh<br/>
+                            Jinx / riz aka djrsd<br/>
+                            11:00 - 12:00 am
+                          </Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            Tuesday text
+                          <Segment>
+                            Alive in the Septic Tank<br/>
+                            DJ Maladroit<br/>
+                            12:00 - 1:30 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            1:30 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Two Steps From The Blues<br/>
+                            Charlie<br/>
+                            6:00 - 9:00 am
+                          </Segment>
                         </Grid.Column>
                         <Grid.Column>
                             Wednesday text
