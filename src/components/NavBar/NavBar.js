@@ -23,20 +23,3 @@ class Home extends Component{
 }
 
 export default Home;
-
-
-
-/* Removed Content
-
-<Menu.Item className="nav-item kzsc-nav-icon right">
-    <Icon name="search" className="icon"/>
-</Menu.Item>
-
-<Menu.Item
-className="nav-item kzsc-nav-link left"
-name='blog'
-active={activeItem === 'blog'}
-onClick={this.handleItemClick}>
-   <NavLink to='blog'> Blog </NavLink>
-</Menu.Item>
-*/

@@ -5,7 +5,7 @@ import logo from '../../logo_dark_orange_sm.png';
 
 import './NavBar.css';
 
-class NavBarFull extends Component{
+class NavBarFull extends Component {
   state = {}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -17,9 +17,8 @@ class NavBarFull extends Component{
       <div>
         <Menu size="massive" className="navbar" secondary pointing>
           <Menu.Menu position="left">
-            <Menu.Item
-            className="nav-item">
-              <Image src={logo}  size='big' id="kzsc-icon"/>
+            <Menu.Item>
+              <Image src={logo}  width='107px'/>
             </Menu.Item>
             <Menu.Item as={NavLink} to='/home'
             className="item nav-item kzsc-nav-link left"
@@ -49,10 +48,17 @@ class NavBarFull extends Component{
             onClick={this.handleItemClick}>
                Blog
             </Menu.Item>
+            <Menu.Item as={NavLink} to='/schedule'
+            className="nav-item kzsc-nav-link left"
+            name='schedule'
+            active={activeItem === 'schedule'}
+            onClick={this.handleItemClick}>
+               Schedule
+            </Menu.Item>
           </Menu.Menu>
           <Menu.Menu position='right'>
             <Menu.Item className="nav-item kzsc-nav-icon right">
-                <Icon name="video play outline" color="red" className="icon"/>
+                <Icon size="big" name="video play outline" color="red"/>
             </Menu.Item>
           </Menu.Menu>
         </Menu>

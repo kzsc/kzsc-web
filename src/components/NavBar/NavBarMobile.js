@@ -1,64 +1,68 @@
 import React, {Component} from 'react';
-import { Menu, large, Icon } from 'semantic-ui-react';
+import { Sidebar, Segment, Button,
+        Menu, large, Icon, Image, Header } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../logo_dark_orange_sm.png';
 
 import './NavBar.css';
 
 class NavBarMobile extends Component{
-  state = {}
+  state = { visible: false }
+
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render(){
     const {activeItem} = this.state
+    const { visible } = this.state
+
     return(
       <div>
-        <Menu className="navbar" secondary pointing>
+        <Menu size="massive" className="navbar" secondary pointing>
           <Menu.Menu position="left">
-              <Menu.Item
-              className="nav-item">
-                <img src={logo} className="icon-standard" id="kzsc-icon-vertical"/>
-              </Menu.Item>
-            </Menu.Menu>
-            <Menu.Menu position='right'>
-              <Menu.Item className="nav-item">
-                <Icon size='small' name="content"/>
-              </Menu.Item>
+            <Menu.Item>
+              <Image src={logo}  width='107px'/>
+            </Menu.Item>
+          </Menu.Menu>
+          <Menu.Menu position='right'>
+            <Menu.Item className="nav-item kzsc-nav-icon right">
+              <Icon className="clickable-icon" size="big" name="sidebar"  color="red" onClick={this.toggleVisibility}/>
+            </Menu.Item>
           </Menu.Menu>
         </Menu>
-        <Menu id="mobile-menu-vertical" className="navbar mobile-menu" vertical>
-          <Menu.Menu>
-              <Menu.Item as={NavLink} to='/home'
-              className="item nav-item kzsc-nav-link left"
-              name = "home"
-              active={activeItem === 'home'}
-              onClick={this.handleItemClick}>
-                  Home
-              </Menu.Item>
-              <Menu.Item as={NavLink} to='/donate'
-              className="nav-item kzsc-nav-link left"
-              name = "donate"
-              active={activeItem === 'donate'}
-              onClick={this.handleItemClick}>
-                  Donate
-              </Menu.Item>
-              <Menu.Item as={NavLink} to='/listen'
-              className="nav-item kzsc-nav-link left"
-              name='listen'
-              active={activeItem === 'listen'}
-              onClick={this.handleItemClick}>
-                 Listen
-              </Menu.Item>
-              <Menu.Item as={NavLink} to='/blog'
-              className="nav-item kzsc-nav-link left"
-              name='blog'
-              active={activeItem === 'blog'}
-              onClick={this.handleItemClick}>
-                 Blog
-              </Menu.Item>
-            </Menu.Menu>
-        </Menu>
+
+        <Sidebar.Pushable>
+          <Sidebar as={Menu} animation='push' width='thin' direction='right'
+          visible={visible} icon='labeled' vertical inverted
+           onClick={this.toggleVisibility}>
+            <Menu.Item as={NavLink} to='/home' name = "home"
+            className="item nav-item kzsc-nav-link left"
+            active={activeItem === 'home'}
+            onClick={this.handleItemClick}>
+              Home
+            </Menu.Item>
+            <Menu.Item as={NavLink} to='/donate' name = "donate"
+            className="nav-item kzsc-nav-link left"
+            active={activeItem === 'donate'}
+            onClick={this.handleItemClick}>
+              Donate
+            </Menu.Item>
+            <Menu.Item as={NavLink} to='/listen' name='listen'
+            className="nav-item kzsc-nav-link left"
+            active={activeItem === 'listen'}
+            onClick={this.handleItemClick}>
+              Listen
+            </Menu.Item>
+            <Menu.Item as={NavLink} to='/blog' name='blog'
+            className="nav-item kzsc-nav-link left"
+            active={activeItem === 'blog'}
+            onClick={this.handleItemClick}>
+              Blog
+            </Menu.Item>
+          </Sidebar>
+          
+        </Sidebar.Pushable>
       </div>
     );
   }
