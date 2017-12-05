@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, Grid, Column } from 'semantic-ui-react';
+import { Icon, Image, Card, Segment, Container, Button, Form, Grid, Column } from 'semantic-ui-react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import imgDefault from './kzsc.jpg';
-<<<<<<< HEAD
-
-
-
-
-=======
-var i = Math.floor(Math.random() * 93) + 1;
->>>>>>> 3bf4596688208f40a2bee95c902b8663b3062d64
 
 class Blog extends Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
         this.state = {
           allposts: []
         };
@@ -30,39 +21,33 @@ class Blog extends Component {
         });
     }
 
-=======
-    }
-
->>>>>>> 3bf4596688208f40a2bee95c902b8663b3062d64
     blogContent() {
       return (
-          <div class="ui four link cards">
+          <Card.Group itemsPerRow={4}>
             {this.state.allposts.map(curpost =>
-              <div class="card">
-                <div class="image">
-                  <img src={curpost.thumbnail_images.full.url}/>
-                </div>
-                <div class="content">
-                  <div class="header" key={curpost.id}>{curpost.title}</div>
-                  <div class="meta">
+              <Card href = {curpost.url}>
+                <Image src={curpost.thumbnail_images.full.url}/>
+                <Card.Content>
+                  <Card.Header key={curpost.id}>{curpost.title}</Card.Header>
+                  <Card.Meta>
                     <a>By {curpost.author.name}</a>
-                  </div>
-                  <div class="description">
+                  </Card.Meta>
+                  <Card.Description>
                     {curpost.excerpt}
-                  </div>
-                </div>
-                <div class="extra content">
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
                   <span class="right floated">
                     {curpost.date}
                   </span>
                   <span>
-                    <i class="tags icon"></i>
+                    <Icon name = 'tags'/>
 
                   </span>
-                </div>
-                </div>
+                </Card.Content>
+              </Card>
             )}
-          </div>
+          </Card.Group>
       );
     }
 
