@@ -9,6 +9,9 @@
 # production
 /build
 
+# Spinitron API Keys
+/kzsc-backend/routes/config.json
+
 # misc
 .DS_Store
 .env.local

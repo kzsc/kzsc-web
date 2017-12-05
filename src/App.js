@@ -14,7 +14,7 @@ import Concert from './components/Concert/Concert';
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import Sponsor from './components/Sponsor/Sponsor';
-import StoreCheckout from './components/StoreCheckout/StoreCheckout';
+import TestBackend from './components/TestBackend';
 
 class App extends Component {
   render() {
@@ -31,9 +31,8 @@ class App extends Component {
             <Route path='/studio' render={() => <Studio /> }/>
             <Route path='/concert' render={() => <Concert /> } />
             <Route path='/about' render={() => <About /> } />
-
             <Route path='/sponsor' render={() => <Sponsor /> } />
-            <Route path='/store' render={() =>  <StoreCheckout /> } />
+            <Route path='/testbackend' render={() =>  <TestBackend /> } />
           <Footer/> 
         </div>
       </BrowserRouter>

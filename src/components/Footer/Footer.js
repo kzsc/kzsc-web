@@ -60,27 +60,27 @@ class Footer extends Component{
           <div id="kzsc-contact-footer" className="footer-list">
             <div className="footer-icon-list">
               <a href="https://www.facebook.com/kzscradio" className="footer-icon-background" target="_blank">
-                <i aria-hidden="true" class="icon facebook f footer-icon"></i>
+                <i aria-hidden="true" className="icon facebook f footer-icon"></i>
               </a>
             </div>
             <div className="footer-icon-list">
               <a href="https://twitter.com/kzsc" className="footer-icon-background" target="_blank">
-                <i aria-hidden="true" class="icon twitter footer-icon"></i>
+                <i aria-hidden="true" className="icon twitter footer-icon"></i>
               </a>
             </div>
             <div className="footer-icon-list">
               <a href="http://instagram.com/kzsc" className="footer-icon-background" target="_blank">
-                <i aria-hidden="true" class="icon instagram footer-icon"></i>
+                <i aria-hidden="true" className="icon instagram footer-icon"></i>
               </a>
             </div>
             <div className="footer-icon-list">
               <a href="https://plus.google.com/117475604967899823150/posts" className="footer-icon-background" target="_blank">
-                <i aria-hidden="true" class="icon google plus footer-icon"></i>
+                <i aria-hidden="true" className="icon google plus footer-icon"></i>
               </a>
             </div>
             <div className="footer-icon-list">
               <a href="http://www.youtube.com/user/kzscfm/videos" className="footer-icon-background" target="_blank">
-                <i aria-hidden="true" class="icon youtube footer-icon"></i>
+                <i aria-hidden="true" className="icon youtube footer-icon"></i>
               </a>
             </div>
           </div>
@@ -91,7 +91,7 @@ class Footer extends Component{
   render(){
       return(
           <div className="footer">
-              <Grid columns={4} className="footer-block" divided>
+              <Grid doubling columns={4} className="footer-block" divided>
                   <Grid.Row className="footer-row" columns={4}>
                       <Grid.Column className="left-column footer-item">
                           {this.firstColumn()}
