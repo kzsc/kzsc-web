@@ -73,7 +73,7 @@ div.ui.input{
 }
 
 
-.blogimage-container{
+image{
   margin-left: 9px;
   height: 230px;
   width: 230px;
@@ -81,7 +81,7 @@ div.ui.input{
   border-style: solid;
   border-color: black;
   border-width: thin;
-  border-radius: 50%;
+  border-radius: 50% !important;
   background-image: url('http://pngimg.com/uploads/cd_dvd/cd_dvd_PNG9073.png');
   background-size: cover;
    background-position: center;
@@ -109,6 +109,7 @@ h5{
   margin-top: 0;
   margin-bottom: 5px;
 }
+
 
 
 .div-beneath-img{
