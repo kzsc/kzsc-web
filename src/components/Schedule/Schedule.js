@@ -306,6 +306,50 @@ class Schedule extends Component {
                             Charlie<br/>
                             6:00 - 9:00 am
                           </Segment>
+                          <Segment>
+                            All Fruits Ripe<br/>
+                            Daddy Spleece<br/>
+                            9:00 - 12:00 pm
+                          </Segment>
+                          <Segment>
+                            Radio Behind the Diner<br/>
+                            Cassette Dream<br/>
+                            12:00 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Electric Owl<br/>
+                            Crux / Brandon Berry<br/>
+                            2:00 - 3:00 pm
+                          </Segment>
+                          <Segment>
+                            Silver &amp; Gold<br/>
+                            Jazzy J<br/>
+                            3:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            The Old Cold River<br/>
+                            DJPK<br/>
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 7:00 pm
+                          </Segment>
+                          <Segment>
+                            Universal Grapevine<br/>
+                            Bruce Bratton<br/>
+                            7:00 - 8:00 pm
+                          </Segment>
+                          <Segment>
+                            Super 8<br/>
+                            Rocko<br/>
+                            8:00 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            Queen Beats<br/>
+                            Jinx / kaviar<br/>
+                            10:00 - 12:00 am
+                          </Segment>
                         </Grid.Column>
                         <Grid.Column>
                             Wednesday text

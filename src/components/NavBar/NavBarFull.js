@@ -59,7 +59,7 @@ class NavBarFull extends Component {
           </Menu.Menu>
           <Menu.Menu position='right'>
             <Menu.Item className="nav-item kzsc-nav-icon right">
-                <Icon size="big" name="video play outline" color="red"/>
+                <PlayButton></PlayButton>
             </Menu.Item>
           </Menu.Menu>
         </Menu>

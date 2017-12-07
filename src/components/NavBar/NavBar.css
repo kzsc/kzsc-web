@@ -39,3 +39,7 @@
 .clickable-icon {
   cursor: pointer;
 }
+
+#p-pauseIcon {
+  display: none;
+}
