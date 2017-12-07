@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
-
+import { Sidebar } from 'semantic-ui-react';
 
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
@@ -17,6 +17,8 @@ import Sponsor from './components/Sponsor/Sponsor';
 import TestBackend from './components/TestBackend';
 
 class App extends Component {
+
+
   render() {
     return (
       <BrowserRouter>
@@ -33,7 +35,7 @@ class App extends Component {
             <Route path='/about' render={() => <About /> } />
             <Route path='/sponsor' render={() => <Sponsor /> } />
             <Route path='/testbackend' render={() =>  <TestBackend /> } />
-          <Footer/> 
+          <Footer/>
         </div>
       </BrowserRouter>
     );
