@@ -32,37 +32,35 @@ class NavBarMobile extends Component{
           </Menu.Menu>
         </Menu>
 
-        <Sidebar.Pushable>
-          <Sidebar as={Menu} animation='push' width='thin' direction='right'
-          visible={visible} icon='labeled' vertical inverted
-           onClick={this.toggleVisibility}>
-            <Menu.Item as={NavLink} to='/home' name = "home"
-            className="item nav-item kzsc-nav-link left"
-            active={activeItem === 'home'}
-            onClick={this.handleItemClick}>
-              Home
-            </Menu.Item>
-            <Menu.Item as={NavLink} to='/donate' name = "donate"
-            className="nav-item kzsc-nav-link left"
-            active={activeItem === 'donate'}
-            onClick={this.handleItemClick}>
-              Donate
-            </Menu.Item>
-            <Menu.Item as={NavLink} to='/listen' name='listen'
-            className="nav-item kzsc-nav-link left"
-            active={activeItem === 'listen'}
-            onClick={this.handleItemClick}>
-              Listen
-            </Menu.Item>
-            <Menu.Item as={NavLink} to='/blog' name='blog'
-            className="nav-item kzsc-nav-link left"
-            active={activeItem === 'blog'}
-            onClick={this.handleItemClick}>
-              Blog
-            </Menu.Item>
-          </Sidebar>
-          
-        </Sidebar.Pushable>
+        <Sidebar as={Menu} animation='push' width='thin' direction='right'
+        visible={visible} icon='labeled' vertical
+         onClick={this.toggleVisibility}>
+          <Menu.Item as={NavLink} to='/home' name = "home"
+          className="item nav-item kzsc-nav-link left"
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick}>
+            Home
+          </Menu.Item>
+          <Menu.Item as={NavLink} to='/donate' name = "donate"
+          className="nav-item kzsc-nav-link left"
+          active={activeItem === 'donate'}
+          onClick={this.handleItemClick}>
+            Donate
+          </Menu.Item>
+          <Menu.Item as={NavLink} to='/listen' name='listen'
+          className="nav-item kzsc-nav-link left"
+          active={activeItem === 'listen'}
+          onClick={this.handleItemClick}>
+            Listen
+          </Menu.Item>
+          <Menu.Item as={NavLink} to='/blog' name='blog'
+          className="nav-item kzsc-nav-link left"
+          active={activeItem === 'blog'}
+          onClick={this.handleItemClick}>
+            Blog
+          </Menu.Item>
+        </Sidebar>
+
       </div>
     );
   }
