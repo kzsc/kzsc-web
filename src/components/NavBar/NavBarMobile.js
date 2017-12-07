@@ -26,8 +26,13 @@ class NavBarMobile extends Component{
             </Menu.Item>
           </Menu.Menu>
           <Menu.Menu position='right'>
-            <Menu.Item className="nav-item kzsc-nav-icon right">
-              <Icon className="clickable-icon" size="big" name="sidebar"  color="red" onClick={this.toggleVisibility}/>
+            <Menu.Item className="nav-item kzsc-nav-icon center">
+                <Icon size="big" name="video play outline"
+                color="red" fitted/>
+            </Menu.Item>
+            <Menu.Item className="nav-item kzsc-nav-icon center">
+              <Icon className="clickable-icon" size="big" name="sidebar"
+              color="red" onClick={this.toggleVisibility} fitted/>
             </Menu.Item>
           </Menu.Menu>
         </Menu>

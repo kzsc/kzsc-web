@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import { Grid } from 'semantic-ui-react';
 import NavBarFull from './NavBarFull';
 import NavBarMobile from './NavBarMobile';
+import PlayButton from './PlayButton';
 
 class Home extends Component{
     render(){
         return(
+          <div>
             <Grid>
               <Grid.Row columns={1} only='mobile'>
                 <Grid.Column>
@@ -18,6 +20,8 @@ class Home extends Component{
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+            <PlayButton></PlayButton>
+          </div>
         );
     }
 }
