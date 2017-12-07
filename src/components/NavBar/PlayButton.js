@@ -35,9 +35,8 @@ class PlayButton extends Component {
     return(
       <div>
         <div onClick={this.playButtonClicked}>
-        <Icon size="big" name="video play outline" color="red"/>
+          <Icon size="big" name="video play outline" color="red"/>
         </div>
-    
         <audio id="player">
           <source src="http://188.165.192.5:8242/kzschigh?type=.mp3" type="audio/mpeg"/>
         </audio>
