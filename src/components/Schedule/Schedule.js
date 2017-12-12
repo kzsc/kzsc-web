@@ -37,40 +37,39 @@ class Schedule extends Component {
             case 'sunday':
                 this.setState({
                     donateDesc: "Sunday Calendar"
-                })
+                });
                 break;
             case 'monday':
                 this.setState({
                     donateDesc: "Monday Calendar"
-                })
+                });
                 break;
             case 'tuesday':
                 this.setState({
                     donateDesc: "Tuesday Calendar"
-                })
+                });
                 break;
             case 'wednesday':
                 this.setState({
                     donateDesc: "Wednesday Calendar"
-                })
+                });
                 break;
             case 'thursday':
                 this.setState({
                     donateDesc: "Thursday Calendar"
-                })
+                });
                 break;
             case 'friday':
                 this.setState({
                     donateDesc: "Friday Calendar"
-                })
+                });
                 break;
             case 'saturday':
                 this.setState({
                     donateDesc: "Satuday Calendar"
-                })
+                });
                 break;
             default:
-                console.log("Nothing selected");
                 break;
         }
     }
@@ -166,6 +165,18 @@ class Schedule extends Component {
                     </Grid.Row>
                     <Grid.Row>
                         <Grid.Column width={1}>
+                          12 am<br/><br/><br/><br/>1 am<br/><br/><br/><br/>
+                          2 am<br/><br/><br/><br/>2 am<br/><br/><br/><br/>
+                          4 am<br/><br/><br/><br/>5 am<br/><br/><br/><br/>
+                          6 am<br/><br/><br/><br/>7 am<br/><br/><br/><br/>
+                          8 am<br/><br/><br/><br/>9 am<br/><br/><br/><br/>
+                          10 am<br/><br/><br/><br/>11 am<br/><br/><br/><br/>
+                          12 pm<br/><br/><br/><br/>1 pm<br/><br/><br/><br/>
+                          2 pm<br/><br/><br/><br/>3 pm<br/><br/><br/><br/>
+                          4 pm<br/><br/><br/><br/>5 pm<br/><br/><br/><br/>
+                          6 pm<br/><br/><br/><br/>7 pm<br/><br/><br/><br/>
+                          8 pm<br/><br/><br/><br/>9 pm<br/><br/><br/><br/>
+                          10 pm<br/><br/><br/>11 pm<br/><br/><br/><br/>
                           12 am
                         </Grid.Column>
                         <Grid.Column>
@@ -352,16 +363,243 @@ class Schedule extends Component {
                           </Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            Wednesday text
+                          <Segment>
+                            Angry, Young, &amp; Dorm<br/>
+                            The Anarchist<br/>
+                            12:00 - 2:00 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            2:00 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Wiki Wiki Wednesday<br/>
+                            Lani<br/>
+                            6:00 - 9:00 am
+                          </Segment>
+                          <Segment>
+                            Dr. Ts Vinylorium<br/>
+                            JT<br/>
+                            9:00 - 12:00 pm
+                          </Segment>
+                          <Segment>
+                            Artist on Art<br/>
+                            DJ Hope<br/>
+                            12:00 - 1:00 pm
+                          </Segment>
+                          <Segment>
+                            Nebulous<br/>
+                            Firey Nairi<br/>
+                            1:00 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Girls Germs<br/>
+                            ROYGBIV<br/>
+                            2:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            Golden Road<br/>
+                            Art O Sullivan<br/>
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 7:00 pm
+                          </Segment>
+                          <Segment>
+                            Talkabout<br/>
+                            Sleepy John<br/>
+                            7:00 - 8:30 pm
+                          </Segment>
+                          <Segment>
+                            Disc Hocky<br/>
+                            Firey Nairi / Jazzy J / Just Visiting / DJane<br/>
+                            8:30 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            Got Rapps?<br/>
+                            riz aka djrsd<br/>
+                            10:00 - 12:00 am
+                          </Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            Thursday text
+                          <Segment>
+                            Alive in the Septic Tank<br/>
+                            DJ Maladroit<br/>
+                            12:00 - 1:30 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            1:30 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Two Steps From The Blues<br/>
+                            Charlie<br/>
+                            6:00 - 9:00 am
+                          </Segment>
+                          <Segment>
+                            All Fruits Ripe<br/>
+                            Daddy Spleece<br/>
+                            9:00 - 12:00 pm
+                          </Segment>
+                          <Segment>
+                            Radio Behind the Diner<br/>
+                            Cassette Dream<br/>
+                            12:00 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Electric Owl<br/>
+                            Crux / Brandon Berry<br/>
+                            2:00 - 3:00 pm
+                          </Segment>
+                          <Segment>
+                            Silver &amp; Gold<br/>
+                            Jazzy J<br/>
+                            3:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            The Old Cold River<br/>
+                            DJPK<br/>
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 7:00 pm
+                          </Segment>
+                          <Segment>
+                            Universal Grapevine<br/>
+                            Bruce Bratton<br/>
+                            7:00 - 8:00 pm
+                          </Segment>
+                          <Segment>
+                            Super 8<br/>
+                            Rocko<br/>
+                            8:00 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            Queen Beats<br/>
+                            Jinx / kaviar<br/>
+                            10:00 - 12:00 am
+                          </Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            Friday text
+                        <Segment>
+                          Beat Smorgasborg<br/>
+                          Groktopus<br/>
+                          12:00 - 2:00 am
+                        </Segment>
+                        <Segment>
+                          Mystery Spot<br/>
+                          KZSC<br/>
+                          2:00 - 6:00 am
+                        </Segment>
+                        <Segment>
+                          Whimsical Will O Wisps<br/>
+                          D-NA
+                          6:00 - 9:00 am
+                        </Segment>
+                        <Segment>
+                          Breakfast in Bed<br/>
+                          Betsy / Lani / Maria / Carol / LC / DJ Compost<br/>
+                          9:00 - 12:00 pm
+                        </Segment>
+                        <Segment>
+                          Backroads<br/>
+                          Jeff Emery / Chris<br/>
+                          12:00 - 2:00 pm
+                        </Segment>
+                        <Segment>
+                          Local Brew<br/>
+                          Telltale / Jazzy J / Jinx<br/>
+                          2:00 - 4:00 pm
+                        </Segment>
+                        <Segment>
+                          CR8 Diggers Anonymous<br/>
+                          Olright
+                          4:00 - 6:00 pm
+                        </Segment>
+                        <Segment>
+                          Pacifica Evening News<br/>
+                          6:00 - 6:30 pm
+                        </Segment>
+                        <Segment>
+                          Low-Tide Flow<br/>
+                          Mostly Mild Midnight Mocha<br/>
+                          6:30 - 8:00 pm
+                        </Segment>
+                        <Segment>
+                          Insect Agony<br/>
+                          David Anton Savage / DJ Catfish / Q / DJPK<br/>
+                          8:00 - 10:00 pm
+                        </Segment>
+                        <Segment>
+                          What Lurks Beneath<br/>
+                          DJ Catfish<br/>
+                          10:00 - 12:00 pm
+                        </Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            Saturday text
+                          <Segment>
+                            Alive in the Septic Tank<br/>
+                            DJ Maladroit<br/>
+                            12:00 - 1:30 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            1:30 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Two Steps From The Blues<br/>
+                            Charlie<br/>
+                            6:00 - 9:00 am
+                          </Segment>
+                          <Segment>
+                            All Fruits Ripe<br/>
+                            Daddy Spleece<br/>
+                            9:00 - 12:00 pm
+                          </Segment>
+                          <Segment>
+                            Radio Behind the Diner<br/>
+                            Cassette Dream<br/>
+                            12:00 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Electric Owl<br/>
+                            Crux / Brandon Berry<br/>
+                            2:00 - 3:00 pm
+                          </Segment>
+                          <Segment>
+                            Silver &amp; Gold<br/>
+                            Jazzy J<br/>
+                            3:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            The Old Cold River<br/>
+                            DJPK<br/>
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 7:00 pm
+                          </Segment>
+                          <Segment>
+                            Universal Grapevine<br/>
+                            Bruce Bratton<br/>
+                            7:00 - 8:00 pm
+                          </Segment>
+                          <Segment>
+                            Super 8<br/>
+                            Rocko<br/>
+                            8:00 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            Queen Beats<br/>
+                            Jinx / kaviar<br/>
+                            10:00 - 12:00 am
+                          </Segment>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
