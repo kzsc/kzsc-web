@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var stripe = require("stripe")("");
+var config = require('./config.json');
+var stripe = require("stripe")(config.stripe_key);
 
 // Using token returned from Stripe process transaction
 router.post('/', function(req, res, next){
-    var tokenid = req.body.id;
+    var tokenid = req.body.rtoken.id;
+    var damount = req.body.amount;
 
     stripe.charges.create({
-        amount: 1000,
+        amount: damount,
         currency: "usd",
         description: "Posting transaction to the card",
         source: tokenid,

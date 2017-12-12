@@ -54,7 +54,10 @@ class Donate extends Component {
         fetch('/payment', {
             method: 'POST', 
             headers: new Headers({'content-type': 'application/json'}),
-            body: JSON.stringify(token)
+            body: JSON.stringify({
+                rtoken: token, 
+                amount: dAmount
+            })
         }).then(response => {
             // Return back to user, redirect to another webpage? 
         })
@@ -137,10 +140,10 @@ class Donate extends Component {
             this.setState({
                 items: arr
             })
+            this.setState({
+                merchAmount: this.state.merchAmount + item.price * 100
+            });
         }
-        this.setState({
-            merchAmount: this.state.merchAmount + item.price * 100
-        });
     }
 
     /* Remove item from cart */
