@@ -44,8 +44,15 @@ class PlayButton extends Component {
     const { playing } = this.state;
 
     return(
-      <div onClick={this.playButtonClicked}>
-        {this.state.playing ? this.showPause() : this.showPlay()}
+      <div>
+        <div className="playButtonShowInformation">
+          Radio Behind the Diner<br/>
+          with Cassette Dream<br/>
+          12:00 - 2:00 pm
+        </div>
+        <div className="playButtonDiv" onClick={this.playButtonClicked}>
+          {this.state.playing ? this.showPause() : this.showPlay()}
+        </div>
       </div>
     );
   }
