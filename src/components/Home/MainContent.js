@@ -5,13 +5,13 @@ import './MainContent.css';
 class MainContent extends Component{
     render(){
         return(
-            <Grid className="main-content-grid">
+            <Grid className="main-content-grid" stackable>
                 <Grid.Row>
-                    <Grid.Column width={10} color="yellow" className="grid-element">
+                    <Grid.Column width={10} color="yellow" className="grid-element height-300">
                         Featured Content 1
                     </Grid.Column>
-                    <Grid.Column width={6} color="red" className="grid-element">
-                        Featured Content 2
+                    <Grid.Column width={6} color="red" className="grid-element height-300">
+                        Business Underwriting Section
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
@@ -29,7 +29,7 @@ class MainContent extends Component{
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-                
+
         );
     }
 }

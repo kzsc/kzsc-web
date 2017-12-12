@@ -18,6 +18,11 @@ import TestBackend from './components/TestBackend';
 
 class App extends Component {
 
+  handleClick = () => {
+    if (this.state.visible) {
+      this.setState({ visible: false });
+    }
+  }
 
   render() {
     return (

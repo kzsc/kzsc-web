@@ -39,3 +39,15 @@
 .clickable-icon {
   cursor: pointer;
 }
+
+.playButtonShowInformation {
+  display: block;
+  font-size: 0.55em;
+  float: left;
+  padding: 5px;
+  text-align: left;
+}
+
+.playButtonDiv {
+  float: right;
+}
