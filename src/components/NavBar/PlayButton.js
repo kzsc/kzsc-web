@@ -18,7 +18,6 @@ class PlayButton extends Component {
       var playButton = document.getElementById('p-playIcon');
       var pauseButton = document.getElementById('p-pauseIcon');
       if(!this.state.playing) {
-        liveStream.load();
         liveStream.play();
         playButton.style.display = "none";
         pauseButton.style.display = "inline-block";
