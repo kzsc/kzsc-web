@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Container, Button, Form, Grid, Column } from 'semantic-ui-react';
+import { Container, Button, Form, Grid, Column, Segment } from 'semantic-ui-react';
+
 import './Schedule.css';
 
 const info = [];
@@ -92,50 +93,275 @@ class Schedule extends Component {
         console.log(arr);
     }
 
-    donateContent() {
+    dailyContent() {
         return (
-            <div className="div-donate">
-                <p className="donate-text">Program Schedule</p>
-                <div>
-                    <Button color="red" size="massive" onClick={(e) => this.showDesc(e, "sunday")}>Sunday</Button>
-                    <Button color="orange" size="massive" onClick={(e) => this.showDesc(e, "monday")}>Monday</Button>
-                    <Button color="purple" size="massive" onClick={(e) => this.showDesc(e, "tuesday")}>Tuesday</Button>
-                    <Button color="green" size="massive" onClick={(e) => this.showDesc(e, "wednesday")}>Wednesday</Button>
-                    <Button color="red" size="massive" onClick={(e) => this.showDesc(e, "thursday")}>Thursday</Button>
-                    <Button color="orange" size="massive" onClick={(e) => this.showDesc(e, "friday")}>Friday</Button>
-                    <Button color="purple" size="massive" onClick={(e) => this.showDesc(e, "saturday")}>Saturday</Button>
-                </div>
-                <div className="donateDesc"> {this.state.donateDesc}</div>
+            <div className="div-calendar">
+                <p className="calendar-text">Program Schedule &amp; Playlists</p>
+                <Grid>
+                  <Grid.Row columns='equal' divided stackable columns={7}>
+                    <Grid.Column>
+                      <Button color="red" onClick={(e) => this.showDesc(e, "sunday")}>Sunday</Button>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Button color="red" onClick={(e) => this.showDesc(e, "monday")}>Monday</Button>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Button color="red" onClick={(e) => this.showDesc(e, "tuesday")}>Tuesday</Button>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Button color="red" onClick={(e) => this.showDesc(e, "wednesday")}>Wednesday</Button>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Button color="red" onClick={(e) => this.showDesc(e, "thursday")}>Thursday</Button>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Button color="red" onClick={(e) => this.showDesc(e, "friday")}>Friday</Button>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Button color="red" onClick={(e) => this.showDesc(e, "saturday")}>Saturday</Button>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+                <Grid>
+                  <Grid.Row columns={1}>
+                    <Grid.Column>
+                      <div className="donateDesc"> {this.state.donateDesc}</div>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
             </div>
         )
     }
 
-    merchandiseContent() {
+    weeklyContent() {
         return (
-            <div className="div-donate">
-                <p className="donate-text">Program Schedule</p>
-                <Grid columns='equal' divided stackable>
+            <div className="div-calendar">
+                <p className="calendar-text">Full Week Schedule</p>
+                <Grid divided stackable columns={8}>
                     <Grid.Row>
-                        <Grid.Column>
-                          <Button color="red">Sunday</Button>
+                        <Grid.Column width={1}>
+                          Time
                         </Grid.Column>
                         <Grid.Column>
-                            <Button color="red">Monday</Button>
+                          Sunday
                         </Grid.Column>
                         <Grid.Column>
-                            <Button color="red">Tuesday</Button>
+                            Monday
                         </Grid.Column>
                         <Grid.Column>
-                            <Button color="red">Wednesday</Button>
+                            Tuesday
                         </Grid.Column>
                         <Grid.Column>
-                            <Button color="red">Thursday</Button>
+                            Wednesday
                         </Grid.Column>
                         <Grid.Column>
-                            <Button color="red">Friday</Button>
+                            Thursday
                         </Grid.Column>
                         <Grid.Column>
-                            <Button color="red">Saturday</Button>
+                            Friday
+                        </Grid.Column>
+                        <Grid.Column>
+                            Saturday
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={1}>
+                          12 am
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Segment>
+                            Beat Smorgasborg<br/>
+                            Groktopus<br/>
+                            12:00 - 2:00 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            2:00 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Whimsical Will O Wisps<br/>
+                            D-NA
+                            6:00 - 9:00 am
+                          </Segment>
+                          <Segment>
+                            Breakfast in Bed<br/>
+                            Betsy / Lani / Maria / Carol / LC / DJ Compost<br/>
+                            9:00 - 12:00 pm
+                          </Segment>
+                          <Segment>
+                            Backroads<br/>
+                            Jeff Emery / Chris<br/>
+                            12:00 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Local Brew<br/>
+                            Telltale / Jazzy J / Jinx<br/>
+                            2:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            CR8 Diggers Anonymous<br/>
+                            Olright
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 6:30 pm
+                          </Segment>
+                          <Segment>
+                            Low-Tide Flow<br/>
+                            Mostly Mild Midnight Mocha<br/>
+                            6:30 - 8:00 pm
+                          </Segment>
+                          <Segment>
+                            Insect Agony<br/>
+                            David Anton Savage / DJ Catfish / Q / DJPK<br/>
+                            8:00 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            What Lurks Beneath<br/>
+                            DJ Catfish<br/>
+                            10:00 - 12:00 pm
+                          </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Segment>
+                            Generations<br/>
+                            Nightwuds<br/>
+                            12:00 - 2:00 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            2:00 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Its All Good<br/>
+                            Bruce<br/>
+                            6:00 - 9:00 am
+                          </Segment>
+                          <Segment>
+                            Every Shade of Blue<br/>
+                            Morganic<br/>
+                            9:00 - 11:00 am
+                          </Segment>
+                          <Segment>
+                            World of Tunes<br/>
+                            MoKay / Mu<br/>
+                            11:00 - 12:30 pm
+                          </Segment>
+                          <Segment>
+                            Suburban Relapse<br/>
+                            DJ Gata<br/>
+                            12:30 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Cruise Control<br/>
+                            Iyzard<br/>
+                            2:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            Unfiltered Camels<br/>
+                            Brant Herrett / David Anton Savage<br/>
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 7:30 pm
+                          </Segment>
+                          <Segment>
+                            Closet Free Radio<br/>
+                            DJ Kai Dragon / RICHARD<br/>
+                            7:00 - 8:30 pm
+                          </Segment>
+                          <Segment>
+                            The Yangtze River<br/>
+                            Mu<br/>
+                            8:30 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            Melination<br/>
+                            kaviar<br/>
+                            10:00 - 11:00 pm
+                          </Segment>
+                          <Segment>
+                            Thats Fresh<br/>
+                            Jinx / riz aka djrsd<br/>
+                            11:00 - 12:00 am
+                          </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Segment>
+                            Alive in the Septic Tank<br/>
+                            DJ Maladroit<br/>
+                            12:00 - 1:30 am
+                          </Segment>
+                          <Segment>
+                            Mystery Spot<br/>
+                            KZSC<br/>
+                            1:30 - 6:00 am
+                          </Segment>
+                          <Segment>
+                            Two Steps From The Blues<br/>
+                            Charlie<br/>
+                            6:00 - 9:00 am
+                          </Segment>
+                          <Segment>
+                            All Fruits Ripe<br/>
+                            Daddy Spleece<br/>
+                            9:00 - 12:00 pm
+                          </Segment>
+                          <Segment>
+                            Radio Behind the Diner<br/>
+                            Cassette Dream<br/>
+                            12:00 - 2:00 pm
+                          </Segment>
+                          <Segment>
+                            Electric Owl<br/>
+                            Crux / Brandon Berry<br/>
+                            2:00 - 3:00 pm
+                          </Segment>
+                          <Segment>
+                            Silver &amp; Gold<br/>
+                            Jazzy J<br/>
+                            3:00 - 4:00 pm
+                          </Segment>
+                          <Segment>
+                            The Old Cold River<br/>
+                            DJPK<br/>
+                            4:00 - 6:00 pm
+                          </Segment>
+                          <Segment>
+                            Pacifica Evening News<br/>
+                            6:00 - 7:00 pm
+                          </Segment>
+                          <Segment>
+                            Universal Grapevine<br/>
+                            Bruce Bratton<br/>
+                            7:00 - 8:00 pm
+                          </Segment>
+                          <Segment>
+                            Super 8<br/>
+                            Rocko<br/>
+                            8:00 - 10:00 pm
+                          </Segment>
+                          <Segment>
+                            Queen Beats<br/>
+                            Jinx / kaviar<br/>
+                            10:00 - 12:00 am
+                          </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            Wednesday text
+                        </Grid.Column>
+                        <Grid.Column>
+                            Thursday text
+                        </Grid.Column>
+                        <Grid.Column>
+                            Friday text
+                        </Grid.Column>
+                        <Grid.Column>
+                            Saturday text
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -143,25 +369,16 @@ class Schedule extends Component {
         );
     }
 
-    /*sundaySchedule() {
-      return (
-{this.state.dayofweek == "sunday" ? this.sundaySchedule() : this.mondaySchedule() }
-
-
-             )
-    }*/
-
     render() {
         return (
-            <Container className="donate-container">
+            <Container className="calendar-container">
                 <div className="content-btns">
-                    <Button className="donate-btn" onClick={() => this.toggle("donate")}>By Day</Button>
+                    <Button className="calendar-btn" onClick={() => this.toggle("daily")}>Daily Calendar</Button>
                 </div>
                 <div className="content-btns">
-                    <Button className="donate-btn" onClick={() => this.toggle("me")}>Merchandise</Button>
+                    <Button className="calendar-btn" onClick={() => this.toggle("me")}>Full Calendar</Button>
                 </div>
-                {this.state.content == "donate" ? this.donateContent() : this.merchandiseContent()}
-
+                {this.state.content == "daily" ? this.dailyContent() : this.weeklyContent()}
             </Container>
         );
     }
