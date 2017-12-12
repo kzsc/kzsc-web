@@ -78,7 +78,9 @@ div.ui.input{
     cursor: pointer;
 }
 
-
+.donateDesc{
+    text-align: left;
+}
 
 .div-beneath-img{
     width:100%;
@@ -87,10 +89,6 @@ div.ui.input{
 
 .div-checkout{
     margin-top:20px !important;
-}
-
-.donation-desc{
-    font-size: 24px;
 }
 
 .fa-dollar{
@@ -115,8 +113,8 @@ div.ui.input{
 }
 
 .list-image{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin-right: 10px;
 }
 .list-header{
@@ -124,8 +122,16 @@ div.ui.input{
     margin-top:15px !important;
     margin-bottom: 20px !important;
 }
-
 .list-description{
     font-size: 16px;
+    margin-top: 5px !important;
     margin-bottom: 10px !important;
+}
+
+.suggested-donation{ 
+    font-size: 18px;
+}
+
+.subtotal{
+    font-size: 18px;
 }
