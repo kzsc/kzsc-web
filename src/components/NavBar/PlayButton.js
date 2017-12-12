@@ -15,41 +15,37 @@ class PlayButton extends Component {
 
   playButtonClicked() {
       var liveStream = document.getElementById('player');
-      var playButton = document.getElementById('p-playIcon');
-      var pauseButton = document.getElementById('p-pauseIcon');
       if(!this.state.playing) {
-        liveStream.load();
         liveStream.play();
-        playButton.style.display = "none";
-        pauseButton.style.display = "inline-block";
         this.setState({
             playing: true
         });
       } else if (this.state.playing) {
         liveStream.pause();
-        playButton.style.display = "inline-block";
-        pauseButton.style.display = "none";
         this.setState({
             playing: false
         });
       }
   };
 
+  showPlay() {
+    return (
+      <Icon size="big" name="video play outline" color="red" fitted/>
+    )
+  };
+
+  showPause() {
+    return (
+      <Icon size="big" name="pause circle outline" color="red" fitted/>
+    )
+  };
+
   render(){
-    const { playing } = this.state
+    const { playing } = this.state;
 
     return(
-      <div>
-        <div onClick={this.playButtonClicked}>
-          <Icon id="p-playIcon" size="big"
-          name="video play outline" color="red" fitted/>
-          <Icon id="p-pauseIcon" size="big"
-          name="pause circle outline" color="red" fitted/>
-        </div>
-        <audio id="player" preload="auto">>
-          <source src="http://188.165.192.5:8242/kzschigh?type=.mp3"
-          type="audio/mpeg" preload="auto"/>
-        </audio>
+      <div onClick={this.playButtonClicked}>
+        {this.state.playing ? this.showPause() : this.showPlay()}
       </div>
     );
   }
