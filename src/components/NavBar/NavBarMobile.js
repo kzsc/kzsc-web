@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { Sidebar, Segment, Button,
-        Menu, large, Icon, Image, Header } from 'semantic-ui-react';
+import { Sidebar, Menu, Icon, Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import PlayButton from './PlayButton';
 import logo from '../../logo_dark_orange_sm.png';

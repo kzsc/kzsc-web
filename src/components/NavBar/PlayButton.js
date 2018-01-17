@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Menu, large, Icon, Image } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 
 import './NavBar.css';
 
@@ -11,6 +11,14 @@ class PlayButton extends Component {
       playing: false
     }
     this.playButtonClicked = this.playButtonClicked.bind(this);
+  }
+
+  componentWillMount(){
+    this.setPlayingToFalse();
+  }
+
+  setPlayingToFalse(){
+    this.setState({playing: false});
   }
 
   playButtonClicked() {

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import { List, Grid } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import './ListContent.css';
 
 class ListContent extends Component{
     render(){
-        return( 
-            <div className="list-content"> 
+        return(
+            <div className="list-content">
                 <h2> Interviews </h2>
                 <Grid>
                     <Grid.Row className="list-row">
@@ -13,7 +13,7 @@ class ListContent extends Component{
                             Content 1
                         </Grid.Column>
                         <Grid.Column width={4} color="green" className="grid-item">
-                            Content 2 
+                            Content 2
                         </Grid.Column>
                         <Grid.Column width={4} color="yellow" className="grid-item">
                             Content 3
@@ -30,7 +30,7 @@ class ListContent extends Component{
                             Content 1
                         </Grid.Column>
                         <Grid.Column width={4} color="green" className="grid-item">
-                            Content 2 
+                            Content 2
                         </Grid.Column>
                         <Grid.Column width={4} color="yellow" className="grid-item">
                             Content 3
@@ -47,7 +47,7 @@ class ListContent extends Component{
                             Content 1
                         </Grid.Column>
                         <Grid.Column width={4} color="green" className="grid-item">
-                            Content 2 
+                            Content 2
                         </Grid.Column>
                         <Grid.Column width={4} color="yellow" className="grid-item">
                             Content 3

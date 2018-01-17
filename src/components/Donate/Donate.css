@@ -56,11 +56,6 @@
     width: 25%;
 }
 
-.selection.dropdown>.dropdown.icon{
-    padding-top: 0 !important;
-    padding-right: 0 !important;
-}
-
 div.ui.input{
     width: 100% !important;
 }
@@ -70,7 +65,7 @@ div.ui.input{
 }
 
 .images{
-    width: 200px; 
+    width: 200px;
     height: 200px;
 }
 
@@ -128,7 +123,7 @@ div.ui.input{
     margin-bottom: 10px !important;
 }
 
-.suggested-donation{ 
+.suggested-donation{
     font-size: 18px;
 }
 

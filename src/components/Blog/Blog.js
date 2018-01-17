@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Icon, Image, Card, Segment, Container, Button, Form, Grid, Column } from 'semantic-ui-react';
+import { Icon, Image, Card, Container, Button } from 'semantic-ui-react';
+
 import axios from 'axios';
-import ReactDOM from 'react-dom';
-import imgDefault from './kzsc.jpg';
 
 class Blog extends Component {
     constructor(props) {
@@ -25,24 +24,23 @@ class Blog extends Component {
       return (
           <Card.Group itemsPerRow={4}>
             {this.state.allposts.map(curpost =>
-              <Card href = {curpost.url}>
+              <Card key={curpost.id} href = {curpost.url}>
                 <Image src={curpost.thumbnail_images.full.url}/>
                 <Card.Content>
                   <Card.Header key={curpost.id}>{curpost.title}</Card.Header>
                   <Card.Meta>
-                    <a>By {curpost.author.name}</a>
+                    By {curpost.author.name}
                   </Card.Meta>
                   <Card.Description>
                     {curpost.excerpt}
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                  <span class="right floated">
+                  <span className="right floated">
                     {curpost.date}
                   </span>
                   <span>
                     <Icon name = 'tags'/>
-
                   </span>
                 </Card.Content>
               </Card>

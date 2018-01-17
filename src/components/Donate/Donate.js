@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, Select, Grid, Column, List, Image } from 'semantic-ui-react';
+import { Container, Button, Form, Select, Grid, List, Image } from 'semantic-ui-react';
 import StripeCheckout from 'react-stripe-checkout';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
@@ -22,7 +22,7 @@ const productDesc = [
     { key: 'buttons',header: 'KZSC Buttons', img:{buttons},  price: 20, desc: "Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive."}
 ];
 
-// Stripe API 
+// Stripe API
 
 class Donate extends Component {
     constructor(props) {
@@ -45,26 +45,26 @@ class Donate extends Component {
 
     onToken = (token) => {
         var dAmount = 0;
-        if(this.state.content == "donate"){
+        if(this.state.content === "donate"){
             dAmount = this.state.amount;
         }else{
             dAmount = this.state.merchAmount;
         }
         console.log(token);
         fetch('/payment', {
-            method: 'POST', 
+            method: 'POST',
             headers: new Headers({'content-type': 'application/json'}),
             body: JSON.stringify({
-                rtoken: token, 
+                rtoken: token,
                 amount: dAmount
             })
         }).then(response => {
-            // Return back to user, redirect to another webpage? 
+            // Return back to user, redirect to another webpage?
         })
       }
 
     toggle(value) {
-        if (value != this.state.content) {
+        if (value !== this.state.content) {
             this.setState({
                 content: value
             })
@@ -113,7 +113,7 @@ class Donate extends Component {
     /* Get item description */
     getItem(value){
         for(let i = 0; i < productDesc.length; i++){
-            if(value == productDesc[i].key){
+            if(value === productDesc[i].key){
                 return productDesc[i];
             }
         }
@@ -121,9 +121,9 @@ class Donate extends Component {
 
     /* Check that the current item selected is not already in cart */
     notinCart(arr, value){
-        if(arr.length != 0){
+        if(arr.length !== 0){
             for(let i = 0; i < arr.length; i++){
-                if(arr[i].id == value ){
+                if(arr[i].id === value ){
                     return false;
                 }
             }
@@ -151,7 +151,7 @@ class Donate extends Component {
         let arr = this.state.items;
         let itemPrice = 0;
         for(let i = 0; i < arr.length; i++){
-            if(arr[i].id == value){
+            if(arr[i].id === value){
                 itemPrice = arr[i].price;
                 arr.splice(i, 1);
             }
@@ -181,22 +181,26 @@ class Donate extends Component {
                         <Grid columns='equal' divided stackable>
                             <Grid.Row>
                                 <Grid.Column>
-                                    <img src={donate} />
+                                    <img src={donate} alt=""/>
                                 </Grid.Column>
                                 <Grid.Column>
-                                    <p className="donateDesc"> {this.state.donateDesc}
-                                    <br/><hr/>
-                                    Amount: ${(this.state.amount/100).toFixed(2)}
+                                    <p className="donateDesc">
+                                      {this.state.donateDesc}
+                                      <br />
+                                    </p>
+                                    <hr />
+                                    <p>
+                                      Amount: ${(this.state.amount/100).toFixed(2)}
                                     </p>
                                     <Form className="form-container">
-                                        <StripeCheckout 
+                                        <StripeCheckout
                                         name="KZSC Support"
                                         panelLabel="Donation"
                                         amount = {this.state.amount}
                                         billingAddress = {true}
                                         zipCode = {true}
                                         email={this.state.email}
-                                        token={this.onToken} 
+                                        token={this.onToken}
                                         stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI"
                                             />
                                     </Form>
@@ -226,29 +230,37 @@ class Donate extends Component {
                     <Grid.Row>
                         <Grid.Column>
                             <div>
-                                <Button className="merch-btn" onClick={() => this.addToCart('shirt')} ><img className="images" src={shirt} /></Button>
+                                <Button className="merch-btn" onClick={() => this.addToCart('shirt')} >
+                                  <img className="images" src={shirt} alt=""/>
+                                </Button>
                             </div>
                         </Grid.Column>
                         <Grid.Column>
                             <div>
-                                <Button className="merch-btn" onClick={() => this.addToCart('bag')}><img className="images" src={bag} /></Button>
+                                <Button className="merch-btn" onClick={() => this.addToCart('bag')}>
+                                  <img className="images" src={bag} alt=""/>
+                                </Button>
                             </div>
                         </Grid.Column>
                         <Grid.Column>
                             <div>
-                                <Button className="merch-btn" onClick={() => this.addToCart('buttons')}><img className="images" src={buttons} /></Button>
+                                <Button className="merch-btn" onClick={() => this.addToCart('buttons')}>
+                                  <img className="images" src={buttons} alt=""/>
+                                </Button>
                             </div>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column floated='right'> 
+                        <Grid.Column floated='right'>
                             <div>
-                                <Button className="merch-btn" onClick={() => this.addToCart('shirt2')} ><img className="images" src={shirt2} /></Button>
+                                <Button className="merch-btn" onClick={() => this.addToCart('shirt2')} >
+                                  <img className="images" src={shirt2} alt=""/>
+                                </Button>
                             </div>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-                <hr/>
+                <hr />
             </div>
         );
     }
@@ -257,23 +269,23 @@ class Donate extends Component {
         return(
             <Grid columns='equal' stackable>
                 <Grid.Row>
-                    <Grid.Column> 
+                    <Grid.Column>
                         <ItemList items={this.state.items} remove={this.removeItem}/>
                     </Grid.Column>
-                    <Grid.Column> 
+                    <Grid.Column>
                         <div className="subtotal">Subtotal {(this.state.merchAmount/100).toFixed(2)} </div>
                         <Form className="merch-form form-container">
-                            <StripeCheckout 
+                            <StripeCheckout
                                 name="KZSC Support"
                                 panelLabel="Donation"
                                 amount = {this.state.merchAmount}
                                 // billingAddress = {true}
                                 // zipCode = {true}
                                 // email={this.state.email}
-                                token={this.onToken} 
+                                token={this.onToken}
                                 stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI"
                                 />
-                        </Form>                    
+                        </Form>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -289,9 +301,9 @@ class Donate extends Component {
                 <div className="content-btns">
                     <Button className="donate-btn" onClick={() => this.toggle("me")}>Merchandise</Button>
                 </div>
-                    {this.state.content == "donate" ? this.donateContent() : this.merchandiseContent()}
+                    {this.state.content === "donate" ? this.donateContent() : this.merchandiseContent()}
                 <div className="div-checkout">
-                    {this.state.content == "donate" ? this.donateAmount() : this.merchandiseCart()}
+                    {this.state.content === "donate" ? this.donateAmount() : this.merchandiseCart()}
                 </div>
             </Container>
         );
@@ -314,16 +326,16 @@ class ItemList extends Component{
                             <List.Description className="list-description"> {item.desc} </List.Description>
                             <div>
                                 <Form>
-                                    <Form.Group inline widths='4'> 
+                                    <Form.Group inline widths='4'>
                                         <Form.Input label="Quantity" type="number" placeholder="1" />
-                                        {item.header == "KZSC Buttons" ? <span> </span>: <Form.Field label="Size" control={Select} options={sizes} placeholder="Medium" />}
+                                        {item.header === "KZSC Buttons" ? <span> </span>: <Form.Field label="Size" control={Select} options={sizes} placeholder="Medium" />}
                                     </Form.Group>
                                 </Form>
                                 <span className="suggested-donation"> Suggested Donation: ${item.price} </span>
                                 <Button className="remove-btn" onClick={() => this.props.remove(item.id)}>Remove</Button>
                             </div>
                         </List.Content>
-                        <hr/>
+                        <hr />
                     </List.Item>
                 ))}
             </List>

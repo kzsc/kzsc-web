@@ -1,119 +1,26 @@
-.footer{
+/*
+ * src/components/Footer/Footer.css
+ * Used by:
+ *  src/components/Footer/Footer.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
+.footer {
     margin-top: 50px !important;
-    background-color:black !important;
-    position: absolute !important;
-    width: 100% !important;
-    height: 308px !important;
 }
 
-.left-column{
-    border-right: 2px solid !important ;
-    border-right-color: black !important;
-}
-
-
-.grid-block{
-    padding-right: 15% !important;
-    padding-left: 15% !important;
-    margin-top: 0 !important;
-    height: 280px;
-}
-
-.footer-item{
-    font-size: 18px;
-    background-color: #2b2828;
-    padding: 14px !important;
-    color: #ffffff;
-}
-
-.footer-block {
-  padding: 0px;
-  height: 100%;
-  margin-top: 0px !important;
-  margin-bottom: 0px !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-}
-
-.footer-row {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-}
-
-.footer-title {
-  color: #919191;
-  margin-bottom: 10px;
-}
-
-
-.footer-ul a {
-  text-decoration: none;
-}
-
-.footer-ul a:hover {
-  text-decoration: none;
-}
-
-
-
-/* Footer Form Style */
-.footer-form .form-label {
-  text-align: left;
-  color: #dddddd !important;
-}
-
-.footer-form input {
-  padding: .4em .6em !important;
-}
-
-/* Footer Icons */
-.footer-icon-list {
-  margin: 4px;
-  display: inline-block;
-  height: 31px;
-}
-
-.footer-icon-background {
-  background-color: #bbbbbb;
-  padding: 5px 4px 5px 5px;
-  border-radius: 5px;
-}
-.footer-icon {
-  font-size: 1em !important;
-  display: inline-block;
-  opacity: 1;
-  margin: 0 .25rem 0 0;
-  width: 1.18em;
-  height: 1em;
-  font-family: Icons;
-  font-style: normal;
-  font-weight: 400;
-  text-decoration: none;
-  text-align: center;
-  speak: none;
-  font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  box-sizing: inherit;
-  cursor: auto;
-}
-
-#kzsc-support-footer .footer-item-list {
-  text-align: left;
+#kzsc-footer-support .footer-item-list {
   margin-top: 8px;
   margin-bottom: 8px;
 }
-#kzsc-support-footer .footer-item-list a {
+
+#kzsc-footer a {
   color: #bbbbbb !important;
   font-size: 16px;
 }
 
-#kzsc-support-footer .footer-item-list a:hover {
+#kzsc-footer a:hover {
   color: #eeeeee !important;
-}
-
-#kzsc-contact-footer .footer-icon-list i {
-  color: #000000;
 }

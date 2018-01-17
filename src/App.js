@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Redirect} from 'react-router-dom';
-import { Sidebar } from 'semantic-ui-react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
@@ -29,17 +28,18 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <NavBar/>
-            <Route exact path='/home' render={() => <Home /> } />
-            <Route exact path='/' render={() => <Home /> } />
-            <Route path='/listen' render={() => <Listen /> } />
-            <Route path='/donate' render={() => <Donate /> } />
-            <Route path='/blog' render={() => <Blog /> } />
-            <Route path='/schedule' render={() => <Schedule /> } />
-            <Route path='/studio' render={() => <Studio /> }/>
-            <Route path='/concert' render={() => <Concert /> } />
-            <Route path='/about' render={() => <About /> } />
-            <Route path='/sponsor' render={() => <Sponsor /> } />
-            <Route path='/testbackend' render={() =>  <TestBackend /> } />
+          <Route exact path='/home' render={() => <Home /> } />
+          <Route exact path='/' render={() => <Home /> } />
+          <Route path='/listen' render={() => <Listen /> } />
+          <Route path='/donate' render={() => <Donate /> } />
+          <Route path='/blog' render={() => <Blog /> } />
+          <Route path='/schedule' render={() => <Schedule /> } />
+          <Route path='/studio' render={() => <Studio /> }/>
+          <Route path='/concert' render={() => <Concert /> } />
+          <Route path='/about' render={() => <About /> } />
+          <Route path='/sponsor' render={() => <Sponsor /> } />
+          <Route path='/testbackend' render={() =>  <TestBackend /> } />
+          <br />
           <Footer/>
         </div>
       </BrowserRouter>

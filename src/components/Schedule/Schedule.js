@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import { Container, Button, Form, Grid, Column, Segment } from 'semantic-ui-react';
+import { Container, Button, Grid, Segment } from 'semantic-ui-react';
 
 import './Schedule.css';
-
-const info = [];
 
 class Schedule extends Component {
     constructor(props) {
@@ -11,7 +9,7 @@ class Schedule extends Component {
         this.state = {
             content: "daily",
             dayofweek: "sunday",
-            donateDesc: this.sundayContent(),
+            dailyContet: this.sundayContent(),
             fname: "", lname: "",
             email: "", pnumber: "",
             city: "", zip: "", sstate: "",
@@ -25,7 +23,7 @@ class Schedule extends Component {
     }
 
     toggle(req) {
-        if (req != this.state.content) {
+        if (req !== this.state.content) {
             this.setState({
                 content: req
             })
@@ -36,37 +34,37 @@ class Schedule extends Component {
         switch (req) {
             case 'sunday':
                 this.setState({
-                    donateDesc: this.sundayContent()
+                    dailyContet: this.sundayContent()
                 });
                 break;
             case 'monday':
                 this.setState({
-                    donateDesc: this.mondayContent()
+                    dailyContet: this.mondayContent()
                 });
                 break;
             case 'tuesday':
                 this.setState({
-                    donateDesc: this.tuesdayContent()
+                    dailyContet: this.tuesdayContent()
                 });
                 break;
             case 'wednesday':
                 this.setState({
-                    donateDesc: this.wednesdayContent()
+                    dailyContet: this.wednesdayContent()
                 });
                 break;
             case 'thursday':
                 this.setState({
-                    donateDesc: this.sundayContent()
+                    dailyContet: this.sundayContent()
                 });
                 break;
             case 'friday':
                 this.setState({
-                    donateDesc: this.fridayContent()
+                    dailyContet: this.fridayContent()
                 });
                 break;
             case 'saturday':
                 this.setState({
-                    donateDesc: this.saturdayContent()
+                    dailyContent: this.saturdayContent()
                 });
                 break;
             default:
@@ -97,7 +95,7 @@ class Schedule extends Component {
             <div className="div-calendar">
                 <p className="calendar-text">Program Schedule &amp; Playlists</p>
                 <Grid>
-                  <Grid.Row columns='equal' divided stackable columns={7}>
+                  <Grid.Row columns='equal' divided stackable>
                     <Grid.Column>
                       <Button color="red" onClick={(e) => this.showDesc(e, "sunday")}>Sunday</Button>
                     </Grid.Column>
@@ -124,7 +122,7 @@ class Schedule extends Component {
                 <Grid>
                   <Grid.Row columns={1}>
                     <Grid.Column>
-                      <div className="donateDesc"> {this.state.donateDesc}</div>
+                      <div className="donateDesc"> {this.state.dailyContet}</div>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
@@ -868,7 +866,7 @@ class Schedule extends Component {
                 <div className="content-btns">
                     <Button className="calendar-btn" onClick={() => this.toggle("weekly")}>Full Calendar</Button>
                 </div>
-                {this.state.content == "daily" ? this.dailyContent() : this.weeklyContent()}
+                {this.state.content === "daily" ? this.dailyContent() : this.weeklyContent()}
             </Container>
         );
     }

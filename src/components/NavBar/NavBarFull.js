@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Menu, large, Icon, Image } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../logo_dark_orange_sm.png';
 import PlayButton from './PlayButton';
@@ -19,7 +19,7 @@ class NavBarFull extends Component {
         <Menu size="massive" className="navbar" secondary pointing>
           <Menu.Menu position="left">
             <Menu.Item>
-              <Image src={logo}  width='107px'/>
+              <Image src={logo} width='107px'/>
             </Menu.Item>
             <Menu.Item as={NavLink} to='/home'
             className="item nav-item kzsc-nav-link left"

@@ -26,3 +26,32 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Padding Styles BEGIN */
+.padding-10 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* Padding Styles END */
+
+/* Site Wide Styles BEGIN */
+.centered-block {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+/* Site Wide Styles END */
+
+/* Colors BEGIN*/
+.color-apple {
+  color: #999999;
+}
+
+.color-android {
+  color: #a4c639;
+}
+
+.color-soundcloud {
+  color: #ff5500;
+}
+/* Colors END */

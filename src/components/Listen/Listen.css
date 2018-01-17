@@ -1,33 +1,8 @@
-.list-row.listen{
-    margin-top: 40px;
-    margin-bottom: 110px;
-}
-.list-row.listen2{
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.table-desc{
-    font-size:20px;
-    text-align:left;
-    margin-bottom: 20px;
-}
-
-.table1{
-    width: 50%;
-    float:left;
-    padding-right: 10px;
-}
-
-.mobile-desc{
-    text-align: left;
-    font-size: 20px;
-}
-
-.fa-apple{
-    color:#999999;
-}
-
-.fa-android{
-    color: #a4c639;
-}
+/*
+ * src/components/Listen/Listen.css
+ * Used by:
+ *  src/components/Listen/Listen.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
