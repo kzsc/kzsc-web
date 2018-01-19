@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
-import Home from './components/Home/Home.js';
+import Home from './components/Home/Home';
 import Listen from './components/Listen/Listen';
 import Donate from './components/Donate/Donate';
 import Blog from './components/Blog/Blog';
@@ -14,6 +14,7 @@ import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import Sponsor from './components/Sponsor/Sponsor';
 import TestBackend from './components/TestBackend';
+import Psa from './components/Psa/Psa';
 
 class App extends Component {
 

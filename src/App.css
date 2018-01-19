@@ -28,11 +28,17 @@
 }
 
 /* Padding Styles BEGIN */
-.padding-10 {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.padding-tb-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 /* Padding Styles END */
+
+/* Height Styles BEGIN */
+.height-286 {
+  height: 286px;
+}
+/* Height Styles BEGIN */
 
 /* Site Wide Styles BEGIN */
 .centered-block {

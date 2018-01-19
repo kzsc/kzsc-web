@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Button, Icon, Image, Form, Select, TextArea } from 'semantic-ui-react'
+import { Grid, Button, Icon, Image, Form,
+         Select, TextArea, Segment, Divider,
+         Dimmer, Container } from 'semantic-ui-react'
 import uuid from 'uuid';
 
 class About extends Component{
@@ -91,151 +93,226 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Parker Kaye',
         position: 'Music / Rock Director',
-        category: 'music'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'music',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Neroli Devaney',
         position: 'Hip Hop Director',
-        category: 'music'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'music',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Kavya Aswadhati',
         position: 'Jazz & Blues Director',
-        category: 'music'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'music',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Melissa Cabrera',
         position: 'Loud Rock Director',
-        category: 'music'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'music',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Shayan Vandani',
         position: 'Electronic Music Director',
-        category: 'music'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'music',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Rebecca Mu',
         position: 'World Music Director',
-        category: 'music'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'music',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Morgan Corona',
         position: 'Station Manager',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Keith Rozendal',
         position: 'Broadcast Advisor',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Zach Holbrook',
         position: 'Volunteer Coordinator',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Jasmine Stade',
         position: 'Promotions Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Kavya Aswadhati',
         position: 'Talk and News Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Lani Bandhauer',
         position: 'Member Services Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Eve Suva',
         position: 'Training Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Program Review Committee',
         position: 'Internal Quality Panel',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Bennett Williamson',
         position: 'Digital Librarian',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Duncan Ober',
         position: 'Production Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Han Ngo',
         position: 'Business Manager',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Dustin Choto',
         position: 'New Media Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Rocko Bauman',
         position: 'Design Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Jane Verlaine',
         position: 'Program Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Eric Partika',
         position: 'Physical Librarian',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Dylan Fabris',
         position: 'Student Media Rep',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Shanee Dinay',
         position: 'Web Team Rep',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Maelin Rose',
         position: 'Alumni Coordinator',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       },
       {
         id: uuid.v4(),
         name: 'Riz Aliga',
         position: 'Sports Director',
-        category: 'other'
+        email: 'rock@kzsc.org',
+        mailto: 'mailto:rock@kzsc.org',
+        category: 'other',
+        dimmerActive: false
       }
     ]});
   }
@@ -247,18 +324,59 @@ class About extends Component{
     this.getGovBoardStaff();
   }
 
+  handleShow(id) {
+    var cloneGovBoardMembers = JSON.parse(JSON.stringify(this.state)).govBoardMembers;
+		for(var i = 0; i < cloneGovBoardMembers.length; i++) {
+      if( cloneGovBoardMembers[i].id === id ) {
+        cloneGovBoardMembers[i].dimmerActive = true;
+      }
+    }
+		this.setState({
+			govBoardMembers: cloneGovBoardMembers
+    });
+  }
+
+  handleHide(id) {
+    var cloneGovBoardMembers = JSON.parse(JSON.stringify(this.state)).govBoardMembers;
+		for(var i = 0; i < cloneGovBoardMembers.length; i++) {
+      if( cloneGovBoardMembers[i].id === id ) {
+        cloneGovBoardMembers[i].dimmerActive = false;
+      }
+    }
+		this.setState({
+			govBoardMembers: cloneGovBoardMembers
+    });
+  }
+
   render(){
 
     let govBoardMusicDirectors;
     govBoardMusicDirectors = this.state.govBoardMembers.map(member => {
       if( member.category === "music" ) {
+
+        var styleDetails = {
+          backgroundImage: 'url(' + 'https://react.semantic-ui.com/assets/images/wireframe/image.png' + ')'
+        };
         return (
-          <Grid.Column width={5} key={member.id}>
-            <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' />
-            <p>
-              <span>{member.name}</span><br />
-              <span>{member.position}</span>
-            </p>
+          <Grid.Column width={5} key={member.id} className='padding-tb-10' textAlign='center'>
+            <Dimmer.Dimmable as={Image} dimmed={member.dimmerActive}
+            onMouseEnter={this.handleShow.bind(this, member.id)}
+            onMouseLeave={this.handleHide.bind(this, member.id)}>
+              <Dimmer active={member.dimmerActive}>
+                <h2>
+                  <a href={member.mailto}>
+                    <Icon name='mail' /><br />
+                    {member.email}
+                  </a>
+                </h2>
+              </Dimmer>
+
+
+              <Container className="height-286" style={styleDetails} fluid>
+                <span><strong>{member.name}</strong></span><br />
+                <span>{member.position}</span>
+              </Container>
+            </Dimmer.Dimmable>
           </Grid.Column>
         );
       }
@@ -269,10 +387,25 @@ class About extends Component{
     govBoardOtherStaff = this.state.govBoardMembers.map(member => {
       if( member.category === "other" ) {
         return (
-          <Grid.Column width={5} key={member.id}>
-            <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' />
-            <span>{member.name}</span><br />
-            <span>{member.position}</span>
+          <Grid.Column width={5} key={member.id} className='padding-tb-10' textAlign='center'>
+            <Dimmer.Dimmable as={Image} dimmed={member.dimmerActive}
+            onMouseEnter={this.handleShow.bind(this, member.id)}
+            onMouseLeave={this.handleHide.bind(this, member.id)}>
+              <Dimmer active={member.dimmerActive}>
+                <h2>
+                  <a href={member.mailto}>
+                    <Icon name='mail' /><br />
+                    {member.email}
+                  </a>
+                </h2>
+              </Dimmer>
+
+              <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' />
+              <p>
+                <span><strong>{member.name}</strong></span><br />
+                <span>{member.position}</span>
+              </p>
+            </Dimmer.Dimmable>
           </Grid.Column>
         );
       }
@@ -281,70 +414,89 @@ class About extends Component{
 
     return(
       <div className="About">
-        <Grid centered>
+        <Grid centered padded>
+
+          <Divider hidden />
+
           <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>Mission Statement</h3>
-              <div>{this.state.missionStatement}</div>
+            <Grid.Column width={15}>
+              <Segment>
+                <h2>Mission Statement</h2>
+                <div>{this.state.missionStatement}</div>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
 
+          <Divider hidden />
+
           <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>PURPOSE</h3>
-              <div>
-                {this.state.frcPurposeIntro}
-                <br /><br />
-                {this.state.frcPurpose}
-                <br /><br />
-                {this.state.kzscPurpose}
-              </div>
+            <Grid.Column width={15}>
+              <Segment>
+                <h2>PURPOSE</h2>
+                <div>
+                  {this.state.frcPurposeIntro}
+                  <br /><br />
+                  {this.state.frcPurpose}
+                  <br /><br />
+                  {this.state.kzscPurpose}
+                </div>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
 
+          <Divider hidden />
+
           <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>Public Service Announcements</h3>
-              <div>{this.state.psaInto}</div>
-              <br />
-              <Button animated='fade' secondary>
-                <Button.Content visible>Learn more about PSA&rsquo;s</Button.Content>
-                <Button.Content hidden>
-                  Learn more about PSA&rsquo;s
-                  <Icon name='right arrow' />
-                </Button.Content>
-              </Button>
+            <Grid.Column width={15}>
+              <Segment>
+                <h3>Public Service Announcements</h3>
+                <div>{this.state.psaInto}</div>
+                <br />
+                <Button animated='fade' secondary>
+                  <Button.Content visible>Learn more about PSA&rsquo;s</Button.Content>
+                  <Button.Content hidden>
+                    Learn more about PSA&rsquo;s
+                    <Icon name='right arrow' />
+                  </Button.Content>
+                </Button>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
 
+          <Divider hidden />
+
           <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>Get In Touch With Us</h3>
-              <h4>CALL US</h4>
-              <div>
-                You can reach the air room and the current DJ at (831) 459-4036.
-                Please call the lobby line for any questions about the station or
-                upcoming events at (831) 459-2811.
-              </div>
-              <br />
-              <h4>MUSIC SUBMISSIONS</h4>
-              <div>
-                Please send all packages to the correct Music Director listed
-                below, care of: KZSC Radio, UC Santa Cruz, 1156 High St., Santa
-                Cruz, CA 95064.
-              </div>
-              <br />
-              <h4>MUSIC QUESTIONS</h4>
-              <div>
-                Email a specific Music Director below.
-                Charting for CMJ is typically done Monday afternoons.
-              </div>
+            <Grid.Column width={15}>
+              <Segment>
+                <h3>Get In Touch With Us</h3>
+                <h4>CALL US</h4>
+                <div>
+                  You can reach the air room and the current DJ at (831) 459-4036.
+                  Please call the lobby line for any questions about the station or
+                  upcoming events at (831) 459-2811.
+                </div>
+                <br />
+                <h4>MUSIC SUBMISSIONS</h4>
+                <div>
+                  Please send all packages to the correct Music Director listed
+                  below, care of: KZSC Radio, UC Santa Cruz, 1156 High St., Santa
+                  Cruz, CA 95064.
+                </div>
+                <br />
+                <h4>MUSIC QUESTIONS</h4>
+                <div>
+                  Email a specific Music Director below.
+                  Charting for CMJ is typically done Monday afternoons.
+                </div>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
 
+          <Divider hidden />
+
           <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>STATION MUSIC DIRECTORS</h3>
+            <Grid.Column width={15}>
+              <h3 className="centered-block">STATION MUSIC DIRECTORS</h3>
             </Grid.Column>
           </Grid.Row>
 
@@ -353,8 +505,8 @@ class About extends Component{
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>OTHER KZSC STAFF / NON-MUSIC NEEDS</h3>
+            <Grid.Column width={15}>
+              <h3 className="centered-block">OTHER KZSC STAFF / NON-MUSIC NEEDS</h3>
             </Grid.Column>
           </Grid.Row>
 
@@ -362,27 +514,30 @@ class About extends Component{
             {govBoardOtherStaff}
           </Grid.Row>
 
+          <Divider hidden />
+
           <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>SEND US A MESSAGE</h3>
-              <p>
-                We would love to hear from you! Please fill out this form and we
-                will get in touch with you shortly. Please note that this form
-                goes directly to the KZSC Station Manager.
-              </p>
+            <Grid.Column width={15}>
+              <Segment>
+                <h3>SEND US A MESSAGE</h3>
+                <p>
+                  We would love to hear from you! Please fill out this form and we
+                  will get in touch with you shortly. Please note that this form
+                  goes directly to the KZSC Station Manager.
+                </p>
 
-              <Form>
-                <Form.Group widths='equal'>
-                  <Form.Field label='First Name' control='input' placeholder='First name' />
-                  <Form.Field label='Last Name' control='input' placeholder='Last Name' />
-                </Form.Group>
-                <Form.Field label='Email' control='input' placeholder='Email' />
-                <Form.Field control={Select} label='Regarding'
-                 options={this.state.regardingOptions} placeholder='Regarding' />
-                <Form.Field control={TextArea} label='Comments' placeholder='Comments' />
-                <Form.Button>Submit</Form.Button>
-              </Form>
-
+                <Form>
+                  <Form.Group widths='equal'>
+                    <Form.Field label='First Name' control='input' placeholder='First name' />
+                    <Form.Field label='Last Name' control='input' placeholder='Last Name' />
+                  </Form.Group>
+                  <Form.Field label='Email' control='input' placeholder='Email' />
+                  <Form.Field control={Select} label='Regarding'
+                   options={this.state.regardingOptions} placeholder='Regarding' />
+                  <Form.Field control={TextArea} label='Comments' placeholder='Comments' />
+                  <Form.Button>Submit</Form.Button>
+                </Form>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
 

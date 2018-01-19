@@ -37,6 +37,8 @@ class Concert extends Component{
                   Want more options? Check the <a href='http://www.gtweekly.com/index.php/santa-cruz-music-art-activities.html'>
                   Santa Cruz GOOD TIMES</a>.
                 </p>
+                <iframe title="concertcalendar" src="https://www.google.com/calendar/embed?src=calendar%40kzsc.org&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23f7f7f7&amp;color=%23528800&amp;ctz=America%2FLos_Angeles" width="100%" height="600" frameborder="0" scrolling="no">
+                </iframe>
               </Segment>
             </Grid.Column>
           </Grid.Row>

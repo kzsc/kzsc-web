@@ -165,7 +165,7 @@ class Footer extends Component{
           {contactLinks}
         </div>
 
-        <div className="padding-10">
+        <div className="padding-tb-10">
           <h4>
             Air room and the Current DJ:<br />
             (831) 459-4036
