@@ -27,18 +27,18 @@
   to { transform: rotate(360deg); }
 }
 
-/* Padding Styles BEGIN */
+/* Margin and Padding Styles BEGIN */
 .padding-tb-10 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* Padding Styles END */
+/* Margin and Padding Styles END */
 
-/* Height Styles BEGIN */
-.height-286 {
-  height: 286px;
+/* Width and Height Styles BEGIN */
+.width-100pc {
+  width: 100%;
 }
-/* Height Styles BEGIN */
+/* Width and Height Styles BEGIN */
 
 /* Site Wide Styles BEGIN */
 .centered-block {
@@ -46,9 +46,13 @@
   margin-right: auto;
   text-align: center;
 }
+
+.font-size-22 {
+  font-size: 22px;
+}
 /* Site Wide Styles END */
 
-/* Colors BEGIN*/
+/* Colors BEGIN */
 .color-apple {
   color: #999999;
 }

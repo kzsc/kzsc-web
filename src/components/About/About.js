@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Button, Icon, Image, Form,
          Select, TextArea, Segment, Divider,
          Dimmer, Container } from 'semantic-ui-react'
+import './About.css';
 import uuid from 'uuid';
 
 class About extends Component{
@@ -102,8 +103,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Neroli Devaney',
         position: 'Hip Hop Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'hiphop@kzsc.org',
+        mailto: 'mailto:hiphop@kzsc.org',
         category: 'music',
         dimmerActive: false
       },
@@ -111,8 +112,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Kavya Aswadhati',
         position: 'Jazz & Blues Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'rjazz@kzsc.org',
+        mailto: 'mailto:jazz@kzsc.org',
         category: 'music',
         dimmerActive: false
       },
@@ -120,8 +121,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Melissa Cabrera',
         position: 'Loud Rock Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'loudrock@kzsc.org',
+        mailto: 'mailto:loudrock@kzsc.org',
         category: 'music',
         dimmerActive: false
       },
@@ -129,8 +130,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Shayan Vandani',
         position: 'Electronic Music Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'rpm@kzsc.org',
+        mailto: 'mailto:rpm@kzsc.org',
         category: 'music',
         dimmerActive: false
       },
@@ -138,8 +139,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Rebecca Mu',
         position: 'World Music Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'worldmusic@kzsc.org',
+        mailto: 'mailto:worldmusic@kzsc.org',
         category: 'music',
         dimmerActive: false
       },
@@ -147,8 +148,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Morgan Corona',
         position: 'Station Manager',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'stationmanager@kzsc.org',
+        mailto: 'mailto:stationmanager@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -156,8 +157,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Keith Rozendal',
         position: 'Broadcast Advisor',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'broadcastadvisor@kzsc.org',
+        mailto: 'mailto:broadcastadvisor@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -165,8 +166,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Zach Holbrook',
         position: 'Volunteer Coordinator',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'volunteer@kzsc.org',
+        mailto: 'mailto:volunteer@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -174,8 +175,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Jasmine Stade',
         position: 'Promotions Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'promotions@kzsc.org',
+        mailto: 'mailto:promotions@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -183,8 +184,17 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Kavya Aswadhati',
         position: 'Talk and News Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'talk@kzsc.org',
+        mailto: 'mailto:talk@kzsc.org',
+        category: 'other',
+        dimmerActive: false
+      },
+      {
+        id: uuid.v4(),
+        name: 'Dina Kharag',
+        position: 'PSA Director',
+        email: 'pas@kzsc.org',
+        mailto: 'mailto:pas@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -192,8 +202,17 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Lani Bandhauer',
         position: 'Member Services Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'members@kzsc.org',
+        mailto: 'mailto:members@kzsc.org',
+        category: 'other',
+        dimmerActive: false
+      },
+      {
+        id: uuid.v4(),
+        name: 'Luisa Cardoza',
+        position: 'Underwriting Manager',
+        email: 'underwriting@kzsc.org',
+        mailto: 'mailto:underwriting@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -201,8 +220,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Eve Suva',
         position: 'Training Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'class@kzsc.org',
+        mailto: 'mailto:class@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -210,8 +229,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Program Review Committee',
         position: 'Internal Quality Panel',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'prc@kzsc.org',
+        mailto: 'mailto:prc@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -219,8 +238,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Bennett Williamson',
         position: 'Digital Librarian',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'subsonic@kzsc.org',
+        mailto: 'mailto:subsonic@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -228,8 +247,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Duncan Ober',
         position: 'Production Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'production@kzsc.org',
+        mailto: 'mailto:production@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -237,8 +256,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Han Ngo',
         position: 'Business Manager',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'business@kzsc.org',
+        mailto: 'mailto:business@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -246,8 +265,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Dustin Choto',
         position: 'New Media Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'newmedia@kzsc.org',
+        mailto: 'mailto:newmedia@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -255,8 +274,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Rocko Bauman',
         position: 'Design Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'design@kzsc.org',
+        mailto: 'mailto:design@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -264,8 +283,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Jane Verlaine',
         position: 'Program Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'program@kzsc.org',
+        mailto: 'mailto:program@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -273,8 +292,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Eric Partika',
         position: 'Physical Librarian',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'librarian@kzsc.org',
+        mailto: 'mailto:librarian@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -282,8 +301,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Dylan Fabris',
         position: 'Student Media Rep',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'studentmedia@kzsc.org',
+        mailto: 'mailto:studentmedia@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -291,8 +310,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Shanee Dinay',
         position: 'Web Team Rep',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'web@kzsc.org',
+        mailto: 'mailto:web@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -300,8 +319,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Maelin Rose',
         position: 'Alumni Coordinator',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'alumni@kzsc.org',
+        mailto: 'mailto:alumni@kzsc.org',
         category: 'other',
         dimmerActive: false
       },
@@ -309,8 +328,8 @@ class About extends Component{
         id: uuid.v4(),
         name: 'Riz Aliga',
         position: 'Sports Director',
-        email: 'rock@kzsc.org',
-        mailto: 'mailto:rock@kzsc.org',
+        email: 'sports@kzsc.org',
+        mailto: 'mailto:sports@kzsc.org',
         category: 'other',
         dimmerActive: false
       }
@@ -353,26 +372,21 @@ class About extends Component{
     let govBoardMusicDirectors;
     govBoardMusicDirectors = this.state.govBoardMembers.map(member => {
       if( member.category === "music" ) {
-
-        var styleDetails = {
-          backgroundImage: 'url(' + 'https://react.semantic-ui.com/assets/images/wireframe/image.png' + ')'
-        };
         return (
           <Grid.Column width={5} key={member.id} className='padding-tb-10' textAlign='center'>
-            <Dimmer.Dimmable as={Image} dimmed={member.dimmerActive}
+            <Dimmer.Dimmable className="width-100pc" as={Image} dimmed={member.dimmerActive}
             onMouseEnter={this.handleShow.bind(this, member.id)}
             onMouseLeave={this.handleHide.bind(this, member.id)}>
               <Dimmer active={member.dimmerActive}>
-                <h2>
-                  <a href={member.mailto}>
-                    <Icon name='mail' /><br />
-                    {member.email}
+                <Container fluid>
+                  <a href={member.mailto} className="font-size-22">
+                    <Icon name='mail' /> {member.email}
                   </a>
-                </h2>
+                </Container>
               </Dimmer>
 
-
-              <Container className="height-286" style={styleDetails} fluid>
+              <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' fluid/>
+              <Container className="about-title-container" fluid>
                 <span><strong>{member.name}</strong></span><br />
                 <span>{member.position}</span>
               </Container>
@@ -388,23 +402,22 @@ class About extends Component{
       if( member.category === "other" ) {
         return (
           <Grid.Column width={5} key={member.id} className='padding-tb-10' textAlign='center'>
-            <Dimmer.Dimmable as={Image} dimmed={member.dimmerActive}
+            <Dimmer.Dimmable className="width-100pc" as={Image} dimmed={member.dimmerActive}
             onMouseEnter={this.handleShow.bind(this, member.id)}
             onMouseLeave={this.handleHide.bind(this, member.id)}>
               <Dimmer active={member.dimmerActive}>
-                <h2>
-                  <a href={member.mailto}>
-                    <Icon name='mail' /><br />
-                    {member.email}
+                <Container fluid>
+                  <a href={member.mailto} className="font-size-22">
+                    <Icon name='mail' /> {member.email}
                   </a>
-                </h2>
+                </Container>
               </Dimmer>
 
-              <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' />
-              <p>
+              <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' fluid/>
+              <Container className="about-title-container" fluid>
                 <span><strong>{member.name}</strong></span><br />
                 <span>{member.position}</span>
-              </p>
+              </Container>
             </Dimmer.Dimmable>
           </Grid.Column>
         );
