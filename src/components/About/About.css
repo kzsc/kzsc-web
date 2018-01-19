@@ -1,0 +1,13 @@
+/*
+ *
+ */
+
+/* Title Containers for Contact Cards BEGIN */
+.about-title-container {
+  margin-top: -38px;
+  z-index: 2;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+}
+/* Title Containers for Contact Cards END */
