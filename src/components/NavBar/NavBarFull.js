@@ -7,7 +7,12 @@ import PlayButton from './PlayButton';
 import './NavBar.css';
 
 class NavBarFull extends Component {
-  state = {}
+
+  constructor(){
+    super();
+    this.state = {
+    }
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 

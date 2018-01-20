@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { Container } from 'semantic-ui-react'
 
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
@@ -18,30 +19,64 @@ import Psa from './components/Psa/Psa';
 
 class App extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      navBarVisible: false
+    }
+  }
+
+  componentWillMount(){
+    this.setState({
+      navBarVisible: false
+    })
+  }
+
+  componentWillMount(){
+    this.setState({
+      navBarVisible: false
+    })
+  }
+
   handleClick = () => {
     if (this.state.visible) {
       this.setState({ visible: false });
     }
   }
 
+  toggleVisibilityNavBar() {
+    this.setState({ navBarVisible: !this.state.navBarVisible });
+  }
+
+  hideVisibilityNavBar() {
+    this.setState({ navBarVisible: false });
+  }
+
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar/>
-          <Route exact path='/home' render={() => <Home /> } />
-          <Route exact path='/' render={() => <Home /> } />
-          <Route path='/listen' render={() => <Listen /> } />
-          <Route path='/donate' render={() => <Donate /> } />
-          <Route path='/blog' render={() => <Blog /> } />
-          <Route path='/schedule' render={() => <Schedule /> } />
-          <Route path='/studio' render={() => <Studio /> }/>
-          <Route path='/concert' render={() => <Concert /> } />
-          <Route path='/about' render={() => <About /> } />
-          <Route path='/sponsor' render={() => <Sponsor /> } />
-          <Route path='/testbackend' render={() =>  <TestBackend /> } />
-          <br />
-          <Footer/>
+          <NavBar toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
+           hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
+          <Container className="margin-t-70" fluid onClick={this.hideVisibilityNavBar.bind(this)}>
+
+            <Route exact path='/home' render={() => <Home /> } />
+            <Route exact path='/' render={() => <Home /> } />
+            <Route path='/listen' render={() => <Listen /> } />
+            <Route path='/donate' render={() => <Donate /> } />
+            <Route path='/blog' render={() => <Blog /> } />
+            <Route path='/schedule' render={() => <Schedule /> } />
+            <Route path='/studio' render={() => <Studio /> }/>
+            <Route path='/concert' render={() => <Concert /> } />
+            <Route path='/about' render={() => <About /> } />
+            <Route path='/sponsor' render={() => <Sponsor /> } />
+            <Route path='/testbackend' render={() =>  <TestBackend /> } />
+
+            <br />
+
+            <Footer/>
+
+          </Container>
         </div>
       </BrowserRouter>
     );

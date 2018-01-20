@@ -96,6 +96,7 @@ class About extends Component{
         position: 'Music / Rock Director',
         email: 'rock@kzsc.org',
         mailto: 'mailto:rock@kzsc.org',
+        phone: '831-459-4470',
         category: 'music',
         dimmerActive: false
       },
@@ -105,6 +106,7 @@ class About extends Component{
         position: 'Hip Hop Director',
         email: 'hiphop@kzsc.org',
         mailto: 'mailto:hiphop@kzsc.org',
+        phone: '831-459-4470',
         category: 'music',
         dimmerActive: false
       },
@@ -114,6 +116,7 @@ class About extends Component{
         position: 'Jazz & Blues Director',
         email: 'rjazz@kzsc.org',
         mailto: 'mailto:jazz@kzsc.org',
+        phone: '831-459-4470',
         category: 'music',
         dimmerActive: false
       },
@@ -123,6 +126,7 @@ class About extends Component{
         position: 'Loud Rock Director',
         email: 'loudrock@kzsc.org',
         mailto: 'mailto:loudrock@kzsc.org',
+        phone: '831-459-4470',
         category: 'music',
         dimmerActive: false
       },
@@ -132,6 +136,7 @@ class About extends Component{
         position: 'Electronic Music Director',
         email: 'rpm@kzsc.org',
         mailto: 'mailto:rpm@kzsc.org',
+        phone: '831-459-4470',
         category: 'music',
         dimmerActive: false
       },
@@ -141,6 +146,7 @@ class About extends Component{
         position: 'World Music Director',
         email: 'worldmusic@kzsc.org',
         mailto: 'mailto:worldmusic@kzsc.org',
+        phone: '831-459-4470',
         category: 'music',
         dimmerActive: false
       },
@@ -150,6 +156,7 @@ class About extends Component{
         position: 'Station Manager',
         email: 'stationmanager@kzsc.org',
         mailto: 'mailto:stationmanager@kzsc.org',
+        phone: '831-459-5173',
         category: 'other',
         dimmerActive: false
       },
@@ -159,6 +166,7 @@ class About extends Component{
         position: 'Broadcast Advisor',
         email: 'broadcastadvisor@kzsc.org',
         mailto: 'mailto:broadcastadvisor@kzsc.org',
+        phone: '831-459-4733',
         category: 'other',
         dimmerActive: false
       },
@@ -204,6 +212,7 @@ class About extends Component{
         position: 'Member Services Director',
         email: 'members@kzsc.org',
         mailto: 'mailto:members@kzsc.org',
+        phone: '831-459-3914',
         category: 'other',
         dimmerActive: false
       },
@@ -213,6 +222,7 @@ class About extends Component{
         position: 'Underwriting Manager',
         email: 'underwriting@kzsc.org',
         mailto: 'mailto:underwriting@kzsc.org',
+        phone: '831-459-3914',
         category: 'other',
         dimmerActive: false
       },
@@ -231,6 +241,7 @@ class About extends Component{
         position: 'Internal Quality Panel',
         email: 'prc@kzsc.org',
         mailto: 'mailto:prc@kzsc.org',
+        phone: '831-459-4733',
         category: 'other',
         dimmerActive: false
       },
@@ -240,6 +251,7 @@ class About extends Component{
         position: 'Digital Librarian',
         email: 'subsonic@kzsc.org',
         mailto: 'mailto:subsonic@kzsc.org',
+        phone: '831-459-4726',
         category: 'other',
         dimmerActive: false
       },
@@ -258,6 +270,7 @@ class About extends Component{
         position: 'Business Manager',
         email: 'business@kzsc.org',
         mailto: 'mailto:business@kzsc.org',
+        phone: '831-459-4733',
         category: 'other',
         dimmerActive: false
       },
@@ -382,6 +395,10 @@ class About extends Component{
                   <a href={member.mailto} className="font-size-22">
                     <Icon name='mail' /> {member.email}
                   </a>
+                  <br />
+                  <a href="" className="font-size-22">
+                    <Icon name='phone' /> {member.phone}
+                  </a>
                 </Container>
               </Dimmer>
 
@@ -409,6 +426,10 @@ class About extends Component{
                 <Container fluid>
                   <a href={member.mailto} className="font-size-22">
                     <Icon name='mail' /> {member.email}
+                  </a>
+                  <br />
+                  <a href="" className="font-size-22">
+                    <Icon name='phone' /> {member.phone}
                   </a>
                 </Container>
               </Dimmer>

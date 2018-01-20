@@ -38,13 +38,13 @@ class PlayButton extends Component {
 
   showPlay() {
     return (
-      <Icon size="big" name="video play outline" color="red" fitted/>
+      <Icon size="big" name="video play outline" color="red" fitted link/>
     )
   };
 
   showPause() {
     return (
-      <Icon size="big" name="pause circle outline" color="red" fitted/>
+      <Icon size="big" name="pause circle outline" color="red" fitted link/>
     )
   };
 

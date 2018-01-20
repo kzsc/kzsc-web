@@ -2,8 +2,13 @@
  * used in: NavBar.js
  */
 
-.navbar{
-    /*padding-top: 5px !important;*/
+.kzsc-fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  background-color: #ffff;
 }
 
 .nav-item {
