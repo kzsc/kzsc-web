@@ -8,10 +8,10 @@ class MainContent extends Component{
   featuredContent() {
     return (
       <Container>
-        <Image src={back50thaniversery927x1030}
-        as='a' target='_blank' fluid
-        href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/'  />
-        <h1>Fierce New Apparel for our 50th Anniversary!</h1>
+        <Image src={back50thaniversery927x1030} fluid />
+        <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank'>
+          <h1>Fierce New Apparel for our 50th Anniversary!</h1>
+        </a>
         <span>November 8, 2017 / Category / by Design Director</span>
       </Container>
     );

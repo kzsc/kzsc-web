@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import { Grid, Form, Segment, Icon } from 'semantic-ui-react';
+import { Grid, Form, Segment, Icon, List, Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import uuid from 'uuid';
 import './Footer.css';
@@ -17,7 +17,8 @@ class Footer extends Component{
     super();
     this.state = {
       pageLinks: [],
-      contactLinks: []
+      socialMediaLinks: [],
+      productLinks: []
     }
   }
 
@@ -65,7 +66,7 @@ class Footer extends Component{
           name: 'About'
         }
       ],
-      contactLinks: [
+      socialMediaLinks: [
         {
           id: 'facebook',
           link: 'https://www.facebook.com/kzscradio',
@@ -91,37 +92,86 @@ class Footer extends Component{
           link: 'http://www.youtube.com/user/kzscfm/videos',
           icon: 'youtube square',
         }
+      ],
+      productLinks: [
+        {
+          id: uuid.v4(),
+          header: 'Donate to KZSC',
+          imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2016/11/money-652560-400x400.jpg'
+        },
+        {
+          id: uuid.v4(),
+          header: "KZSC's canvas tote bag",
+          description: 'Suggested Donation $50.00',
+          imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2016/10/totewebfront-e1476844178228-400x400.jpg'
+        },
+        {
+          id: uuid.v4(),
+          header: 'KZSC Studio Rental',
+          imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2011/01/radio-mic-120x120.jpg'
+        },
+        {
+          id: uuid.v4(),
+          header: 'Business Underwriting Sponsorship Packages',
+          imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2013/02/Shop-Small-120x120.jpeg'
+        }
       ]
     });
   }
-
-  //
-
-  //
 
   componentWillMount(){
     this.getPageInformation();
   }
 
   firstColumn() {
-      return (
-        <div className="footerColumnOne">
-          <h3>Join Our Mailing List</h3>
+    return (
+      <div className="footerColumnOne">
+        <h3>Join Our Mailing List</h3>
 
-          <Form inverted>
-            <Form.Field label='Email' control='input' placeholder='Email' required/>
-            <Form.Field label='First Name' control='input' placeholder='First name' required/>
-            <Form.Field label='Last Name' control='input' placeholder='Last Name' required/>
-            <Form.Button>Subscribe</Form.Button>
-          </Form>
-        </div>
-      )
+        <Form inverted>
+          <Form.Field label='Email' control='input' placeholder='Email' required/>
+          <Form.Field label='First Name' control='input' placeholder='First name' required/>
+          <Form.Field label='Last Name' control='input' placeholder='Last Name' required/>
+          <Form.Button>Subscribe</Form.Button>
+        </Form>
+      </div>
+    )
   }
 
   secondColumn() {
-      return (
-        <h3 className="footerColumnTwo">Top Products</h3>
-      )
+    let productLinks;
+    productLinks = this.state.productLinks.map(product => {
+      if( product.description ) {
+        return (
+          <List.Item>
+            <Image avatar src={product.imageSrc} />
+            <List.Content>
+              <List.Header as='a'>{product.header}</List.Header>
+              <List.Description>{product.description}</List.Description>
+            </List.Content>
+          </List.Item>
+        );
+      } else {
+        return (
+          <List.Item>
+            <Image avatar src={product.imageSrc} />
+            <List.Content>
+              <List.Header as='a'>{product.header}</List.Header>
+            </List.Content>
+          </List.Item>
+        );
+      }
+    });
+
+    return (
+      <div className="footerColumnTwo">
+        <h3>Popular Links</h3>
+
+        <List divided relaxed inverted>
+          {productLinks}
+        </List>
+      </div>
+    )
   }
 
   thirdColumn() {
@@ -147,8 +197,8 @@ class Footer extends Component{
   }
 
   fourthColumn() {
-    let contactLinks;
-    contactLinks = this.state.contactLinks.map(contact => {
+    let socialMediaLinksHtml;
+    socialMediaLinksHtml = this.state.socialMediaLinks.map(contact => {
       //console.log(project);
       return (
         <a key={contact.id} href={contact.link} target="_blank" rel="noopener noreferrer">
@@ -162,7 +212,7 @@ class Footer extends Component{
         <h3>Contact Us</h3>
 
         <div>
-          {contactLinks}
+          {socialMediaLinksHtml}
         </div>
 
         <div className="padding-tb-10">
@@ -187,34 +237,34 @@ class Footer extends Component{
   }
 
   render(){
-      return(
-          <div id="kzsc-footer" className="footer">
-              <Grid columns='equal' divided inverted padded stackable>
-                <Grid.Row color='black' textAlign='center'>
-                  <Grid.Column>
-                    <Segment textAlign={'left'} color='black' inverted >
-                      {this.firstColumn()}
-                    </Segment>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Segment textAlign={'left'} color='black' inverted>
-                      {this.secondColumn()}
-                    </Segment>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Segment textAlign={'left'} color='black' inverted>
-                      {this.thirdColumn()}
-                    </Segment>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Segment textAlign={'left'} color='black' inverted>
-                      {this.fourthColumn()}
-                    </Segment>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-          </div>
-      );
+    return(
+      <div id="kzsc-footer" className="footer">
+        <Grid columns='equal' divided inverted padded stackable>
+          <Grid.Row color='black' textAlign='center'>
+            <Grid.Column>
+              <Segment textAlign={'left'} color='black' inverted >
+                {this.firstColumn()}
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment textAlign={'left'} color='black' inverted>
+                {this.secondColumn()}
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment textAlign={'left'} color='black' inverted>
+                {this.thirdColumn()}
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment textAlign={'left'} color='black' inverted>
+                {this.fourthColumn()}
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
+    );
   }
 }
 

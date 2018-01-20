@@ -1,3 +1,10 @@
+/*
+ * src/components/Home/Home.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, {Component} from 'react';
 import { Divider } from 'semantic-ui-react';
 import MainContent from './MainContent';

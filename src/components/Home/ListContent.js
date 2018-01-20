@@ -1,3 +1,12 @@
+/*
+ * src/components/Home/ListContent.js
+ * Used by:
+ *  src/components/Home/Home.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, {Component} from 'react';
 import { Grid } from 'semantic-ui-react';
 import './ListContent.css';
