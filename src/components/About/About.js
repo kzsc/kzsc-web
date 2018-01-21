@@ -1,3 +1,10 @@
+/*
+ * src/components/About/About.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, { Component } from 'react';
 import { Grid, Button, Icon, Image, Form,
          Select, TextArea, Segment, Divider,

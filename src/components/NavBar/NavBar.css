@@ -1,5 +1,10 @@
-/* Navigation Bar Style
- * used in: NavBar.js
+/*
+ * src/components/NavBar/NavBar.css
+ * Used by:
+ *  src/components/NavBar/NavBar.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
  */
 
 .kzsc-fixed-navbar {

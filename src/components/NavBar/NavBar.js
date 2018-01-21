@@ -1,9 +1,21 @@
+/*
+ * src/components/NavBar/NavBar.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, {Component} from 'react';
 import { Grid } from 'semantic-ui-react';
 import NavBarFull from './NavBarFull';
 import NavBarMobile from './NavBarMobile';
 
-class Home extends Component{
+class NavBar extends Component{
+
+  constructor(){
+    super();
+    this.state = { }
+  }
 
   toggleNavBar() {
     this.props.toggleVisibility();
@@ -13,19 +25,26 @@ class Home extends Component{
     this.props.hideVisibility();
   }
 
+  changeActiveNavItem(newItem) {
+    this.props.onActiveNavItemChange(newItem);
+  }
+
   render(){
+
     return(
       <div className="kzsc-fixed-navbar">
         <Grid>
           <Grid.Row columns={1} only='mobile'>
             <Grid.Column>
-              <NavBarMobile toggleVisibility={this.toggleNavBar.bind(this)}
+              <NavBarMobile activeItem={this.props.activeItem} onActiveNavItemChange={this.changeActiveNavItem.bind(this)}
+               toggleVisibility={this.toggleNavBar.bind(this)}
                hideVisibility={this.hideNavBar.bind(this)} navBarVisible={this.props.navBarVisible}></NavBarMobile>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1} only='tablet computer'>
             <Grid.Column>
-              <NavBarFull></NavBarFull>
+              <NavBarFull activeItem={this.props.activeItem} onActiveNavItemChange={this.changeActiveNavItem.bind(this)}>
+              </NavBarFull>
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -38,4 +57,4 @@ class Home extends Component{
   }
 }
 
-export default Home;
+export default NavBar;

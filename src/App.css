@@ -1,3 +1,12 @@
+/*
+ * src/App.css
+ * Used by:
+ *  src/App.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 .App {
   text-align: center;
 }
@@ -47,6 +56,10 @@
 .centered-block {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+}
+
+.text-align-center {
   text-align: center;
 }
 

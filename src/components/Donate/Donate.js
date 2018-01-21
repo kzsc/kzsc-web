@@ -1,3 +1,10 @@
+/*
+ * src/components/Donate/Donate.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, { Component } from 'react';
 import { Container, Button, Form, Select, Grid, List, Image } from 'semantic-ui-react';
 import StripeCheckout from 'react-stripe-checkout';

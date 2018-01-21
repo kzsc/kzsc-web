@@ -1,3 +1,12 @@
+/*
+ * src/components/NavBar/NavBarMobile.js
+ * Used by:
+ *  src/components/NavBar/NavBar.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, {Component} from 'react';
 import { Sidebar, Menu, Icon, Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
@@ -14,6 +23,8 @@ class NavBarMobile extends Component{
     }
   }
 
+  changeActiveNavItem = (e, { name }) => this.props.onActiveNavItemChange(name);
+
   toggleNavBar() {
     this.props.toggleVisibility();
   }
@@ -22,10 +33,7 @@ class NavBarMobile extends Component{
     this.props.hideVisibility();
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
   render(){
-    const {activeItem} = this.state
 
     return(
       <div>
@@ -52,26 +60,26 @@ class NavBarMobile extends Component{
          onClick={this.toggleNavBar.bind(this)}>
           <Menu.Item as={NavLink} to='/home' name = "home"
           className="item nav-item kzsc-nav-link left"
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}>
+          active={this.props.activeItem === 'home'}
+          onClick={this.changeActiveNavItem}>
             Home
           </Menu.Item>
           <Menu.Item as={NavLink} to='/donate' name = "donate"
           className="nav-item kzsc-nav-link left"
-          active={activeItem === 'donate'}
-          onClick={this.handleItemClick}>
+          active={this.props.activeItem === 'donate'}
+          onClick={this.changeActiveNavItem}>
             Donate
           </Menu.Item>
           <Menu.Item as={NavLink} to='/listen' name='listen'
           className="nav-item kzsc-nav-link left"
-          active={activeItem === 'listen'}
-          onClick={this.handleItemClick}>
+          active={this.props.activeItem === 'listen'}
+          onClick={this.changeActiveNavItem}>
             Listen
           </Menu.Item>
           <Menu.Item as={NavLink} to='/blog' name='blog'
           className="nav-item kzsc-nav-link left"
-          active={activeItem === 'blog'}
-          onClick={this.handleItemClick}>
+          active={this.props.activeItem === 'blog'}
+          onClick={this.changeActiveNavItem}>
             Blog
           </Menu.Item>
         </Sidebar>

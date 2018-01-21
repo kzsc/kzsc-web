@@ -1,9 +1,15 @@
+/*
+ * src/components/Sponsor/Sponsor.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
 
 import React, {Component} from 'react';
 import {Grid} from 'semantic-ui-react';
 import './Sponsor.css';
 
-// react icons 
+// react icons
 import Newspaper from 'react-icons/lib/fa/newspaper-o';
 import Microphone from 'react-icons/lib/fa/microphone';
 import Monitor from 'react-icons/lib/fa/television';
@@ -36,7 +42,7 @@ class Sponsor extends Component{
                     <Grid.Row columns={3}>
                         <Grid.Column center >
                             <div>
-                               <h2> On Air <Microphone className="fa-icon"/></h2>  
+                               <h2> On Air <Microphone className="fa-icon"/></h2>
                                 <p  className="p-desc">Your on-air announcements can be aired during your choice of programs or specific times. With over 60 different music and public affairs programs, KZSC’s Underwriting Program offers a unique opportunity for you or your company to reach a targeted audience. </p>
                             </div>
                         </Grid.Column>
@@ -65,7 +71,7 @@ class Sponsor extends Component{
                 <Grid className="grid-css" stackable>
                     <h1> KZSC Thanks the following local businesses for their support: </h1>
                     <Grid.Row columns={4}>
-                        <Grid.Column>    
+                        <Grid.Column>
                             <h3>Aloha Island Grille</h3>
                              <p className="p-sponsor"><a href="https://www.alohaislandgrille.com">www.alohaislandgrille.com</a><br/>
                             1700 Portola Dr

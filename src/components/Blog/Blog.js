@@ -1,3 +1,10 @@
+/*
+ * src/components/Blog/Blog.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, { Component } from 'react';
 import { Icon, Image, Card, Container, Button } from 'semantic-ui-react';
 

@@ -1,3 +1,12 @@
+/*
+ * src/components/NavBar/PlayButton.js
+ * Used by:
+ *  src/components/NavBar/NavBar.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, {Component} from 'react';
 import { Icon } from 'semantic-ui-react';
 

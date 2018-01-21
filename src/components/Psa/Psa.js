@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react'
-import uuid from 'uuid';
+import {  } from 'semantic-ui-react'
 
 class Psa extends Component{
 

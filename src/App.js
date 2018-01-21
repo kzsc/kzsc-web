@@ -1,3 +1,10 @@
+/*
+ * src/App.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react'
@@ -15,33 +22,21 @@ import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import Sponsor from './components/Sponsor/Sponsor';
 import TestBackend from './components/TestBackend';
-import Psa from './components/Psa/Psa';
+import Slideshow from './components/Slideshow/Slideshow';
 
 class App extends Component {
 
   constructor(){
     super();
     this.state = {
-      navBarVisible: false
+      navBarVisible: false,
     }
   }
 
   componentWillMount(){
     this.setState({
       navBarVisible: false
-    })
-  }
-
-  componentWillMount(){
-    this.setState({
-      navBarVisible: false
-    })
-  }
-
-  handleClick = () => {
-    if (this.state.visible) {
-      this.setState({ visible: false });
-    }
+    });
   }
 
   toggleVisibilityNavBar() {
@@ -52,11 +47,22 @@ class App extends Component {
     this.setState({ navBarVisible: false });
   }
 
+  updateActiveNavItem(newActiveItem) {
+    console.log('updateActiveNavItem working');
+    this.setState({
+      activeNavItem: newActiveItem
+    });
+  }
+
   render() {
+
+    const { activeNavItem } = this.state
+
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
+          <NavBar activeItem={this.activeNavMenuItem} onActiveNavItemChange={this.updateActiveNavItem.bind(this)}
+           toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
            hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
           <Container className="margin-t-70" fluid onClick={this.hideVisibilityNavBar.bind(this)}>
 
@@ -71,6 +77,7 @@ class App extends Component {
             <Route path='/about' render={() => <About /> } />
             <Route path='/sponsor' render={() => <Sponsor /> } />
             <Route path='/testbackend' render={() =>  <TestBackend /> } />
+            <Route path='/slideshow' render={() =>  <Slideshow /> } />
 
             <br />
 

@@ -64,6 +64,11 @@ class Footer extends Component{
           id: uuid.v4(),
           link: 'about',
           name: 'About'
+        },
+        {
+          id: uuid.v4(),
+          link: 'underwriting',
+          name: 'Underwriting'
         }
       ],
       socialMediaLinks: [
@@ -143,7 +148,7 @@ class Footer extends Component{
     productLinks = this.state.productLinks.map(product => {
       if( product.description ) {
         return (
-          <List.Item>
+          <List.Item key={product.id}>
             <Image avatar src={product.imageSrc} />
             <List.Content>
               <List.Header as='a'>{product.header}</List.Header>
@@ -153,7 +158,7 @@ class Footer extends Component{
         );
       } else {
         return (
-          <List.Item>
+          <List.Item key={product.id}>
             <Image avatar src={product.imageSrc} />
             <List.Content>
               <List.Header as='a'>{product.header}</List.Header>
