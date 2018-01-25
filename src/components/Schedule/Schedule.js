@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import { Container, Button, Form, Grid, Column, Segment } from 'semantic-ui-react';
+import { Container, Button, Grid, Segment } from 'semantic-ui-react';
 
 import './Schedule.css';
-
-const info = [];
 
 class Schedule extends Component {
   constructor(props) {
@@ -17,7 +15,7 @@ class Schedule extends Component {
   }
 
   toggle(req) {
-    if (req != this.state.content) {
+    if (req !== this.state.content) {
       this.setState({
         content: req
       })
@@ -71,7 +69,7 @@ class Schedule extends Component {
       <div className="div-calendar">
         <p className="calendar-text">Program Schedule &amp; Playlists</p>
         <Grid>
-          <Grid.Row columns='equal' divided stackable columns={7}>
+          <Grid.Row columns='equal' divided stackable>
             <Grid.Column>
               <Button color="red" onClick={(e) => this.showDesc(e, "sunday")}>Sunday</Button>
             </Grid.Column>
@@ -842,7 +840,7 @@ class Schedule extends Component {
         <div className="content-btns">
           <Button className="calendar-btn" onClick={() => this.toggle("weekly")}>Full Calendar</Button>
         </div>
-        {this.state.content == "daily" ? this.dailyContent() : this.weeklyContent()}
+        {this.state.content === "daily" ? this.dailyContent() : this.weeklyContent()}
       </Container>
     );
   }
