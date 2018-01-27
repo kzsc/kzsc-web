@@ -79,6 +79,42 @@ class ListContent extends Component{
                 </div>
               </div>
             </div>
+
+            <div className="tile review-state-published">
+              <a className="inner" href="http://www.kcrw.com/latest/two-cloned-monkeys-make-us-wonder-when-will-humans-be-cloned" style={innerStyle}></a>
+              <div className="bottom">
+                <a href="http://www.kcrw.com/latest/two-cloned-monkeys-make-us-wonder-when-will-humans-be-cloned" title="Zhong Zhong and Hua Hua are two monkey clones in China. It’s the first time researchers have cloned a primate, and it could lead to major medical advances.">
+                  <h2>Two cloned monkeys make us wonder: When will humans be cloned?</h2>
+                </a>
+                <div className="controls">
+                  <div className="info">
+                    <a href="http://www.kcrw.com/news-culture/shows/press-play-with-madeleine-brand" className="source">Press Play with Madeleine Brand</a>
+                    <span className="timestamp relative-date">2018-01-25T20:00:00-08:00</span>
+                  </div>
+                  <a href="http://www.kcrw.com/latest/two-cloned-monkeys-make-us-wonder-when-will-humans-be-cloned" className="custom-audio-button button audio" title="Listen">
+                    <Icon className="icon-audio" name="play" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="tile review-state-published">
+              <a className="inner" style={innerStyle} href="http://www.kcrw.com/latest/latest-show-1516913585.36"></a>
+              <div className="bottom">
+                <a href="http://www.kcrw.com/latest/latest-show-1516913585.36" title="Jeremy Sole hosts a sonic trip through the past, present and future of Roots music. Listen On-Demand to the latest show.">
+                  <h2>Latest Show</h2>
+                </a>
+                <div className="controls">
+                  <div className="info">
+                    <a href="http://www.kcrw.com/music/shows/jeremy-sole" className="source">Jeremy Sole</a>
+                    <span className="timestamp relative-date">2018-01-25T16:00:00-08:00</span>
+                  </div>
+                  <a href="http://www.kcrw.com/latest/latest-show-1516913585.36" className="custom-audio-button button audio" title="Listen">
+                    <Icon className="icon-audio" name="play" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
