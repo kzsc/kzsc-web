@@ -7,9 +7,9 @@
  * web@kzsc.org
  */
 
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -49,6 +49,9 @@
 /* Width and Height Styles BEGIN */
 .width-100pc {
   width: 100%;
+}
+.height-300 {
+  height: 300px;
 }
 /* Width and Height Styles BEGIN */
 

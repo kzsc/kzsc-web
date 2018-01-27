@@ -17,13 +17,16 @@ import underwriting1 from '../../assets/images/underwriting1.jpeg';
 class MainContent extends Component{
 
   featuredContent() {
+
     return (
-      <Container>
-        <Image src={back50thaniversery927x1030} fluid />
-        <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank' rel="noopener noreferrer">
-          <h1>Fierce New Apparel for our 50th Anniversary!</h1>
-        </a>
-        <span>November 8, 2017 / Category / by Design Director</span>
+      <Container className="kzsc-blog-tile">
+        <Image className="kzsc-blog-tile-image" src={back50thaniversery927x1030} fluid />
+        <div className="kzsc-blog-tile-bottom">
+          <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank' rel="noopener noreferrer">
+            <h1>Fierce New Apparel for our 50th Anniversary!</h1>
+          </a>
+          <span>November 8, 2017 / Category / by Design Director</span>
+        </div>
       </Container>
     );
   }
@@ -31,7 +34,7 @@ class MainContent extends Component{
   underwritingContent() {
     return (
       <Container>
-        <h3 className="text-align-center">KZSC Thanks Our Underwriters</h3>
+        <h3 className="text-align-center">SUPPORT LOCAL BUSINESSES</h3>
         <Image src={underwriting1} fluid />
       </Container>
     );
