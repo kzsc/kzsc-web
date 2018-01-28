@@ -8,13 +8,14 @@
  */
 
 import React, {Component} from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Image, Segment } from 'semantic-ui-react';
 import back50thaniversery927x1030 from '../../assets/images/back50thaniversery927x1030.jpg'
 import testblog1 from '../../assets/images/testblog1.jpg'
 import testblog2 from '../../assets/images/testblog2.png'
 import testblog3 from '../../assets/images/testblog3.png'
 import testblog4 from '../../assets/images/testblog4.jpg'
 import Tile from '../Tile/Tile';
+import Slideshow from '../Slideshow/Slideshow';
 
 import './MainContent.css';
 import underwriting1 from '../../assets/images/underwriting1.jpeg';
@@ -41,7 +42,9 @@ class MainContent extends Component{
              type='big' desc='November 8, 2017 / Category / by Design Director'/>
           </Grid.Column>
           <Grid.Column width={5} stretched>
-            {this.underwritingContent()}
+            <Segment>
+              <Slideshow />
+            </Segment>
           </Grid.Column>
         </Grid.Row>
 

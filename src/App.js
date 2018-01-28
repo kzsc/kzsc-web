@@ -48,7 +48,6 @@ class App extends Component {
   }
 
   updateActiveNavItem(newActiveItem) {
-    console.log('updateActiveNavItem working');
     this.setState({
       activeNavItem: newActiveItem
     });

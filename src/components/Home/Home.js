@@ -16,7 +16,8 @@ class Home extends Component{
       <div className="Home">
         <Divider hidden />
         <MainContent></MainContent>
-        
+        <Divider hidden />
+        <ListContent />
       </div>
     );
   }
