@@ -16,12 +16,27 @@ import testblog3 from '../../assets/images/testblog3.png'
 import testblog4 from '../../assets/images/testblog4.jpg'
 import Tile from '../Tile/Tile';
 import Slideshow from '../Slideshow/Slideshow';
+import axios from 'axios';
 
 import './MainContent.css';
 import underwriting1 from '../../assets/images/underwriting1.jpeg';
 
 
 class MainContent extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      allposts: []
+    };
+  }
+
+  componentWillMount() {
+    axios.get(`https://www.kzsc.org/api/get_recent_posts/`).then(res => {
+      const allposts = res.data.posts.map(obj => obj);
+      this.setState({ allposts });
+    });
+  }
 
   underwritingContent() {
     return (
@@ -30,6 +45,23 @@ class MainContent extends Component{
         <Image src={underwriting1} fluid />
       </div>
     );
+  }
+
+  blogContent() {
+    let blogTiles = this.state.allposts.map(post => {
+      let categories = post.categories.map(c => {
+        return c.title + ' ';
+      });
+      let description = post.date + ' / in ' + categories + '/ by ' + post.author.name;
+      return (
+        <Grid.Column key={post.id} computer='4' tablet='8'>
+          <Tile image={post.thumbnail_images.full.url} title={post.title}
+          type='small' desc={description}/>
+        </Grid.Column>
+       );
+    });
+
+    return blogTiles;
   }
 
   render(){
@@ -49,22 +81,7 @@ class MainContent extends Component{
         </Grid.Row>
 
         <Grid.Row columns='equal'>
-          <Grid.Column computer='4' tablet='8'>
-            <Tile image={testblog1} title='The Orwells Interview 12.11.17'
-             type='small' desc='January 22, 2018 / in Main / by Electronic Music Director'/>
-          </Grid.Column>
-          <Grid.Column computer='4' tablet='8'>
-            <Tile image={testblog2} title='#2DOPEVIDS Week 3 ft. RGLR. Nate / KEZIA'
-             type='small' desc='January 21, 2018 / in Main / by Rizal Aliga'/>
-          </Grid.Column>
-          <Grid.Column computer='4' tablet='8'>
-            <Tile image={testblog3} title='KZSC Sports Director Makes History for UCSC & Athletics'
-             type='small' desc='January 21, 2018 / in Main / by Rizal Aliga'/>
-          </Grid.Column>
-          <Grid.Column computer='4' tablet='8'>
-            <Tile image={testblog4} title='KZSC Interview: GWAR 11.17.17 w/ Melcriada'
-             type='small' desc='November 27, 2017 / in Interviews, Main / by Loud Rock Director'/>
-          </Grid.Column>
+          {this.blogContent()}
         </Grid.Row>
 
       </Grid>

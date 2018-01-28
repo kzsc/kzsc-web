@@ -11,11 +11,12 @@ import MainContent from './MainContent';
 import ListContent from './ListContent';
 
 class Home extends Component{
+
   render(){
     return(
       <div className="Home">
         <Divider hidden />
-        <MainContent></MainContent>
+        <MainContent />
         <Divider hidden />
         <ListContent />
       </div>

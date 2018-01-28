@@ -6,17 +6,17 @@
  */
 
 import React, { Component } from 'react';
-import { Grid, Icon, Image, Card, Button } from 'semantic-ui-react';
+import { Grid, Icon, Image } from 'semantic-ui-react';
 import Tile from '../Tile/Tile';
 
 import axios from 'axios';
 
 class Blog extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-          allposts: []
-        };
+      super(props);
+      this.state = {
+        allposts: []
+      };
     }
 
     componentWillMount() {
@@ -48,29 +48,6 @@ class Blog extends Component {
               {blogTiles}
             </Grid.Row>
           </Grid>
-
-          <Card.Group itemsPerRow={4}>
-            {this.state.allposts.map(curpost =>
-              <Card key={curpost.id} href = {curpost.url}>
-                <Image src={curpost.thumbnail_images.full.url}/>
-                <Card.Content>
-                  <Card.Header key={curpost.id} dangerouslySetInnerHTML={{__html: curpost.title}}></Card.Header>
-                  <Card.Meta>
-                    By {curpost.author.name}
-                  </Card.Meta>
-                  <Card.Description dangerouslySetInnerHTML={{__html: curpost.excerpt}}></Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <span className="right floated">
-                    {curpost.date}
-                  </span>
-                  <span>
-                    <Icon name = 'tags'/>
-                  </span>
-                </Card.Content>
-              </Card>
-            )}
-          </Card.Group>
         </div>
       );
     }
@@ -79,11 +56,6 @@ class Blog extends Component {
       return (
         <div className="Blog">
           {this.blogContent()}
-
-
-          <div className="div-load-more-blogs">
-            <Button color="red">Load more</Button>
-          </div>
         </div>
       );
     }

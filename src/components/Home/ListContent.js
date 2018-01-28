@@ -14,7 +14,6 @@ import back50thaniversery927x1030 from '../../assets/images/back50thaniversery92
 import testblog1 from '../../assets/images/testblog1.jpg'
 import testblog2 from '../../assets/images/testblog2.png'
 import testblog3 from '../../assets/images/testblog3.png'
-import testblog4 from '../../assets/images/testblog4.jpg'
 
 class ListContent extends Component{
 
@@ -32,7 +31,7 @@ class ListContent extends Component{
       backgroundImage: 'url(' + testblog3 + ')'
     }
     let innerStyle5 = {
-      backgroundImage: 'url(' + 'https://www.kzsc.org/wp-content/uploads/2018/01/IMG_4885.jpg' + ')'
+      backgroundImage: 'url(https://www.kzsc.org/wp-content/uploads/2018/01/IMG_4885.jpg)'
     }
     return(
 
