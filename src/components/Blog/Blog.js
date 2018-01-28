@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 import { Icon, Image, Card, Container, Button } from 'semantic-ui-react';
+import Tile from '../Tile/Tile';
 
 import axios from 'axios';
 
@@ -24,6 +25,8 @@ class Blog extends Component {
           console.log(res);
           const allposts = res.data.posts.map(obj => obj);
           this.setState({ allposts });
+          console.log('allposts: ');
+          console.log(allposts);
         });
     }
 

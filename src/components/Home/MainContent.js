@@ -8,88 +8,19 @@
  */
 
 import React, {Component} from 'react';
-import { Grid, Segment, Image, Container } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import back50thaniversery927x1030 from '../../assets/images/back50thaniversery927x1030.jpg'
 import testblog1 from '../../assets/images/testblog1.jpg'
 import testblog2 from '../../assets/images/testblog2.png'
 import testblog3 from '../../assets/images/testblog3.png'
 import testblog4 from '../../assets/images/testblog4.jpg'
+import Tile from '../Tile/Tile';
 
 import './MainContent.css';
 import underwriting1 from '../../assets/images/underwriting1.jpeg';
 
 
 class MainContent extends Component{
-
-  featuredContent() {
-    return (
-      <div className="kzsc-blog-tile kzsc-blog-tile-big">
-        <Image className="kzsc-blog-tile-image" src={back50thaniversery927x1030} fluid />
-        <div className="kzsc-blog-tile-bottom">
-          <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank' rel="noopener noreferrer">
-            <h1>Fierce New Apparel for our 50th Anniversary!</h1>
-          </a>
-          <span className="kzsc-blog-tile-desc">November 8, 2017 / Category / by Design Director</span>
-        </div>
-      </div>
-    );
-  }
-
-  otherContent1() {
-    return (
-      <div className="kzsc-blog-tile kzsc-blog-tile-fourth">
-        <Image className="kzsc-blog-tile-image" src={testblog1} fluid />
-        <div className="kzsc-blog-tile-bottom">
-          <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank' rel="noopener noreferrer">
-            <h1>The Orwells Interview 12.11.17</h1>
-          </a>
-          <span className="kzsc-blog-tile-desc">January 22, 2018 / in Main / by Electronic Music Director</span>
-        </div>
-      </div>
-    );
-  }
-
-  otherContent2() {
-    return (
-      <div className="kzsc-blog-tile kzsc-blog-tile-fourth">
-        <Image className="kzsc-blog-tile-image" src={testblog2} fluid />
-        <div className="kzsc-blog-tile-bottom">
-          <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank' rel="noopener noreferrer">
-            <h1>#2DOPEVIDS Week 3 ft. RGLR. Nate / KEZIA</h1>
-          </a>
-          <span className="kzsc-blog-tile-desc">January 21, 2018 / in Main / by Rizal Aliga</span>
-        </div>
-      </div>
-    );
-  }
-
-  otherContent3() {
-    return (
-      <div className="kzsc-blog-tile kzsc-blog-tile-fourth">
-        <Image className="kzsc-blog-tile-image" src={testblog3} fluid />
-        <div className="kzsc-blog-tile-bottom">
-          <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank' rel="noopener noreferrer">
-            <h1>#2DOPEVIDS Week 3 ft. RGLR. Nate / KEZIA</h1>
-          </a>
-          <span className="kzsc-blog-tile-desc">January 21, 2018 / in Main / by Rizal Aliga</span>
-        </div>
-      </div>
-    );
-  }
-
-  otherContent4() {
-    return (
-      <div className="kzsc-blog-tile kzsc-blog-tile-fourth">
-        <Image className="kzsc-blog-tile-image" src={testblog4} fluid />
-        <div className="kzsc-blog-tile-bottom">
-          <a href='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/' target='_blank' rel="noopener noreferrer">
-            <h1>KZSC Interview: GWAR 11.17.17 w/ Melcriada</h1>
-          </a>
-          <span className="kzsc-blog-tile-desc">November 27, 2017 / in Interviews, Main / by Loud Rock Director</span>
-        </div>
-      </div>
-    );
-  }
 
   underwritingContent() {
     return (
@@ -106,7 +37,8 @@ class MainContent extends Component{
 
         <Grid.Row>
           <Grid.Column width={11}>
-            {this.featuredContent()}
+            <Tile image={back50thaniversery927x1030} title='Fierce New Apparel for our 50th Anniversary!'
+             type='big' desc='November 8, 2017 / Category / by Design Director'/>
           </Grid.Column>
           <Grid.Column width={5} stretched>
             {this.underwritingContent()}
@@ -115,16 +47,20 @@ class MainContent extends Component{
 
         <Grid.Row columns='equal'>
           <Grid.Column computer='4' tablet='8'>
-            {this.otherContent1()}
+            <Tile image={testblog1} title='The Orwells Interview 12.11.17'
+             type='small' desc='January 22, 2018 / in Main / by Electronic Music Director'/>
           </Grid.Column>
           <Grid.Column computer='4' tablet='8'>
-            {this.otherContent2()}
+            <Tile image={testblog2} title='#2DOPEVIDS Week 3 ft. RGLR. Nate / KEZIA'
+             type='small' desc='January 21, 2018 / in Main / by Rizal Aliga'/>
           </Grid.Column>
           <Grid.Column computer='4' tablet='8'>
-            {this.otherContent3()}
+            <Tile image={testblog3} title='KZSC Sports Director Makes History for UCSC & Athletics'
+             type='small' desc='January 21, 2018 / in Main / by Rizal Aliga'/>
           </Grid.Column>
           <Grid.Column computer='4' tablet='8'>
-            {this.otherContent4()}
+            <Tile image={testblog4} title='KZSC Interview: GWAR 11.17.17 w/ Melcriada'
+             type='small' desc='November 27, 2017 / in Interviews, Main / by Loud Rock Director'/>
           </Grid.Column>
         </Grid.Row>
 

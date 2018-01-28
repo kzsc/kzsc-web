@@ -8,7 +8,7 @@
  */
 
 import React, {Component} from 'react';
-import { Grid, Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import './ListContent.css';
 import back50thaniversery927x1030 from '../../assets/images/back50thaniversery927x1030.jpg'
 
@@ -24,7 +24,7 @@ class ListContent extends Component{
         <div className="feed-page-wrapper">
           <div className="group">
             <div className="tile live-stream">
-              <a className="inner" href="http://www.kcrw.com/music/shows/aaron-byrd" style={innerStyle}></a>
+              <div className="inner" style={innerStyle}></div>
               <div className="bottom">
                 <a href="http://www.kcrw.com/music/shows/aaron-byrd" title="A Global&#13;&#10;Exploration of Sounds.">
                   <h2>Aaron Byrd</h2>
@@ -45,7 +45,7 @@ class ListContent extends Component{
             </div>
 
             <div className="tile review-state-published">
-              <a className="inner" href="http://www.kcrw.com/latest/two-cloned-monkeys-make-us-wonder-when-will-humans-be-cloned" style={innerStyle}></a>
+              <div className="inner" style={innerStyle}></div>
               <div className="bottom">
                 <a href="http://www.kcrw.com/latest/two-cloned-monkeys-make-us-wonder-when-will-humans-be-cloned" title="Zhong Zhong and Hua Hua are two monkey clones in China. It’s the first time researchers have cloned a primate, and it could lead to major medical advances.">
                   <h2>Two cloned monkeys make us wonder: When will humans be cloned?</h2>
@@ -63,7 +63,7 @@ class ListContent extends Component{
             </div>
 
             <div className="tile review-state-published">
-              <a className="inner" style={innerStyle} href="http://www.kcrw.com/latest/latest-show-1516913585.36"></a>
+              <div className="inner" style={innerStyle}></div>
               <div className="bottom">
                 <a href="http://www.kcrw.com/latest/latest-show-1516913585.36" title="Jeremy Sole hosts a sonic trip through the past, present and future of Roots music. Listen On-Demand to the latest show.">
                   <h2>Latest Show</h2>
@@ -81,7 +81,7 @@ class ListContent extends Component{
             </div>
 
             <div className="tile review-state-published">
-              <a className="inner" href="http://www.kcrw.com/latest/two-cloned-monkeys-make-us-wonder-when-will-humans-be-cloned" style={innerStyle}></a>
+              <div className="inner" style={innerStyle}></div>
               <div className="bottom">
                 <a href="http://www.kcrw.com/latest/two-cloned-monkeys-make-us-wonder-when-will-humans-be-cloned" title="Zhong Zhong and Hua Hua are two monkey clones in China. It’s the first time researchers have cloned a primate, and it could lead to major medical advances.">
                   <h2>Two cloned monkeys make us wonder: When will humans be cloned?</h2>
@@ -99,7 +99,7 @@ class ListContent extends Component{
             </div>
 
             <div className="tile review-state-published">
-              <a className="inner" style={innerStyle} href="http://www.kcrw.com/latest/latest-show-1516913585.36"></a>
+              <div className="inner" style={innerStyle}></div>
               <div className="bottom">
                 <a href="http://www.kcrw.com/latest/latest-show-1516913585.36" title="Jeremy Sole hosts a sonic trip through the past, present and future of Roots music. Listen On-Demand to the latest show.">
                   <h2>Latest Show</h2>
