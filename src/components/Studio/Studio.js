@@ -8,11 +8,16 @@
 import React, {Component} from 'react';
 
 class Studio extends Component{
-    render(){
-        return(
-            <div> Studio Component, To be filled</div>
-        );
-    }
+
+  toDateString(date){
+    return this.props.convertDate(date);
+  }
+
+  render(){
+    return(
+      <div> Studio Component, To be filled {this.toDateString('2018-03-11 00:00:16')}</div>
+    );
+  }
 }
 
 export default Studio;

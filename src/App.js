@@ -53,6 +53,42 @@ class App extends Component {
     });
   }
 
+  toDateString(date) {
+    let dateB = new Date(date);
+    let month = dateB.getMonth() + 1;
+    let monthString;
+    switch (month) {
+      case 1:
+        monthString = 'January'; break;
+      case 2:
+        monthString = 'February'; break;
+      case 3:
+        monthString = 'March'; break;
+      case 4:
+        monthString = 'April'; break;
+      case 5:
+        monthString = 'May'; break;
+      case 6:
+        monthString = 'June'; break;
+      case 7:
+        monthString = 'July'; break;
+      case 8:
+        monthString = 'August'; break;
+      case 9:
+        monthString = 'September'; break;
+      case 10:
+        monthString = 'October'; break;
+      case 11:
+        monthString = 'November'; break;
+      case 12:
+        monthString = 'December'; break;
+      default:
+        monthString = month;
+    }
+    let fullDate = monthString + ' ' + dateB.getDate() + ', ' + dateB.getFullYear();
+    return fullDate
+  }
+
   render() {
 
     const { activeNavItem } = this.state
@@ -65,13 +101,13 @@ class App extends Component {
            hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
           <Container className="margin-t-70" fluid onClick={this.hideVisibilityNavBar.bind(this)}>
 
-            <Route exact path='/home' render={() => <Home /> } />
-            <Route exact path='/' render={() => <Home /> } />
+            <Route exact path='/home' render={() => <Home convertDate={this.toDateString.bind(this)} /> } />
+            <Route exact path='/' render={() => <Home convertDate={this.toDateString.bind(this)} /> } />
             <Route path='/listen' render={() => <Listen /> } />
             <Route path='/donate' render={() => <Donate /> } />
-            <Route path='/blog' render={() => <Blog /> } />
+            <Route path='/blog' render={() => <Blog  convertDate={this.toDateString.bind(this)} /> } />
             <Route path='/schedule' render={() => <Schedule /> } />
-            <Route path='/studio' render={() => <Studio /> }/>
+            <Route path='/studio' render={() => <Studio convertDate={this.toDateString.bind(this)} /> }/>
             <Route path='/concert' render={() => <Concert /> } />
             <Route path='/about' render={() => <About /> } />
             <Route path='/sponsor' render={() => <Sponsor /> } />
