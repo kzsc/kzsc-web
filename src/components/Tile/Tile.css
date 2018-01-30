@@ -1,0 +1,184 @@
+/*
+ * src/components/Tile/Tile.css
+ * Used by:
+ *  src/components/Tile/Tile.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
+/* Blog Tile Styles BEGIN */
+.kzsc-blog-tile {
+  background: #000000;
+  color: #ffffff;
+  float: left;
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  width: 100%
+}
+
+.kzsc-blog-tile-small {
+  height: 270px;
+  margin-bottom: 24px;
+}
+
+.kzsc-blog-tile-big {
+  height: 100%
+}
+
+.kzsc-blog-tile a {
+ color: #ffffff;
+ text-decoration: none;
+}
+
+.kzsc-blog-tile h1 {
+ text-transform: none;
+ line-height: 1.1;
+ transition: .4s
+}
+
+.kzsc-blog-tile.kzsc-blog-tile-big h1 {
+  margin-bottom: 10px;
+}
+
+.kzsc-blog-tile.kzsc-blog-tile-small h1 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.kzsc-blog-tile.kzsc-blog-tile-big:hover h1 {
+ margin-bottom: 15px;
+}
+
+.kzsc-blog-tile.kzsc-blog-tile-small:hover h1 {
+ margin-bottom: 8px;
+}
+
+.kzsc-blog-tile.kzsc-blog-tile-small .kzsc-blog-tile-desc {
+  font-size: 13px;
+}
+
+.kzsc-blog-tile .kzsc-blog-tile-bottom {
+  background: linear-gradient(transparent,#000000,#000000),no-repeat center;
+  background: rgba(41,41,41,0.96);
+  padding: 8px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  color: #ffffff;
+}
+
+.kzsc-blog-tile-image {
+ position:absolute;
+ height:100%;
+ width:100%;
+ transition:.4s;
+ background-size:cover;
+ background-repeat:no-repeat;
+ background-position: center
+}
+
+.kzsc-blog-tile:hover .kzsc-blog-tile-image{
+  transition:.4s;
+  -moz-transform:scale(1.15);
+  -webkit-transform:scale(1.15);
+  -o-transform:scale(1.15);
+  -ms-transform:scale(1.15);
+  transform:scale(1.15);
+  -ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand')";
+  filter:progid:DXImageTransform.Microsoft.Matrix(M11=1.15, M12=0, M21=0, M22=1.15, SizingMethod='auto expand');
+  opacity:.75
+}
+
+@media (max-width: 980px){
+  .kzsc-blog-tile h1 {
+    font-size: 1.6rem;
+  }
+
+  .kzsc-blog-tile:hover h1 {
+   margin-bottom: 14px;
+  }
+
+  .kzsc-blog-tile .kzsc-blog-tile-bottom {
+    padding: 7px;
+  }
+}
+
+@media (max-width: 900px) {
+  .kzsc-blog-tile h1 {
+    font-size: 1.55rem;
+    margin-bottom: 5px;
+  }
+
+  .kzsc-blog-tile:hover h1 {
+   margin-bottom: 8px;
+  }
+
+  .kzsc-blog-tile .kzsc-blog-tile-bottom {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 767px){
+  .kzsc-blog-tile.kzsc-blog-tile-big h1,
+  .kzsc-blog-tile.kzsc-blog-tile-small h1 {
+    font-size: 1.9rem;
+    margin-bottom: 8px;
+  }
+
+  .kzsc-blog-tile.kzsc-blog-tile-big:hover h1,
+  .kzsc-blog-tile.kzsc-blog-tile-small:hover h1 {
+   margin-bottom: 10px;
+  }
+
+  .kzsc-blog-tile .kzsc-blog-tile-bottom {
+    padding: 5px;
+  }
+
+  .kzsc-blog-tile:hover .kzsc-blog-tile-image{
+    -webkit-transform:unset;
+    -moz-transform:unset;
+    -ms-transform:unset;transform:unset;
+    -ms-filter:unset;filter:unset
+  }
+}
+@media (max-width: 660px){
+  .kzsc-blog-tile.kzsc-blog-tile-big h1,
+  .kzsc-blog-tile.kzsc-blog-tile-small h1 {
+    font-size: 1.7rem;
+    margin-bottom: 6px;
+  }
+  .kzsc-blog-tile .kzsc-blog-tile-desc {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 550px) {
+  .kzsc-blog-tile.kzsc-blog-tile-big h1,
+  .kzsc-blog-tile.kzsc-blog-tile-small h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 490px) {
+  .kzsc-blog-tile.kzsc-blog-tile-big h1,
+  .kzsc-blog-tile.kzsc-blog-tile-small h1 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+
+  .kzsc-blog-tile:hover h1 {
+   margin-bottom: 6px;
+  }
+
+  .kzsc-blog-tile.kzsc-blog-tile-big .kzsc-blog-tile-desc,
+  .kzsc-blog-tile.kzsc-blog-tile-small .kzsc-blog-tile-desc {
+    font-size: 12px;
+  }
+}
+/* Blog Tile Styles END */

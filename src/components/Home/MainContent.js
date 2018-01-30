@@ -23,6 +23,7 @@ class MainContent extends Component{
   constructor(props) {
     super(props);
     this.state = {
+      featuredContent: [],
       recentPosts: [],
       requestsLoaded: 0,
       musicChartsPosts: [],
@@ -32,34 +33,37 @@ class MainContent extends Component{
   }
 
   componentWillMount() {
-    axios.get(`https://www.kzsc.org/api/get_recent_posts/`).then(res => {
+    axios.get(`https://www.kzsc.org/api/get_post/?post_id=36472/`).then(res => {
+      const featuredContent = [res.data.post];
+      this.setState({ featuredContent });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    axios.get(`https://www.kzsc.org/api/get_recent_posts/?count=4`).then(res => {
       const recentPosts = res.data.posts.map(obj => obj);
       this.setState({ recentPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-      console.log(this.state.requestsLoaded);
     })
     .catch(function (error) {
       console.log(error);
     });
-    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=5`).then(res => {
+    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=5&count=4`).then(res => {
       const musicChartsPosts = res.data.posts.map(obj => obj);
       this.setState({ musicChartsPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-      console.log(this.state.requestsLoaded);
     })
     .catch(function (error) {
       console.log(error);
     });
-    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=15`).then(res => {
+    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=15&count=4`).then(res => {
       const eventsPosts = res.data.posts.map(obj => obj);
       this.setState({ eventsPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-      console.log(this.state.requestsLoaded);
     })
     .catch(function (error) {
       console.log(error);
     });
-    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=267`).then(res => {
+    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=267&count=4`).then(res => {
       const giveawaysPosts = res.data.posts.map(obj => obj);
       this.setState({ giveawaysPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-      console.log(this.state.requestsLoaded);
     })
     .catch(function (error) {
       console.log(error);
@@ -79,74 +83,82 @@ class MainContent extends Component{
     return this.props.convertDate(date);
   }
 
+  getFeaturedContent() {
+    let blogTiles = this.state.featuredContent.map(post => {
+      let categories = post.categories.map(c => {
+        return c.title + ' ';
+      });
+      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      return (
+        <Grid.Column key={post.id} width={11}>
+          <Tile image={post.thumbnail_images.full.url} title={post.title}
+          type='big' desc={description} url={post.url}/>
+        </Grid.Column>
+       );
+    });
+    return blogTiles;
+  }
+
   blogContent() {
-    let blogTiles = this.state.recentPosts.map((post, index) => {
-      if(index < 4) {
-        let categories = post.categories.map(c => {
-          return c.title + ' ';
-        });
-        let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
-        return (
-          <Grid.Column key={post.id} computer='4' tablet='8'>
-            <Tile image={post.thumbnail_images.full.url} title={post.title}
-            type='small' desc={description} url={post.url}/>
-          </Grid.Column>
-         );
-       }
+    let blogTiles = this.state.recentPosts.map(post => {
+      let categories = post.categories.map(c => {
+        return c.title + ' ';
+      });
+      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      return (
+        <Grid.Column key={post.id} computer='4' tablet='8'>
+          <Tile image={post.thumbnail_images.full.url} title={post.title}
+          type='small' desc={description} url={post.url}/>
+        </Grid.Column>
+       );
     });
     return blogTiles;
   }
 
   blogMusicChartContent() {
-    let blogTiles = this.state.musicChartsPosts.map((post, index) => {
-      if(index < 4) {
-        let categories = post.categories.map(c => {
-          return c.title + ' ';
-        });
-        let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
-        return (
-          <Grid.Column key={post.id} computer='4' tablet='8'>
-            <Tile image={post.thumbnail_images.full.url} title={post.title}
-            type='small' desc={description} url={post.url}/>
-          </Grid.Column>
-         );
-       }
+    let blogTiles = this.state.musicChartsPosts.map(post => {
+      let categories = post.categories.map(c => {
+        return c.title + ' ';
+      });
+      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      return (
+        <Grid.Column key={post.id} computer='4' tablet='8'>
+          <Tile image={post.thumbnail_images.full.url} title={post.title}
+          type='small' desc={description} url={post.url}/>
+        </Grid.Column>
+       );
     });
     return blogTiles;
   }
 
   blogEventsContent() {
-    let blogTiles = this.state.eventsPosts.map((post, index) => {
-      if(index < 4) {
-        let categories = post.categories.map(c => {
-          return c.title + ' ';
-        });
-        let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
-        return (
-          <Grid.Column key={post.id} computer='4' tablet='8'>
-            <Tile image={post.thumbnail_images.full.url} title={post.title}
-            type='small' desc={description} url={post.url}/>
-          </Grid.Column>
-         );
-       }
+    let blogTiles = this.state.eventsPosts.map(post => {
+      let categories = post.categories.map(c => {
+        return c.title + ' ';
+      });
+      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      return (
+        <Grid.Column key={post.id} computer='4' tablet='8'>
+          <Tile image={post.thumbnail_images.full.url} title={post.title}
+          type='small' desc={description} url={post.url}/>
+        </Grid.Column>
+       );
     });
     return blogTiles;
   }
 
   blogGiveawaysContent() {
-    let blogTiles = this.state.giveawaysPosts.map((post, index) => {
-      if(index < 4) {
-        let categories = post.categories.map(c => {
-          return c.title + ' ';
-        });
-        let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
-        return (
-          <Grid.Column key={post.id} computer='4' tablet='8'>
-            <Tile image={post.thumbnail_images.full.url} title={post.title}
-            type='small' desc={description} url={post.url}/>
-          </Grid.Column>
-         );
-       }
+    let blogTiles = this.state.giveawaysPosts.map(post => {
+      let categories = post.categories.map(c => {
+        return c.title + ' ';
+      });
+      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      return (
+        <Grid.Column key={post.id} computer='4' tablet='8'>
+          <Tile image={post.thumbnail_images.full.url} title={post.title}
+          type='small' desc={description} url={post.url}/>
+        </Grid.Column>
+       );
     });
     return blogTiles;
   }
@@ -157,10 +169,7 @@ class MainContent extends Component{
         <Grid stackable centered padded>
 
           <Grid.Row>
-            <Grid.Column width={11}>
-              <Tile image={back50thaniversery927x1030} title='Fierce New Apparel for our 50th Anniversary!'
-               type='big' desc='November 8, 2017 / Category / by Design Director' url='https://www.kzsc.org/blog/2017/11/08/fierce-new-apparel-for-our-50th/'/>
-            </Grid.Column>
+            {this.getFeaturedContent()}
             <Grid.Column width={5} stretched>
               <Segment>
                 <Slideshow />
@@ -173,7 +182,6 @@ class MainContent extends Component{
           <Grid stackable centered padded>
 
             <Grid.Row columns='equal'>
-
               {this.blogContent()}
             </Grid.Row>
 

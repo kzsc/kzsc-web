@@ -21,7 +21,7 @@ class Blog extends Component {
     }
 
     componentWillMount() {
-      axios.get(`https://www.kzsc.org/api/get_recent_posts/`)
+      axios.get(`https://www.kzsc.org/api/get_recent_posts/?count=16`)
         .then(res => {
           const allposts = res.data.posts.map(obj => obj);
           this.setState({ allposts });
