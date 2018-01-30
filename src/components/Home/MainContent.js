@@ -43,27 +43,23 @@ class MainContent extends Component{
     });
   }
 
-  componentWillMount() {
-    axios.get(`https://www.kzsc.org/api/get_post/?post_id=36472/`).then(res => {
-      const featuredContent = [res.data.post];
-      this.setState({ featuredContent });
+  kzscApiGetOnePost(request, stateVar) { // ?post_id=36472/, featuredContent
+    let postUrl = 'https://www.kzsc.org/api/' + request;
+    axios.get(postUrl).then(res => {
+      const holdData = [res.data.post];
+      this.setState({ [stateVar]: holdData });
     })
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  componentWillMount() {
+    this.kzscApiGetOnePost('get_post/?post_id=36472', 'featuredContent');
     this.kzscApiGetRequest('get_recent_posts/?count=4', 'recentPosts');
     this.kzscApiGetRequest('get_category_posts/?id=5&count=4', 'musicChartsPosts');
     this.kzscApiGetRequest('get_category_posts/?id=15&count=4', 'eventsPosts');
     this.kzscApiGetRequest('get_category_posts/?id=267&count=4', 'giveawaysPosts');
-  }
-
-  underwritingContent() {
-    return (
-      <div>
-        <h3 className="text-align-center">SUPPORT LOCAL BUSINESSES</h3>
-        <Image src={underwriting1} fluid />
-      </div>
-    );
   }
 
   toDateString(date){
