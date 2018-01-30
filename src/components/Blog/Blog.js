@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import { Segment, Grid } from 'semantic-ui-react';
+import { Segment, Grid, Button } from 'semantic-ui-react';
 import Tile from '../Tile/Tile';
 
 import axios from 'axios';
@@ -16,17 +16,22 @@ class Blog extends Component {
       super(props);
       this.state = {
         allposts: [],
-        postsLoading: true
+        postsLoading: true,
+        blogCategories: []
       };
     }
 
     componentWillMount() {
-      axios.get(`https://www.kzsc.org/api/get_recent_posts/?count=16`)
-        .then(res => {
-          const allposts = res.data.posts.map(obj => obj);
-          this.setState({ allposts });
-          this.setState({ postsLoading: false });
+      axios.get(`https://www.kzsc.org/api/get_recent_posts/?count=16`).then(res => {
+        const allposts = res.data.posts.map(obj => obj);
+        this.setState({ allposts, postsLoading: false });
+      });
+      axios.get('https://www.kzsc.org/api/get_category_index/').then(res => {
+        const blogCategories = res.data.categories.map(category => {
+          return ({ id: category.id, title: category.title });
         });
+        this.setState({ blogCategories });
+      });
     }
 
     toDateString(date){
@@ -46,23 +51,40 @@ class Blog extends Component {
           </Grid.Column>
          );
       });
+      return blogTiles
+    }
 
-      return (
-        <div>
-          <Grid stackable centered padded>
-            <Grid.Row columns='equal'>
-              {blogTiles}
-            </Grid.Row>
-          </Grid>
-        </div>
-      );
+    getCategoryButtons() {
+      let categoryButtons = this.state.blogCategories.map((c, i) => {
+        return (
+          <div className='margin-5 display-inline-block' key={c.id}>
+            <Button inverted compact color='red' size='small'>
+              <span dangerouslySetInnerHTML={{__html: c.title}}></span>
+            </Button>
+          </div>
+        );
+      });
+      return categoryButtons;
     }
 
     render() {
       return (
-        <Segment loading={this.state.postsLoading} basic className="Blog">
-          {this.blogContent()}
-        </Segment>
+        <div className="Blog">
+          <Grid padded textAlign='center'>
+            <Grid.Row>
+              <Grid.Column>
+                 {this.getCategoryButtons()}
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <Segment loading={this.state.postsLoading} basic>
+            <Grid stackable centered padded>
+              <Grid.Row columns='equal'>
+                {this.blogContent()}
+              </Grid.Row>
+            </Grid>
+          </Segment>
+        </div>
       );
     }
 }

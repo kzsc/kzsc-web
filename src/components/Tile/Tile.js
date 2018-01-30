@@ -22,12 +22,12 @@ class Tile extends Component {
     return(
       <div className={tileClassList}>
         <div className="kzsc-blog-tile-image" style={tileStyleList}></div>
-        <div className="kzsc-blog-tile-bottom">
-          <a href={this.props.url} target='_blank' rel="noopener noreferrer">
+        <a href={this.props.url} target='_blank' rel="noopener noreferrer">
+          <div className="kzsc-blog-tile-bottom">
             <h1 dangerouslySetInnerHTML={{__html: this.props.title}}></h1>
-          </a>
-          <span className="kzsc-blog-tile-desc">{this.props.desc}</span>
-        </div>
+            <span className="kzsc-blog-tile-desc">{this.props.desc}</span>
+          </div>
+        </a>
       </div>
     );
   }

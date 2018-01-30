@@ -124,6 +124,10 @@
 }
 
 @media (max-width: 767px){
+  .kzsc-blog-tile.kzsc-blog-tile-big {
+    height: 270px;
+  }
+
   .kzsc-blog-tile.kzsc-blog-tile-big h1,
   .kzsc-blog-tile.kzsc-blog-tile-small h1 {
     font-size: 1.9rem;

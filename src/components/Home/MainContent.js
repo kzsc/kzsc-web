@@ -9,7 +9,6 @@
 
 import React, {Component} from 'react';
 import { Grid, Image, Segment } from 'semantic-ui-react';
-import back50thaniversery927x1030 from '../../assets/images/back50thaniversery927x1030.jpg'
 import Tile from '../Tile/Tile';
 import Slideshow from '../Slideshow/Slideshow';
 import axios from 'axios';
@@ -28,8 +27,20 @@ class MainContent extends Component{
       requestsLoaded: 0,
       musicChartsPosts: [],
       eventsPosts: [],
-      giveawaysPosts: []
+      giveawaysPosts: [],
+      tempHolder: []
     };
+  }
+
+  kzscApiGetRequest(request, stateVar) {
+    let postCategoryUrl = 'https://www.kzsc.org/api/' + request;
+    axios.get(postCategoryUrl).then(res => {
+      const holdData = res.data.posts.map(obj => obj);
+      this.setState({ [stateVar]: holdData, requestsLoaded: this.state.requestsLoaded + 1 });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   componentWillMount() {
@@ -40,34 +51,10 @@ class MainContent extends Component{
     .catch(function (error) {
       console.log(error);
     });
-    axios.get(`https://www.kzsc.org/api/get_recent_posts/?count=4`).then(res => {
-      const recentPosts = res.data.posts.map(obj => obj);
-      this.setState({ recentPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=5&count=4`).then(res => {
-      const musicChartsPosts = res.data.posts.map(obj => obj);
-      this.setState({ musicChartsPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=15&count=4`).then(res => {
-      const eventsPosts = res.data.posts.map(obj => obj);
-      this.setState({ eventsPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    axios.get(`https://www.kzsc.org/api/get_category_posts/?id=267&count=4`).then(res => {
-      const giveawaysPosts = res.data.posts.map(obj => obj);
-      this.setState({ giveawaysPosts, requestsLoaded: this.state.requestsLoaded + 1 });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    this.kzscApiGetRequest('get_recent_posts/?count=4', 'recentPosts');
+    this.kzscApiGetRequest('get_category_posts/?id=5&count=4', 'musicChartsPosts');
+    this.kzscApiGetRequest('get_category_posts/?id=15&count=4', 'eventsPosts');
+    this.kzscApiGetRequest('get_category_posts/?id=267&count=4', 'giveawaysPosts');
   }
 
   underwritingContent() {
@@ -99,8 +86,8 @@ class MainContent extends Component{
     return blogTiles;
   }
 
-  blogContent() {
-    let blogTiles = this.state.recentPosts.map(post => {
+  getBlogContent(item, size) {
+    let blogTiles = item.map(post => {
       let categories = post.categories.map(c => {
         return c.title + ' ';
       });
@@ -108,55 +95,7 @@ class MainContent extends Component{
       return (
         <Grid.Column key={post.id} computer='4' tablet='8'>
           <Tile image={post.thumbnail_images.full.url} title={post.title}
-          type='small' desc={description} url={post.url}/>
-        </Grid.Column>
-       );
-    });
-    return blogTiles;
-  }
-
-  blogMusicChartContent() {
-    let blogTiles = this.state.musicChartsPosts.map(post => {
-      let categories = post.categories.map(c => {
-        return c.title + ' ';
-      });
-      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
-      return (
-        <Grid.Column key={post.id} computer='4' tablet='8'>
-          <Tile image={post.thumbnail_images.full.url} title={post.title}
-          type='small' desc={description} url={post.url}/>
-        </Grid.Column>
-       );
-    });
-    return blogTiles;
-  }
-
-  blogEventsContent() {
-    let blogTiles = this.state.eventsPosts.map(post => {
-      let categories = post.categories.map(c => {
-        return c.title + ' ';
-      });
-      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
-      return (
-        <Grid.Column key={post.id} computer='4' tablet='8'>
-          <Tile image={post.thumbnail_images.full.url} title={post.title}
-          type='small' desc={description} url={post.url}/>
-        </Grid.Column>
-       );
-    });
-    return blogTiles;
-  }
-
-  blogGiveawaysContent() {
-    let blogTiles = this.state.giveawaysPosts.map(post => {
-      let categories = post.categories.map(c => {
-        return c.title + ' ';
-      });
-      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
-      return (
-        <Grid.Column key={post.id} computer='4' tablet='8'>
-          <Tile image={post.thumbnail_images.full.url} title={post.title}
-          type='small' desc={description} url={post.url}/>
+          type={size} desc={description} url={post.url}/>
         </Grid.Column>
        );
     });
@@ -165,7 +104,7 @@ class MainContent extends Component{
 
   render(){
     return(
-      <div className="MainContent">
+      <Segment loading={this.state.requestsLoaded < 4} basic>
         <Grid stackable centered padded>
 
           <Grid.Row>
@@ -176,42 +115,37 @@ class MainContent extends Component{
               </Segment>
             </Grid.Column>
           </Grid.Row>
+
+
+          <Grid.Row columns='equal'>
+            {this.getBlogContent(this.state.recentPosts, 'small')}
+          </Grid.Row>
+
+          <Grid.Row textAlign='center'>
+            <h1>Events</h1>
+          </Grid.Row>
+
+          <Grid.Row columns='equal'>
+            {this.getBlogContent(this.state.eventsPosts, 'small')}
+          </Grid.Row>
+
+          <Grid.Row textAlign='center'>
+            <h1>Music Charts</h1>
+          </Grid.Row>
+
+          <Grid.Row columns='equal'>
+            {this.getBlogContent(this.state.musicChartsPosts, 'small')}
+          </Grid.Row>
+
+          <Grid.Row textAlign='center'>
+            <h1>Giveaways</h1>
+          </Grid.Row>
+
+          <Grid.Row columns='equal'>
+            {this.getBlogContent(this.state.giveawaysPosts, 'small')}
+          </Grid.Row>
         </Grid>
-
-        <Segment loading={this.state.requestsLoaded !== 4} basic>
-          <Grid stackable centered padded>
-
-            <Grid.Row columns='equal'>
-              {this.blogContent()}
-            </Grid.Row>
-
-            <Grid.Row textAlign='center'>
-              <h1>Music Charts</h1>
-            </Grid.Row>
-
-            <Grid.Row columns='equal'>
-              {this.blogMusicChartContent()}
-            </Grid.Row>
-
-            <Grid.Row textAlign='center'>
-              <h1>Events</h1>
-            </Grid.Row>
-
-            <Grid.Row columns='equal'>
-              {this.blogEventsContent()}
-            </Grid.Row>
-
-            <Grid.Row textAlign='center'>
-              <h1>Giveaways</h1>
-            </Grid.Row>
-
-            <Grid.Row columns='equal'>
-              {this.blogGiveawaysContent()}
-            </Grid.Row>
-          </Grid>
-        </Segment>
-      </div>
-
+      </Segment>
     );
   }
 }

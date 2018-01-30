@@ -17,7 +17,7 @@ class Concert extends Component{
 
     return(
       <div className="concert">
-        <Grid textAlign='left' padded centered stackable>
+        <Grid padded centered stackable>
 
           <Grid.Row>
             <Grid.Column>

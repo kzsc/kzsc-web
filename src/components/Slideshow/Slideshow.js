@@ -1,14 +1,14 @@
+/*
+ * src/components/Slideshow/Slideshow.js
+ * Used by:
+ *  src/components/Home/MainContent.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, { Component } from 'react';
 import Slide from './Slide';
-import Dots from './Dots';
-import SliderLeftArrow from './SliderLeftArrow';
-import SliderRightArrow from './SliderRightArrow';
-import { Container } from 'semantic-ui-react';
-import testblog1 from '../../assets/images/testblog1.jpg'
-import testblog2 from '../../assets/images/testblog2.png'
-import testblog3 from '../../assets/images/testblog3.png'
-import testblog4 from '../../assets/images/testblog4.jpg'
-import underwriting1 from '../../assets/images/underwriting1.jpeg';
 
 import './Slideshow.css';
 
@@ -20,34 +20,32 @@ export default class Slideshow extends Component {
       images: [],
       index: 0,
       translateValue: 0,
-      autoplay: false
     }
   }
 
   getUnderwritingImages() {
     this.setState({
       images: [
-        {
-          image: underwriting1
-        },
-        {
-          image: testblog1
-        },
-        {
-          image: testblog2
-        },
-        {
-          image: testblog3
-        },
-        {
-          image: testblog4
-        }
+        { image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/10/IMG_9716-1-300x150.jpg' },
+        { image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/SCNFC-300x150.png' },
+        { image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/bsc_logo_stacked-2-300x150.png' },
+        { image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/kelly-wachs-logo-300x150.png' },
+        { image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/BFCUlogoblue_1000_wTag-300x150.jpeg' }
       ]
     });
   }
 
   componentDidMount(){
     this.getUnderwritingImages();
+    let x = window.setInterval(() =>  {
+              this.goToNextSlide()
+            }, 2500)
+    this.setState({ interval : x })
+  }
+
+  componentWillUnmount() {
+    let x = window.clearInterval(this.state.interval)
+    this.setState({ interval : x })
   }
 
   renderSlides = () => {
@@ -60,78 +58,20 @@ export default class Slideshow extends Component {
     return slides
   }
 
-  handleDotClick = i => {
-    const { images } = this.state
-
-    if(i === this.state.index)
-      return
-
-    if(i > this.state.index) {
-      return this.setState({
-        index: i,
-        translateValue: -(i * this.slideWidth())
-      })
-    }
-    else {
-      this.setState({
-        index: i,
-        translateValue: this.state.translateValue + ((this.state.index - i) * (this.slideWidth()))
-      })
-    }
-  }
-
-  toggleAutoplay = () => this.setState({ autoplay: !this.state.autoplay })
-
-  componentDidUpdate = (prevProps, prevState) => {
-    const { autoplay } = this.state
-
-    if(autoplay && prevState.autoplay !== autoplay) {
-      let x = window.setInterval(() =>  {
-                this.goToNextSlide()
-              }, 2500)
-
-      this.setState({ interval : x })
-    }
-    else if(!autoplay && prevState.autoplay !== autoplay) {
-      let x = window.clearInterval(this.state.interval)
-      this.setState({ interval : x })
-    }
-  }
-
   render() {
-    const { images, index, translateValue, autoplay } = this.state
+    const { images, index, translateValue } = this.state
     return (
-      <Container className="SlideshowContainer">
-        <div className="slider">
-          <div className="slider-wrapper"
-            style={{
-              transform: `translateX(${translateValue}px)`,
-              transition: 'transform ease-out 0.45s',
-              height: '300px'
-            }}>
-            { this.renderSlides() }
-          </div>
-
-          <Dots
-            index={index}
-            quantity={images.length}
-            dotClick={this.handleDotClick} />
-
-          <SliderLeftArrow prevSlide={this.goToPreviousSlide} />
-          <SliderRightArrow nextSlide={this.goToNextSlide} />
+      <div className="slider">
+        <div className="slider-wrapper"
+          style={{
+            transform: `translateX(${translateValue}px)`,
+            transition: 'transform ease-out 0.45s',
+            height: '300px'
+          }}>
+          { this.renderSlides() }
         </div>
-      </Container>
+      </div>
     )
-  }
-
-  goToPreviousSlide = () => {
-    if(this.state.index === 0)
-      return
-
-    this.setState({
-      translateValue: this.state.translateValue + this.slideWidth(),
-      index: this.state.index - 1
-    })
   }
 
   goToNextSlide = () => {
