@@ -12,9 +12,7 @@ import { Grid, Image, Segment } from 'semantic-ui-react';
 import Tile from '../Tile/Tile';
 import Slideshow from '../Slideshow/Slideshow';
 import axios from 'axios';
-
 import './MainContent.css';
-import underwriting1 from '../../assets/images/underwriting1.jpeg';
 
 
 class MainContent extends Component{
@@ -32,7 +30,7 @@ class MainContent extends Component{
     };
   }
 
-  kzscApiGetRequest(request, stateVar) {
+  kzscApiGetCategory(request, stateVar) {
     let postCategoryUrl = 'https://www.kzsc.org/api/' + request;
     axios.get(postCategoryUrl).then(res => {
       const holdData = res.data.posts.map(obj => obj);
@@ -56,10 +54,10 @@ class MainContent extends Component{
 
   componentWillMount() {
     this.kzscApiGetOnePost('get_post/?post_id=36472', 'featuredContent');
-    this.kzscApiGetRequest('get_recent_posts/?count=4', 'recentPosts');
-    this.kzscApiGetRequest('get_category_posts/?id=5&count=4', 'musicChartsPosts');
-    this.kzscApiGetRequest('get_category_posts/?id=15&count=4', 'eventsPosts');
-    this.kzscApiGetRequest('get_category_posts/?id=267&count=4', 'giveawaysPosts');
+    this.kzscApiGetCategory('get_recent_posts/?count=4', 'recentPosts');
+    this.kzscApiGetCategory('get_category_posts/?id=5&count=4', 'musicChartsPosts');
+    this.kzscApiGetCategory('get_category_posts/?id=15&count=4', 'eventsPosts');
+    this.kzscApiGetCategory('get_category_posts/?id=267&count=4', 'giveawaysPosts');
   }
 
   toDateString(date){
