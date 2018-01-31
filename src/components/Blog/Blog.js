@@ -18,15 +18,20 @@ class Blog extends Component {
       allposts: [],
       postsLoading: true,
       blogCategories: [],
-      numberPostsToLoad: 16
+      numberPostsToLoad: 16,
+      buttonLoadingString: 'Load More Posts'
     };
   }
 
-  kzscApiGetCategory(request, stateVar) {
+  kzscApiGetCategory(request, stateVar, callback) {
+    let self = this;
     let postCategoryUrl = 'https://www.kzsc.org/api/' + request;
     axios.get(postCategoryUrl).then(res => {
       const holdData = res.data.posts.map(obj => obj);
       this.setState({ [stateVar]: holdData, postsLoading: false });
+      if (typeof callback === "function") {
+        callback(self);
+      }
     })
     .catch(function (error) {
       console.log(error);
@@ -44,7 +49,10 @@ class Blog extends Component {
   }
 
   componentWillMount() {
-    this.setState({ numberPostsToLoad: 16 });
+    this.setState({
+      numberPostsToLoad: 16,
+      buttonLoadingString: 'Load More Posts'
+     });
     let requestString = 'get_recent_posts/?count=16';
     this.kzscApiGetCategory(requestString, 'allposts');
     this.kzscApiGetCategoryList('get_category_index');
@@ -55,7 +63,9 @@ class Blog extends Component {
 
     if(prevState.numberPostsToLoad !== numberPostsToLoad) {
       let requestString = 'get_recent_posts/?count=' + this.state.numberPostsToLoad;
-      this.kzscApiGetCategory(requestString, 'allposts');
+      this.kzscApiGetCategory(requestString, 'allposts', function(self) {
+        self.setState({ buttonLoadingString: 'Load More Posts'});
+      });
     }
   }
 
@@ -79,11 +89,17 @@ class Blog extends Component {
     return blogTiles
   }
 
+  changeCategory(cid, cname) {
+    let requestString = 'get_category_posts/?id=' + cid + '&count=16'
+    this.kzscApiGetCategory(requestString, 'allposts');
+  }
+
   getCategoryButtons() {
     let categoryButtons = this.state.blogCategories.map((c, i) => {
       return (
         <div className='margin-5 display-inline-block' key={c.id}>
-          <Button inverted compact color='red' size='small'>
+          <Button inverted compact color='red' size='small'
+           onClick={this.changeCategory.bind(this, c.id, c.title)}>
             <span dangerouslySetInnerHTML={{__html: c.title}}></span>
           </Button>
         </div>
@@ -93,7 +109,10 @@ class Blog extends Component {
   }
 
   loadMorePosts() {
-    this.setState({ numberPostsToLoad: this.state.numberPostsToLoad + 8 });
+    this.setState({
+      numberPostsToLoad: this.state.numberPostsToLoad + 8,
+      buttonLoadingString: 'Loading...'
+    });
   }
 
   render() {
@@ -113,7 +132,7 @@ class Blog extends Component {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign='center'>
-                <Button inverted color='red' onClick={this.loadMorePosts.bind(this)}>Load More Posts</Button>
+                <Button inverted color='red' onClick={this.loadMorePosts.bind(this)}>{this.state.buttonLoadingString}</Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>
