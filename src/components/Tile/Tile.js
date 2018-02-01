@@ -25,7 +25,7 @@ class Tile extends Component {
         <a href={this.props.url} target='_blank' rel="noopener noreferrer">
           <div className="kzsc-blog-tile-bottom">
             <h1 dangerouslySetInnerHTML={{__html: this.props.title}}></h1>
-            <span className="kzsc-blog-tile-desc">{this.props.desc}</span>
+            <span className="kzsc-blog-tile-desc" dangerouslySetInnerHTML={{__html: this.props.desc}}></span>
           </div>
         </a>
       </div>

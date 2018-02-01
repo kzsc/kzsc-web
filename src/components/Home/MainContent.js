@@ -14,7 +14,6 @@ import Slideshow from '../Slideshow/Slideshow';
 import axios from 'axios';
 import './MainContent.css';
 
-
 class MainContent extends Component{
 
   constructor(props) {

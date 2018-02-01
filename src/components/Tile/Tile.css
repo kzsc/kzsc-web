@@ -9,7 +9,7 @@
 
 /* Blog Tile Styles BEGIN */
 .kzsc-blog-tile {
-  background: #000000;
+  background: #424242;
   color: #ffffff;
   float: left;
   position: relative;
@@ -82,7 +82,7 @@
  background-position: center
 }
 
-.kzsc-blog-tile:hover .kzsc-blog-tile-image{
+.kzsc-blog-tile:hover .kzsc-blog-tile-image {
   transition:.4s;
   -moz-transform:scale(1.15);
   -webkit-transform:scale(1.15);
@@ -143,7 +143,7 @@
     padding: 5px;
   }
 
-  .kzsc-blog-tile:hover .kzsc-blog-tile-image{
+  .kzsc-blog-tile:hover .kzsc-blog-tile-image {
     -webkit-transform:unset;
     -moz-transform:unset;
     -ms-transform:unset;transform:unset;

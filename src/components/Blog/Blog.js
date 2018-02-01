@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import { Segment, Grid, Button } from 'semantic-ui-react';
 import Tile from '../Tile/Tile';
+import kzscI from '../../assets/images/kzsc.jpg'
 
 import axios from 'axios';
 
@@ -52,7 +53,7 @@ class Blog extends Component {
     this.setState({
       numberPostsToLoad: 16,
       buttonLoadingString: 'Load More Posts'
-     });
+    });
     let requestString = 'get_recent_posts/?count=16';
     this.kzscApiGetCategory(requestString, 'allposts');
     this.kzscApiGetCategoryList('get_category_index');
@@ -76,9 +77,17 @@ class Blog extends Component {
   blogContent() {
     let blogTiles = this.state.allposts.map(post => {
       let categories = post.categories.map(c => {
-        return c.title + ' ';
+        let dec = decodeURI(c.title);
+        return ' ' + c.title;
       });
-      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      let description = this.toDateString(post.date) + ' / in' + categories + ' / by ' + post.author.name;
+      if (!post.thumbnail_images) {
+        post['thumbnail_images'] = {
+          full: {
+            url: kzscI
+          }
+        }
+      }
       return (
         <Grid.Column key={post.id} computer='4' tablet='8'>
           <Tile image={post.thumbnail_images.full.url} title={post.title}
