@@ -68,7 +68,7 @@ class PlayButton extends Component {
           12:00 - 2:00 pm
         </div>
         <div className="playButtonDiv" onClick={this.playButtonClicked}>
-          {this.state.playing ? this.showPause() : this.showPlay()}
+          {playing ? this.showPause() : this.showPlay()}
         </div>
       </div>
     );

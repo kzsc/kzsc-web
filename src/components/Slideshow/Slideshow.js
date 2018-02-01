@@ -59,7 +59,7 @@ export default class Slideshow extends Component {
   }
 
   render() {
-    const { images, index, translateValue } = this.state
+    const { translateValue } = this.state
     return (
       <div className="slider">
         <div className="slider-wrapper"

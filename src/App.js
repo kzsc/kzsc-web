@@ -91,8 +91,6 @@ class App extends Component {
 
   render() {
 
-    const { activeNavItem } = this.state
-
     return (
       <BrowserRouter>
         <div className="App">

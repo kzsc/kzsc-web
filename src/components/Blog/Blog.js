@@ -19,8 +19,13 @@ class Blog extends Component {
       allposts: [],
       postsLoading: true,
       blogCategories: [],
-      numberPostsToLoad: 16,
-      buttonLoadingString: 'Load More Posts'
+      requestStringState: 'get_recent_posts/?',
+      numberOfPostsRestart: 15,
+      numberPostsToLoad: 15,
+      numberPostsToIncreaseBy: 6,
+      buttonLoadingString: false,
+      activeCategoryButton: 'All',
+      currentCategoryId: 0
     };
   }
 
@@ -43,6 +48,7 @@ class Blog extends Component {
     let postCategoryUrl = 'https://www.kzsc.org/api/' + request;
     axios.get(postCategoryUrl).then(res => {
       const blogCategories = res.data.categories.map(category => {
+        console.log(category.title + ': ' + category.id);
         return ({ id: category.id, title: category.title });
       });
       this.setState({ blogCategories });
@@ -50,22 +56,34 @@ class Blog extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      numberPostsToLoad: 16,
-      buttonLoadingString: 'Load More Posts'
-    });
-    let requestString = 'get_recent_posts/?count=16';
+    let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
     this.kzscApiGetCategory(requestString, 'allposts');
     this.kzscApiGetCategoryList('get_category_index');
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { numberPostsToLoad } = this.state
+    const { numberPostsToLoad, requestStringState, currentCategoryId } = this.state
 
     if(prevState.numberPostsToLoad !== numberPostsToLoad) {
-      let requestString = 'get_recent_posts/?count=' + this.state.numberPostsToLoad;
+      let requestForACategory = '';
+      if( requestStringState === 'get_category_posts/?' ) {
+        requestForACategory = '&id=' + currentCategoryId;
+      }
+      let requestString = requestStringState + requestForACategory + '&count=' + numberPostsToLoad;
       this.kzscApiGetCategory(requestString, 'allposts', function(self) {
-        self.setState({ buttonLoadingString: 'Load More Posts'});
+        self.setState({ buttonLoadingString: false});
+      });
+    }
+
+    if(prevState.requestStringState !== requestStringState || prevState.currentCategoryId !== currentCategoryId) {
+      let requestForACategory = '';
+      if( requestStringState === 'get_category_posts/?' ) {
+        requestForACategory = '&id=' + currentCategoryId;
+      }
+      let requestString = requestStringState + requestForACategory + '&count=' + numberPostsToLoad;
+      this.setState({ buttonLoadingString: true });
+      this.kzscApiGetCategory(requestString, 'allposts', function(self) {
+        self.setState({ buttonLoadingString: false});
       });
     }
   }
@@ -77,7 +95,6 @@ class Blog extends Component {
   blogContent() {
     let blogTiles = this.state.allposts.map(post => {
       let categories = post.categories.map(c => {
-        let dec = decodeURI(c.title);
         return ' ' + c.title;
       });
       let description = this.toDateString(post.date) + ' / in' + categories + ' / by ' + post.author.name;
@@ -89,7 +106,7 @@ class Blog extends Component {
         }
       }
       return (
-        <Grid.Column key={post.id} computer='4' tablet='8'>
+        <Grid.Column key={post.id}>
           <Tile image={post.thumbnail_images.full.url} title={post.title}
           type='small' desc={description} url={post.url}/>
         </Grid.Column>
@@ -99,15 +116,33 @@ class Blog extends Component {
   }
 
   changeCategory(cid, cname) {
-    let requestString = 'get_category_posts/?id=' + cid + '&count=16'
-    this.kzscApiGetCategory(requestString, 'allposts');
+    this.setState({ activeCategoryButton: cname });
+    let numberOfPosts;
+    if( this.state.currentCategoryId === cid ) {
+      numberOfPosts = this.state.numberPostsToLoad;
+    } else {
+      numberOfPosts = this.state.numberOfPostsRestart;
+    }
+    if( cname === 'All' ){
+      this.setState({
+        requestStringState: 'get_recent_posts/?',
+        numberPostsToLoad: numberOfPosts,
+        currentCategoryId: 0
+      });
+    } else {
+      this.setState({
+        requestStringState: 'get_category_posts/?',
+        numberPostsToLoad: numberOfPosts,
+        currentCategoryId: cid
+      });
+    }
   }
 
   getCategoryButtons() {
     let categoryButtons = this.state.blogCategories.map((c, i) => {
       return (
         <div className='margin-5 display-inline-block' key={c.id}>
-          <Button inverted compact color='red' size='small'
+          <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === c.title}
            onClick={this.changeCategory.bind(this, c.id, c.title)}>
             <span dangerouslySetInnerHTML={{__html: c.title}}></span>
           </Button>
@@ -119,29 +154,35 @@ class Blog extends Component {
 
   loadMorePosts() {
     this.setState({
-      numberPostsToLoad: this.state.numberPostsToLoad + 8,
-      buttonLoadingString: 'Loading...'
+      numberPostsToLoad: this.state.numberPostsToLoad + this.state.numberPostsToIncreaseBy,
+      buttonLoadingString: true
     });
   }
 
   render() {
     return (
       <div className="Blog">
-        <Grid padded textAlign='center'>
-          <Grid.Row>
-            <Grid.Column>
-               {this.getCategoryButtons()}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Segment padded textAlign='center' basic>
+          <div className='margin-5 display-inline-block' key='all'>
+            <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === 'All'}
+             onClick={this.changeCategory.bind(this, 0, 'All')}>
+              <span>All</span>
+            </Button>
+          </div>
+         {this.getCategoryButtons()}
+        </Segment>
         <Segment loading={this.state.postsLoading} basic>
-          <Grid stackable centered padded>
-            <Grid.Row columns='equal'>
+          <Grid stackable padded columns='3' doubling>
+            <Grid.Row>
               {this.blogContent()}
             </Grid.Row>
+          </Grid>
+          <Grid centered padded columns='1'>
             <Grid.Row>
               <Grid.Column textAlign='center'>
-                <Button inverted color='red' onClick={this.loadMorePosts.bind(this)}>{this.state.buttonLoadingString}</Button>
+                <Button disabled={this.state.buttonLoadingString} loading={this.state.buttonLoadingString} color='red' onClick={this.loadMorePosts.bind(this)}>
+                  Load More
+                </Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>

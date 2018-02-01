@@ -8,10 +8,12 @@
  */
 
 import React, {Component} from 'react';
-import { Grid, Image, Segment } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 import Tile from '../Tile/Tile';
 import Slideshow from '../Slideshow/Slideshow';
 import axios from 'axios';
+import kzscI from '../../assets/images/kzsc.jpg'
+
 import './MainContent.css';
 
 class MainContent extends Component{
@@ -85,6 +87,13 @@ class MainContent extends Component{
         return c.title + ' ';
       });
       let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      if (!post.thumbnail_images) {
+        post['thumbnail_images'] = {
+          full: {
+            url: kzscI
+          }
+        }
+      }
       return (
         <Grid.Column key={post.id} computer='4' tablet='8'>
           <Tile image={post.thumbnail_images.full.url} title={post.title}
