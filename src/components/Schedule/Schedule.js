@@ -1,5 +1,12 @@
+/*
+ * src/components/Schedule/Schedule.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, {Component} from 'react';
-import { Container, Button, Grid, Segment } from 'semantic-ui-react';
+import { Button, Grid, Segment, Container } from 'semantic-ui-react';
 
 import './Schedule.css';
 
@@ -68,8 +75,8 @@ class Schedule extends Component {
     return (
       <div className="div-calendar">
         <p className="calendar-text">Program Schedule &amp; Playlists</p>
-        <Grid>
-          <Grid.Row columns='equal' divided stackable>
+        <Grid stackable>
+          <Grid.Row columns='equal' divided>
             <Grid.Column>
               <Button color="red" onClick={(e) => this.showDesc(e, "sunday")}>Sunday</Button>
             </Grid.Column>
@@ -833,14 +840,26 @@ class Schedule extends Component {
 
   render() {
     return (
-      <Container className="calendar-container">
-        <div className="content-btns">
-          <Button className="calendar-btn" onClick={() => this.toggle("daily")}>Daily Calendar</Button>
-        </div>
-        <div className="content-btns">
-          <Button className="calendar-btn" onClick={() => this.toggle("weekly")}>Full Calendar</Button>
-        </div>
-        {this.state.content === "daily" ? this.dailyContent() : this.weeklyContent()}
+      <Container>
+        <Grid padded centered stackable>
+          <Grid.Row columns='equal'>
+            <Grid.Column>
+              <Button color="grey" fluid size='massive' onClick={() => this.toggle("daily")}>
+                Daily Calendar
+              </Button>
+            </Grid.Column>
+            <Grid.Column>
+              <Button color="grey" fluid size='massive' onClick={() => this.toggle("weekly")}>
+                Full Calendar
+              </Button>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>
+              {this.state.content === "daily" ? this.dailyContent() : this.weeklyContent()}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Container>
     );
   }

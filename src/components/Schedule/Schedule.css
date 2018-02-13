@@ -2,23 +2,10 @@
  * used in: Schedule.js
  */
 
- .calendar-container {
-     margin-top: 50px !important;
- }
  .calendar-text {
      font-size: 24px;
  }
- .content-btns {
-     float:left;
-     width: 50%;
-     margin-bottom: 20px;
-     padding-right: 10px;
- }
 
- .calendar-btn{
-     font-size: 24px !important;
-     width: 100%;
- }
 
  .div-calendar{
     margin-bottom: 20px;

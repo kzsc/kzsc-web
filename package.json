@@ -1,7 +1,8 @@
 {
-  "name": "kzsc-web1",
-  "version": "0.1.0",
-  "private": true,
+  "name": "kzscwebsite",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
     "axios": "^0.17.1",
     "react": "^16.0.0",
@@ -20,5 +21,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdinay/KZSC-WEB.git"
+  },
+  "author": "sdinay",
   "proxy": "http://localhost:3001"
 }

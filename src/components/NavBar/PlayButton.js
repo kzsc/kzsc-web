@@ -9,6 +9,8 @@
 
 import React, {Component} from 'react';
 import { Icon } from 'semantic-ui-react';
+import axios from 'axios';
+
 
 import './NavBar.css';
 
@@ -26,23 +28,32 @@ class PlayButton extends Component {
     this.setPlayingToFalse();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { playing } = this.state
+
+    if( prevState.playing !== playing ) {
+      console.log(this.state);
+    }
+
+  }
+
   setPlayingToFalse(){
     this.setState({playing: false});
   }
 
   playButtonClicked() {
-      var liveStream = document.getElementById('player');
-      if(!this.state.playing) {
-        liveStream.play();
-        this.setState({
-            playing: true
-        });
-      } else if (this.state.playing) {
-        liveStream.pause();
-        this.setState({
-            playing: false
-        });
-      }
+    var liveStream = document.getElementById('player');
+    if(!this.state.playing) {
+      liveStream.play();
+      this.setState({
+        playing: true
+      });
+    } else if (this.state.playing) {
+      liveStream.pause();
+      this.setState({
+        playing: false
+      });
+    }
   };
 
   showPlay() {
@@ -56,6 +67,18 @@ class PlayButton extends Component {
       <Icon size="big" name="pause circle outline" color="red" fitted link/>
     )
   };
+
+  getCurrentShowInfo() {
+    axios.get('http://localhost:3001/spinitron').then(res => {
+      console.log(res);
+      this.setState({
+        showName: res.s
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   render(){
     const { playing } = this.state;

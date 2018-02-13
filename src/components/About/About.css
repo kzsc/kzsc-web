@@ -16,3 +16,14 @@
   color: #fff;
 }
 /* Title Containers for Contact Cards END */
+
+.about-hidden-info{
+  margin: auto;
+  top: 40%;
+  position: absolute;
+  height: 100%;
+}
+
+.k-height-100pc {
+  height: 100%
+}

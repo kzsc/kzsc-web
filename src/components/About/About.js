@@ -6,9 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import { Grid, Button, Icon, Image, Form,
-         Select, TextArea, Segment, Divider,
-         Dimmer, Container } from 'semantic-ui-react'
+import { Grid, Button, Icon, Image, Form, Select, TextArea, Segment, Divider, Container, Reveal } from 'semantic-ui-react'
 import './About.css';
 import uuid from 'uuid';
 
@@ -394,11 +392,16 @@ class About extends Component{
       if( member.category === "music" ) {
         return (
           <Grid.Column width={5} key={member.id} className='padding-tb-10' textAlign='center'>
-            <Dimmer.Dimmable className="width-100pc" as={Image} dimmed={member.dimmerActive}
-            onMouseEnter={this.handleShow.bind(this, member.id)}
-            onMouseLeave={this.handleHide.bind(this, member.id)}>
-              <Dimmer active={member.dimmerActive}>
-                <Container fluid>
+            <Reveal animated='move'>
+              <Reveal.Content visible>
+                <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' fluid/>
+                <Container className="about-title-container" fluid>
+                  <span><strong>{member.name}</strong></span><br />
+                  <span>{member.position}</span>
+                </Container>
+              </Reveal.Content>
+              <Reveal.Content hidden className="k-height-100pc bg-color-red-1">
+                <Container className="about-hidden-info" fluid>
                   <a href={member.mailto} className="font-size-22">
                     <Icon name='mail' /> {member.email}
                   </a>
@@ -407,14 +410,8 @@ class About extends Component{
                     <Icon name='phone' /> {member.phone}
                   </a>
                 </Container>
-              </Dimmer>
-
-              <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' fluid/>
-              <Container className="about-title-container" fluid>
-                <span><strong>{member.name}</strong></span><br />
-                <span>{member.position}</span>
-              </Container>
-            </Dimmer.Dimmable>
+              </Reveal.Content>
+            </Reveal>
           </Grid.Column>
         );
       }
@@ -426,11 +423,16 @@ class About extends Component{
       if( member.category === "other" ) {
         return (
           <Grid.Column width={5} key={member.id} className='padding-tb-10' textAlign='center'>
-            <Dimmer.Dimmable className="width-100pc" as={Image} dimmed={member.dimmerActive}
-            onMouseEnter={this.handleShow.bind(this, member.id)}
-            onMouseLeave={this.handleHide.bind(this, member.id)}>
-              <Dimmer active={member.dimmerActive}>
-                <Container fluid>
+            <Reveal animated='move'>
+              <Reveal.Content visible>
+                <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' fluid/>
+                <Container className="about-title-container" fluid>
+                  <span><strong>{member.name}</strong></span><br />
+                  <span>{member.position}</span>
+                </Container>
+              </Reveal.Content>
+              <Reveal.Content hidden className="k-height-100pc bg-color-red-1">
+                <Container className="about-hidden-info" fluid>
                   <a href={member.mailto} className="font-size-22">
                     <Icon name='mail' /> {member.email}
                   </a>
@@ -439,14 +441,8 @@ class About extends Component{
                     <Icon name='phone' /> {member.phone}
                   </a>
                 </Container>
-              </Dimmer>
-
-              <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' fluid/>
-              <Container className="about-title-container" fluid>
-                <span><strong>{member.name}</strong></span><br />
-                <span>{member.position}</span>
-              </Container>
-            </Dimmer.Dimmable>
+              </Reveal.Content>
+            </Reveal>
           </Grid.Column>
         );
       }

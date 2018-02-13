@@ -19,58 +19,51 @@ class NavBarFull extends Component {
 
   constructor(){
     super();
-    this.state = { }
+    this.state = {
+      menuItems: [
+        {
+          to: '/home', name: 'home', title: 'Home'
+        },
+        {
+          to: '/donate', name: 'donate', title: 'Donate'
+        },
+        {
+          to: '/listen', name: 'listen', title: 'Listen'
+        },
+        {
+          to: '/blogs', name: 'blog', title: 'Blog'
+        }
+      ]
+    }
   }
 
   changeActiveNavItem = (e, { name }) => this.props.onActiveNavItemChange(name);
+
+  getMenuItems() {
+    let menuItems = this.state.menuItems.map(item => {
+      return(
+        <Menu.Item as={NavLink} to={item.to} name={item.name} key={item.name}
+        active={this.props.activeItem === item.name} onClick={this.changeActiveNavItem}>
+          {item.title}
+        </Menu.Item>
+      );
+    });
+    return menuItems;
+  }
 
   render(){
 
     return(
       <div>
-        <Menu size="massive" className="navbar" secondary pointing>
+        <Menu inverted size="massive" className="navbar kblue" fixed='top'>
           <Menu.Menu position="left">
-            <Menu.Item>
+            <Menu.Item as='a' href='/home'>
               <Image src={logo} width='107px'/>
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/home'
-            className="item nav-item kzsc-nav-link left"
-            name = "home"
-            active={this.props.activeItem === 'home'}
-            onClick={this.changeActiveNavItem}>
-                Home
-            </Menu.Item>
-            <Menu.Item as={NavLink} to='/donate'
-            className="nav-item kzsc-nav-link left"
-            name = "donate"
-            active={this.props.activeItem === 'donate'}
-            onClick={this.changeActiveNavItem}>
-                Donate
-            </Menu.Item>
-            <Menu.Item as={NavLink} to='/listen'
-            className="nav-item kzsc-nav-link left"
-            name='listen'
-            active={this.props.activeItem === 'listen'}
-            onClick={this.changeActiveNavItem}>
-               Listen
-            </Menu.Item>
-            <Menu.Item as={NavLink} to='/blog'
-            className="nav-item kzsc-nav-link left"
-            name='blog'
-            active={this.props.activeItem === 'blog'}
-            onClick={this.changeActiveNavItem}>
-               Blog
-            </Menu.Item>
-            <Menu.Item as={NavLink} to='/schedule'
-            className="nav-item kzsc-nav-link left"
-            name='schedule'
-            active={this.props.activeItem === 'schedule'}
-            onClick={this.changeActiveNavItem}>
-               Schedule
-            </Menu.Item>
+            {this.getMenuItems()}
           </Menu.Menu>
           <Menu.Menu position='right'>
-            <Menu.Item className="nav-item kzsc-nav-icon right">
+            <Menu.Item>
                 <PlayButton></PlayButton>
             </Menu.Item>
           </Menu.Menu>

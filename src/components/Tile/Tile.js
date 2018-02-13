@@ -10,6 +10,7 @@
  */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Tile.css';
 
 class Tile extends Component {
@@ -22,12 +23,12 @@ class Tile extends Component {
     return(
       <div className={tileClassList}>
         <div className="kzsc-blog-tile-image" style={tileStyleList}></div>
-        <a href={this.props.url} target='_blank' rel="noopener noreferrer">
+        <Link to={this.props.url} rel="noopener noreferrer">
           <div className="kzsc-blog-tile-bottom">
             <h1 dangerouslySetInnerHTML={{__html: this.props.title}}></h1>
             <span className="kzsc-blog-tile-desc" dangerouslySetInnerHTML={{__html: this.props.desc}}></span>
           </div>
-        </a>
+        </Link>
       </div>
     );
   }

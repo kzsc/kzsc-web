@@ -7,22 +7,25 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Container } from 'semantic-ui-react'
+import { Container, Divider } from 'semantic-ui-react'
+import axios from 'axios';
 
-import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import Home from './components/Home/Home';
-import Listen from './components/Listen/Listen';
-import Donate from './components/Donate/Donate';
-import Blog from './components/Blog/Blog';
-import Schedule from './components/Schedule/Schedule';
-import Studio from './components/Studio/Studio';
-import Concert from './components/Concert/Concert';
-import About from './components/About/About';
-import Footer from './components/Footer/Footer';
-import Sponsor from './components/Sponsor/Sponsor';
-import TestBackend from './components/TestBackend';
-import Slideshow from './components/Slideshow/Slideshow';
+import './App.css'
+import NavBar from './components/NavBar/NavBar'
+import Home from './components/Home/Home'
+import Listen from './components/Listen/Listen'
+import Donate from './components/Donate/Donate'
+import Blogs from './components/Blogs/Blogs'
+import Schedule from './components/Schedule/Schedule'
+import Studio from './components/Studio/Studio'
+import Concert from './components/Concert/Concert'
+import About from './components/About/About'
+import Footer from './components/Footer/Footer'
+import Underwriting from './components/Underwriting/Underwriting'
+import TestBackend from './components/TestBackend'
+import Slideshow from './components/Slideshow/Slideshow'
+import BlogDetail from './components/BlogDetail/BlogDetail'
+import Title from './components/Title/Title'
 
 class App extends Component {
 
@@ -30,13 +33,83 @@ class App extends Component {
     super();
     this.state = {
       navBarVisible: false,
+      domain: "https://www.kzsc.org/",
+      blogCategories: [],
+      blogPosts: [],
+      requestStringState: 'get_recent_posts/?',
+      numberPostsToLoad: 15,
+      blogsPostsLoading: false,
+      blogsButtonLoading: false,
+      homeRequestsLoaded: 0,
+      homeRecentPosts: [],
+      homeMusicChartsPosts: [],
+      homeEventsPosts: [],
+      homeGiveawaysPosts: [],
+      homeFeaturedContent: []
     }
   }
 
-  componentWillMount(){
-    this.setState({
-      navBarVisible: false
+  kzscApiGetCategoryList(request) {
+    let postCategoryUrl = this.state.domain + 'api/' + request;
+    axios.get(postCategoryUrl).then(res => {
+      const blogCategories = res.data.categories.map(category => {
+        return ({ id: category.id, title: category.title });
+      });
+      this.setState({ blogCategories });
     });
+  }
+
+  kzscApiGetCategory(request, stateVar) {
+    let postCategoryUrl = this.state.domain + 'api/' + request;
+    axios.get(postCategoryUrl).then(res => {
+      const holdData = res.data.posts.map(obj => obj);
+      this.updateBlogPosts(holdData);
+      this.setState({ blogsButtonLoading: false, blogsPostsLoading: false });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  kzscApiGet4FromCategory(request, stateVar) {
+    let postCategoryUrl = this.state.domain + 'api/' + request;
+    axios.get(postCategoryUrl).then(res => {
+      const holdData = res.data.posts.map(obj => obj);
+      this.setState({ [stateVar]: holdData, homeRequestsLoaded: this.state.homeRequestsLoaded + 1 });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  kzscApiGetPostById(request, stateVar) {
+    let postUrl = this.state.domain + 'api/' + request;
+    axios.get(postUrl).then(res => {
+      const holdData = [res.data.post];
+      this.setState({ [stateVar]: holdData });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  trueBlogsPostsLoading() {
+    this.setState({ blogsPostsLoading: true });
+  }
+
+  trueBlogsButtonLoading() {
+    this.setState({ blogsButtonLoading: true });
+  }
+
+  componentWillMount(){
+    this.kzscApiGetCategoryList('get_category_index');
+    let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
+    this.kzscApiGetCategory(requestString, 'blogPosts');
+    this.kzscApiGetPostById('get_post/?post_id=36472', 'homeFeaturedContent');
+    this.kzscApiGet4FromCategory('get_recent_posts/?count=4', 'homeRecentPosts');
+    this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=4', 'homeMusicChartsPosts');
+    this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=4', 'homeEventsPosts');
+    this.kzscApiGet4FromCategory('get_category_posts/?id=267&count=4', 'homeGiveawaysPosts');
   }
 
   toggleVisibilityNavBar() {
@@ -89,6 +162,12 @@ class App extends Component {
     return fullDate
   }
 
+  updateBlogPosts(newPosts) {
+    this.setState({
+      blogPosts: newPosts
+    });
+  }
+
   render() {
 
     return (
@@ -97,22 +176,51 @@ class App extends Component {
           <NavBar activeItem={this.activeNavMenuItem} onActiveNavItemChange={this.updateActiveNavItem.bind(this)}
            toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
            hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
-          <Container className="margin-t-70" fluid onClick={this.hideVisibilityNavBar.bind(this)}>
-
-            <Route exact path='/home' render={() => <Home convertDate={this.toDateString.bind(this)} /> } />
-            <Route exact path='/' render={() => <Home convertDate={this.toDateString.bind(this)} /> } />
+          <Title />
+          <Container fluid onClick={this.hideVisibilityNavBar.bind(this)}>
+            <Route exact path='/home' render={() =>
+              <Home convertDate={this.toDateString.bind(this)}
+                    requestsLoaded={this.state.homeRequestsLoaded}
+                    recentPosts={this.state.homeRecentPosts}
+                    musicChartsPosts={this.state.homeMusicChartsPosts}
+                    eventsPosts={this.state.homeEventsPosts}
+                    giveawaysPosts={this.state.homeGiveawaysPosts}
+                    featuredContent={this.state.homeFeaturedContent} />
+            } />
+            <Route exact path='/' render={() =>
+              <Home convertDate={this.toDateString.bind(this)}
+                    requestsLoaded={this.state.homeRequestsLoaded}
+                    recentPosts={this.state.homeRecentPosts}
+                    musicChartsPosts={this.state.homeMusicChartsPosts}
+                    eventsPosts={this.state.homeEventsPosts}
+                    giveawaysPosts={this.state.homeGiveawaysPosts}
+                    featuredContent={this.state.homeFeaturedContent} />
+            } />
             <Route path='/listen' render={() => <Listen /> } />
             <Route path='/donate' render={() => <Donate /> } />
-            <Route path='/blog' render={() => <Blog  convertDate={this.toDateString.bind(this)} /> } />
+            <Route path='/blogs' render={() =>
+              <Blogs convertDate={this.toDateString.bind(this)}
+                     blogCategories={this.state.blogCategories}
+                     blogPosts={this.state.blogPosts}
+                     updateBlogPosts={this.updateBlogPosts.bind(this)}
+                     kzscApiGetCategory={this.kzscApiGetCategory.bind(this)}
+                     postsLoading={this.state.blogsPostsLoading}
+                     buttonLoading={this.state.blogsButtonLoading}
+                     truePostsLoading={this.trueBlogsPostsLoading.bind(this)}
+                     trueButtonLoading={this.trueBlogsButtonLoading.bind(this)}
+                     domain={this.state.domain} numberPostsToLoad={this.state.numberPostsToLoad}
+              />
+            } />
             <Route path='/schedule' render={() => <Schedule /> } />
             <Route path='/studio' render={() => <Studio convertDate={this.toDateString.bind(this)} /> }/>
             <Route path='/concert' render={() => <Concert /> } />
             <Route path='/about' render={() => <About /> } />
-            <Route path='/sponsor' render={() => <Sponsor /> } />
+            <Route path='/underwriting' render={() => <Underwriting /> } />
             <Route path='/testbackend' render={() =>  <TestBackend /> } />
             <Route path='/slideshow' render={() =>  <Slideshow /> } />
+            <Route path='/blogdetail/:id' component={BlogDetail} />
 
-            <br />
+            <Divider hidden />
 
             <Footer/>
 

@@ -7,15 +7,6 @@
  * web@kzsc.org
  */
 
-.kzsc-fixed-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 500;
-  background-color: #ffff;
-}
-
 .nav-item {
     font-weight: 600 !important;
     font-size: 20px;
@@ -23,10 +14,6 @@
 
 .kzsc-nav-icon {
   padding: 5px 10px 10px 10px !important;
-}
-
-.kzsc-nav-link {
-  padding: 24px 15px 22px 15px !important;
 }
 
 .kzsc-nav-link:hover {

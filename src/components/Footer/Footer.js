@@ -27,48 +27,43 @@ class Footer extends Component{
       pageLinks: [
         {
           id: uuid.v4(),
-          link: 'donate',
+          link: '/donate',
           name: 'Donate'
         },
         {
           id: uuid.v4(),
-          link: 'sponser',
+          link: '/underwriting',
           name: 'Business Underwriting'
         },
         {
           id: uuid.v4(),
-          link: 'listen',
+          link: '/listen',
           name: 'Listen'
         },
         {
           id: uuid.v4(),
-          link: 'blog',
+          link: '/blog',
           name: 'Blog'
         },
         {
           id: uuid.v4(),
-          link: 'schedule',
+          link: '/schedule',
           name: 'Schedule'
         },
         {
           id: uuid.v4(),
-          link: 'studio',
+          link: '/studio',
           name: 'Studio'
         },
         {
           id: uuid.v4(),
-          link: 'concert',
+          link: '/concert',
           name: 'Concert'
         },
         {
           id: uuid.v4(),
-          link: 'about',
+          link: '/about',
           name: 'About'
-        },
-        {
-          id: uuid.v4(),
-          link: 'underwriting',
-          name: 'Underwriting'
         }
       ],
       socialMediaLinks: [
@@ -245,24 +240,24 @@ class Footer extends Component{
     return(
       <div id="kzsc-footer" className="footer">
         <Grid columns='equal' divided inverted padded stackable>
-          <Grid.Row color='black' textAlign='center'>
+          <Grid.Row color='grey' textAlign='center' >
             <Grid.Column>
-              <Segment textAlign={'left'} color='black' inverted >
+              <Segment textAlign={'left'} color='grey' inverted >
                 {this.firstColumn()}
               </Segment>
             </Grid.Column>
             <Grid.Column>
-              <Segment textAlign={'left'} color='black' inverted>
+              <Segment textAlign={'left'} color='grey' inverted>
                 {this.secondColumn()}
               </Segment>
             </Grid.Column>
             <Grid.Column>
-              <Segment textAlign={'left'} color='black' inverted>
+              <Segment textAlign={'left'} color='grey' inverted>
                 {this.thirdColumn()}
               </Segment>
             </Grid.Column>
             <Grid.Column>
-              <Segment textAlign={'left'} color='black' inverted>
+              <Segment textAlign={'left'} color='grey' inverted>
                 {this.fourthColumn()}
               </Segment>
             </Grid.Column>

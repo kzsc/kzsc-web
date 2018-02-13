@@ -20,6 +20,38 @@ class NavBarMobile extends Component{
   constructor(){
     super();
     this.state = {
+      menuItems: [
+        {
+          to: '/home', name: 'home', title: 'Home'
+        },
+        {
+          to: '/donate', name: 'donate', title: 'Donate'
+        },
+        {
+          to: '/listen', name: 'listen', title: 'Listen'
+        },
+        {
+          to: '/blogs', name: 'blog', title: 'Blog'
+        },
+        {
+          to: '/about', name: 'about', title: 'About'
+        },
+        {
+          to: '/concert', name: 'concert', title: 'Concert'
+        },
+        {
+          to: '/psa', name: 'psa', title: 'Psa'
+        },
+        {
+          to: '/schedule', name: 'schedule', title: 'Schedule'
+        },
+        {
+          to: '/sponser', name: 'sponser', title: 'Sponser'
+        },
+        {
+          to: '/studio', name: 'studio', title: 'Studio'
+        }
+      ]
     }
   }
 
@@ -33,22 +65,34 @@ class NavBarMobile extends Component{
     this.props.hideVisibility();
   }
 
+  getSidebarMenuItems() {
+    let sidebarMenuItems = this.state.menuItems.map(item => {
+      return(
+        <Menu.Item as={NavLink} to={item.to} name={item.name} key={item.name}
+        active={this.props.activeItem === item.name} onClick={this.changeActiveNavItem}>
+          {item.title}
+        </Menu.Item>
+      );
+    });
+    return sidebarMenuItems;
+  }
+
   render(){
 
     return(
       <div>
-        <Menu size="massive" className="navbar" secondary pointing>
+        <Menu inverted size="massive" className="navbar kblue" fixed='top'>
           <Menu.Menu position="left" onClick={this.hideNavBar.bind(this)}>
             <Menu.Item>
-              <Image src={logo}  width='107px'/>
+              <Image src={logo} width='107px'/>
             </Menu.Item>
           </Menu.Menu>
           <Menu.Menu position='right'>
-            <Menu.Item className="nav-item kzsc-nav-icon center"
+            <Menu.Item className="center"
              onClick={this.hideNavBar.bind(this)}>
                 <PlayButton></PlayButton>
             </Menu.Item>
-            <Menu.Item className="nav-item kzsc-nav-icon center">
+            <Menu.Item className="center">
               <Icon className="clickable-icon" size="big" name="sidebar"
               color="red" onClick={this.toggleNavBar.bind(this)} fitted/>
             </Menu.Item>
@@ -56,32 +100,9 @@ class NavBarMobile extends Component{
         </Menu>
 
         <Sidebar as={Menu} animation='push' width='thin' direction='right'
-        visible={this.props.navBarVisible} icon='labeled' vertical
-         onClick={this.toggleNavBar.bind(this)}>
-          <Menu.Item as={NavLink} to='/home' name = "home"
-          className="item nav-item kzsc-nav-link left"
-          active={this.props.activeItem === 'home'}
-          onClick={this.changeActiveNavItem}>
-            Home
-          </Menu.Item>
-          <Menu.Item as={NavLink} to='/donate' name = "donate"
-          className="nav-item kzsc-nav-link left"
-          active={this.props.activeItem === 'donate'}
-          onClick={this.changeActiveNavItem}>
-            Donate
-          </Menu.Item>
-          <Menu.Item as={NavLink} to='/listen' name='listen'
-          className="nav-item kzsc-nav-link left"
-          active={this.props.activeItem === 'listen'}
-          onClick={this.changeActiveNavItem}>
-            Listen
-          </Menu.Item>
-          <Menu.Item as={NavLink} to='/blog' name='blog'
-          className="nav-item kzsc-nav-link left"
-          active={this.props.activeItem === 'blog'}
-          onClick={this.changeActiveNavItem}>
-            Blog
-          </Menu.Item>
+         visible={this.props.navBarVisible} icon='labeled' vertical
+         onClick={this.toggleNavBar.bind(this)} inverted className='kblue'>
+          {this.getSidebarMenuItems()}
         </Sidebar>
 
       </div>
