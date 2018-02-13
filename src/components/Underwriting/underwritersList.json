@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Aloha Island Grille", "site": "www.alohaislandgrille.com",
+    "street": "1700 Portola Dr", "address": "Santa Cruz, CA 95062", "phone": "(831) 479-3299"
+  },
+  {
+    "name": "Bill the Oysterman", "site": "www.billtheoysterman.com",
+    "street": "1011 Lewis Circle", "address": "Santa Cruz, CA 95062", "phone": "(831) 227-8551"
+  },
+  {
+    "name": "Bluebeat Music", "site": "www.bluebeatmusic.com",
+    "street": "PO Box 100", "address": "Santa Cruz, 95063", "phone": "(831) 454-8807"
+  },
+  {
+    "name": "Bookshop Santa Cruz", "site": "www.bookshopsantacruz.com",
+    "street": "1520 Pacific Avenue", "address": "Santa Cruz, CA 95060", "phone": "(831) 423-0900"
+  },
+  {
+    "name": "Cannon Western, MA, MFT", "site": "canonwestern.com",
+    "street": "147 River Street South #204", "address": "Santa Cruz, CA 95060", "phone": "(831) 454-9155"
+  },
+  {
+    "name": "Coke Farm", "site": "www.cokefarm.com",
+    "street": "P.O. Box 60", "address": "San Bautista, CA 95045", "phone": "(831) 623-2100"
+  },
+  {
+    "name": "Edible Monterey Bay", "site": "ediblemontereybay.com",
+    "street": "", "address": "", "phone": ""
+  },
+  {
+    "name": "Ensemble Monterey Chamber Orchestra", "site": "www.ensemblemonterey.org",
+    "street": "", "address": "", "phone": "(831) 333-1283"
+  },
+  {
+    "name": "Good Times", "site": "www.goodtimes.sc",
+    "street": "1011 Pacific Avenue Ste. 320", "address": "Santa Cruz, CA 95060", "phone": "(831) 458-1100"
+  },
+  {
+    "name": "Growing Up Wild", "site": "www.growingupwild.com",
+    "street": "2015 Eureka Canyon Road", "address": "Watsonville, CA 95076", "phone": "(831) 768-7089"
+  },
+  {
+    "name": "Halibut for Humanity", "site": "www.halibut4humanity.org",
+    "street": "", "address": "", "phone": ""
+  },
+  {
+    "name": "High Ground Organics", "site": "www.highgroundorganics.com",
+    "street": "PO Box 2601", "address": "Watsonville, CA 95076-2601", "phone": ""
+  },
+  {
+    "name": "Indigital Recording Studios", "site": "www.indigitalrec.com",
+    "street": "1305 Fair Avenue", "address": "Santa Cruz, CA 95060", "phone": "(831) 419-6070"
+  },
+  {
+    "name": "Kuumbwa Jazz Center", "site": "www.kuumbwajazz.org",
+    "street": "320 Cedar Street #2", "address": "Santa Cruz, CA 95060", "phone": ""
+  },
+  {
+    "name": "Lauren Crux", "site": "www.laurencrux.com",
+    "street": "740 Front Street Ste. 378", "address": "Santa Cruz, CA 95060", "phone": "(831) 425-8700"
+  },
+  {
+    "name": "Ow Family Properties", "site": "www.owcommerical.com",
+    "street": "1601 41Avenue #202", "address": "Capitola, CA 95010", "phone": "(831) 247-1175"
+  },
+  {
+    "name": "Pono Hawaiian Grill", "site": "www.ponohawaiiangrill.com",
+    "street": "120 Union Street", "address": "Santa Cruz, CA 95060", "phone": "(831) 426-7666"
+  },
+  {
+    "name": "Pure Water of Santa Cruz", "site": "",
+    "street": "2106C Mission Street", "address": "Santa Cruz, CA 95060", "phone": "(831) 426-5456"
+  },
+  {
+    "name": "Razorfrog Web Design", "site": "www.razorfrog.com",
+    "street": "", "address": "", "phone": "(415) 480-4587"
+  },
+  {
+    "name": "Santa Cruz Hydroponics", "site": "santacruz-hydroponics.gardeningunlimited.com",
+    "street": "", "address": "", "phone": ""
+  },
+  {
+    "name": "Santa Cruz Waves Magazine", "site": "www.santacruzwaves.com",
+    "street": "3912 Portola Drive #7", "address": "Santa Cruz, CA 95062", "phone": "(831) 295-3063"
+  },
+  {
+    "name": "Seahorse Swim School", "site": "www.seahorseswimschool.com",
+    "street": "1505 Seascape Blvd", "address": "Aptos, CA 95003", "phone": "(831) 476-7946"
+  },
+  {
+    "name": "Schoolhouse Chai", "site": "schoolhousechai.com",
+    "street": "", "address": "", "phone": "(831) 469-3092",
+    "email": "Janis@Schoolhousechai.com"
+  },
+  {
+    "name": "UCSC Arts Division", "site": "",
+    "street": "", "address": "", "phone": "",
+    "email": "arts.ucsc.edu"
+  },
+  {
+    "name": "UCSC Campus Life", "site": "",
+    "street": "", "address": "", "phone": "",
+    "email": "deanofstudents.ucsc.edu"
+  },
+  {
+    "name": "Woodstock’s Pizza", "site": "www.woodstockscruz.com",
+    "street": "710 Front Street", "address": "Santa Cruz, CA 95060", "phone": "(831) 427-4444"
+  }
+
+]

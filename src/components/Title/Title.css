@@ -1,0 +1,83 @@
+/*
+ * src/components/Title/Title.css
+ * Used by:
+ *  src/components/Title/Title.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
+.Title {
+  margin-bottom: 15px;
+}
+
+.title-header {
+  font-size: 50px;
+  color: #d64720;
+  font-family: "Arial Black", Gadget, sans-serif;
+  letter-spacing: 2px;
+  line-height: normal;
+}
+
+.title-sub-header {
+  line-height: normal
+}
+
+@media (max-width: 991px) {
+  .title-header {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 767px) {
+  .title-header {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 650px) {
+  .title-header {
+    font-size: 30px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 540px) {
+  .title-header {
+    font-size: 23px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 340px) {
+  .title-header {
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+}
+
+.title-hr {
+ overflow: hidden;
+ text-align: center;
+}
+.title-hr:before,
+.title-hr:after {
+ background-color: #d64720;
+ content: "";
+ display: inline-block;
+ height: 20px;
+ position: relative;
+ vertical-align: middle;
+ width: 50%;
+}
+.title-hr:before {
+ right: 0.5em;
+ margin-left: -50%;
+}
+.title-hr:after {
+ left: 0.5em;
+ margin-right: -50%;
+}
+.title-hr div {
+  display: inline;
+}
