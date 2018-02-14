@@ -108,9 +108,7 @@
   margin-bottom: 0.5em;
   margin-left: auto;
   margin-right: auto;
-  border-style: inset;
-  border-width: 2px;
-  border-color: #ffffff
+  height: 20px;
 }
 .word-warp-break {
   word-wrap: break-word
@@ -423,7 +421,7 @@ a.ui.basic.kblue.label:hover {
 
 .ui.inverted.menu .kblue.active.item,
 .ui.inverted.kblue.menu {
-  background-color: #82c0d8 /* changed #2185D0; */
+  background-color: #82c0d8 ; /* changed #2185D0; */
 }
 
 .ui.inverted.kblue.menu .item:before {

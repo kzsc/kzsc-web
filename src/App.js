@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Container, Divider } from 'semantic-ui-react'
+import { Container, Divider, Button } from 'semantic-ui-react'
 import axios from 'axios';
 
 import './App.css'
@@ -22,6 +22,7 @@ import Concert from './components/Concert/Concert'
 import About from './components/About/About'
 import Footer from './components/Footer/Footer'
 import Underwriting from './components/Underwriting/Underwriting'
+import UnderwritingProduct from './components/Underwriting/UnderwritingProduct'
 import TestBackend from './components/TestBackend'
 import Slideshow from './components/Slideshow/Slideshow'
 import BlogDetail from './components/BlogDetail/BlogDetail'
@@ -120,10 +121,15 @@ class App extends Component {
     this.setState({ navBarVisible: false });
   }
 
+  scrollToWindowTop() {
+    window.scrollTo(0, 0)
+  }
+
   updateActiveNavItem(newActiveItem) {
     this.setState({
       activeNavItem: newActiveItem
     });
+    window.scrollTo(0, 0)
   }
 
   toDateString(date) {
@@ -216,13 +222,14 @@ class App extends Component {
             <Route path='/concert' render={() => <Concert /> } />
             <Route path='/about' render={() => <About /> } />
             <Route path='/underwriting' render={() => <Underwriting /> } />
+            <Route path='/underwritingproduct' render={() => <UnderwritingProduct /> } />
             <Route path='/testbackend' render={() =>  <TestBackend /> } />
             <Route path='/slideshow' render={() =>  <Slideshow /> } />
             <Route path='/blogdetail/:id' component={BlogDetail} />
 
             <Divider hidden />
 
-            <Footer/>
+            <Footer scrollToTop={this.scrollToWindowTop}/>
 
           </Container>
         </div>

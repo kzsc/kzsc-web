@@ -47,11 +47,11 @@ class Listen extends Component {
   infoDownloadable() {
     return (
       <Grid.Row>
-        <Grid.Column stretched computer='13' tablet='14' mobile='16'>
+        <Grid.Column computer='13' tablet='14' mobile='16'>
           <h3 className="centered-block">
             KZSC Main Stream Downloadable Files
           </h3>
-          <Table size="large" unstackable>
+          <Table size="large" unstackable className='kblue' striped selectable>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Format</Table.HeaderCell>
@@ -85,13 +85,15 @@ class Listen extends Component {
           </Table>
         </Grid.Column>
 
-        <hr className="k-hr-spacer"/>
+        <Grid.Column width='16'>
+          <div className="k-hr-spacer"></div>
+        </Grid.Column>
 
-        <Grid.Column stretched computer='13' tablet='14' mobile='16'>
+        <Grid.Column computer='13' tablet='14' mobile='16'>
           <h3 className="centered-block">
             Webstream Suggested Softwares
           </h3>
-          <Table size="large" unstackable verticalAlign='top'>
+          <Table size="large" unstackable className='kblue' striped selectable>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Windows</Table.HeaderCell>

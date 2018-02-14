@@ -7,30 +7,8 @@
  * web@kzsc.org
  */
 
-.nav-item {
-    font-weight: 600 !important;
-    font-size: 20px;
-}
-
-.kzsc-nav-icon {
-  padding: 5px 10px 10px 10px !important;
-}
-
-.kzsc-nav-link:hover {
-  border-bottom-color: #000 !important;
-  background: #f2f2f2 !important;
-}
-
-#kzsc-icon-vertical {
-  font-size: 2em;
-}
-
-#kzsc-menu a {
-    color: #000000 !important;
-}
-
-#kzsc-icon-container {
-  padding-bottom: .65em;
+#navBarFullIcon i.icon {
+  margin: 0 !important;
 }
 
 .clickable-icon {

@@ -8,7 +8,7 @@
  */
 
 import React, {Component} from 'react';
-import { Menu, Image } from 'semantic-ui-react';
+import { Menu, Image, Dropdown } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../logo_dark_orange_sm.png';
 import PlayButton from './PlayButton';
@@ -61,6 +61,30 @@ class NavBarFull extends Component {
               <Image src={logo} width='107px'/>
             </Menu.Item>
             {this.getMenuItems()}
+            <Dropdown id="navBarFullIcon" item text=''>
+              <Dropdown.Menu>
+                <Dropdown.Item as={NavLink} to='/underwriting' name='underwriting'
+                active={this.props.activeItem === 'underwriting'} onClick={this.changeActiveNavItem}>
+                  Business Underwriting
+                </Dropdown.Item>
+                <Dropdown.Item as={NavLink} to='/schedule' name='schedule'
+                active={this.props.activeItem === 'schedule'} onClick={this.changeActiveNavItem}>
+                  Schedule
+                </Dropdown.Item>
+                <Dropdown.Item as={NavLink} to='/studio' name='studio'
+                active={this.props.activeItem === 'studio'} onClick={this.changeActiveNavItem}>
+                  Studio Rental
+                </Dropdown.Item>
+                <Dropdown.Item as={NavLink} to='/concert' name='concert'
+                active={this.props.activeItem === 'concert'} onClick={this.changeActiveNavItem}>
+                  Concert Calendar
+                </Dropdown.Item>
+                <Dropdown.Item as={NavLink} to='/about' name='about'
+                active={this.props.activeItem === 'about'} onClick={this.changeActiveNavItem}>
+                  About
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Menu.Menu>
           <Menu.Menu position='right'>
             <Menu.Item>

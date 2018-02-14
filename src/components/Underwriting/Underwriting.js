@@ -6,6 +6,7 @@
  */
 
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
 import { Grid, Segment, Menu, Icon, Button } from 'semantic-ui-react';
 import './Underwriting.css';
 import underwritersList from './underwritersList.json';
@@ -19,8 +20,8 @@ class Underwriting extends Component{
 
   getUnderwriters() {
     let underwriters = underwritersList.map((u, i) => {
-      let color = 'red';
-      let secondary = true;
+      let color;
+      let secondary;
       if(i % 4 === 0) {
         color = 'grey';
         secondary = true;
@@ -46,10 +47,7 @@ class Underwriting extends Component{
                 {u.site}
               </a>
               <br />
-              {u.street} <br />
-              {u.address} <br />
-              {u.phone} <br />
-              {u.email}
+              {u.street} <br /> {u.address} <br /> {u.phone} <br /> {u.email}
             </p>
           </Segment>
         </Grid.Column>
@@ -181,12 +179,12 @@ class Underwriting extends Component{
                   Purchase an underwriting package today to become a part of our
                   community
                 </div>
-                <Button className='kblue margin-t-5'>Become an Underwriter</Button>
+                <NavLink to='/underwritingproduct'>
+                  <Button className='kblue margin-t-5'>Become an Underwriter</Button>
+                </NavLink>
               </Segment>
             </Grid.Column>
           </Grid.Row>
-
-          <hr />
 
           <Grid.Row>
             <Grid.Column width={16} textAlign='center'>

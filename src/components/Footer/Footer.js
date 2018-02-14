@@ -181,7 +181,7 @@ class Footer extends Component{
       //console.log(project);
       return (
         <div key={page.id} className="footer-item-list">
-          <NavLink to={page.link}>{page.name}</NavLink>
+          <NavLink to={page.link} onClick={this.props.scrollToTop}>{page.name}</NavLink>
         </div>
       );
     });
