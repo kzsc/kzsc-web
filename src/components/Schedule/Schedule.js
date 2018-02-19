@@ -39,8 +39,7 @@ class Schedule extends Component {
   handleItemClick(name) { this.setState({ activeMenuItem: name }) }
 
   componentWillMount() {
-    let dayToday = (new String(new Date())).substring(0, 3);
-    console.log(dayToday);
+    let dayToday = (String(new Date())).substring(0, 3);
     this.setState({
       programSchedule: scheduleData,
       activeDay: dayToday

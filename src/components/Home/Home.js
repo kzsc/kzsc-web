@@ -120,6 +120,9 @@ class Home extends Component{
   }
 
   render(){
+    let likeFacebookStyle = {
+      border: "none", overflow: "hidden", width:"100%", height: "20px"
+    }
     return(
       <div className="Home">
         <Grid stackable centered padded>
@@ -131,12 +134,9 @@ class Home extends Component{
               {this.getBlogContent(this.props.featuredContent, 'big')}
             </Grid.Column>
             <Grid.Column width={5} stretched>
-              <Segment loading={this.state.requestsLoaded < 4}>
-                Support Local Businesses
+              <Segment loading={this.state.requestsLoaded < 4} textAlign='center'>
+                <h3>Support Local Businesses</h3>
                 <Slideshow images={this.state.underwritingImages}/>
-              </Segment>
-              <Segment>
-                <Slideshow images={this.state.showImages}/>
               </Segment>
             </Grid.Column>
           </Grid.Row>
@@ -152,20 +152,29 @@ class Home extends Component{
             {this.getBlogContentColumn(this.props.recentPosts, 'small', '4', '8')}
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column width={8} stretched>
-              <Segment className='kblue' tertiary >
+          <Grid.Row columns={3}>
+            <Grid.Column stretched>
+              <Segment className='kblue' tertiary>
                 <h3>{'Follow us on Social Media'.toUpperCase()}</h3>
                 {this.getSocialMediaLinks()}
               </Segment>
             </Grid.Column>
 
-            <Grid.Column width={8} stretched>
-              <Segment className='kblue' secondary >
+            <Grid.Column stretched>
+              <Segment className='kblue' secondary>
                 <h3>RADIO FREE AMERICA ARCHIVES</h3>
                 <Button color='blue' as='a' href='http://www.radiofreeamerica.com/station/kzsc'>
                   Stream past KZSC shows on demand
                 </Button>
+              </Segment>
+            </Grid.Column>
+
+            <Grid.Column stretched>
+              <Segment className='kblue' tertiary>
+                <h3>Like Us On Facebook</h3>
+                <div>
+                  <iframe title='lof' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fkzscradio&amp;send=false&amp;layout=standard&amp;width=300&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80" scrolling="no" frameBorder="0" style={likeFacebookStyle} allowTransparency="true"></iframe>
+                </div>
               </Segment>
             </Grid.Column>
           </Grid.Row>
@@ -181,15 +190,19 @@ class Home extends Component{
             {this.getBlogContentColumn(this.props.eventsPosts, 'small', '4', '8')}
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column width={16}>
-              <div className="title2-hr">
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>Music Charts</NavLink>
-              </div>
+          <Grid.Row columns={3}>
+            <Grid.Column stretched>
+              <Segment>
+                Featured Shows
+                <Slideshow images={this.state.showImages}/>
+              </Segment>
             </Grid.Column>
-          </Grid.Row>
-          <Grid.Row columns='equal'>
-            {this.getBlogContentColumn(this.props.musicChartsPosts, 'small', '4', '8')}
+
+            <Grid.Column>
+            </Grid.Column>
+
+            <Grid.Column>
+            </Grid.Column>
           </Grid.Row>
 
         </Grid>

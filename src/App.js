@@ -49,29 +49,28 @@ class App extends Component {
       homeFeaturedContent: [],
       socialMediaLinks: [
         {
-          id: 'facebook',
-          link: 'https://www.facebook.com/kzscradio',
-          icon: 'facebook square',
+          id: 'facebook', link: 'https://www.facebook.com/kzscradio', icon: 'facebook square',
         },
         {
-          id: 'twitter',
-          link: 'https://twitter.com/kzsc',
-          icon: 'twitter square',
+          id: 'twitter', link: 'https://twitter.com/kzsc', icon: 'twitter square',
         },
         {
-          id: 'instagram',
-          link: 'http://instagram.com/kzsc',
-          icon: 'instagram',
+          id: 'instagram', link: 'http://instagram.com/kzsc', icon: 'instagram',
         },
         {
-          id: 'googleplus',
-          link: 'https://plus.google.com/117475604967899823150/posts',
-          icon: 'google plus square',
+          id: 'googleplus', link: 'https://plus.google.com/117475604967899823150/posts', icon: 'google plus square',
         },
         {
-          id: 'youtube',
-          link: 'http://www.youtube.com/user/kzscfm/videos',
-          icon: 'youtube square',
+          id: 'youtube', link: 'http://www.youtube.com/user/kzscfm/videos', icon: 'youtube square',
+        },
+        {
+          id: 'soundcloud', link: 'https://soundcloud.com/kzsc/', icon: 'soundcloud',
+        },
+        {
+          id: 'feedburner', link: 'http://feeds.feedburner.com/kzsc', icon: "feed"
+        },
+        {
+          id: "mail", link: "/about", icon: "mail"
         }
       ]
     }
