@@ -6,7 +6,9 @@
  */
 
 import React, {Component} from 'react';
-import { Button, Grid, Segment, Container } from 'semantic-ui-react';
+import { Button, Grid, Segment, Table } from 'semantic-ui-react';
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
+import scheduleData from './scheduleData.json'
 
 import './Schedule.css';
 
@@ -15,60 +17,84 @@ class Schedule extends Component {
     super(props);
     this.state = {
       content: "daily",
-      currentDayContent: this.sundayContent(),
+      activeDay: "Sun",
+      activeMenuItem: 'daily',
+      menuItems: [
+        { name: 'daily', title: 'Daily Calendar' },
+        { name: 'full', title: 'Full Calendar' },
+        { name: 'full2', title: 'Full Calendar Custom'}
+      ],
+      daysOfWeek: [
+        { id: "Sun", name: "Sunday" },
+        { id: "Mon", name: "Monday" },
+        { id: "Tue", name: "Tuesday" },
+        { id: "Wed", name: "Wednesday" },
+        { id: "Thu", name: "Thursday" },
+        { id: "Fri", name: "Friday" },
+        { id: "Sat", name: "Saturday" }
+      ]
     }
-    this.toggle = this.toggle.bind(this);
-    this.showDesc = this.showDesc.bind(this);
   }
 
-  toggle(req) {
-    if (req !== this.state.content) {
-      this.setState({
-        content: req
-      })
-    }
+  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+
+  componentWillMount() {
+    let dayToday = (new String(new Date())).substring(0, 3);
+    console.log(dayToday);
+    this.setState({
+      programSchedule: scheduleData,
+      activeDay: dayToday
+    })
   }
 
-  showDesc(e, req) {
-    switch (req) {
-      case 'sunday':
-        this.setState({
-          currentDayContent: this.sundayContent()
-        });
-        break;
-      case 'monday':
-        this.setState({
-          currentDayContent: this.mondayContent()
-        });
-        break;
-      case 'tuesday':
-        this.setState({
-          currentDayContent: this.tuesdayContent()
-        });
-        break;
-    case 'wednesday':
-        this.setState({
-          currentDayContent: this.wednesdayContent()
-        });
-        break;
-      case 'thursday':
-        this.setState({
-          currentDayContent: this.sundayContent()
-        });
-        break;
-      case 'friday':
-        this.setState({
-          currentDayContent: this.fridayContent()
-        });
-        break;
-      case 'saturday':
-        this.setState({
-          currentDayContent: this.saturdayContent()
-        });
-        break;
-      default:
-        break;
-    }
+  getRegularShowsInfo(day) {
+    let tuesShows = this.state.programSchedule.map(s => {
+      if( s.Weekdays.includes( day ) ) {
+        return (
+          <Segment key={s.ShowID} className='kblue'>
+            {s.ShowName}<br/>
+            {s.ShowUsers}<br/>
+            {s.OnairTime} - {s.OffairTime}
+          </Segment>
+        )
+      }
+      return null
+    })
+    return tuesShows
+  }
+
+  getRegularShowsInfoTable(day) {
+    let tuesShows = this.state.programSchedule.map(s => {
+      if( s.Weekdays.includes( day ) ) {
+        let height = 1
+        return (
+          <Table.Row key={s.ShowID}>
+            <Table.Cell rowSpan={height} className='kblue'>
+              <Segment className='kblue'>
+                {s.ShowName}
+              </Segment>
+            </Table.Cell>
+          </Table.Row>
+        )
+      }
+      return null
+    })
+    return tuesShows
+  }
+
+  changeDay(day) {
+    this.setState({ activeDay: day })
+  }
+
+  getDayOfWeekButtons() {
+    let buttons = this.state.daysOfWeek.map(d => {
+      return (
+        <Grid.Column key={d.id}>
+          <Button color="grey" fluid onClick={this.changeDay.bind(this, d.id)}>{d.name}</Button>
+        </Grid.Column>
+      )
+    })
+    return buttons
   }
 
   dailyContent() {
@@ -76,34 +102,15 @@ class Schedule extends Component {
       <div className="div-calendar">
         <p className="calendar-text">Program Schedule &amp; Playlists</p>
         <Grid stackable>
-          <Grid.Row columns='equal' divided>
-            <Grid.Column>
-              <Button color="red" onClick={(e) => this.showDesc(e, "sunday")}>Sunday</Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button color="red" onClick={(e) => this.showDesc(e, "monday")}>Monday</Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button color="red" onClick={(e) => this.showDesc(e, "tuesday")}>Tuesday</Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button color="red" onClick={(e) => this.showDesc(e, "wednesday")}>Wednesday</Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button color="red" onClick={(e) => this.showDesc(e, "thursday")}>Thursday</Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button color="red" onClick={(e) => this.showDesc(e, "friday")}>Friday</Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button color="red" onClick={(e) => this.showDesc(e, "saturday")}>Saturday</Button>
-            </Grid.Column>
+
+          <Grid.Row columns='equal'>
+            {this.getDayOfWeekButtons()}
           </Grid.Row>
         </Grid>
         <Grid>
           <Grid.Row columns={1}>
             <Grid.Column>
-              <div className="donateDesc"> {this.state.currentDayContent}</div>
+              {this.getRegularShowsInfo(this.state.activeDay)}
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -111,756 +118,117 @@ class Schedule extends Component {
     )
   }
 
-  sundayContent() {
-    return (
-      <div>
-        <Segment>
-          Beat Smorgasborg<br/>
-          Groktopus<br/>
-          12:00 - 2:00 am
-        </Segment>
-        <Segment>
-          Mystery Spot<br/>
-          KZSC<br/>
-          2:00 - 6:00 am
-        </Segment>
-        <Segment>
-          Whimsical Will O Wisps<br/>
-          D-NA
-          6:00 - 9:00 am
-        </Segment>
-        <Segment>
-          Breakfast in Bed<br/>
-          Betsy / Lani / Maria / Carol / LC / DJ Compost<br/>
-          9:00 - 12:00 pm
-        </Segment>
-        <Segment>
-          Backroads<br/>
-          Jeff Emery / Chris<br/>
-          12:00 - 2:00 pm
-        </Segment>
-        <Segment>
-          Local Brew<br/>
-          Telltale / Jazzy J / Jinx<br/>
-          2:00 - 4:00 pm
-        </Segment>
-        <Segment>
-          CR8 Diggers Anonymous<br/>
-          Olright
-          4:00 - 6:00 pm
-        </Segment>
-        <Segment>
-          Pacifica Evening News<br/>
-          6:00 - 6:30 pm
-        </Segment>
-        <Segment>
-          Low-Tide Flow<br/>
-          Mostly Mild Midnight Mocha<br/>
-          6:30 - 8:00 pm
-        </Segment>
-        <Segment>
-          Insect Agony<br/>
-          David Anton Savage / DJ Catfish / Q / DJPK<br/>
-          8:00 - 10:00 pm
-        </Segment>
-        <Segment>
-          What Lurks Beneath<br/>
-          DJ Catfish<br/>
-          10:00 - 12:00 pm
-        </Segment>
-      </div>
-    )
-  }
-
-  mondayContent() {
-    return (
-      <div>
-        <Segment>
-          Generations<br/>
-          Nightwuds<br/>
-          12:00 - 2:00 am
-        </Segment>
-        <Segment>
-          Mystery Spot<br/>
-          KZSC<br/>
-          2:00 - 6:00 am
-        </Segment>
-        <Segment>
-          Its All Good<br/>
-          Bruce<br/>
-          6:00 - 9:00 am
-        </Segment>
-        <Segment>
-          Every Shade of Blue<br/>
-          Morganic<br/>
-          9:00 - 11:00 am
-        </Segment>
-        <Segment>
-          World of Tunes<br/>
-          MoKay / Mu<br/>
-          11:00 - 12:30 pm
-        </Segment>
-        <Segment>
-          Suburban Relapse<br/>
-          DJ Gata<br/>
-          12:30 - 2:00 pm
-        </Segment>
-        <Segment>
-          Cruise Control<br/>
-          Iyzard<br/>
-          2:00 - 4:00 pm
-        </Segment>
-        <Segment>
-          Unfiltered Camels<br/>
-          Brant Herrett / David Anton Savage<br/>
-          4:00 - 6:00 pm
-        </Segment>
-        <Segment>
-          Pacifica Evening News<br/>
-          6:00 - 7:30 pm
-        </Segment>
-        <Segment>
-          Closet Free Radio<br/>
-          DJ Kai Dragon / RICHARD<br/>
-          7:00 - 8:30 pm
-        </Segment>
-        <Segment>
-          The Yangtze River<br/>
-          Mu<br/>
-          8:30 - 10:00 pm
-        </Segment>
-        <Segment>
-          Melination<br/>
-          kaviar<br/>
-          10:00 - 11:00 pm
-        </Segment>
-        <Segment>
-          Thats Fresh<br/>
-          Jinx / riz aka djrsd<br/>
-          11:00 - 12:00 am
-        </Segment>
-      </div>
-    )
-  }
-
-  tuesdayContent() {
-    return (
-      <div>
-        <Segment>
-          Alive in the Septic Tank<br/>
-          DJ Maladroit<br/>
-          12:00 - 1:30 am
-        </Segment>
-        <Segment>
-          Mystery Spot<br/>
-          KZSC<br/>
-          1:30 - 6:00 am
-        </Segment>
-        <Segment>
-          Two Steps From The Blues<br/>
-          Charlie<br/>
-          6:00 - 9:00 am
-        </Segment>
-        <Segment>
-          All Fruits Ripe<br/>
-          Daddy Spleece<br/>
-          9:00 - 12:00 pm
-        </Segment>
-        <Segment>
-          Radio Behind the Diner<br/>
-          Cassette Dream<br/>
-          12:00 - 2:00 pm
-        </Segment>
-        <Segment>
-          Electric Owl<br/>
-          Crux / Brandon Berry<br/>
-          2:00 - 3:00 pm
-        </Segment>
-        <Segment>
-          Silver &amp; Gold<br/>
-          Jazzy J<br/>
-          3:00 - 4:00 pm
-        </Segment>
-        <Segment>
-          The Old Cold River<br/>
-          DJPK<br/>
-          4:00 - 6:00 pm
-        </Segment>
-        <Segment>
-          Pacifica Evening News<br/>
-          6:00 - 7:00 pm
-        </Segment>
-        <Segment>
-          Universal Grapevine<br/>
-          Bruce Bratton<br/>
-          7:00 - 8:00 pm
-        </Segment>
-        <Segment>
-          Super 8<br/>
-          Rocko<br/>
-          8:00 - 10:00 pm
-        </Segment>
-        <Segment>
-          Queen Beats<br/>
-          Jinx / kaviar<br/>
-          10:00 - 12:00 am
-        </Segment>
-      </div>
-    )
-  }
-
-  wednesdayContent() {
-    return (
-      <div>
-        <Segment>
-          Angry, Young, &amp; Dorm<br/>
-          The Anarchist<br/>
-          12:00 - 2:00 am
-        </Segment>
-        <Segment>
-          Mystery Spot<br/>
-          KZSC<br/>
-          2:00 - 6:00 am
-        </Segment>
-        <Segment>
-          Wiki Wiki Wednesday<br/>
-          Lani<br/>
-          6:00 - 9:00 am
-        </Segment>
-        <Segment>
-          Dr. Ts Vinylorium<br/>
-          JT<br/>
-          9:00 - 12:00 pm
-        </Segment>
-        <Segment>
-          Artist on Art<br/>
-          DJ Hope<br/>
-          12:00 - 1:00 pm
-        </Segment>
-        <Segment>
-          Nebulous<br/>
-          Firey Nairi<br/>
-          1:00 - 2:00 pm
-        </Segment>
-        <Segment>
-          Girls Germs<br/>
-          ROYGBIV<br/>
-          2:00 - 4:00 pm
-        </Segment>
-        <Segment>
-          Golden Road<br/>
-          Art O Sullivan<br/>
-          4:00 - 6:00 pm
-        </Segment>
-        <Segment>
-          Pacifica Evening News<br/>
-          6:00 - 7:00 pm
-        </Segment>
-        <Segment>
-          Talkabout<br/>
-          Sleepy John<br/>
-          7:00 - 8:30 pm
-        </Segment>
-        <Segment>
-          Disc Hocky<br/>
-          Firey Nairi / Jazzy J / Just Visiting / DJane<br/>
-          8:30 - 10:00 pm
-        </Segment>
-        <Segment>
-          Got Rapps?<br/>
-          riz aka djrsd<br/>
-          10:00 - 12:00 am
-        </Segment>
-      </div>
-    )
-  }
-
-  thursdayContent() {
-    return (
-      <div>
-        <Segment>
-          Bass Si-na-tr-a-rchy<br/>
-          Dan Woo<br/>
-          12:00 - 2:00 am
-        </Segment>
-        <Segment>
-          Mystery Spot<br/>
-          KZSC<br/>
-          2:00 - 6:00 am
-        </Segment>
-        <Segment>
-          Here, There and Everywhere<br/>
-          Jazzy J / DJ Hope / Cruncan Cronuts<br/>
-          6:00 - 9:00 am
-        </Segment>
-        <Segment>
-          Joy in the Morning<br/>
-          DJ Tiffany<br/>
-          9:00 - 12:00 pm
-        </Segment>
-        <Segment>
-          Transformation Highway<br/>
-          John Malkin / Telltale<br/>
-          12:00 - 1:00 pm
-        </Segment>
-        <Segment>
-          Pop Palace<br/>
-          DJ Gina<br/>
-          1:00 - 2:00 pm
-        </Segment>
-        <Segment>
-          Instrument Journal<br/>
-          Maelin<br/>
-          2:00 - 4:00 pm
-        </Segment>
-        <Segment>
-          Recuerdos<br/>
-          tunamelt<br/>
-          4:00 - 5:30
-        </Segment>
-        <Segment>
-          Voces Criticas<br/>
-          DJ Cusco<br/>
-          5:30 - 6:00 pm
-        </Segment>
-        <Segment>
-          Pacifica Evening News<br/>
-          6:00 - 7:00 pm
-        </Segment>
-        <Segment>
-          Glazed Over<br/>
-          Eve<br/>
-          7:00 - 8:30 pm
-        </Segment>
-        <Segment>
-          Santa Cruz Laboratory for Dance-Based Sciences<br/>
-          JUST VISITING<br/>
-          8:30 - 10:00 pm
-        </Segment>
-        <Segment>
-          Que te importa!<br/>
-          melcriada<br/>
-          10:00 - 12:00 am
-        </Segment>
-      </div>
-    )
-  }
-
-  fridayContent() {
-    return(
-      <div>
-        <Segment>
-          Lo-fi Lullaby<br/>
-          GwaiLow<br/>
-          12:00 - 2:00 am
-        </Segment>
-        <Segment>
-          Mystery Spot<br/>
-          KZSC<br/>
-          2:00 - 6:00 am
-        </Segment>
-        <Segment>
-          Bushwackers Breakfast Club<br/>
-          Golden Voice Gene / Sleepy John /
-          Dangerous Dan / Mentee Mairo<br/>
-          6:00 - 9:00 am
-        </Segment>
-        <Segment>
-          Lagniappe<br/>
-          Bobo / Lani / Antoine / Morganic /
-          Bruce / Rocko / DJ Sweet Tea<br/>
-          9:00 - 10:30 am
-        </Segment>
-        <Segment>
-          Not So Distant Relatives<br/>
-          LC<br/>
-          10:30 - 12:00 pm
-        </Segment>
-        <Segment>
-          Test of Time<br/>
-          Carol<br/>
-          12:00 - 2:00 pm
-        </Segment>
-        <Segment>
-          Out Front, Outback<br/>
-          Larry Blood<br/>
-          2:00 - 4:00 pm
-        </Segment>
-        <Segment>
-          Flannel & Fog<br/>
-          Cruncan Cronuts<br/>
-          4:00 - 5:00 pm
-        </Segment>
-        <Segment>
-          Slug Talk<br/>
-          riz aka dirsd<br/>
-          5:00 - 5:30 pm
-        </Segment>
-        <Segment>
-          This Just in From Outdoors<br/>
-          KZSC / Antoine<br/>
-          5:30 - 6:00 pm
-        </Segment>
-        <Segment>
-          Pacifica Evening News<br/>
-          6:00 - 7:00 pm
-        </Segment>
-        <Segment>
-          Spaced Station<br/>
-          Q<br/>
-          7:00 - 8:00 pm
-        </Segment>
-        <Segment>
-          Daily Vibration<br/>
-          DJ Headrest<br/>
-          8:00 - 10:00 pm
-        </Segment>
-        <Segment>
-          Sneak out &amp; run<br/>
-          Crabmasher<br/>
-          10:00 - 12:00 am
-        </Segment>
-      </div>
-    )
-  }
-
-  saturdayContent() {
-    return(
-      <div>
-        <Segment>
-          Motorik Massive<br/>
-          dj crackfox<br/>
-          12:00 - 2:00 am
-        </Segment>
-        <Segment>
-          Mystery Spot<br/>
-          KZSC<br/>
-          2:00 - 6:00 am
-        </Segment>
-        <Segment>
-          Re-air of Closet Free Radio<br/>
-          KZSC<br/>
-          6:00 - 7:30 am
-        </Segment>
-        <Segment>
-          Re-air of This Just In From Outdoors<br/>
-          KZSC<br/>
-          7:30 - 8:00 am
-        </Segment>
-        <Segment>
-          Re-air of Artists on Art<br/>
-          DJ Hope<br/>
-          8:00 - 9:00 am
-        </Segment>
-        <Segment>
-          Destination Earth<br/>
-          Bennett Williamson<br/>
-          9:00 - 12:00 pm
-        </Segment>
-        <Segment>
-          Jazz Kitty<br/>
-          BlueJay (aka Jen Neal)<br/>
-          12:00 - 2:00 pm
-        </Segment>
-        <Segment>
-          Synthetic Love<br/>
-          Slow Joe Crow<br/>
-          2:00 - 4:00 pm
-        </Segment>
-        <Segment>
-          Living In The 80s<br/>
-          DJ Danny On The Radio<br/>
-          4:00 - 6:00 pm
-        </Segment>
-        <Segment>
-          Pacifica Evening News<br/>
-          6:00 - 6:30 pm
-        </Segment>
-        <Segment>
-          Strictly Rockers<br/>
-          Abraham / DJ YB<br/>
-          6:00 - 8:30 pm
-        </Segment>
-        <Segment>
-          Box_37<br/>
-          O.T_37<br/>
-          8:30 - 10:00 pm
-        </Segment>
-        <Segment>
-          Purgatory<br/>
-          Chuck Bass<br/>
-          10:0 - 12:00 am
-        </Segment>
-      </div>
-    )
+  getDayOfWeekHeaderCell() {
+    let headerCell = this.state.daysOfWeek.map(d => {
+      return (
+        <Table.HeaderCell key={d.id}>{d.name}</Table.HeaderCell>
+      )
+    })
+    return headerCell
   }
 
   weeklyContent() {
+    let style = {
+      width: "100%",
+      height: "1400px"
+    }
+    return(
+      <iframe title="schedule" src="https://spinitron.com/radio/playlist.php?station=kzsc&amp;show=schedule&amp;ptype=d&amp;css=https://www.kzsc.org/wp-content/plugins/kzsc-spinitron/css/spinitron.css" style={style} frameBorder="0" scrolling="auto" onLoad="scro11me(this)"></iframe>
+    )
+  }
+
+  weeklyContent2() {
     return (
       <div className="div-calendar">
-        <p className="calendar-text">Full Week Schedule</p>
-        <Grid divided stackable columns={8}>
-          <Grid.Row>
-            <Grid.Column width={1}>
-              Time
-            </Grid.Column>
-            <Grid.Column>
-              Sunday
-            </Grid.Column>
-            <Grid.Column>
-                Monday
-            </Grid.Column>
-            <Grid.Column>
-                Tuesday
-            </Grid.Column>
-            <Grid.Column>
-                Wednesday
-            </Grid.Column>
-            <Grid.Column>
-                Thursday
-            </Grid.Column>
-            <Grid.Column>
-                Friday
-            </Grid.Column>
-            <Grid.Column>
-                Saturday
-            </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-            <Grid.Column width={1}>
-              12 am<br/><br/><br/><br/>1 am<br/><br/><br/><br/>
-              2 am<br/><br/><br/><br/>2 am<br/><br/><br/><br/>
-              4 am<br/><br/><br/><br/>5 am<br/><br/><br/><br/>
-              6 am<br/><br/><br/><br/>7 am<br/><br/><br/><br/>
-              8 am<br/><br/><br/><br/>9 am<br/><br/><br/><br/>
-              10 am<br/><br/><br/><br/>11 am<br/><br/><br/><br/>
-              12 pm<br/><br/><br/><br/>1 pm<br/><br/><br/><br/>
-              2 pm<br/><br/><br/><br/>3 pm<br/><br/><br/><br/>
-              4 pm<br/><br/><br/><br/>5 pm<br/><br/><br/><br/>
-              6 pm<br/><br/><br/><br/>7 pm<br/><br/><br/><br/>
-              8 pm<br/><br/><br/><br/>9 pm<br/><br/><br/><br/>
-              10 pm<br/><br/><br/>11 pm<br/><br/><br/><br/>
-              12 am
-            </Grid.Column>
-            <Grid.Column>
-              {this.sundayContent()}
-            </Grid.Column>
-            <Grid.Column>
-              {this.mondayContent()}
-            </Grid.Column>
-            <Grid.Column>
-              {this.tuesdayContent()}
-            </Grid.Column>
-            <Grid.Column>
-              {this.wednesdayContent()}
-            </Grid.Column>
-            <Grid.Column>
-              <Segment>
-                Alive in the Septic Tank<br/>
-                DJ Maladroit<br/>
-                12:00 - 1:30 am
-              </Segment>
-              <Segment>
-                Mystery Spot<br/>
-                KZSC<br/>
-                1:30 - 6:00 am
-              </Segment>
-              <Segment>
-                Two Steps From The Blues<br/>
-                Charlie<br/>
-                6:00 - 9:00 am
-              </Segment>
-              <Segment>
-                All Fruits Ripe<br/>
-                Daddy Spleece<br/>
-                9:00 - 12:00 pm
-              </Segment>
-              <Segment>
-                Radio Behind the Diner<br/>
-                Cassette Dream<br/>
-                12:00 - 2:00 pm
-              </Segment>
-              <Segment>
-                Electric Owl<br/>
-                Crux / Brandon Berry<br/>
-                2:00 - 3:00 pm
-              </Segment>
-              <Segment>
-                Silver &amp; Gold<br/>
-                Jazzy J<br/>
-                3:00 - 4:00 pm
-              </Segment>
-              <Segment>
-                The Old Cold River<br/>
-                DJPK<br/>
-                4:00 - 6:00 pm
-              </Segment>
-              <Segment>
-                Pacifica Evening News<br/>
-                6:00 - 7:00 pm
-              </Segment>
-              <Segment>
-                Universal Grapevine<br/>
-                Bruce Bratton<br/>
-                7:00 - 8:00 pm
-              </Segment>
-              <Segment>
-                Super 8<br/>
-                Rocko<br/>
-                8:00 - 10:00 pm
-              </Segment>
-              <Segment>
-                Queen Beats<br/>
-                Jinx / kaviar<br/>
-                10:00 - 12:00 am
-              </Segment>
-            </Grid.Column>
-            <Grid.Column>
-            <Segment>
-              Beat Smorgasborg<br/>
-              Groktopus<br/>
-              12:00 - 2:00 am
-            </Segment>
-            <Segment>
-              Mystery Spot<br/>
-              KZSC<br/>
-              2:00 - 6:00 am
-            </Segment>
-            <Segment>
-              Whimsical Will O Wisps<br/>
-              D-NA
-              6:00 - 9:00 am
-            </Segment>
-            <Segment>
-              Breakfast in Bed<br/>
-              Betsy / Lani / Maria / Carol / LC / DJ Compost<br/>
-              9:00 - 12:00 pm
-            </Segment>
-            <Segment>
-              Backroads<br/>
-              Jeff Emery / Chris<br/>
-              12:00 - 2:00 pm
-            </Segment>
-            <Segment>
-              Local Brew<br/>
-              Telltale / Jazzy J / Jinx<br/>
-              2:00 - 4:00 pm
-            </Segment>
-            <Segment>
-              CR8 Diggers Anonymous<br/>
-              Olright
-              4:00 - 6:00 pm
-            </Segment>
-            <Segment>
-              Pacifica Evening News<br/>
-              6:00 - 6:30 pm
-            </Segment>
-            <Segment>
-              Low-Tide Flow<br/>
-              Mostly Mild Midnight Mocha<br/>
-              6:30 - 8:00 pm
-            </Segment>
-            <Segment>
-              Insect Agony<br/>
-              David Anton Savage / DJ Catfish / Q / DJPK<br/>
-              8:00 - 10:00 pm
-            </Segment>
-            <Segment>
-              What Lurks Beneath<br/>
-              DJ Catfish<br/>
-              10:00 - 12:00 pm
-            </Segment>
-            </Grid.Column>
-            <Grid.Column>
-              <Segment>
-                Alive in the Septic Tank<br/>
-                DJ Maladroit<br/>
-                12:00 - 1:30 am
-              </Segment>
-              <Segment>
-                Mystery Spot<br/>
-                KZSC<br/>
-                1:30 - 6:00 am
-              </Segment>
-              <Segment>
-                Two Steps From The Blues<br/>
-                Charlie<br/>
-                6:00 - 9:00 am
-              </Segment>
-              <Segment>
-                All Fruits Ripe<br/>
-                Daddy Spleece<br/>
-                9:00 - 12:00 pm
-              </Segment>
-              <Segment>
-                Radio Behind the Diner<br/>
-                Cassette Dream<br/>
-                12:00 - 2:00 pm
-              </Segment>
-              <Segment>
-                Electric Owl<br/>
-                Crux / Brandon Berry<br/>
-                2:00 - 3:00 pm
-              </Segment>
-              <Segment>
-                Silver &amp; Gold<br/>
-                Jazzy J<br/>
-                3:00 - 4:00 pm
-              </Segment>
-              <Segment>
-                The Old Cold River<br/>
-                DJPK<br/>
-                4:00 - 6:00 pm
-              </Segment>
-              <Segment>
-                Pacifica Evening News<br/>
-                6:00 - 7:00 pm
-              </Segment>
-              <Segment>
-                Universal Grapevine<br/>
-                Bruce Bratton<br/>
-                7:00 - 8:00 pm
-              </Segment>
-              <Segment>
-                Super 8<br/>
-                Rocko<br/>
-                8:00 - 10:00 pm
-              </Segment>
-              <Segment>
-                Queen Beats<br/>
-                Jinx / kaviar<br/>
-                10:00 - 12:00 am
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Table celled structured>
+          <Table.Header>
+            <Table.Row>
+              {this.getDayOfWeekHeaderCell()}
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            <Table.Row>
+
+              <Table.Cell className="no-padding">
+                <Table columns={1} basic='very'>
+                  <Table.Body>
+                    {this.getRegularShowsInfoTable("Sun")}
+                  </Table.Body>
+                </Table>
+              </Table.Cell>
+
+              <Table.Cell className="no-padding">
+                <Table columns={1} basic='very'>
+                  <Table.Body>
+                    {this.getRegularShowsInfoTable("Mon")}
+                  </Table.Body>
+                </Table>
+              </Table.Cell>
+
+              <Table.Cell className="no-padding">
+                <Table columns={1} basic='very'>
+                  <Table.Body>
+                    {this.getRegularShowsInfoTable("Tue")}
+                  </Table.Body>
+                </Table>
+              </Table.Cell>
+
+              <Table.Cell className="no-padding">
+                <Table columns={1} basic='very'>
+                  <Table.Body>
+                    {this.getRegularShowsInfoTable("Wed")}
+                  </Table.Body>
+                </Table>
+              </Table.Cell>
+
+              <Table.Cell className="no-padding">
+                <Table columns={1} basic='very'>
+                  <Table.Body>
+                    {this.getRegularShowsInfoTable("Thu")}
+                  </Table.Body>
+                </Table>
+              </Table.Cell>
+
+              <Table.Cell className="no-padding">
+                <Table columns={1} basic='very'>
+                  <Table.Body>
+                    {this.getRegularShowsInfoTable("Fri")}
+                  </Table.Body>
+                </Table>
+              </Table.Cell>
+
+              <Table.Cell className="no-padding">
+                <Table columns={1} basic='very'>
+                  <Table.Body>
+                    {this.getRegularShowsInfoTable("Sat")}
+                  </Table.Body>
+                </Table>
+              </Table.Cell>
+
+            </Table.Row>
+          </Table.Body>
+        </Table>
       </div>
     );
   }
 
   render() {
     return (
-      <Container>
+      <div className="Schedule">
         <Grid padded centered stackable>
-          <Grid.Row columns='equal'>
-            <Grid.Column>
-              <Button color="grey" fluid size='massive' onClick={() => this.toggle("daily")}>
-                Daily Calendar
-              </Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button color="grey" fluid size='massive' onClick={() => this.toggle("weekly")}>
-                Full Calendar
-              </Button>
-            </Grid.Column>
-          </Grid.Row>
+
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+
           <Grid.Row>
-            <Grid.Column>
-              {this.state.content === "daily" ? this.dailyContent() : this.weeklyContent()}
+            <Grid.Column computer='14' tablet='14' mobile='16'>
+              {this.state.activeMenuItem === "daily" ? this.dailyContent() : null }
+              {this.state.activeMenuItem === "full" ? this.weeklyContent() : null }
+              {this.state.activeMenuItem === "full2" ? this.weeklyContent2() : null }
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Container>
+      </div>
     );
   }
 }

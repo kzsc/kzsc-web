@@ -6,22 +6,3 @@
  * Copyright (c) 2018-present, KZSC Santa Cruz
  * web@kzsc.org
  */
-
-.slider {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  height: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.slider .slider-wrapper {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-.slider .slide {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-}

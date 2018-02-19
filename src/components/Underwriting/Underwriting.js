@@ -7,16 +7,24 @@
 
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-import { Grid, Segment, Menu, Icon, Button } from 'semantic-ui-react';
+import { Grid, Segment, Icon, Button } from 'semantic-ui-react';
 import './Underwriting.css';
 import underwritersList from './underwritersList.json';
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Underwriting extends Component{
 
   constructor(){
     super();
-    this.state = { }
+    this.state = {
+      activeMenuItem: 'title',
+      menuItems: [
+        { name: 'title', title: 'Become a Patron of the Airwaves: Be a KZSC Underwriter!' }
+      ]
+    }
   }
+
+  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
 
   getUnderwriters() {
     let underwriters = underwritersList.map((u, i) => {
@@ -61,15 +69,8 @@ class Underwriting extends Component{
       <div className="Underwriting">
 
         <Grid centered padded>
-          <Grid.Row>
-            <Grid.Column width={16} className='bg-color-grey-1' textAlign='center'>
-              <Menu size='massive' pointing secondary compact stackable>
-                <Menu.Item key='title' name='title'>
-                  Become a Patron of the Airwaves: Be a KZSC Underwriter!
-                </Menu.Item>
-              </Menu>
-            </Grid.Column>
-          </Grid.Row>
+
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
 
           <Grid.Row>
             <Grid.Column width={16} textAlign='center'>

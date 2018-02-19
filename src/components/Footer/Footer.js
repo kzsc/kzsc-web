@@ -17,7 +17,6 @@ class Footer extends Component{
     super();
     this.state = {
       pageLinks: [],
-      socialMediaLinks: [],
       productLinks: []
     }
   }
@@ -27,13 +26,28 @@ class Footer extends Component{
       pageLinks: [
         {
           id: uuid.v4(),
-          link: '/donate',
-          name: 'Donate'
+          link: '/underwriting',
+          name: 'Business Underwriting'
         },
         {
           id: uuid.v4(),
-          link: '/underwriting',
-          name: 'Business Underwriting'
+          link: '/schedule',
+          name: 'Program Schedule'
+        },
+        {
+          id: uuid.v4(),
+          link: '/studio',
+          name: 'Studio Rental'
+        },
+        {
+          id: uuid.v4(),
+          link: '/concert',
+          name: 'Concert'
+        },
+        {
+          id: uuid.v4(),
+          link: '/donate',
+          name: 'Donate'
         },
         {
           id: uuid.v4(),
@@ -47,50 +61,8 @@ class Footer extends Component{
         },
         {
           id: uuid.v4(),
-          link: '/schedule',
-          name: 'Schedule'
-        },
-        {
-          id: uuid.v4(),
-          link: '/studio',
-          name: 'Studio'
-        },
-        {
-          id: uuid.v4(),
-          link: '/concert',
-          name: 'Concert'
-        },
-        {
-          id: uuid.v4(),
           link: '/about',
           name: 'About'
-        }
-      ],
-      socialMediaLinks: [
-        {
-          id: 'facebook',
-          link: 'https://www.facebook.com/kzscradio',
-          icon: 'facebook square',
-        },
-        {
-          id: 'twitter',
-          link: 'https://twitter.com/kzsc',
-          icon: 'twitter square',
-        },
-        {
-          id: 'instagram',
-          link: 'http://instagram.com/kzsc',
-          icon: 'instagram',
-        },
-        {
-          id: 'googleplus',
-          link: 'https://plus.google.com/117475604967899823150/posts',
-          icon: 'google plus square',
-        },
-        {
-          id: 'youtube',
-          link: 'http://www.youtube.com/user/kzscfm/videos',
-          icon: 'youtube square',
         }
       ],
       productLinks: [
@@ -198,7 +170,7 @@ class Footer extends Component{
 
   fourthColumn() {
     let socialMediaLinksHtml;
-    socialMediaLinksHtml = this.state.socialMediaLinks.map(contact => {
+    socialMediaLinksHtml = this.props.socialMediaLinks.map(contact => {
       //console.log(project);
       return (
         <a key={contact.id} href={contact.link} target="_blank" rel="noopener noreferrer">

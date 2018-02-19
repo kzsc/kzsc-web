@@ -6,8 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import { Segment } from 'semantic-ui-react';
-import kzscI from '../../assets/images/kzsc.jpg'
+import {  } from 'semantic-ui-react';
+// import kzscI from '../../assets/images/kzsc.jpg'
 
 class BlogPost extends Component {
   constructor(props) {

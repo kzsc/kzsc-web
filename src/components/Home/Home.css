@@ -6,3 +6,31 @@
  * Copyright (c) 2018-present, KZSC Santa Cruz
  * web@kzsc.org
  */
+
+.title2-hr {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.title2-hr:before,
+.title2-hr:after {
+  background-color: #507b8c;
+  content: "";
+  display: inline-block;
+  height: 15px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+.title2-hr:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+.title2-hr:after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+.title2-hr a {
+  color: rgba(0,0,0,.87) !important;
+}

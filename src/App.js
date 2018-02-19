@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Container, Divider, Button } from 'semantic-ui-react'
+import { Container, Divider } from 'semantic-ui-react'
 import axios from 'axios';
 
 import './App.css'
@@ -46,7 +46,34 @@ class App extends Component {
       homeMusicChartsPosts: [],
       homeEventsPosts: [],
       homeGiveawaysPosts: [],
-      homeFeaturedContent: []
+      homeFeaturedContent: [],
+      socialMediaLinks: [
+        {
+          id: 'facebook',
+          link: 'https://www.facebook.com/kzscradio',
+          icon: 'facebook square',
+        },
+        {
+          id: 'twitter',
+          link: 'https://twitter.com/kzsc',
+          icon: 'twitter square',
+        },
+        {
+          id: 'instagram',
+          link: 'http://instagram.com/kzsc',
+          icon: 'instagram',
+        },
+        {
+          id: 'googleplus',
+          link: 'https://plus.google.com/117475604967899823150/posts',
+          icon: 'google plus square',
+        },
+        {
+          id: 'youtube',
+          link: 'http://www.youtube.com/user/kzscfm/videos',
+          icon: 'youtube square',
+        }
+      ]
     }
   }
 
@@ -191,7 +218,9 @@ class App extends Component {
                     musicChartsPosts={this.state.homeMusicChartsPosts}
                     eventsPosts={this.state.homeEventsPosts}
                     giveawaysPosts={this.state.homeGiveawaysPosts}
-                    featuredContent={this.state.homeFeaturedContent} />
+                    featuredContent={this.state.homeFeaturedContent}
+                    scrollToTop={this.scrollToWindowTop}
+                    socialMediaLinks={this.state.socialMediaLinks} />
             } />
             <Route exact path='/' render={() =>
               <Home convertDate={this.toDateString.bind(this)}
@@ -229,7 +258,7 @@ class App extends Component {
 
             <Divider hidden />
 
-            <Footer scrollToTop={this.scrollToWindowTop}/>
+            <Footer socialMediaLinks={this.state.socialMediaLinks} scrollToTop={this.scrollToWindowTop}/>
 
           </Container>
         </div>

@@ -99,7 +99,7 @@ class NavBarMobile extends Component{
           </Menu.Menu>
         </Menu>
 
-        <Sidebar as={Menu} animation='push' width='thin' direction='right'
+        <Sidebar as={Menu} size="massive" animation='push' width='thin' direction='right'
          visible={this.props.navBarVisible} icon='labeled' vertical
          onClick={this.toggleNavBar.bind(this)} inverted className='kblue'>
           {this.getSidebarMenuItems()}

@@ -7,9 +7,22 @@
 
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
-
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Concert extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      activeMenuItem: 'concert',
+      menuItems: [
+        { name: 'concert', title: 'Concert Calendar' }
+      ]
+    }
+  }
+
+  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+
   render(){
     let iFrameStyle = {
       frameBorder: "0"
@@ -17,11 +30,12 @@ class Concert extends Component{
 
     return(
       <div className="concert">
-        <Grid padded centered stackable>
+        <Grid centered padded>
+
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
 
           <Grid.Row>
-            <Grid.Column>
-              <h1>Concert Calendar</h1>
+            <Grid.Column computer='12' tablet='14' mobile='16'>
               <p>
                 Here are concerts and other cultural events happening in the
                 Monterey Bay Area! Click on any entry to see more information

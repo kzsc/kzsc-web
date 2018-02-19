@@ -71,9 +71,6 @@ class PlayButton extends Component {
   getCurrentShowInfo() {
     axios.get('http://localhost:3001/spinitron').then(res => {
       console.log(res);
-      this.setState({
-        showName: res.s
-      });
     })
     .catch(function (error) {
       console.log(error);

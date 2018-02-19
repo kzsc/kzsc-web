@@ -1,5 +1,13 @@
+/*
+ * src/components/Schedule/Schedule.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
 import React, {Component} from 'react';
-import { Container, Button, Grid, Segment } from 'semantic-ui-react';
+import { Button, Grid, Segment } from 'semantic-ui-react';
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 import './Schedule.css';
 
@@ -9,10 +17,17 @@ class Schedule extends Component {
     this.state = {
       content: "daily",
       currentDayContent: this.sundayContent(),
+      activeMenuItem: 'daily',
+      menuItems: [
+        { name: 'daily', title: 'Daily Calendar' },
+        { name: 'full', title: 'Full Calendar' }
+      ]
     }
     this.toggle = this.toggle.bind(this);
     this.showDesc = this.showDesc.bind(this);
   }
+
+  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
 
   toggle(req) {
     if (req !== this.state.content) {
@@ -68,8 +83,9 @@ class Schedule extends Component {
     return (
       <div className="div-calendar">
         <p className="calendar-text">Program Schedule &amp; Playlists</p>
-        <Grid>
-          <Grid.Row columns='equal' divided stackable>
+        <Grid stackable>
+
+          <Grid.Row columns='equal' divided>
             <Grid.Column>
               <Button color="red" onClick={(e) => this.showDesc(e, "sunday")}>Sunday</Button>
             </Grid.Column>
@@ -622,7 +638,7 @@ class Schedule extends Component {
         <Grid.Row>
             <Grid.Column width={1}>
               12 am<br/><br/><br/><br/>1 am<br/><br/><br/><br/>
-              2 am<br/><br/><br/><br/>2 am<br/><br/><br/><br/>
+              2 am<br/><br/><br/><br/>3 am<br/><br/><br/><br/>
               4 am<br/><br/><br/><br/>5 am<br/><br/><br/><br/>
               6 am<br/><br/><br/><br/>7 am<br/><br/><br/><br/>
               8 am<br/><br/><br/><br/>9 am<br/><br/><br/><br/>
@@ -833,15 +849,19 @@ class Schedule extends Component {
 
   render() {
     return (
-      <Container className="calendar-container">
-        <div className="content-btns">
-          <Button className="calendar-btn" onClick={() => this.toggle("daily")}>Daily Calendar</Button>
-        </div>
-        <div className="content-btns">
-          <Button className="calendar-btn" onClick={() => this.toggle("weekly")}>Full Calendar</Button>
-        </div>
-        {this.state.content === "daily" ? this.dailyContent() : this.weeklyContent()}
-      </Container>
+      <div className="Schedule">
+        <Grid padded centered stackable>
+
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+
+          <Grid.Row>
+            <Grid.Column computer='12' tablet='14' mobile='16'>
+              {this.state.activeMenuItem === "daily" ? this.dailyContent() : null }
+              {this.state.activeMenuItem === "full" ? this.weeklyContent() : null }
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
     );
   }
 }

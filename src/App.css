@@ -37,6 +37,12 @@
 }
 
 /* Margin and Padding Styles BEGIN */
+.no-padding {
+  padding: 0 !important
+}
+.padding-05rem {
+  padding: 0.25rem !important
+}
 .padding-tb-10 {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -113,6 +119,11 @@
 .word-warp-break {
   word-wrap: break-word
 }
+.k-fluid {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 /* Site Wide Styles END */
 
 /* Colors BEGIN */
@@ -133,6 +144,12 @@
 }
 .bg-color-grey-1 {
   background-color: #d2d2d2
+}
+.bg-color-grey-2 {
+  background-color: #333333
+}
+.bg-color-grey-3 {
+  background-color: #767676
 }
 /* Colors END */
 

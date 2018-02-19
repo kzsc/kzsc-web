@@ -6,9 +6,11 @@
  */
 
 import React, { Component } from 'react';
-import { Segment, Grid, Button } from 'semantic-ui-react';
+import { Segment, Grid, Button } from 'semantic-ui-react'
 import Tile from '../Tile/Tile';
 import kzscI from '../../assets/images/kzsc.jpg'
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
+
 
 class Blogs extends Component {
   constructor(props) {
@@ -19,8 +21,14 @@ class Blogs extends Component {
       numberPostsToIncreaseBy: 6,
       activeCategoryButton: 'All',
       currentCategoryId: 0,
+      activeMenuItem: 'blog',
+      menuItems: [
+        { name: 'blog', title: 'KZSC Blog' }
+      ]
     };
   }
+
+  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
 
   newBlogPosts(newPost) {
     this.props.updateBlogPosts(newPost);
@@ -125,32 +133,47 @@ class Blogs extends Component {
   render() {
     return (
       <div className="Blogs">
-        <Segment padded textAlign='center' basic>
-          <div className='margin-5 display-inline-block' key='all'>
-            <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === 'All'}
-             onClick={this.changeCategory.bind(this, 0, 'All')}>
-              <span>All</span>
-            </Button>
-          </div>
-         {this.getCategoryButtons()}
-        </Segment>
-        <Segment loading={this.props.postsLoading} basic>
-          <Grid stackable padded columns='3' doubling>
-            <Grid.Row>
-              {this.blogContent()}
-            </Grid.Row>
-          </Grid>
-          <Grid centered padded columns='1'>
-            <Grid.Row>
-              <Grid.Column textAlign='center'>
-                <Button disabled={this.props.buttonLoading} loading={this.props.buttonLoading}
-                 color='red' onClick={this.loadMorePosts.bind(this)}>
-                  Load More
-                </Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
+        <Grid centered padded>
+
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+
+          <Grid.Row>
+            <Grid.Column width={16}>
+              <Segment padded textAlign='center' basic>
+                <div className='margin-5 display-inline-block' key='all'>
+                  <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === 'All'}
+                   onClick={this.changeCategory.bind(this, 0, 'All')}>
+                    <span>All</span>
+                  </Button>
+                </div>
+               {this.getCategoryButtons()}
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column width={16}>
+              <Segment loading={this.props.postsLoading} basic>
+                <Grid stackable columns='3' doubling>
+                  <Grid.Row>
+                    {this.blogContent()}
+                  </Grid.Row>
+                </Grid>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column width={16} textAlign='center'>
+              <Button disabled={this.props.buttonLoading} loading={this.props.buttonLoading}
+               color='red' onClick={this.loadMorePosts.bind(this)}>
+                Load More
+              </Button>
+            </Grid.Column>
+          </Grid.Row>
+
+        </Grid>
+
       </div>
     );
   }

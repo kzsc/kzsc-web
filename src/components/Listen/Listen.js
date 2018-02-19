@@ -6,17 +6,18 @@
  */
 
 import React, { Component } from 'react';
-import { Grid, Table, Segment, Icon, Menu } from 'semantic-ui-react';
+import { Grid, Table, Segment, Icon } from 'semantic-ui-react';
 import './Listen.css';
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Listen extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      activeItem: 'listen',
+      activeMenuItem: 'listen',
       menuItems: [
-        { name: 'listen', title: 'Listen to KZSC' },
+        { name: 'listen', title: 'Listen' },
         { name: 'downloadable', title: 'Downloadable Stream Files' },
         { name: 'phone', title: 'Listen on Your Smart Phone' },
         { name: 'news', title: 'KZSC News' }
@@ -24,7 +25,7 @@ class Listen extends Component {
     }
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
 
   infoListen() {
     return(
@@ -66,9 +67,7 @@ class Listen extends Component {
                 <Table.Cell>56kbps</Table.Cell>
                 <Table.Cell>Dial-up</Table.Cell>
                 <Table.Cell>
-                  <a href="http://streaming.kzsc.org/kzsclow.m3u">
-                    Download Link
-                  </a>
+                  <a href="http://streaming.kzsc.org/kzsclow.m3u">Download Link</a>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
@@ -76,9 +75,7 @@ class Listen extends Component {
                 <Table.Cell>128kbps</Table.Cell>
                 <Table.Cell>DSL/Cable</Table.Cell>
                 <Table.Cell>
-                  <a href="http://streaming.kzsc.org/kzschigh.m3u">
-                    Download Link
-                  </a>
+                  <a href="http://streaming.kzsc.org/kzschigh.m3u">Download Link</a>
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
@@ -104,26 +101,18 @@ class Listen extends Component {
             <Table.Body>
               <Table.Row>
                 <Table.Cell>
-                  <a href="http://www.winamp.com/">
-                    Winamp
-                  </a>
+                  <a href="http://www.winamp.com/">Winamp</a>
                 </Table.Cell>
                 <Table.Cell>
-                  <a href="http://www.itunes.com/">
-                    iTunes
-                  </a>
+                  <a href="http://www.itunes.com/">iTunes</a>
                 </Table.Cell>
                 <Table.Cell>
-                  <a href="http://www.xmms.org/">
-                    XMMS
-                  </a>
+                  <a href="http://www.xmms.org/">XMMS</a>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>
-                  <a href="http://www.itunes.com/">
-                    iTunes
-                  </a>
+                  <a href="http://www.itunes.com/">iTunes</a>
                 </Table.Cell>
                 <Table.Cell></Table.Cell>
                 <Table.Cell></Table.Cell>
@@ -181,34 +170,17 @@ class Listen extends Component {
     )
   }
 
-  getMenuItems() {
-    const { activeItem } = this.state;
-    let menuItems = this.state.menuItems.map(item => {
-      return(
-        <Menu.Item key={item.name} name={item.name} active={activeItem === item.name} onClick={this.handleItemClick}>
-          {item.title}
-        </Menu.Item>
-      )
-    });
-    return menuItems
-  }
-
   render(){
     return(
       <div className="listen">
         <Grid centered padded>
-          <Grid.Row>
-            <Grid.Column width={16} className='bg-color-grey-1' textAlign='center'>
-              <Menu size='large' pointing secondary compact stackable>
-                {this.getMenuItems()}
-              </Menu>
-            </Grid.Column>
-          </Grid.Row>
 
-          {this.state.activeItem === 'listen' ? this.infoListen() : null }
-          {this.state.activeItem === 'downloadable' ? this.infoDownloadable() : null }
-          {this.state.activeItem === 'phone' ? this.infoPhone() : null }
-          {this.state.activeItem === 'news' ? this.infoNews() : null }
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+
+          {this.state.activeMenuItem === 'listen' ? this.infoListen() : null }
+          {this.state.activeMenuItem === 'downloadable' ? this.infoDownloadable() : null }
+          {this.state.activeMenuItem === 'phone' ? this.infoPhone() : null }
+          {this.state.activeMenuItem === 'news' ? this.infoNews() : null }
 
         </Grid>
       </div>

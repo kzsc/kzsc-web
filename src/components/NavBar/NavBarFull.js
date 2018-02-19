@@ -33,6 +33,23 @@ class NavBarFull extends Component {
         {
           to: '/blogs', name: 'blog', title: 'Blog'
         }
+      ],
+      dropdownItems: [
+        {
+          to: '/underwriting', name: 'underwriting', title: 'Business Underwriting'
+        },
+        {
+          to: '/schedule', name: 'schedule', title: 'Program Schedule'
+        },
+        {
+          to: '/studio', name: 'studio', title: 'Studio Rental'
+        },
+        {
+          to: '/concert', name: 'concert', title: 'Concert Calendar'
+        },
+        {
+          to: '/about', name: 'about', title: 'About'
+        }
       ]
     }
   }
@@ -51,6 +68,18 @@ class NavBarFull extends Component {
     return menuItems;
   }
 
+  getDropdownItems() {
+    let dropdownItems = this.state.dropdownItems.map(item => {
+      return(
+        <Dropdown.Item as={NavLink} to={item.to} name={item.name} key={item.name}
+        active={this.props.activeItem === item.name} onClick={this.changeActiveNavItem}>
+          {item.title}
+        </Dropdown.Item>
+      )
+    })
+    return dropdownItems
+  }
+
   render(){
 
     return(
@@ -63,26 +92,7 @@ class NavBarFull extends Component {
             {this.getMenuItems()}
             <Dropdown id="navBarFullIcon" item text=''>
               <Dropdown.Menu>
-                <Dropdown.Item as={NavLink} to='/underwriting' name='underwriting'
-                active={this.props.activeItem === 'underwriting'} onClick={this.changeActiveNavItem}>
-                  Business Underwriting
-                </Dropdown.Item>
-                <Dropdown.Item as={NavLink} to='/schedule' name='schedule'
-                active={this.props.activeItem === 'schedule'} onClick={this.changeActiveNavItem}>
-                  Schedule
-                </Dropdown.Item>
-                <Dropdown.Item as={NavLink} to='/studio' name='studio'
-                active={this.props.activeItem === 'studio'} onClick={this.changeActiveNavItem}>
-                  Studio Rental
-                </Dropdown.Item>
-                <Dropdown.Item as={NavLink} to='/concert' name='concert'
-                active={this.props.activeItem === 'concert'} onClick={this.changeActiveNavItem}>
-                  Concert Calendar
-                </Dropdown.Item>
-                <Dropdown.Item as={NavLink} to='/about' name='about'
-                active={this.props.activeItem === 'about'} onClick={this.changeActiveNavItem}>
-                  About
-                </Dropdown.Item>
+                {this.getDropdownItems()}
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Menu>

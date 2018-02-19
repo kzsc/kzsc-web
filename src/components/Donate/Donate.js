@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import { Button, Form, Select, Grid, List, Image, Menu, Segment } from 'semantic-ui-react';
+import { Button, Form, Select, Grid, List, Image, Segment } from 'semantic-ui-react';
 import StripeCheckout from 'react-stripe-checkout';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
@@ -14,7 +14,7 @@ import shirt2 from './kzsc-shirt-50th.jpg';
 import bag from './kzsc-bag.jpg';
 import buttons from './kzsc-buttons.jpg';
 import donate from './donate-img.jpg';
-
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 const sizes = [
   { key: 's', text: 'Small', value: 'small' },
@@ -64,7 +64,7 @@ class Donate extends Component {
       amount: 8810,
       merchAmount: 0,
       items: [],
-      activeItem: 'donate',
+      activeMenuItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' }
@@ -318,7 +318,7 @@ class Donate extends Component {
     )
   }
 
-  handleItemClick = (e, { name }) => {
+  handleItemClick(name) {
     let donateHeaderString;
     if( name === 'donate' ) {
       donateHeaderString = 'Help us keep noncommercial community radio on the air with a secure pledge today!';
@@ -326,34 +326,17 @@ class Donate extends Component {
       donateHeaderString = 'Help us keep noncommercial community radio on the air by donating today!';
     }
     this.setState({
-      activeItem: name,
+      activeMenuItem: name,
       donateHeader: donateHeaderString
     })
-  }
-
-  getMenuItems() {
-    const { activeItem } = this.state;
-    let menuItems = this.state.menuItems.map(item => {
-      return(
-        <Menu.Item key={item.name} name={item.name} active={activeItem === item.name} onClick={this.handleItemClick}>
-          {item.title}
-        </Menu.Item>
-      )
-    });
-    return menuItems
   }
 
   render() {
     return (
       <div>
         <Grid centered padded>
-          <Grid.Row>
-            <Grid.Column width={16} className='bg-color-grey-1' textAlign='center'>
-              <Menu size='large' pointing secondary compact>
-                {this.getMenuItems()}
-              </Menu>
-            </Grid.Column>
-          </Grid.Row>
+
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
 
           <Grid.Row className="div-donate">
             <Grid.Column computer='13' tablet='14' mobile='16' textAlign='center'>
@@ -361,11 +344,11 @@ class Donate extends Component {
             </Grid.Column>
           </Grid.Row>
 
-          {this.state.activeItem === "donate" ? this.donateButtons() : null }
+          {this.state.activeMenuItem === "donate" ? this.donateButtons() : null }
 
-          {this.state.activeItem === "donate" ? this.donateContent() : this.merchandiseContent()}
+          {this.state.activeMenuItem === "donate" ? this.donateContent() : this.merchandiseContent()}
 
-          {this.state.activeItem === "merch" ? this.merchandiseCart() : null }
+          {this.state.activeMenuItem === "merch" ? this.merchandiseCart() : null }
 
         </Grid>
 

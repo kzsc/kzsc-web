@@ -1,0 +1,285 @@
+[
+  {
+    "id": "parkerkaye",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/58911273-180x180.png",
+    "name": "Parker Kaye",
+    "position": "Music / Rock Director",
+    "email": "rock@kzsc.org",
+    "mailto": "mailto:rock@kzsc.org",
+    "phone": "831-459-4470",
+    "category": "music",
+    "dimmerActive": false
+  },
+  {
+    "id": "nerolidevaney",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/hip-hop-beats-180x180.jpeg",
+    "name": "Neroli Devaney",
+    "position": "Hip Hop Director",
+    "email": "hiphop@kzsc.org",
+    "mailto": "mailto:hiphop@kzsc.org",
+    "phone": "831-459-4470",
+    "category": "music",
+    "dimmerActive": false
+  },
+  {
+    "id": "kavyaaswadhati",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/parker-davis.jpg",
+    "name": "Kavya Aswadhati",
+    "position": "Jazz & Blues Director",
+    "email": "rjazz@kzsc.org",
+    "mailto": "mailto:jazz@kzsc.org",
+    "phone": "831-459-4470",
+    "category": "music",
+    "dimmerActive": false
+  },
+  {
+    "id": "melissacabrera",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/nuclear-explosion-824x1030.jpg",
+    "name": "Melissa Cabrera",
+    "position": "Loud Rock Director",
+    "email": "loudrock@kzsc.org",
+    "mailto": "mailto:loudrock@kzsc.org",
+    "phone": "831-459-4470",
+    "category": "music",
+    "dimmerActive": false
+  },
+  {
+    "id": "shayanvandani",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/electronic_music_mascots.jpg",
+    "name": "Shayan Vandani",
+    "position": "Electronic Music Director",
+    "email": "rpm@kzsc.org",
+    "mailto": "mailto:rpm@kzsc.org",
+    "phone": "831-459-4470",
+    "category": "music",
+    "dimmerActive": false
+  },
+  {
+    "id": "rebeccamu",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/Raja_Ravi_Varma_Lady_playing_Sitar.jpg",
+    "name": "Rebecca Mu",
+    "position": "World Music Director",
+    "email": "worldmusic@kzsc.org",
+    "mailto": "mailto:worldmusic@kzsc.org",
+    "phone": "831-459-4470",
+    "category": "music",
+    "dimmerActive": false
+  },
+  {
+    "id": "morgancorona",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/Apollo13MissionControl11-180x180.jpg",
+    "name": "Morgan Corona",
+    "position": "Station Manager",
+    "email": "stationmanager@kzsc.org",
+    "mailto": "mailto:stationmanager@kzsc.org",
+    "phone": "831-459-5173",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "keithrozendal",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/Record-Player-and-Silhouette-180x180.jpg",
+    "name": "Keith Rozendal",
+    "position": "Broadcast Advisor",
+    "email": "broadcastadvisor@kzsc.org",
+    "mailto": "mailto:broadcastadvisor@kzsc.org",
+    "phone": "831-459-4733",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "zachholbrook",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/rsz_19211-300x257.png",
+    "name": "Zach Holbrook",
+    "position": "Volunteer Coordinator",
+    "email": "volunteer@kzsc.org",
+    "mailto": "mailto:volunteer@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "jasminestade",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/Florence-Greenberg-_-Steve-Tyrell-180x180.jpg",
+    "name": "Jasmine Stade",
+    "position": "Promotions Director",
+    "email": "promotions@kzsc.org",
+    "mailto": "mailto:promotions@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "kavyaaswadhati",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/vintage_radio-180x180.jpg",
+    "name": "Kavya Aswadhati",
+    "position": "Talk and News Director",
+    "email": "talk@kzsc.org",
+    "mailto": "mailto:talk@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "dinakharag",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/town-crier-180x180.png",
+    "name": "Dina Kharag",
+    "position": "PSA Director",
+    "email": "pas@kzsc.org",
+    "mailto": "mailto:pas@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "lanibandhauer",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/waikiki-surf-boards-vintage-497486-180x180.jpg",
+    "name": "Lani Bandhauer",
+    "position": "Member Services Director",
+    "email": "members@kzsc.org",
+    "mailto": "mailto:members@kzsc.org",
+    "phone": "831-459-3914",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "luisacardoza",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2018/01/17309253_10102800297453318_4336269614240904918_n-300x300.jpg",
+    "name": "Luisa Cardoza",
+    "position": "Underwriting Manager",
+    "email": "underwriting@kzsc.org",
+    "mailto": "mailto:underwriting@kzsc.org",
+    "phone": "831-459-3914",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "evesuva",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/641455437_blackboard_teacher_jack_black_xlarge-180x180.jpeg",
+    "name": "Eve Suva",
+    "position": "Training Director",
+    "email": "class@kzsc.org",
+    "mailto": "mailto:class@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "prc",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/stormtrooper-deluxe-statueb-180x180.png",
+    "name": "Program Review Committee",
+    "position": "Internal Quality Panel",
+    "email": "prc@kzsc.org",
+    "mailto": "mailto:prc@kzsc.org",
+    "phone": "831-459-4733",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "bennettwilliamson",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/368709221_cadb7a8fe8_b-180x180.jpg",
+    "name": "Bennett Williamson",
+    "position": "Digital Librarian",
+    "email": "subsonic@kzsc.org",
+    "mailto": "mailto:subsonic@kzsc.org",
+    "phone": "831-459-4726",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "duncanober",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/funny_chewbacca-pitching-180x180.jpg",
+    "name": "Duncan Ober",
+    "position": "Production Director",
+    "email": "production@kzsc.org",
+    "mailto": "mailto:production@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "hanngo",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/money-right-by-chase-n-cashe-180x180.jpg",
+    "name": "Han Ngo",
+    "position": "Business Manager",
+    "email": "business@kzsc.org",
+    "mailto": "mailto:business@kzsc.org",
+    "phone": "831-459-4733",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "dustinchoto",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/Bundesarchiv_B_145_Bild-F077948-0006_Jugend-Computerschule_mit_IBM-PC-300x186.jpg",
+    "name": "Dustin Choto",
+    "position": "New Media Director",
+    "email": "newmedia@kzsc.org",
+    "mailto": "mailto:newmedia@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "rockobauman",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/Ingres_Academic_Study_detail_03-180x180.jpg",
+    "name": "Rocko Bauman",
+    "position": "Design Director",
+    "email": "design@kzsc.org",
+    "mailto": "mailto:design@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "janeverlaine",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/06/djane-683x1030.jpg",
+    "name": "Jane Verlaine",
+    "position": "Program Director",
+    "email": "program@kzsc.org",
+    "mailto": "mailto:program@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "ericpartika",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2016/08/IMG_20160802_083220-773x1030.jpg",
+    "name": "Eric Partika",
+    "position": "Physical Librarian",
+    "email": "librarian@kzsc.org",
+    "mailto": "mailto:librarian@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "dylanfabris",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/chrome_2017-11-07_13-43-411-300x272.png",
+    "name": "Dylan Fabris",
+    "position": "Student Media Rep",
+    "email": "studentmedia@kzsc.org",
+    "mailto": "mailto:studentmedia@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "shaneedinay",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/owl-300x202.png",
+    "name": "Shanee Dinay",
+    "position": "Web Team Rep",
+    "email": "web@kzsc.org",
+    "mailto": "mailto:web@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "maelinrose",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/cool-whip-1-300x164.png",
+    "name": "Maelin Rose",
+    "position": "Alumni Coordinator",
+    "email": "alumni@kzsc.org",
+    "mailto": "mailto:alumni@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  },
+  {
+    "id": "rizaliga",
+    "img": "https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2010/10/women_athletes.3401-300x229.jpg",
+    "name": "Riz Aliga",
+    "position": "Sports Director",
+    "email": "sports@kzsc.org",
+    "mailto": "mailto:sports@kzsc.org",
+    "category": "other",
+    "dimmerActive": false
+  }
+]

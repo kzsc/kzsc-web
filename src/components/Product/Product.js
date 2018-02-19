@@ -10,6 +10,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Segment, Form, Select, Button, Menu } from 'semantic-ui-react';
 import './Product.css';
+import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Product extends Component {
 
@@ -19,47 +20,19 @@ class Product extends Component {
       additionalActiveItem: 'additionalinfo',
       optionDescription: "Please choose an option to learn more about it",
       itemprice: '0.00',
-      optionsDescription: {
-        annualcontractpt: {
-          desc: 'Sorry, this product is unavailable. Please choose a different combination',
-          price: '5000.00'
-        },
-        annualcontractdt: {
-          desc: 'Sorry, this product is unavailable. Please choose a different combination',
-          price: '4000.00'
-        },
-        quarterlycontractpt: {
-          desc: 'Sorry, this product is unavailable. Please choose a different combination',
-          price: '1400.00'
-        },
-        quarterlycontractdt: {
-          desc: 'Sorry, this product is unavailable. Please choose a different combination',
-          price: '1250.00'
-        },
-        sixtyspots: {
-          desc: 'Sorry, this product is unavailable. Please choose a different combination',
-          price: '600.00'
-        },
-        fourtyspots: {
-          desc: 'Sorry, this product is unavailable. Please choose a different combination',
-          price: '400.00'
-        },
-        twentyspots: {
-          desc: 'Sorry, this product is unavailable. Please choose a different combination',
-          price: '200.00'
-        },
-        pledgedrive: {
-          desc: '26 Underwriting Spots for $350',
-          price: '350.00'
-        }
-      }
+      activeMenuItem: 'title',
+      menuItems: [
+        { name: 'title', title: this.props.productTitle }
+      ]
     }
   }
 
+  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+
   getOptionDescription(a) {
     this.setState({
-      optionDescription: this.state.optionsDescription[a].desc,
-      itemprice: this.state.optionsDescription[a].price
+      optionDescription: this.props.optionsDescription[a].desc,
+      itemprice: this.props.optionsDescription[a].price
     });
   }
 
@@ -67,14 +40,17 @@ class Product extends Component {
 
   render(){
     const { additionalActiveItem } = this.state
-
+    const additionalInfoHTML = this.props.additionalInfoDesc
     return(
       <div className="Product">
-        <Grid centered>
+        <Grid centered padded>
+
+          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+
           <Grid.Row>
             <Grid.Column computer='6' tablet='7' mobile='8'>
-              <Segment basic padded>
-                <Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' fluid/>
+              <Segment color='grey' tertiary padded>
+                <Image src={this.props.image} fluid/>
               </Segment>
             </Grid.Column>
             <Grid.Column computer='6' tablet='7' mobile='8'>
@@ -109,15 +85,12 @@ class Product extends Component {
             <Grid.Column computer='12' tablet='14' mobile='16'>
               <Menu attached='top' tabular>
                 <Menu.Item name='additionalinfo' active={additionalActiveItem === 'additionalinfo'} onClick={this.handleAdditionalItemClick}>
-                  Additional Information
+                  {this.props.additionalInfoTabTitle}
                 </Menu.Item>
               </Menu>
               <Segment attached='bottom'>
-                <h3>Additional information</h3>
-                <h5>{this.props.additionalInfoTitle}</h5>
-                <div>
-                  {this.props.additionalInfoDesc}
-                </div>
+                <h3>{this.props.additionalInfoTitle}</h3>
+                <div dangerouslySetInnerHTML={{__html: additionalInfoHTML}}></div>
               </Segment>
             </Grid.Column>
           </Grid.Row>
