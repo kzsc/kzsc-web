@@ -6,9 +6,10 @@
  */
 
 import React, {Component} from 'react';
-import { Button, Grid, Segment, Table } from 'semantic-ui-react';
+import { Button, Grid, Segment, Table, Image } from 'semantic-ui-react';
 import TopMenuBar from '../TopMenuBar/TopMenuBar'
 import scheduleData from './scheduleData.json'
+import kzscI from '../../assets/images/kzsc.jpg'
 
 import './Schedule.css';
 
@@ -51,6 +52,7 @@ class Schedule extends Component {
       if( s.Weekdays.includes( day ) ) {
         return (
           <Segment key={s.ShowID} className='kblue'>
+            <Image src={kzscI} avatar size='tiny' floated='left' />
             {s.ShowName}<br/>
             {s.ShowUsers}<br/>
             {s.OnairTime} - {s.OffairTime}

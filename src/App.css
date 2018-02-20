@@ -138,7 +138,9 @@
 .color-soundcloud {
   color: #ff5500;
 }
-
+.color-black-default {
+  color: rgba(0,0,0,.9) !important;
+}
 .bg-color-red-1 {
   background-color: #d64722
 }

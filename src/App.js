@@ -134,9 +134,9 @@ class App extends Component {
     this.kzscApiGetCategory(requestString, 'blogPosts');
     this.kzscApiGetPostById('get_post/?post_id=36472', 'homeFeaturedContent');
     this.kzscApiGet4FromCategory('get_recent_posts/?count=4', 'homeRecentPosts');
-    this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=4', 'homeMusicChartsPosts');
-    this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=4', 'homeEventsPosts');
-    this.kzscApiGet4FromCategory('get_category_posts/?id=267&count=4', 'homeGiveawaysPosts');
+    this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=1', 'homeMusicChartsPosts');
+    this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=1', 'homeEventsPosts');
+    this.kzscApiGet4FromCategory('get_category_posts/?id=267&count=1', 'homeGiveawaysPosts');
   }
 
   toggleVisibilityNavBar() {

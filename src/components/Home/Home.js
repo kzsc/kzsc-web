@@ -134,9 +134,9 @@ class Home extends Component{
               {this.getBlogContent(this.props.featuredContent, 'big')}
             </Grid.Column>
             <Grid.Column width={5} stretched>
-              <Segment loading={this.state.requestsLoaded < 4} textAlign='center'>
-                <h3>Support Local Businesses</h3>
-                <Slideshow images={this.state.underwritingImages}/>
+              <Segment textAlign='center'>
+                <h3>Featured Shows</h3>
+                <Slideshow images={this.state.showImages}/>
               </Segment>
             </Grid.Column>
           </Grid.Row>
@@ -144,7 +144,10 @@ class Home extends Component{
           <Grid.Row>
             <Grid.Column width={16}>
               <div className="title2-hr">
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>Latest From the Blog</NavLink>
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  Latest From the Blog
+                  <Icon name='angle right' />
+                </NavLink>
               </div>
             </Grid.Column>
           </Grid.Row>
@@ -180,28 +183,38 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={16}>
-              <div className="title2-hr">
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>Events</NavLink>
+            <Grid.Column computer='4' tablet='8' textAlign='center'>
+              <div>
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  <h3 className='color-black-default'>Events</h3>
+                </NavLink>
               </div>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row columns='equal'>
-            {this.getBlogContentColumn(this.props.eventsPosts, 'small', '4', '8')}
-          </Grid.Row>
-
-          <Grid.Row columns={3}>
-            <Grid.Column stretched>
-              <Segment>
-                Featured Shows
-                <Slideshow images={this.state.showImages}/>
-              </Segment>
+              {this.getBlogContent(this.props.eventsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column>
+            <Grid.Column computer='4' tablet='8' textAlign='center'>
+              <div>
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  <h3 className='color-black-default'>Music Charts</h3>
+                </NavLink>
+              </div>
+              {this.getBlogContent(this.props.musicChartsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column>
+            <Grid.Column computer='4' tablet='8' textAlign='center'>
+              <div>
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  <h3 className='color-black-default'>Giveaways</h3>
+                </NavLink>
+              </div>
+              {this.getBlogContent(this.props.giveawaysPosts, 'small')}
+            </Grid.Column>
+
+            <Grid.Column computer='4' tablet='8' stretched textAlign='center'>
+              <div>
+                <div><h3>Support Local Businesses</h3></div>
+                <Slideshow images={this.state.underwritingImages}/>
+              </div>
             </Grid.Column>
           </Grid.Row>
 

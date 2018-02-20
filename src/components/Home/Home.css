@@ -34,3 +34,9 @@
 .title2-hr a {
   color: rgba(0,0,0,.87) !important;
 }
+
+.k-centered-image {
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+  background-position: center !important;
+}

@@ -69,7 +69,8 @@ class Donate extends Component {
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' }
       ],
-      donateHeader: 'Help us keep noncommercial community radio on the air with a secure pledge today!'
+      donateHeader: 'Help us keep noncommercial community radio on the air with a secure pledge today!',
+      activeDonateButton: 'eightyeight'
     }
   }
 
@@ -101,7 +102,8 @@ class Donate extends Component {
     }
   }
 
-  showDesc(e, req) {
+  showDesc(e, req, id) {
+    this.setState({ activeDonateButton: id })
     e.preventDefault();
     switch (req) {
       case '88.1':
@@ -134,6 +136,12 @@ class Donate extends Component {
           amount: 105720
         })
         break;
+      case 'other':
+        this.setState({
+          donateDesc: "Donate what you can!",
+          amount: 0.00
+        })
+        break
       default:
         console.log("Nothing selected");
         break;
@@ -196,12 +204,30 @@ class Donate extends Component {
     return(
       <Grid.Row>
         <Grid.Column computer='13' tablet='14' mobile='16' textAlign='center'>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "88.1")}>88.1 FM</Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "daily-fiddy")}>Daily "Fiddy"</Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "buck-a-day")}>Buck-a-day</Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "50-years-of-kzsc")}>50 years of KZSC</Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "kzsc-sustainer")}>KZSC Sustainer</Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "kzsc-sustainer")}>Other</Button>
+          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "88.1", 'eightyeight')}
+           active={this.state.activeDonateButton === 'eightyeight'}>
+            88.1 FM
+          </Button>
+          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "daily-fiddy", 'fiddy')}
+           active={this.state.activeDonateButton === 'fiddy'}>
+            Daily "Fiddy"
+          </Button>
+          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "buck-a-day", 'buckaday')}
+           active={this.state.activeDonateButton === 'buckaday'}>
+            Buck-a-day
+          </Button>
+          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "50-years-of-kzsc", 'fiftyyears')}
+           active={this.state.activeDonateButton === 'fiftyyears'}>
+            50 years of KZSC
+          </Button>
+          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "kzsc-sustainer", 'kzscsustainer')}
+           active={this.state.activeDonateButton === 'kzscsustainer'}>
+            KZSC Sustainer
+          </Button>
+          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "kzsc-sustainer", 'other')}
+           active={this.state.activeDonateButton === 'other'}>
+            Other
+          </Button>
         </Grid.Column>
       </Grid.Row>
     )

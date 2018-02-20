@@ -11,7 +11,6 @@ import Tile from '../Tile/Tile';
 import kzscI from '../../assets/images/kzsc.jpg'
 import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
-
 class Blogs extends Component {
   constructor(props) {
     super(props);
