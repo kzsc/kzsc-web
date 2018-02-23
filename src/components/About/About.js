@@ -112,9 +112,13 @@ class About extends Component{
                     <Icon name='mail' /> {member.email}
                   </a>
                   <br />
-                  <a href="" className="font-size-22">
-                    <Icon name='phone' /> {member.phone}
-                  </a>
+                  { member.phone ?
+                    ( <a href="" className="font-size-22">
+                      <Icon name='phone' /> {member.phone}
+                      </a>
+                    )
+                    : null
+                  }
                 </Container>
               </Reveal.Content>
             </Reveal>
@@ -132,7 +136,7 @@ class About extends Component{
     return (
       <Grid.Row>
         <Grid.Column computer='12' tablet='14' mobile='16'>
-          <Segment>
+          <Segment className='kblue'>
             <h2>Mission Statement</h2>
             <div>{this.state.missionStatement}</div>
           </Segment>
@@ -145,7 +149,7 @@ class About extends Component{
     return (
       <Grid.Row>
         <Grid.Column computer='12' tablet='14' mobile='16'>
-          <Segment>
+          <Segment className='kblue'>
             <h2>PURPOSE</h2>
             <div>
               {this.state.frcPurposeIntro}
@@ -164,7 +168,7 @@ class About extends Component{
     return (
       <Grid.Row>
         <Grid.Column computer='12' tablet='14' mobile='16'>
-          <Segment>
+          <Segment className='kblue'>
             <h3>Public Service Announcements</h3>
             <div>{this.state.psaInto}</div>
             <br />
@@ -185,10 +189,10 @@ class About extends Component{
     return (
       <Grid.Row>
         <Grid.Column computer='12' tablet='14' mobile='16'>
-          <Segment inverted color='grey' tertiary>
+          <Segment className='kblue'>
             <h3>Get In Touch With Us</h3>
           </Segment>
-          <Segment inverted color='grey' tertiary>
+          <Segment className='kblue'>
             <h4>CALL US</h4>
             <div>
               You can reach the air room and the current DJ at (831) 459-4036.
@@ -197,7 +201,7 @@ class About extends Component{
             </div>
             <br />
           </Segment>
-          <Segment inverted color='grey' secondary>
+          <Segment className='kblue'>
             <h4>MUSIC SUBMISSIONS</h4>
             <div>
               Please send all packages to the correct Music Director listed
@@ -206,7 +210,7 @@ class About extends Component{
             </div>
             <br />
           </Segment>
-          <Segment inverted color='grey'>
+          <Segment className='kblue'>
             <h4>MUSIC QUESTIONS</h4>
             <div>
               Email a specific Music Director below.
@@ -257,7 +261,7 @@ class About extends Component{
 
           <Grid.Row>
             <Grid.Column computer='12' tablet='14' mobile='16'>
-              <Segment inverted color='grey'>
+              <Segment className='kblue'>
                 <h3>SEND US A MESSAGE</h3>
                 <p>
                   We would love to hear from you! Please fill out this form and we
@@ -265,7 +269,7 @@ class About extends Component{
                   goes directly to the KZSC Station Manager.
                 </p>
 
-                <Form inverted>
+                <Form>
                   <Form.Group widths='equal'>
                     <Form.Field label='First Name' control='input' placeholder='First name' />
                     <Form.Field label='Last Name' control='input' placeholder='Last Name' />

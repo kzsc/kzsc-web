@@ -228,7 +228,9 @@ class App extends Component {
                     musicChartsPosts={this.state.homeMusicChartsPosts}
                     eventsPosts={this.state.homeEventsPosts}
                     giveawaysPosts={this.state.homeGiveawaysPosts}
-                    featuredContent={this.state.homeFeaturedContent} />
+                    featuredContent={this.state.homeFeaturedContent}
+                    scrollToTop={this.scrollToWindowTop}
+                    socialMediaLinks={this.state.socialMediaLinks} />
             } />
             <Route path='/listen' render={() => <Listen /> } />
             <Route path='/donate' render={() => <Donate /> } />
