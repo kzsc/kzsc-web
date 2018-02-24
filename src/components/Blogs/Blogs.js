@@ -68,7 +68,9 @@ class Blogs extends Component {
       let categories = post.categories.map(c => {
         return ' ' + c.title;
       });
-      let description = this.toDateString(post.date) + ' / in' + categories + ' / by ' + post.author.name;
+      let dateWithSlashes = post.date.replace(/-/g, '/');
+      console.log(dateWithSlashes)
+      let description = this.toDateString(dateWithSlashes) + ' / in' + categories + ' / by ' + post.author.name;
       if (!post.thumbnail_images) {
         post['thumbnail_images'] = {
           full: {
