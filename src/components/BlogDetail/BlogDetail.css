@@ -6,3 +6,32 @@
  * Copyright (c) 2018-present, KZSC Santa Cruz
  * web@kzsc.org
  */
+
+.BlogPost iframe {
+  width: 100% !important;
+  height: 360px !important;
+}
+
+@media (max-width: 697px){
+  .BlogPost iframe {
+    height: 315px !important;
+  }
+}
+
+@media (max-width: 615px){
+  .BlogPost iframe {
+    height: 280px !important;
+  }
+}
+
+@media (max-width: 485px){
+  .BlogPost iframe {
+    height: 245px !important;
+  }
+}
+
+@media (max-width: 400px){
+  .BlogPost iframe {
+    height: 197px !important;
+  }
+}

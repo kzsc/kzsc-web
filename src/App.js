@@ -109,8 +109,8 @@ class App extends Component {
     });
   }
 
-  kzscApiGetPostById(request, stateVar) {
-    let postUrl = this.state.domain + 'api/' + request;
+  kzscApiGetPostById(id, stateVar) {
+    let postUrl = this.state.domain + 'api/get_post/?post_id=' + id;
     axios.get(postUrl).then(res => {
       const holdData = [res.data.post];
       this.setState({ [stateVar]: holdData });
@@ -132,7 +132,7 @@ class App extends Component {
     this.kzscApiGetCategoryList('get_category_index');
     let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
     this.kzscApiGetCategory(requestString, 'blogPosts');
-    this.kzscApiGetPostById('get_post/?post_id=36472', 'homeFeaturedContent');
+    this.kzscApiGetPostById('36472', 'homeFeaturedContent');
     this.kzscApiGet4FromCategory('get_recent_posts/?count=4', 'homeRecentPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=1', 'homeMusicChartsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=1', 'homeEventsPosts');

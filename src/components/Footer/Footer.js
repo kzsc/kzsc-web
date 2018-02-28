@@ -42,7 +42,7 @@ class Footer extends Component{
         {
           id: uuid.v4(),
           link: '/concert',
-          name: 'Concert'
+          name: 'Concert Calendar'
         },
         {
           id: uuid.v4(),

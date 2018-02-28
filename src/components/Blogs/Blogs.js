@@ -20,14 +20,14 @@ class Blogs extends Component {
       numberPostsToIncreaseBy: 6,
       activeCategoryButton: 'All',
       currentCategoryId: 0,
-      activeMenuItem: 'blog',
+      activeMenuItem: 'none',
       menuItems: [
         { name: 'blog', title: 'KZSC Blog' }
       ]
     };
   }
 
-  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+  handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
 
   newBlogPosts(newPost) {
     this.props.updateBlogPosts(newPost);
@@ -69,7 +69,6 @@ class Blogs extends Component {
         return ' ' + c.title;
       });
       let dateWithSlashes = post.date.replace(/-/g, '/');
-      console.log(dateWithSlashes)
       let description = this.toDateString(dateWithSlashes) + ' / in' + categories + ' / by ' + post.author.name;
       if (!post.thumbnail_images) {
         post['thumbnail_images'] = {

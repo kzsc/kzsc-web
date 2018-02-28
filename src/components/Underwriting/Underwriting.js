@@ -17,14 +17,14 @@ class Underwriting extends Component{
   constructor(){
     super();
     this.state = {
-      activeMenuItem: 'title',
+      activeMenuItem: 'none',
       menuItems: [
         { name: 'title', title: 'Become a Patron of the Airwaves: Be a KZSC Underwriter!' }
       ]
     }
   }
 
-  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+  handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
 
   getUnderwriters() {
     let underwriters = underwritersList.map((u, i) => {

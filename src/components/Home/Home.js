@@ -51,7 +51,7 @@ class Home extends Component{
     }
   }
 
-  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+  handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
 
   toDateString(date){
     return this.props.convertDate(date);
@@ -153,6 +153,16 @@ class Home extends Component{
           </Grid.Row>
           <Grid.Row columns='equal'>
             {this.getBlogContentColumn(this.props.recentPosts, 'small', '4', '8')}
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column width={16}>
+              <div className="title2-hr">
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  Follow Us
+                </NavLink>
+              </div>
+            </Grid.Column>
           </Grid.Row>
 
           <Grid.Row columns={3}>

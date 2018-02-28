@@ -22,7 +22,7 @@ class TopMenuBar extends Component {
     let menuItems = this.props.menuItems.map(item => {
       return(
         <Menu.Item key={item.name} name={item.name} active={activeMenuItem === item.name} onClick={this.handleItemClick}>
-          {item.title}
+          <span dangerouslySetInnerHTML={{__html: item.title}}></span>
         </Menu.Item>
       )
     });

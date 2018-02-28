@@ -6,10 +6,9 @@
  */
 
 import React, {Component} from 'react';
-import { Button, Grid, Segment, Table, Image } from 'semantic-ui-react';
+import { Button, Grid, Segment, Table, Icon } from 'semantic-ui-react';
 import TopMenuBar from '../TopMenuBar/TopMenuBar'
 import scheduleData from './scheduleData.json'
-import kzscI from '../../assets/images/kzsc.jpg'
 
 import './Schedule.css';
 
@@ -48,11 +47,14 @@ class Schedule extends Component {
   }
 
   getRegularShowsInfo(day) {
-    let tuesShows = this.state.programSchedule.map(s => {
+    let showsList = this.state.programSchedule.map(s => {
       if( s.Weekdays.includes( day ) ) {
         return (
           <Segment key={s.ShowID} className='kblue'>
-            <Image src={kzscI} avatar size='tiny' floated='left' />
+            <Icon.Group size='huge'>
+              <Icon size='small' name='thin circle' />
+              <Icon name='user' />
+            </Icon.Group>
             {s.ShowName}<br/>
             {s.ShowUsers}<br/>
             {s.OnairTime} - {s.OffairTime}
@@ -61,11 +63,11 @@ class Schedule extends Component {
       }
       return null
     })
-    return tuesShows
+    return showsList
   }
 
   getRegularShowsInfoTable(day) {
-    let tuesShows = this.state.programSchedule.map(s => {
+    let showsList = this.state.programSchedule.map(s => {
       if( s.Weekdays.includes( day ) ) {
         let height = 1
         return (
@@ -80,7 +82,7 @@ class Schedule extends Component {
       }
       return null
     })
-    return tuesShows
+    return showsList
   }
 
   changeDay(day) {
@@ -91,7 +93,7 @@ class Schedule extends Component {
     let buttons = this.state.daysOfWeek.map(d => {
       return (
         <Grid.Column key={d.id}>
-          <Button color="grey" fluid onClick={this.changeDay.bind(this, d.id)}>{d.name}</Button>
+          <Button fluid active={this.state.activeDay === d.id} onClick={this.changeDay.bind(this, d.id)}>{d.name}</Button>
         </Grid.Column>
       )
     })
