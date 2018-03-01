@@ -8,6 +8,7 @@
 import React, {Component} from 'react';
 import { Grid, Form, Segment, Icon, List, Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import kzscI from '../../assets/images/kzsc.jpg'
 import uuid from 'uuid';
 import './Footer.css';
 
@@ -111,36 +112,24 @@ class Footer extends Component{
   }
 
   secondColumn() {
-    let productLinks;
-    productLinks = this.state.productLinks.map(product => {
-      if( product.description ) {
-        return (
-          <List.Item key={product.id}>
-            <Image avatar src={product.imageSrc} />
-            <List.Content>
-              <List.Header as='a'>{product.header}</List.Header>
-              <List.Description>{product.description}</List.Description>
-            </List.Content>
-          </List.Item>
-        );
-      } else {
-        return (
-          <List.Item key={product.id}>
-            <Image avatar src={product.imageSrc} />
-            <List.Content>
-              <List.Header as='a'>{product.header}</List.Header>
-            </List.Content>
-          </List.Item>
-        );
+    let links = this.props.recentPosts.map(link => {
+      if (!link.thumbnail) {
+        link['thumbnail'] = kzscI
       }
+      return (
+        <List.Item key={link.id}>
+          <Image floated='left' avatar src={link.thumbnail} />
+          <a href={`/blogdetail/${link.id}`} dangerouslySetInnerHTML={{__html: link.title}}></a>
+        </List.Item>
+      );
     });
 
     return (
       <div className="footerColumnTwo">
-        <h3>Popular Links</h3>
+        <h3>Latest from the Blog</h3>
 
         <List divided relaxed inverted>
-          {productLinks}
+          {links}
         </List>
       </div>
     )

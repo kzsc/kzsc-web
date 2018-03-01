@@ -78,6 +78,12 @@
 .width-145 {
   width: 145px !important;
 }
+.width-190 {
+  width: 190px;
+}
+.height-180 {
+  height: 180px;
+}
 .height-300 {
   height: 300px;
 }
@@ -89,15 +95,12 @@
   margin-right: auto;
   text-align: center;
 }
-
 .text-align-center {
   text-align: center;
 }
-
 .font-size-22 {
   font-size: 22px;
 }
-
 .display-inline-block {
   display: inline-block;
 }
@@ -107,7 +110,6 @@
 .k-border-radius-10 {
   border-radius: 10px !important
 }
-
 .k-hr-spacer {
   display: block;
   margin-top: 0.5em;
@@ -119,10 +121,33 @@
 .word-warp-break {
   word-wrap: break-word
 }
+.overflow-hidden {
+  overflow: hidden
+}
 .k-fluid {
   display: block;
   width: 100%;
   height: auto;
+}
+.k-divider {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.k-divider .k-divider-title {
+  border-top: 6px solid #507b8c;
+  margin: 15px 0 0;
+}
+.k-divider .k-divider-title > a > div {
+  margin: -12px 0 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  color: rgba(0,0,0,.87) !important;
+}
+.k-divider .k-divider-title div>span {
+  background-color: #fff;
+  display: inline-block;
+  padding: 0 15px;
 }
 /* Site Wide Styles END */
 

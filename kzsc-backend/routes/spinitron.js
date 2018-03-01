@@ -13,15 +13,16 @@ var spinitron = require('spinitron-spinpapi');
 
 router.get('/', function(req, res, next) {
 
-    spinitron = new spinitron({
-                    station: config.station,
-                    userid: config.userid,
-                    secret: config.secret
-            });
+  spinitron = new spinitron({
+    station: config.station,
+    userid: config.userid,
+    secret: config.secret
+  });
 
-    spinitron.getRegularShowsInfo(function (error, response) {
-        console.log(response.results);
-     });
+  spinitron.getShowInfo(function (error, response) {
+    console.log(response.results);
+    res.send(response.results);
+  });
 });
 
 module.exports = router;

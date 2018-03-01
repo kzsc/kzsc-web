@@ -259,7 +259,9 @@ class App extends Component {
 
             <Divider hidden />
 
-            <Footer socialMediaLinks={this.state.socialMediaLinks} scrollToTop={this.scrollToWindowTop}/>
+            <Footer socialMediaLinks={this.state.socialMediaLinks}
+                    scrollToTop={this.scrollToWindowTop}
+                    recentPosts={this.state.homeRecentPosts} />
 
           </Container>
         </div>

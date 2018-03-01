@@ -31,7 +31,6 @@ class Home extends Component{
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/10/34c49bf5b1114a1204002f050ce534d1-300x300.jpeg', link: 'http://www.radiofreeamerica.com/show/backroads-9-kzsc-santa-cruz' },
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/09/KZSC-Edible-Ad-1-e1506644994993-300x300.png', link: 'http://kzsc.fm/listen'  },
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2018/02/RS-2-300x300.png', link: 'http://www.radiofreeamerica.com/show/radio-spectacular-kzsc-santa-cruz'  },
-        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2018/02/RS-2-300x300.png', link: ''  },
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2018/01/image_01-1-300x300.jpg', link: 'http://www.radiofreeamerica.com/show/santa-cruz-laboratory-for-dance-based-sciences-kzsc-santa-cruz'  },
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/af44f83b9015b960e092eb600eba490e-300x300.jpeg', link: 'http://www.radiofreeamerica.com/show/test-of-time-2-kzsc-santa-cruz'  },
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/10/NSDR-300x300.jpg', link: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/af44f83b9015b960e092eb600eba490e-300x300.jpeg'  },
@@ -46,7 +45,12 @@ class Home extends Component{
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/10/IMG_20170815_223711_238-e1508213755992-300x300.jpg', link: 'http://www.radiofreeamerica.com/show/wiki-wiki-wednesday-kzsc-santa-cruz'  },
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/10/Purgatory-300x300.png', link: 'http://www.radiofreeamerica.com/show/purgatory-kzsc-santa-cruz'  },
         { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/Living-in-the-80s-logo-300x300.jpg', link: 'http://kzsc.fm/80s'  },
-        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/09/unnamed-e1506646563979-300x300.png', link: 'http://www.radiofreeamerica.com/show/queen-beats-kzsc-santa-cruz'  }
+        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/09/unnamed-e1506646563979-300x300.png', link: 'http://www.radiofreeamerica.com/show/queen-beats-kzsc-santa-cruz'  },
+        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2018/02/imageedit_1_8357435096-300x300.jpg', link: 'http://www.radiofreeamerica.com/show/dr-t-s-vinylorium-1-kzsc-santa-cruz'  },
+        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/10/IMG_20170815_223711_238-e1508213755992-300x300.jpg', link: 'http://www.radiofreeamerica.com/show/wiki-wiki-wednesday-kzsc-santa-cruz'  },
+        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/10/34c49bf5b1114a1204002f050ce534d1-300x300.jpeg', link: 'http://www.radiofreeamerica.com/show/backroads-9-kzsc-santa-cruz'  },
+        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2018/01/SLUGTALKnewlogo-300x300.png', link: 'http://www.radiofreeamerica.com/show/slug-talk-1-kzsc-santa-cruz'  },
+        { text: '', image: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2017/11/Its-all-Good-300x300.jpg', link: 'http://www.radiofreeamerica.com/show/it-s-all-good-9-kzsc-santa-cruz'  }
       ]
     }
   }
@@ -142,11 +146,13 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={16}>
-              <div className="title2-hr">
+            <Grid.Column width={16} className="k-divider">
+              <div className='k-divider-title'>
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  Latest From the Blog
-                  <Icon name='angle right' />
+                  <div><span>
+                    Latest From the Blog
+                    <Icon name='angle right' />
+                  </span></div>
                 </NavLink>
               </div>
             </Grid.Column>
@@ -156,10 +162,10 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={16}>
-              <div className="title2-hr">
+            <Grid.Column width={16} className="k-divider">
+              <div className='k-divider-title'>
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  Follow Us
+                  <div><span>Follow Us</span></div>
                 </NavLink>
               </div>
             </Grid.Column>
@@ -220,7 +226,7 @@ class Home extends Component{
               {this.getBlogContent(this.props.giveawaysPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8' stretched textAlign='center'>
+            <Grid.Column computer='4' tablet='8' textAlign='center'>
               <div>
                 <div><h3>Support Local Businesses</h3></div>
                 <Slideshow images={this.state.underwritingImages}/>

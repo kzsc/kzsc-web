@@ -18,7 +18,7 @@ class BlogPost extends Component {
     this.state = {
       domain: "https://www.kzsc.org/",
       blogdata: [],
-      activeMenuItem: 'blog',
+      activeMenuItem: 'none',
       menuItems: []
     }
   }
@@ -106,7 +106,9 @@ class BlogPost extends Component {
       return (
         <Grid.Row key={post.id}>
           <Grid.Column computer={12} tablet={14} mobile={16}>
-            <Image src={post.thumbnail_images.full.url}  floated='right' size='medium'/>
+            <div className='overflow-hidden width-190 height-180 float-right'>
+              <Image src={post.thumbnail_images.full.url} size='medium' fluid/>
+            </div>
             <h1>{post.title}</h1>
             <h3>{description}</h3>
             <h4>{tags}</h4>
@@ -118,7 +120,7 @@ class BlogPost extends Component {
     return blog;
   }
 
-  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+  handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
 
   render() {
     return (

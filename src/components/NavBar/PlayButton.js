@@ -19,13 +19,18 @@ class PlayButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playing: false
+      playing: false,
+      currentShowName: 'Show Name',
+      currentShowDJ: 'Programmers',
+      currentShowStart: 'Start',
+      currentShowEnd: 'End'
     }
     this.playButtonClicked = this.playButtonClicked.bind(this);
   }
 
   componentWillMount(){
     this.setPlayingToFalse();
+    this.getCurrentShowInfo();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -34,7 +39,6 @@ class PlayButton extends Component {
     if( prevState.playing !== playing ) {
       console.log(this.state);
     }
-
   }
 
   setPlayingToFalse(){
@@ -71,6 +75,15 @@ class PlayButton extends Component {
   getCurrentShowInfo() {
     axios.get('http://localhost:3001/spinitron').then(res => {
       console.log(res);
+      let showUsers = res.ShowUsers.map(dj => {
+        return ' ' + dj.DJName
+      })
+      this.setState({
+        currentShowName: res.ShowName,
+        currentShowDJ: showUsers,
+        currentShowStart: res.OnairTime,
+        currentShowEnd: res.OffairTime
+      })
     })
     .catch(function (error) {
       console.log(error);
@@ -78,14 +91,14 @@ class PlayButton extends Component {
   }
 
   render(){
-    const { playing } = this.state;
+    const { playing, currentShowName, currentShowDJ, currentShowStart, currentShowEnd } = this.state;
 
     return(
       <div>
         <div className="playButtonShowInformation">
-          Radio Behind the Diner<br/>
-          with Cassette Dream<br/>
-          12:00 - 2:00 pm
+          <span dangerouslySetInnerHTML={{__html: currentShowName}}></span><br/>
+          with <span dangerouslySetInnerHTML={{__html: currentShowDJ}}></span><br/>
+          {currentShowStart} - {currentShowEnd}
         </div>
         <div className="playButtonDiv" onClick={this.playButtonClicked}>
           {playing ? this.showPause() : this.showPlay()}
