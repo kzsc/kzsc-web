@@ -82,7 +82,7 @@ class Home extends Component{
       return (
         <Grid.Column key={post.id} computer={c} tablet={t}>
           <Tile image={post.thumbnail_images.full.url} title={post.title}
-          type={size} desc={description} url={post.url}/>
+          type={size} desc={description} url={`/blogdetail/${post.id}`}/>
         </Grid.Column>
        );
     });
@@ -104,7 +104,7 @@ class Home extends Component{
       }
       return (
         <Tile key={post.id} image={post.thumbnail_images.full.url} title={post.title}
-        type={size} desc={description} url={post.url}/>
+        type={size} desc={description} url={`/blogdetail/${post.id}`}/>
        );
     });
     return blogTiles;
@@ -199,8 +199,8 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column computer='4' tablet='8' textAlign='center'>
-              <div>
+            <Grid.Column computer='4' tablet='8'>
+              <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Events</h3>
                 </NavLink>
@@ -208,8 +208,8 @@ class Home extends Component{
               {this.getBlogContent(this.props.eventsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8' textAlign='center'>
-              <div>
+            <Grid.Column computer='4' tablet='8'>
+              <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Music Charts</h3>
                 </NavLink>
@@ -217,8 +217,8 @@ class Home extends Component{
               {this.getBlogContent(this.props.musicChartsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8' textAlign='center'>
-              <div>
+            <Grid.Column computer='4' tablet='8'>
+              <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Giveaways</h3>
                 </NavLink>
@@ -226,8 +226,8 @@ class Home extends Component{
               {this.getBlogContent(this.props.giveawaysPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8' textAlign='center'>
-              <div>
+            <Grid.Column computer='4' tablet='8'>
+              <div className="text-align-center">
                 <div><h3>Support Local Businesses</h3></div>
                 <Slideshow images={this.state.underwritingImages}/>
               </div>

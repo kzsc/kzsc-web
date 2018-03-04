@@ -7,6 +7,10 @@
  * web@kzsc.org
  */
 
+.BlogPost img {
+  width: 100%
+}
+
 .BlogPost iframe {
   width: 100% !important;
   height: 360px !important;

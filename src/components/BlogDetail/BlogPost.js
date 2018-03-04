@@ -93,9 +93,8 @@ class BlogPost extends Component {
         return c.title + ' ';
       });
       let tags = post.tags.map(t => {
-        return t.title + ' ';
+        return '#' + t.title + ' ';
       })
-      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
       if (!post.thumbnail_images) {
         post['thumbnail_images'] = {
           full: {
@@ -106,12 +105,16 @@ class BlogPost extends Component {
       return (
         <Grid.Row key={post.id}>
           <Grid.Column computer={12} tablet={14} mobile={16}>
-            <div className='overflow-hidden width-190 height-180 float-right'>
+            <div className='overflow-hidden width-190 height-180 float-right margin-l-20'>
               <Image src={post.thumbnail_images.full.url} size='medium' fluid/>
             </div>
-            <h1>{post.title}</h1>
-            <h3>{description}</h3>
-            <h4>{tags}</h4>
+            <h1 dangerouslySetInnerHTML={{__html: post.title}}>{}</h1>
+            <h3>
+              {this.toDateString(post.date)}<br/>
+              in {categories}<br/>
+              written by {post.author.name}
+            </h3>
+            <h4 className="color-grey-1">Tags: {tags}</h4>
             <p dangerouslySetInnerHTML={{__html: post.content}}></p>
           </Grid.Column>
         </Grid.Row>
