@@ -16,76 +16,37 @@ class Footer extends Component{
 
   constructor(){
     super();
-    this.state = {
-      pageLinks: [],
-      productLinks: []
-    }
+    this.state = { }
   }
 
   getPageInformation(){
     this.setState({
       pageLinks: [
-        {
-          id: uuid.v4(),
-          link: '/underwriting',
-          name: 'Business Underwriting'
-        },
-        {
-          id: uuid.v4(),
-          link: '/schedule',
-          name: 'Program Schedule'
-        },
-        {
-          id: uuid.v4(),
-          link: '/studio',
-          name: 'Studio Rental'
-        },
-        {
-          id: uuid.v4(),
-          link: '/concert',
-          name: 'Concert Calendar'
-        },
-        {
-          id: uuid.v4(),
-          link: '/donate',
-          name: 'Donate'
-        },
-        {
-          id: uuid.v4(),
-          link: '/listen',
-          name: 'Listen'
-        },
-        {
-          id: uuid.v4(),
-          link: '/blog',
-          name: 'Blog'
-        },
-        {
-          id: uuid.v4(),
-          link: '/about',
-          name: 'About'
-        }
+        { id: uuid.v4(), link: '/underwriting', name: 'Business Underwriting' },
+        { id: uuid.v4(), link: '/schedule', name: 'Program Schedule' },
+        { id: uuid.v4(), link: '/studio', name: 'Studio Rental' },
+        { id: uuid.v4(), link: '/concert', name: 'Concert Calendar' },
+        { id: uuid.v4(), link: '/donate', name: 'Donate' },
+        { id: uuid.v4(), link: '/listen', name: 'Listen' },
+        { id: uuid.v4(), link: '/blog', name: 'Blog' },
+        { id: uuid.v4(), link: '/about', name: 'About' }
       ],
       productLinks: [
         {
-          id: uuid.v4(),
-          header: 'Donate to KZSC',
+          id: uuid.v4(), header: 'Donate to KZSC',
           imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2016/11/money-652560-400x400.jpg'
         },
         {
-          id: uuid.v4(),
-          header: "KZSC's canvas tote bag",
+          id: uuid.v4(), header: "KZSC's canvas tote bag",
           description: 'Suggested Donation $50.00',
           imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2016/10/totewebfront-e1476844178228-400x400.jpg'
         },
         {
-          id: uuid.v4(),
-          header: 'KZSC Studio Rental',
+          id: uuid.v4(), header: 'KZSC Studio Rental',
           imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2011/01/radio-mic-120x120.jpg'
         },
         {
-          id: uuid.v4(),
-          header: 'Business Underwriting Sponsorship Packages',
+          id: uuid.v4(), header: 'Business Underwriting Sponsorship Packages',
           imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2013/02/Shop-Small-120x120.jpeg'
         }
       ]
@@ -119,7 +80,7 @@ class Footer extends Component{
       return (
         <List.Item key={link.id}>
           <Image floated='left' avatar src={link.thumbnail} />
-          <a href={`/blogdetail/${link.id}`} dangerouslySetInnerHTML={{__html: link.title}}></a>
+          <a className="font-15" href={`/blogdetail/${link.id}`} dangerouslySetInnerHTML={{__html: link.title}}></a>
         </List.Item>
       );
     });
@@ -142,7 +103,7 @@ class Footer extends Component{
       //console.log(project);
       return (
         <div key={page.id} className="footer-item-list">
-          <NavLink to={page.link} onClick={this.props.scrollToTop}>{page.name}</NavLink>
+          <NavLink className="font-16" to={page.link} onClick={this.props.scrollToTop}>{page.name}</NavLink>
         </div>
       );
     });

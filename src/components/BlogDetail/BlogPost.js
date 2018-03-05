@@ -9,8 +9,13 @@ import React, { Component } from 'react';
 import { Grid, Image } from 'semantic-ui-react';
 import axios from 'axios';
 import kzscI from '../../assets/images/kzsc.jpg'
-import './BlogDetail.css'
 import TopMenuBar from '../TopMenuBar/TopMenuBar'
+import './base.css'
+import './kzsc_santa_cruz.css'
+import './shortcodes.css'
+import './style.css'
+import './BlogDetail.css'
+
 
 class BlogPost extends Component {
   constructor(props) {
@@ -105,17 +110,15 @@ class BlogPost extends Component {
       return (
         <Grid.Row key={post.id}>
           <Grid.Column computer={12} tablet={14} mobile={16}>
-            <div className='overflow-hidden width-190 height-180 float-right margin-l-20'>
-              <Image src={post.thumbnail_images.full.url} size='medium' fluid/>
+            <div className='overflow-hidden width-190 height-180 float-right margin-l-20 margin-b-20'>
+              <Image src={post.thumbnail_images.full.url} size='medium'/>
             </div>
-            <h1 dangerouslySetInnerHTML={{__html: post.title}}>{}</h1>
-            <h3>
-              {this.toDateString(post.date)}<br/>
-              in {categories}<br/>
-              written by {post.author.name}
-            </h3>
-            <h4 className="color-grey-1">Tags: {tags}</h4>
-            <p dangerouslySetInnerHTML={{__html: post.content}}></p>
+            <div className="blogDetailTitle" dangerouslySetInnerHTML={{__html: post.title}}></div>
+            <div className="blogDetailDescription">
+              {this.toDateString(post.date)} / in {categories} / by {post.author.name}
+            </div>
+            <div className="blogDetailTags color-grey-1">Tags: {tags}</div>
+            <div className="wordpressHTML" dangerouslySetInnerHTML={{__html: post.content}}></div>
           </Grid.Column>
         </Grid.Row>
       );

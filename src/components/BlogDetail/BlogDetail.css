@@ -7,35 +7,75 @@
  * web@kzsc.org
  */
 
-.BlogPost img {
-  width: 100%
+.BlogPost iframe.youtube-player {
+  height: 490px
+}
+@media (max-width: 1200px) {
+  .BlogPost iframe.youtube-player { height: 470px }
+}
+@media (max-width: 1150px) {
+  .BlogPost iframe.youtube-player { height: 440px }
+}
+@media (max-width: 1080px) {
+  .BlogPost iframe.youtube-player { height: 420px }
+}
+@media (max-width: 1030px) {
+  .BlogPost iframe.youtube-player { height: 390px }
+}
+@media (max-width: 991px) {
+  .BlogPost iframe.youtube-player { height: 440px }
+}
+@media (max-width: 990px) {
+  .BlogPost iframe.youtube-player { height: 400px }
+}
+@media (max-width: 845px) {
+  .BlogPost iframe.youtube-player { height: 380px }
+}
+@media (max-width: 795px) {
+  .BlogPost iframe.youtube-player { height: 350px }
+}
+@media (max-width: 670px) {
+  .BlogPost iframe.youtube-player { height: 320px }
+}
+@media (max-width: 620px) {
+  .BlogPost iframe.youtube-player { height: 290px }
+}
+@media (max-width: 570px) {
+  .BlogPost iframe.youtube-player { height: 250px }
+}
+@media (max-width: 500px) {
+  .BlogPost iframe.youtube-player { height: 225px }
+}
+@media (max-width: 450px) {
+  .BlogPost iframe.youtube-player { height: 190px }
+}
+@media (max-width: 400px) {
+  .BlogPost iframe.youtube-player { height: 170px }
+}
+@media (max-width: 350px) {
+  .BlogPost iframe.youtube-player { height: 150px }
 }
 
-.BlogPost iframe {
-  width: 100% !important;
-  height: 360px !important;
+.blogDetailTitle {
+  min-height: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0;
+  line-height: 1.28571429em;
+  margin-bottom: 10px;
 }
 
-@media (max-width: 697px){
-  .BlogPost iframe {
-    height: 315px !important;
-  }
+.blogDetailDescription {
+  font-size: 1.28571429rem;
+  line-height: 1.28571429em;
+  font-weight: 700;
+  padding: 0
 }
 
-@media (max-width: 615px){
-  .BlogPost iframe {
-    height: 280px !important;
-  }
-}
-
-@media (max-width: 485px){
-  .BlogPost iframe {
-    height: 245px !important;
-  }
-}
-
-@media (max-width: 400px){
-  .BlogPost iframe {
-    height: 197px !important;
-  }
+.blogDetailTags {
+  font-size: 1.07142857rem;
+  line-height: 1.28571429em;
+  font-weight: 700;
+  padding: 0;
+  margin: 10px 0;
 }

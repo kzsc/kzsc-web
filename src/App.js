@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Container, Divider } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 import axios from 'axios';
 
 import './App.css'
@@ -209,7 +209,7 @@ class App extends Component {
            toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
            hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
           <Title />
-          <Container fluid onClick={this.hideVisibilityNavBar.bind(this)}>
+          <div className="k-container" fluid onClick={this.hideVisibilityNavBar.bind(this)}>
             <Route exact path='/home' render={() =>
               <Home convertDate={this.toDateString.bind(this)}
                     requestsLoaded={this.state.homeRequestsLoaded}
@@ -257,13 +257,11 @@ class App extends Component {
             <Route path='/slideshow' render={() =>  <Slideshow /> } />
             <Route path='/blogdetail/:id' component={BlogDetail} />
 
-            <Divider hidden />
-
             <Footer socialMediaLinks={this.state.socialMediaLinks}
                     scrollToTop={this.scrollToWindowTop}
                     recentPosts={this.state.homeRecentPosts} />
 
-          </Container>
+          </div>
         </div>
       </BrowserRouter>
     );

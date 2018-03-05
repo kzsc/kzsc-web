@@ -21,35 +21,17 @@ class NavBarFull extends Component {
     super();
     this.state = {
       menuItems: [
-        {
-          to: '/home', name: 'home', title: 'Home'
-        },
-        {
-          to: '/donate', name: 'donate', title: 'Donate'
-        },
-        {
-          to: '/listen', name: 'listen', title: 'Listen'
-        },
-        {
-          to: '/blogs', name: 'blog', title: 'Blog'
-        }
+        { to: '/home', name: 'home', title: 'Home' },
+        { to: '/donate', name: 'donate', title: 'Donate' },
+        { to: '/listen', name: 'listen', title: 'Listen' },
+        { to: '/blogs', name: 'blog', title: 'Blog' }
       ],
       dropdownItems: [
-        {
-          to: '/underwriting', name: 'underwriting', title: 'Business Underwriting'
-        },
-        {
-          to: '/schedule', name: 'schedule', title: 'Program Schedule'
-        },
-        {
-          to: '/studio', name: 'studio', title: 'Studio Rental'
-        },
-        {
-          to: '/concert', name: 'concert', title: 'Concert Calendar'
-        },
-        {
-          to: '/about', name: 'about', title: 'About'
-        }
+        { to: '/underwriting', name: 'underwriting', title: 'Business Underwriting' },
+        { to: '/schedule', name: 'schedule', title: 'Program Schedule' },
+        { to: '/studio', name: 'studio', title: 'Studio Rental' },
+        { to: '/concert', name: 'concert', title: 'Concert Calendar' },
+        { to: '/about', name: 'about', title: 'About' }
       ]
     }
   }

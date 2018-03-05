@@ -21,36 +21,16 @@ class NavBarMobile extends Component{
     super();
     this.state = {
       menuItems: [
-        {
-          to: '/home', name: 'home', title: 'Home'
-        },
-        {
-          to: '/donate', name: 'donate', title: 'Donate'
-        },
-        {
-          to: '/listen', name: 'listen', title: 'Listen'
-        },
-        {
-          to: '/blogs', name: 'blog', title: 'Blog'
-        },
-        {
-          to: '/about', name: 'about', title: 'About'
-        },
-        {
-          to: '/concert', name: 'concert', title: 'Concert'
-        },
-        {
-          to: '/psa', name: 'psa', title: 'Psa'
-        },
-        {
-          to: '/schedule', name: 'schedule', title: 'Schedule'
-        },
-        {
-          to: '/sponser', name: 'sponser', title: 'Sponser'
-        },
-        {
-          to: '/studio', name: 'studio', title: 'Studio'
-        }
+        { to: '/home', name: 'home', title: 'Home' },
+        { to: '/donate', name: 'donate', title: 'Donate' },
+        { to: '/listen', name: 'listen', title: 'Listen' },
+        { to: '/blogs', name: 'blog', title: 'Blog' },
+        { to: '/about', name: 'about', title: 'About' },
+        { to: '/concert', name: 'concert', title: 'Concert' },
+        { to: '/psa', name: 'psa', title: 'Psa' },
+        { to: '/schedule', name: 'schedule', title: 'Schedule' },
+        { to: '/sponser', name: 'sponser', title: 'Sponser' },
+        { to: '/studio', name: 'studio', title: 'Studio' }
       ]
     }
   }

@@ -69,6 +69,9 @@
 .margin-b-10 {
   margin-bottom: 10px !important;
 }
+.margin-b-20 {
+  margin-bottom: 20px
+}
 .margin-l-20 {
   margin-left: 20px
 }
@@ -100,6 +103,12 @@
 }
 .text-align-center {
   text-align: center;
+}
+.font-15 {
+  font-size: 15px
+}
+.font-16 {
+  font-size: 16px;
 }
 .font-size-22 {
   font-size: 22px;
@@ -185,6 +194,43 @@
   background-color: #767676
 }
 /* Colors END */
+
+/****************************************************************************************************/
+/* K Container Class BEGIN */
+.ui.k-container{display:block;max-width:100%!important}
+@media only screen and (max-width:767px){
+  .ui.k-container{width:auto!important;}
+  .ui.grid.k-container{width:auto!important}
+  .ui.relaxed.grid.k-container{width:auto!important}
+  .ui.very.relaxed.grid.k-container{width:auto!important}
+}
+@media only screen and (min-width:768px) and (max-width:991px){
+  .ui.k-container{width:723px;margin-left:auto!important;margin-right:auto!important}
+  .ui.grid.k-container{width:calc(723px + 2rem)!important}
+  .ui.relaxed.grid.k-container{width:calc(723px + 3rem)!important}
+  .ui.very.relaxed.grid.k-container{width:calc(723px + 5rem)!important}
+}
+@media only screen and (min-width:992px) and (max-width:1199px){
+  .ui.k-container{width:933px;margin-left:auto!important;margin-right:auto!important}
+  .ui.grid.k-container{width:calc(933px + 2rem)!important}
+  .ui.relaxed.grid.k-container{width:calc(933px + 3rem)!important}
+  .ui.very.relaxed.grid.k-container{width:calc(933px + 5rem)!important}
+}
+@media only screen and (min-width:1200px){
+  .ui.k-container{width:1127px;margin-left:auto!important;margin-right:auto!important}
+  .ui.grid.k-container{width:calc(1127px + 2rem)!important}
+  .ui.relaxed.grid.k-container{width:calc(1127px + 3rem)!important}
+  .ui.very.relaxed.grid.k-container{width:calc(1127px + 5rem)!important}
+}
+.ui.text.k-container{font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;max-width:700px!important;line-height:1.5}
+.ui.text.k-container{font-size:1.14285714rem}
+.ui.fluid.k-container{width:100%}
+.ui[class*="left aligned"].k-container{text-align:left}
+.ui[class*="center aligned"].k-container{text-align:center}
+.ui[class*="right aligned"].k-container{text-align:right}
+.ui.justified.k-container{text-align:justify;-webkit-hyphens:auto;-ms-hyphens:auto;hyphens:auto}
+/* K Container Class END */
+/****************************************************************************************************/
 
 /* KZSC Colors Light kblue BEGIN */
 /*--- kblue ---*/

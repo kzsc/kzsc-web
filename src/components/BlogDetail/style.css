@@ -1,0 +1,309 @@
+/* https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/themes/kzsc/style.css */
+/*
+Theme Name:     KZSC Santa Cruz
+Description:    Website by Razorfrog Web Design
+Author:         Razorfrog Web Design
+Author URI:     http://www.razorfrog.com/
+Template:       enfold
+Version:        1.0
+*/
+
+/* widget fix */
+.widget_recent_entries li a {
+  font-style: normal;font-family: 'Open Sans', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.av-menu-button-colored > a .avia-menu-text {padding: 8px 10px 8px 10px}
+/* black template */
+.page-template-template-black-php {background-color: #000 !important; margin-top:0px !important;}
+.page-template-template-black-php .main_color {color: #fff !important; background: #000 !important;}
+.page-template-template-black-php #main .container_wrap:last-child {border-bottom-width: 0px !important; border-top-width: 0px !important;}
+.wordpressHTML .page-template-template-black-php .content, .wordpressHTML .sidebar {padding-bottom: 0px;padding-top: 0px;}
+/* Gravity Forms */
+#top .main_color input[type="text"], #top .main_color input[type="input"], #top .main_color input[type="password"], #top .main_color input[type="email"], #top .main_color input[type="number"], #top .main_color input[type="url"], #top .main_color input[type="tel"],
+#top .main_color input[type="search"], #top .main_color textarea, #top .main_color select {
+  color: #000000;
+}
+#top label span {margin-left: 5px;}
+#mailchimpsf_widget-8  label span { color: #fff; }
+/* authors page */
+.shortcode-author-avatars div.author-list .user {width: 118px;height: 140px;}
+.shortcode-author-avatars div.author-list .user .name {line-height: 15px;}
+/* Mobile Navigation Menu Icons */
+#advanced_menu_toggle, #advanced_menu_hide {border-radius: 0px !important;}
+/* Woocommerce */
+.main_color .sort-param a {color: #000000 !important;}
+.main_color .sort-param a:hover {color: #842B31 !important; font-weight: bold;}
+#top .actions .button[name="update_cart"] {float: none;}
+.minimum-price .amount {margin-left: 2px;}
+.suggested-text {margin-right:3px;}
+#av_section_1 {background-color: #fff !important;}
+#top .template-shop .container {padding-bottom: 30px;}
+#top .inner_product_header {min-height: 71px; background-color: #fff;}
+.single-product .single-product-main-image {display: none;}
+.products .product h3, .products .product h4, .products .product h5, .products .product h6 {font-size: 16px; line-height: 23px;}
+.tax-product_cat .page-thumb {display:none;}
+.main_color .sort-param > li > span, .main_color .sort-param > li > a, .main_color .sort-param ul {background-color: #F9F9F9;}
+.single-product .jp-relatedposts {display: none !important;}
+.single-product .product_meta, .single-product .product_meta .posted_in, .single-product .product_meta .tagged_as {float:left;}
+.single-product .sharedaddy {float:left; margin-top:10px;}
+/* #top .product div.images img {max-height: 400px; width:auto;display: inline-block;} */
+.product-gallery ul.slides li {text-align: center;}
+/*.archive .product-sorting {display:none;}*/
+.postid-23769 .nyp {display:none;}
+.tax-product_cat .thumbnail_container {display:none;}
+.wordpressHTML span.av-cart-counter {display:none;}
+/* Woocommerce Hide Sidebars */
+.woocommerce-page .sidebar {display: none !important;}
+.woocommerce-page .content {border-right-width: 0px !important; margin-right: 0px !important; }
+.woocommerce-page .content .entry-content {padding-right: 0px !important;}
+/*.woocommerce-page .container .nine.units {width: 100% !important;}*/
+/* Woocommerce Product */
+.single-product .container .eight.units {width: 90%;}
+/* Woocommerce Cart */
+.wordpressHTML div table.shop_table td {background-color: #FCFCFC; color: #000;}
+.main_color table caption, .main_color tr:nth-child(2n), .main_color .pricing-table > li:nth-child(2n) {color: #000000;}
+#top #payment p label {display: block;}
+/* Header */
+#header_main {background: white url(https://www.kzsc.org/wp-content/uploads/2013/07/header-kzsc.jpg) top left no-repeat; border-bottom-width: 1px; background-size: 100%; height: 158px; background-size: 100% auto;}
+.logo img {display:none;}
+/* Social Icons Navigation Menu */
+#top .social_bookmarks li a {color: #A81010;}
+.social_header .main_menu ul:first-child > li a {color: #222;}
+/* Secondary Navigation Menu */
+.sub_menu a {color: #A81010 !important;}
+.sub_menu a:hover {color: #222 !important;}
+/* Body */
+.wordpressHTML p a, .read-more-link a { text-decoration: underline; }
+.wordpressHTML  .content, .wordpressHTML .sidebar { padding-bottom: 20px; padding-top: 30px;}
+/* Page Title Header Container */
+.wordpressHTML  .container_wrap {border-top-style: none !important;border-top-width: 0 !important;}
+.wordpressHTML  .title_container .main-title {font-size: 24px;}
+.wordpressHTML  .title_container .breadcrumb {display: none;}
+/* Homepage Blog Posts */
+.home .fullsize .template-blog .post-title {padding: 0 !important;text-align: left !important;font-size: 22px !important;}
+.home .category-main .big-preview.single-big {float: left;padding: 0 25px 5px 0 !important;width: 180px;}
+#top .fullsize .template-blog .post-meta-infos {padding: 5px 0 5px;text-align: left;}
+#top .fullsize .template-blog .post .entry-content > * {
+	margin-left: auto !important; margin-right: auto !important; max-width: 800px !important; line-height: 25px;
+}
+/* Single Blog Posts */
+.single .template-blog .post .entry-content-wrapper  {overflow: visible;}
+.single .template-blog .blog-meta {float: right;margin: 0px 25px 25px 25px;}
+.flex_column .template-blog .big-preview.single-big {background: transparent;}
+.single .title_container {display:none;}
+#top .fullsize .template-blog .blog-meta {overflow: visible}
+.template-blog .small-preview img {width: 180px;}
+.av-share-box {margin-bottom: 1px;}
+.wordpressHTML .avia-iframe-wrap iframe {height: auto;}
+.wordpressHTML .avia-iframe-wrap {height:160px; margin-bottom:0px; padding-bottom:10px !important;}
+/* Blog posts delimiter */
+#top .fullsize .template-blog .post_delimiter {border-bottom-width: 0px;}
+.template-blog .post_delimiter {clear: both; margin: 0 0 20px; padding: 20px 0 0;}
+/* Homepage Hide Blog Categories Meta */
+.home .blog-categories {display: none;}
+.home .post-meta-infos .text-sep:nth-child(4){display:none;}
+/* Homepage social media 32x32 icons */
+.wordpressHTML  .smw {margin-top: -50px;}
+.wordpressHTML  .smw_left {margin-right: 8px;}
+/* Table Headers Text */
+.wordpressHTML th {letter-spacing: 0 !important;}
+/* Sidebars */
+.av-special-heading {margin-top: 0px;}
+.widget {padding: 10px 0 10px 0;}
+.wordpressHTML .main_color .sidebar a {color:#a81010;}
+.wpinstagram {width: auto !important;}
+/* WPSpin */
+.wps-playlist-item .track {margin-bottom:0px;}
+.wps-playlist-item .artist {margin-top:0px; font-weight:bold;}
+.wps-playlist-item .timestamp {font-style: italic;}
+.wps-playlist-item .timestamp:before{ content:"- ";}
+/* Spinitron Widget */
+/*.borderbox {border:solid 1px black; float:left;}*/
+.playbox {height:70px; width:70px; float:left;}
+/*.nowplaying {float:left; padding-left:0px; overflow:hidden; width:125px; */
+/* .line {height:20px; width:125px; overflow:hidden;} */
+/* .home .line {width:195px;} */
+.home .nowplaying {width:190px;}
+/* Widgets */
+.recentcomments, .widget_recent_entries li {line-height: 1.9em; padding: 10px 0;}
+.content .widget .widgettitle {margin-top: 0;}
+/* Mailchimp Widget Subscribe Button */
+.mc_signup_submit {text-align: center !important;}
+.mc_form_inside input[type="submit"], .mc_form_inside #submit, .mc_form_inside .button {
+	padding: 9px 22px !important;text-align: center !important;border-radius: 0 !important;
+	float: none !important;display: inline-block !important;
+}
+/* Footer */
+#footer .widget { margin: 0; }
+#footer {padding: 15px 0 5px;}
+.widget_recent_entries li {font-size: 13px;line-height: 1.7em;}
+#top .footer_color .input-text, #top .footer_color textarea, #top .footer_color select {
+  border-color: #8A8A8A;color: #B6B6B6;
+}
+#top .footer_color input[type="text"], #top .footer_color input[type="input"], #top .footer_color input[type="password"], #top .footer_color input[type="email"],
+#top .footer_color input[type="number"], #top .footer_color input[type="url"], #top .footer_color input[type="tel"], #top .footer_color input[type="search"] {
+  border-color: #8A8A8A;color: #b6b6b6;
+}
+.footer_color li {border-color: #5E5E5E;}
+/* Copyright Footer */
+/* Sitemap */
+/* --- Responsive Breakpoints Listed Below --- */
+/* large screens with 1140px with */
+@media only screen and (min-width: 1140px)  {
+	.responsive .boxed#top {width: 1130px;}
+	.responsive .container {width: 1030px; padding: 0px;}
+	/* Navigation Menu - Resizing */
+	/*.social_header #header_main .container, .social_header .main_menu ul:first-child > li a {height: 30px;line-height: 26px;}*/
+	#header_main .container, .main_menu ul:first-child > li a {height: 34px;line-height: 26px;}
+	.main_menu {margin-top: 123px;}
+  #top .main_menu .menu li ul a {width: 101%;}
+	.social_header #header_main .container, .social_header .main_menu ul:first-child > li a { height: 35px; }
+	/* Single Blog Posts */
+	#top .fullsize .template-single-blog .blog-meta {float: left;}
+	#top .fullsize .template-single-blog .post .entry-content {padding-left: 100px;}
+	/* contact page */
+	.team-img-container {height: 140px;}
+	/* top menu search link */
+	.search-link {display: none;}
+	/* Woocommerce Product */
+	.single-product div.product div.images{max-width: 500px !important;float: left;}
+	.single-product div.product div.summary {width: 455px;float: right;}
+}
+
+@media only screen and (min-width: 990px) and (max-width: 1140px) {
+	/* navigation menu */
+	.av-main-nav > li > a {padding: 0 8px !important;font-size: 12px !important;}
+}
+
+@media only screen and (min-width: 990px) {
+	/* Main Navigation Menu (Non-Mobile) */
+	.main_menu {width: 100% !important; text-align: center !important;}
+	.avia-menu {display: inline-block !important; float: none !important;}
+}
+/* Small desktop screens  */
+@media only screen and (min-width: 970px) and (max-width: 1139px) {
+	/* Navigation Menu - Resizing */
+	#header_main .container, .main_menu ul:first-child > li a{height: 35px;line-height: 26px;}
+	.main_menu {margin-top: 111px;}
+	#top .main_menu .menu li ul a {width: 101%;}
+	.social_header #header_main .container, .social_header .main_menu ul:first-child > li a { height: 35px; }
+	#header_main {	height: 147px;}
+	/* sidebars */
+	/*.nowplaying {width: 200px;}*/
+	.home .nowplaying {width: 190px;}
+	.home .category-main .big-preview.single-big {padding: 0 15px 5px 0 !important;}
+	/* top menu search link */
+	.search-link {display: none;}
+}
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 989px) {
+	/* home */
+	.home .category-main .big-preview.single-big {float: none;}
+	.home .fullsize .template-blog .post-title {text-align: center !important;}
+	#top .fullsize .template-blog .post-meta-infos {text-align: center;}
+}
+@media only screen and (min-width: 970px) and (max-width: 989px) {
+	/* mobile menu button */
+	#advanced_menu_toggle {margin-top: -12px !important;}
+}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 989px) {
+	/* header & nav */
+	#header_main {	height: 79px;}
+	#advanced_menu_toggle {margin-top: -24px; right: -30px;}
+	#advanced_menu_hide {margin-top: -28px; right: 10px;}
+	/* Mobile Navigation Menu */
+	#mobile-advanced {padding: 44px 0 !important;}
+	#advanced_menu_hide {top: 27px !important;}
+	.show_mobile_menu #mobile-advanced {margin-top: 0px !important;}
+	/* Navigation Menu Stacked */
+	.responsive .av_mobile_menu_tablet .cart_dropdown {
+		position: absolute;top: 6%;margin: 36px 50px 0 0;padding-right: 0;
+	}
+	.cart_dropdown {right: -30px;height: 30px;width: 30px;}
+	.cart_dropdown_first .cart_dropdown_link {line-height: 26px;font-size: 15px;position: absolute;}
+	#advanced_menu_toggle {margin-top: -38px;height: 30px;width: 30px;line-height: 28px;}
+	/* sidebars */
+	.line {text-align:center;}
+	.playbox {float: none; margin:0 auto;}
+	/*.home .borderbox {width: 210px;}*/
+	.home .nowplaying {width: 135px;}
+	.home .playbox {float: left;}
+	.home .line {width: 140px;}
+	.team-img-container {height: auto;}
+	.home .category-main .big-preview.single-big {
+    margin: 0 auto !important;padding: 0 25px 20px 0 !important;width: 60% !important;
+	}
+	li.social_bookmarks_rss.social_icon_7 {display: none !important;}
+	li.social_bookmarks_mail.social_icon_8 {display: none !important;}
+	.search-link {display: none !important;}
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+	.zopim {display:none !important;}
+	.logo img {display:initial;}
+	/* Wrapper Top */
+	.responsive #top {margin-top: -10px !important;}
+	#top.page-template-template-black-php {margin-top: 0px !important;}
+	/* Top Menu */
+	#header_meta .sub_menu>ul>li {padding: 0 5px 0 2px !important;}
+	/* header & nav */
+	#header_main {	height: 79px; background: #7A2127 url() top left no-repeat;}
+	#main {clear:both;}
+	/* Mobile Navigation Menu */
+	#mobile-advanced {padding: 44px 0 !important;}
+	#advanced_menu_toggle {margin-top: -24px !important;}
+	#advanced_menu_hide {top: 22px !important;}
+	.show_mobile_menu #mobile-advanced {margin-top: 0px !important;}
+	/* single blog page image */
+	.single .template-blog .blog-meta {
+		float: none;margin: 0 auto 20px auto;width: 180px;height: 180px;display: inherit !important;
+	}
+	/* single blog post - video post type */
+	.single.single-format-video .template-blog .blog-meta {display: none !important;}
+	.responsive .content .entry-content {clear: both;}
+}
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	#socket .sub_menu_socket div {overflow: visible;}
+	.responsive #header .sub_menu {line-height: 20px;margin-top: 10px;padding: 0 0 10px 0;}
+	.responsive #header .social_bookmarks {padding: 10px 0 10px 25px !important;}
+	.home .category-main .big-preview.single-big {margin: 0 auto !important;padding: 0 0 20px 0 !important;width: 60% !important;}
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+	/* Site Logo */
+	.responsive .logo img {max-height: 55px !important;}
+	.responsive #header .sub_menu {
+		line-height: 20px;margin-top: 10px;padding: 0 0 10px 0;
+	}
+	.responsive #header .social_bookmarks {padding: 10px 0 10px 10px !important;}
+	.home .category-main .big-preview.single-big {
+    float: none !important;margin: 0 auto !important;padding: 0 0 20px !important;width: 75% !important;
+	}
+}
+
+/* IE8 uses \0 */
+@media all\0 {
+	#header_main {background: white url(https://www.kzsc.org/wp-content/uploads/2013/07/header-ie8.jpg) top left no-repeat; border-bottom-width: 1px; background-size: 100%; height: 158px; background-size: 100% auto;}
+	.smw_left {margin-right: 3px;}
+	.main_menu ul:first-child > li > a {padding: 0 11px;}
+	/* Navigation Menu - Resizing */
+	.social_header #header_main .container, .social_header .main_menu ul:first-child > li a {height: 30px;line-height: 26px;}
+	.main_menu {margin-top: 123px;}
+	#top .main_menu .menu li ul a {width: 101%;}
+	.social_header #header_main .container, .social_header .main_menu ul:first-child > li a { height: 35px; }
+	/* Single Blog Posts */
+	#top .fullsize .template-single-blog .blog-meta {float: left;}
+	#top .fullsize .template-single-blog .post .entry-content {padding-left: 100px;}
+	/* contact page */
+	.team-img-container {height: 140px;}
+	/* top menu search link */
+	.search-link {display: none;}
+	.wpinstagram img {max-width: none;}
+}
+
+ /* Retina-specific stuff here */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
