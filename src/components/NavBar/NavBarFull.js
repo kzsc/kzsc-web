@@ -12,7 +12,7 @@ import { Menu, Image, Dropdown } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../logo_dark_orange_sm.png';
 import PlayButton from './PlayButton';
-
+import '../../App.css'
 import './NavBar.css';
 
 class NavBarFull extends Component {
@@ -66,7 +66,7 @@ class NavBarFull extends Component {
 
     return(
       <div>
-        <Menu inverted size="massive" className="navbar kblue" fixed='top'>
+        <Menu inverted size="massive" className="kblue customnav" fixed='top'>
           <Menu.Menu position="left">
             <Menu.Item as='a' href='/home'>
               <Image src={logo} width='107px'/>
@@ -79,7 +79,7 @@ class NavBarFull extends Component {
             </Dropdown>
           </Menu.Menu>
           <Menu.Menu position='right'>
-            <Menu.Item>
+            <Menu.Item id="playButtonItem" className="center">
                 <PlayButton></PlayButton>
             </Menu.Item>
           </Menu.Menu>

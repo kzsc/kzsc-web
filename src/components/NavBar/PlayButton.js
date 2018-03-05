@@ -10,8 +10,6 @@
 import React, {Component} from 'react';
 import { Icon } from 'semantic-ui-react';
 import axios from 'axios';
-
-
 import './NavBar.css';
 
 class PlayButton extends Component {

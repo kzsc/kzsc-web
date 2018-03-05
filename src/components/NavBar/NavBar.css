@@ -15,14 +15,20 @@
   cursor: pointer;
 }
 
+#playButtonItem {
+  padding: 2px 20px 2px 5px !important;
+}
+
 .playButtonShowInformation {
   display: block;
-  font-size: 0.55em;
+  font-size: 15px;
   float: left;
-  padding: 5px;
+  padding: 6px;
   text-align: left;
+  margin-right: 8px;
 }
 
 .playButtonDiv {
   float: right;
+  padding: 11px 0;
 }

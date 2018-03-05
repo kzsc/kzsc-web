@@ -12,7 +12,7 @@ import { Sidebar, Menu, Icon, Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import PlayButton from './PlayButton';
 import logo from '../../logo_dark_orange_sm.png';
-
+import '../../App.css'
 import './NavBar.css';
 
 class NavBarMobile extends Component{
@@ -61,14 +61,14 @@ class NavBarMobile extends Component{
 
     return(
       <div>
-        <Menu inverted size="massive" className="navbar kblue" fixed='top'>
+        <Menu inverted size="massive" className="kblue customnav" fixed='top'>
           <Menu.Menu position="left" onClick={this.hideNavBar.bind(this)}>
             <Menu.Item>
               <Image src={logo} width='107px'/>
             </Menu.Item>
           </Menu.Menu>
           <Menu.Menu position='right'>
-            <Menu.Item className="center"
+            <Menu.Item id="playButtonItem" className="center"
              onClick={this.hideNavBar.bind(this)}>
                 <PlayButton></PlayButton>
             </Menu.Item>
