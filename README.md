@@ -6,7 +6,7 @@ Fork this repo (creates an exact copy of the repo)
 Clone the newly forked repo from your remote Github account   
 onto your local machine by running the cmd in your cmd line  
   
-`git clone https://github.com/git_username/KZSC-WEB.git`  
+`git clone https://github.com/kzsc/kzsc-web.git`  
   
 **Install**  
 Node.js (npm comes bundled in Node.js)  
