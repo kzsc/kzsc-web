@@ -46,16 +46,20 @@ class Underwriting extends Component{
         color = 'kblue'
         secondary = false;
       }
+      let details = '';
+      if(u.site) {
+        details += '<a href=' + u.site + ' target="_blank">' + u.site + '</a><br />'
+      }
+      if(u.street) { details += u.street + '<br/>' }
+      if(u.address) { details += u.address + '<br/>'}
+      if(u.phone) { details += u.phone + '<br/>'}
+      if(u.email) { details += u.email + '<br/>'}
       return (
-        <Grid.Column key={i} stretched className='padding-tb-1rem' textAlign='center'>
+        <Grid.Column key={i} stretched className='padding-tb-1rem' textAlign='center' stretched>
           <Segment basic inverted className={'k-border-radius-10 '+color} secondary={secondary}>
             <h3>{u.name}</h3>
             <p className='word-warp-break'>
-              <a href={u.site}>
-                {u.site}
-              </a>
-              <br />
-              {u.street} <br /> {u.address} <br /> {u.phone} <br /> {u.email}
+              <span dangerouslySetInnerHTML={{__html: details}}></span>
             </p>
           </Segment>
         </Grid.Column>

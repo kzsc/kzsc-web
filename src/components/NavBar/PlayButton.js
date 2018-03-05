@@ -27,8 +27,7 @@ class PlayButton extends Component {
   }
 
   componentWillMount(){
-    this.setPlayingToFalse();
-    this.getCurrentShowInfo();
+    
   }
 
   componentDidUpdate(prevProps, prevState) {
