@@ -70,8 +70,22 @@ class Donate extends Component {
         { name: 'merch', title: 'Merchandise' }
       ],
       donateHeader: 'Help us keep noncommercial community radio on the air with a secure pledge today!',
-      activeDonateButton: 'eightyeight'
+      activeDonateButton: 'eightyeight',
+      donateAmounts: []
     }
+  }
+
+  componentWillMount() {
+    this.setState({
+      donateAmounts: [
+        {id: "88.1", key: "eightyeight", title: "88.1 FM"},
+        {id: "daily-fiddy", key: "fiddy", title: 'Daily "Fiddy"'},
+        {id: "buck-a-day", key: "buckaday", title: "Buck-a-day"},
+        {id: "50-years-of-kzsc", key: "fiftyyears", title: "50 years of KZSC"},
+        {id: "kzsc-sustainer", key: "kzscsustainer", title: "KZSC Sustainer"},
+        {id: "other", key: "other", title: "Other"}
+      ]
+    })
   }
 
   onToken = (token) => {
@@ -201,33 +215,18 @@ class Donate extends Component {
   }
 
   donateButtons() {
+    let buttons = this.state.donateAmounts.map(d => {
+      return(
+        <Button key={d.key} className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, d.id, d.key)}
+         active={this.state.activeDonateButton === d.key}>
+          {d.title}
+        </Button>
+      )
+    })
     return(
       <Grid.Row>
         <Grid.Column computer='13' tablet='14' mobile='16' textAlign='center'>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "88.1", 'eightyeight')}
-           active={this.state.activeDonateButton === 'eightyeight'}>
-            88.1 FM
-          </Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "daily-fiddy", 'fiddy')}
-           active={this.state.activeDonateButton === 'fiddy'}>
-            Daily "Fiddy"
-          </Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "buck-a-day", 'buckaday')}
-           active={this.state.activeDonateButton === 'buckaday'}>
-            Buck-a-day
-          </Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "50-years-of-kzsc", 'fiftyyears')}
-           active={this.state.activeDonateButton === 'fiftyyears'}>
-            50 years of KZSC
-          </Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "kzsc-sustainer", 'kzscsustainer')}
-           active={this.state.activeDonateButton === 'kzscsustainer'}>
-            KZSC Sustainer
-          </Button>
-          <Button className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, "kzsc-sustainer", 'other')}
-           active={this.state.activeDonateButton === 'other'}>
-            Other
-          </Button>
+          {buttons}
         </Grid.Column>
       </Grid.Row>
     )
