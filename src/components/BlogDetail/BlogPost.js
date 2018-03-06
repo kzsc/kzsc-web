@@ -30,7 +30,6 @@ class BlogPost extends Component {
 
   componentWillMount(){
     this.kzscApiGetPostById(this.props.blogid, 'blogdata')
-    console.log(this.state)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -92,14 +91,20 @@ class BlogPost extends Component {
     return fullDate
   }
 
+  getBlogDataTags(postTags) {
+    let tags = postTags.map(t => {
+      return '#' + t.title + ' ';
+    })
+    return (
+      <div className="blogDetailTags color-grey-1">Tags: {tags}</div>
+    )
+  }
+
   getBlogData(item) {
     let blog = item.map(post => {
       let categories = post.categories.map(c => {
         return c.title + ' ';
       });
-      let tags = post.tags.map(t => {
-        return '#' + t.title + ' ';
-      })
       if (!post.thumbnail_images) {
         post['thumbnail_images'] = {
           full: {
@@ -117,11 +122,7 @@ class BlogPost extends Component {
             <div className="blogDetailDescription">
               {this.toDateString(post.date)} / in {categories} / by {post.author.name}
             </div>
-            {
-              tags ?
-              function() { return ( <div className="blogDetailTags color-grey-1">Tags: {tags}</div> ); } 
-              : null
-            }
+            { post.tags.length ? this.getBlogDataTags(post.tags) : null }
             <div className="wordpressHTML" dangerouslySetInnerHTML={{__html: post.content}}></div>
           </Grid.Column>
         </Grid.Row>
