@@ -39,6 +39,7 @@
 /* Margin and Padding Styles BEGIN */
 .no-padding { padding: 0 !important }
 .padding-05rem { padding: 0.25rem !important }
+.padding-t-10 { padding-top: 10px; }
 .padding-tb-10 { padding-top: 10px; padding-bottom: 10px; }
 .padding-tb-1rem { padding-top: 1rem !important; padding-bottom: 1rem !important; }
 .margin-5 { margin: 5px; }
@@ -107,7 +108,7 @@
 }
 .k-divider {
   padding-top: 50px;
-  padding-bottom: 30px;
+  padding-bottom: 5px;
 }
 .k-divider .k-divider-title {
   border-top: 6px solid #507b8c;

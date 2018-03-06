@@ -137,20 +137,50 @@ class Home extends Component{
             <Grid.Column computer={11} tablet={11}>
               {this.getBlogContent(this.props.featuredContent, 'big')}
             </Grid.Column>
-            <Grid.Column width={4} stretched>
-              <Segment textAlign='center'>
+            <Grid.Column width={4} stretched textAlign="center">
+              <div className="text-align-center">
+                <h3 className="padding-tb-10">Featured Shows</h3>
+                <Slideshow images={this.state.showImages}/>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
 
-                <div>
-                  <h3>Featured Shows</h3>
-                  <Slideshow images={this.state.showImages}/>
-                </div>
+          <Grid.Row>
+            <Grid.Column width={15} className="k-divider">
+              <div className='k-divider-title'>
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  <div><span>
+                    Latest From the Blog
+                    <Icon name='angle right' />
+                  </span></div>
+                </NavLink>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns='equal'>
+            {this.getBlogContentColumn(this.props.recentPosts, 'small', '5', '5')}
+          </Grid.Row>
 
-                <div className="text-align-center">
-                  <div><h3 className="padding-tb-10">Support Local Businesses</h3></div>
-                  <Slideshow images={this.state.underwritingImages}/>
-                </div>
+          <Grid.Row>
+            <Grid.Column computer={11} tablet={11}>
 
-              </Segment>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4}>
+              <Grid>
+                <Grid.Column computer={16} tablet={16} mobile={6}>
+                  <div className="text-align-center">
+                    <h3 className="padding-t-10">Recent Tracks</h3>
+                    <iframe title="rt" id="spin-iframe" className="spin-songs" src="//spinitron.com/public/newestsong.php?num=5&amp;station=kzsc&amp;time=1&amp;tweets=1&amp;stylesheet=%2F%2Fspinitron.bitbucket.io%2Fspin.css">
+                    </iframe>
+                  </div>
+                </Grid.Column>
+                <Grid.Column computer={16} tablet={16} mobile={6}>
+                  <div className="text-align-center">
+                    <h3 className="padding-tb-10">Support Local Businesses</h3>
+                    <Slideshow images={this.state.underwritingImages}/>
+                  </div>
+                </Grid.Column>
+              </Grid>
             </Grid.Column>
           </Grid.Row>
 
@@ -192,22 +222,6 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={15} className="k-divider">
-              <div className='k-divider-title'>
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <div><span>
-                    Latest From the Blog
-                    <Icon name='angle right' />
-                  </span></div>
-                </NavLink>
-              </div>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row columns='equal'>
-            {this.getBlogContentColumn(this.props.recentPosts, 'small', '5', '5')}
-          </Grid.Row>
-
-          <Grid.Row>
             <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
@@ -220,19 +234,19 @@ class Home extends Component{
             <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <h3 className='color-black-default'>Music Charts</h3>
+                  <h3 className='color-black-default'>Interviews</h3>
                 </NavLink>
               </div>
-              {this.getBlogContent(this.props.musicChartsPosts, 'small')}
+              {this.getBlogContent(this.props.interviewsPosts, 'small')}
             </Grid.Column>
 
             <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <h3 className='color-black-default'>Giveaways</h3>
+                  <h3 className='color-black-default'>Music Charts</h3>
                 </NavLink>
               </div>
-              {this.getBlogContent(this.props.giveawaysPosts, 'small')}
+              {this.getBlogContent(this.props.musicChartsPosts, 'small')}
             </Grid.Column>
 
           </Grid.Row>

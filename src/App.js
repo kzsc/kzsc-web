@@ -45,8 +45,9 @@ class App extends Component {
       homeRecentPosts: [],
       homeMusicChartsPosts: [],
       homeEventsPosts: [],
-      homeGiveawaysPosts: [],
+      homeInterviewsPosts: [],
       homeFeaturedContent: [],
+      homeFeaturedContent2: [],
       socialMediaLinks: [
         {
           id: 'facebook', link: 'https://www.facebook.com/kzscradio', icon: 'facebook square',
@@ -132,11 +133,12 @@ class App extends Component {
     this.kzscApiGetCategoryList('get_category_index');
     let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
     this.kzscApiGetCategory(requestString, 'blogPosts');
-    this.kzscApiGetPostById('36472', 'homeFeaturedContent');
+    this.kzscApiGetPostById('38048', 'homeFeaturedContent');
+    this.kzscApiGetPostById('36472', 'homeFeaturedContent2');
     this.kzscApiGet4FromCategory('get_recent_posts/?count=3', 'homeRecentPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=1', 'homeMusicChartsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=1', 'homeEventsPosts');
-    this.kzscApiGet4FromCategory('get_category_posts/?id=267&count=1', 'homeGiveawaysPosts');
+    this.kzscApiGet4FromCategory('get_category_posts/?id=17&count=1', 'homeInterviewsPosts');
   }
 
   toggleVisibilityNavBar() {
@@ -216,8 +218,9 @@ class App extends Component {
                     recentPosts={this.state.homeRecentPosts}
                     musicChartsPosts={this.state.homeMusicChartsPosts}
                     eventsPosts={this.state.homeEventsPosts}
-                    giveawaysPosts={this.state.homeGiveawaysPosts}
+                    interviewsPosts={this.state.homeInterviewsPosts}
                     featuredContent={this.state.homeFeaturedContent}
+                    featuredContent2={this.state.homeFeaturedContent2}
                     scrollToTop={this.scrollToWindowTop}
                     socialMediaLinks={this.state.socialMediaLinks} />
             } />
@@ -227,8 +230,9 @@ class App extends Component {
                     recentPosts={this.state.homeRecentPosts}
                     musicChartsPosts={this.state.homeMusicChartsPosts}
                     eventsPosts={this.state.homeEventsPosts}
-                    giveawaysPosts={this.state.homeGiveawaysPosts}
+                    interviewsPosts={this.state.homeInterviewsPosts}
                     featuredContent={this.state.homeFeaturedContent}
+                    featuredContent2={this.state.homeFeaturedContent2}
                     scrollToTop={this.scrollToWindowTop}
                     socialMediaLinks={this.state.socialMediaLinks} />
             } />
