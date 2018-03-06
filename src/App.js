@@ -133,7 +133,7 @@ class App extends Component {
     let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
     this.kzscApiGetCategory(requestString, 'blogPosts');
     this.kzscApiGetPostById('36472', 'homeFeaturedContent');
-    this.kzscApiGet4FromCategory('get_recent_posts/?count=4', 'homeRecentPosts');
+    this.kzscApiGet4FromCategory('get_recent_posts/?count=3', 'homeRecentPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=1', 'homeMusicChartsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=1', 'homeEventsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=267&count=1', 'homeGiveawaysPosts');

@@ -125,7 +125,7 @@ class Home extends Component{
 
   render(){
     let likeFacebookStyle = {
-      border: "none", overflow: "hidden", width:"100%", height: "20px"
+      border: "none", overflow: "hidden", width:"100%", height: "28px"
     }
     return(
       <div className="Home">
@@ -137,16 +137,62 @@ class Home extends Component{
             <Grid.Column computer={11} tablet={11}>
               {this.getBlogContent(this.props.featuredContent, 'big')}
             </Grid.Column>
-            <Grid.Column width={5} stretched>
+            <Grid.Column width={4} stretched>
               <Segment textAlign='center'>
-                <h3>Featured Shows</h3>
-                <Slideshow images={this.state.showImages}/>
+
+                <div>
+                  <h3>Featured Shows</h3>
+                  <Slideshow images={this.state.showImages}/>
+                </div>
+
+                <div className="text-align-center">
+                  <div><h3 className="padding-tb-10">Support Local Businesses</h3></div>
+                  <Slideshow images={this.state.underwritingImages}/>
+                </div>
+
               </Segment>
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={16} className="k-divider">
+            <Grid.Column width={15} className="k-divider">
+              <div className='k-divider-title'>
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  <div><span>Follow Us</span></div>
+                </NavLink>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row columns={3}>
+            <Grid.Column computer={5} tablet={5} stretched>
+              <Segment className='kblue' tertiary>
+                <h3>{'Follow us on Social Media'.toUpperCase()}</h3>
+                {this.getSocialMediaLinks()}
+              </Segment>
+            </Grid.Column>
+
+            <Grid.Column computer={5} tablet={5} stretched>
+              <Segment className='kblue' secondary>
+                <h3>RADIO FREE AMERICA ARCHIVES</h3>
+                <Button color='blue' as='a' href='http://www.radiofreeamerica.com/station/kzsc'>
+                  Stream past KZSC shows on demand
+                </Button>
+              </Segment>
+            </Grid.Column>
+
+            <Grid.Column computer={5} tablet={5} stretched>
+              <Segment className='kblue' tertiary>
+                <h3>Like Us On Facebook</h3>
+                <div>
+                  <iframe title='lof' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fkzscradio&amp;send=false&amp;layout=standard&amp;width=300&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80" scrolling="no" frameBorder="0" style={likeFacebookStyle} allowTransparency="true"></iframe>
+                </div>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column width={15} className="k-divider">
               <div className='k-divider-title'>
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <div><span>
@@ -158,48 +204,11 @@ class Home extends Component{
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns='equal'>
-            {this.getBlogContentColumn(this.props.recentPosts, 'small', '4', '8')}
+            {this.getBlogContentColumn(this.props.recentPosts, 'small', '5', '5')}
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={16} className="k-divider">
-              <div className='k-divider-title'>
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <div><span>Follow Us</span></div>
-                </NavLink>
-              </div>
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row columns={3}>
-            <Grid.Column stretched>
-              <Segment className='kblue' tertiary>
-                <h3>{'Follow us on Social Media'.toUpperCase()}</h3>
-                {this.getSocialMediaLinks()}
-              </Segment>
-            </Grid.Column>
-
-            <Grid.Column stretched>
-              <Segment className='kblue' secondary>
-                <h3>RADIO FREE AMERICA ARCHIVES</h3>
-                <Button color='blue' as='a' href='http://www.radiofreeamerica.com/station/kzsc'>
-                  Stream past KZSC shows on demand
-                </Button>
-              </Segment>
-            </Grid.Column>
-
-            <Grid.Column stretched>
-              <Segment className='kblue' tertiary>
-                <h3>Like Us On Facebook</h3>
-                <div>
-                  <iframe title='lof' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fkzscradio&amp;send=false&amp;layout=standard&amp;width=300&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80" scrolling="no" frameBorder="0" style={likeFacebookStyle} allowTransparency="true"></iframe>
-                </div>
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column computer='4' tablet='8'>
+            <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Events</h3>
@@ -208,7 +217,7 @@ class Home extends Component{
               {this.getBlogContent(this.props.eventsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8'>
+            <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Music Charts</h3>
@@ -217,7 +226,7 @@ class Home extends Component{
               {this.getBlogContent(this.props.musicChartsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8'>
+            <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Giveaways</h3>
@@ -226,12 +235,6 @@ class Home extends Component{
               {this.getBlogContent(this.props.giveawaysPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8'>
-              <div className="text-align-center">
-                <div><h3>Support Local Businesses</h3></div>
-                <Slideshow images={this.state.underwritingImages}/>
-              </div>
-            </Grid.Column>
           </Grid.Row>
 
         </Grid>

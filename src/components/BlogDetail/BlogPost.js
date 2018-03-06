@@ -117,7 +117,11 @@ class BlogPost extends Component {
             <div className="blogDetailDescription">
               {this.toDateString(post.date)} / in {categories} / by {post.author.name}
             </div>
-            <div className="blogDetailTags color-grey-1">Tags: {tags}</div>
+            {
+              tags ?
+              function() { return ( <div className="blogDetailTags color-grey-1">Tags: {tags}</div> ); } 
+              : null
+            }
             <div className="wordpressHTML" dangerouslySetInnerHTML={{__html: post.content}}></div>
           </Grid.Column>
         </Grid.Row>

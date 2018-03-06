@@ -55,7 +55,7 @@ class Underwriting extends Component{
       if(u.phone) { details += u.phone + '<br/>'}
       if(u.email) { details += u.email + '<br/>'}
       return (
-        <Grid.Column key={i} stretched className='padding-tb-1rem' textAlign='center' stretched>
+        <Grid.Column key={i} stretched className='padding-tb-1rem' textAlign='center'>
           <Segment basic inverted className={'k-border-radius-10 '+color} secondary={secondary}>
             <h3>{u.name}</h3>
             <p className='word-warp-break'>
