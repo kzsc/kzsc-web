@@ -125,7 +125,7 @@ class Home extends Component{
 
   render(){
     let likeFacebookStyle = {
-      border: "none", overflow: "hidden", width:"100%", height: "20px"
+      border: "none", overflow: "hidden", width:"100%", height: "28px"
     }
     return(
       <div className="Home">
@@ -137,16 +137,16 @@ class Home extends Component{
             <Grid.Column computer={11} tablet={11}>
               {this.getBlogContent(this.props.featuredContent, 'big')}
             </Grid.Column>
-            <Grid.Column width={5} stretched>
-              <Segment textAlign='center'>
-                <h3>Featured Shows</h3>
+            <Grid.Column width={4} stretched textAlign="center">
+              <div className="text-align-center">
+                <h3 className="padding-tb-10">Featured Shows</h3>
                 <Slideshow images={this.state.showImages}/>
-              </Segment>
+              </div>
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={16} className="k-divider">
+            <Grid.Column width={15} className="k-divider">
               <div className='k-divider-title'>
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <div><span>
@@ -158,11 +158,34 @@ class Home extends Component{
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns='equal'>
-            {this.getBlogContentColumn(this.props.recentPosts, 'small', '4', '8')}
+            {this.getBlogContentColumn(this.props.recentPosts, 'small', '5', '5')}
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={16} className="k-divider">
+            <Grid.Column computer={11} tablet={11}>
+
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4}>
+              <Grid>
+                <Grid.Column computer={16} tablet={16} mobile={6}>
+                  <div className="text-align-center">
+                    <h3 className="padding-t-10">Recent Tracks</h3>
+                    <iframe title="rt" id="spin-iframe" className="spin-songs" src="//spinitron.com/public/newestsong.php?num=5&amp;station=kzsc&amp;time=1&amp;tweets=1&amp;stylesheet=%2F%2Fspinitron.bitbucket.io%2Fspin.css">
+                    </iframe>
+                  </div>
+                </Grid.Column>
+                <Grid.Column computer={16} tablet={16} mobile={6}>
+                  <div className="text-align-center">
+                    <h3 className="padding-tb-10">Support Local Businesses</h3>
+                    <Slideshow images={this.state.underwritingImages}/>
+                  </div>
+                </Grid.Column>
+              </Grid>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column width={15} className="k-divider">
               <div className='k-divider-title'>
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <div><span>Follow Us</span></div>
@@ -172,14 +195,14 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row columns={3}>
-            <Grid.Column stretched>
+            <Grid.Column computer={5} tablet={5} stretched>
               <Segment className='kblue' tertiary>
                 <h3>{'Follow us on Social Media'.toUpperCase()}</h3>
                 {this.getSocialMediaLinks()}
               </Segment>
             </Grid.Column>
 
-            <Grid.Column stretched>
+            <Grid.Column computer={5} tablet={5} stretched>
               <Segment className='kblue' secondary>
                 <h3>RADIO FREE AMERICA ARCHIVES</h3>
                 <Button color='blue' as='a' href='http://www.radiofreeamerica.com/station/kzsc'>
@@ -188,7 +211,7 @@ class Home extends Component{
               </Segment>
             </Grid.Column>
 
-            <Grid.Column stretched>
+            <Grid.Column computer={5} tablet={5} stretched>
               <Segment className='kblue' tertiary>
                 <h3>Like Us On Facebook</h3>
                 <div>
@@ -199,7 +222,7 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column computer='4' tablet='8'>
+            <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Events</h3>
@@ -208,7 +231,16 @@ class Home extends Component{
               {this.getBlogContent(this.props.eventsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8'>
+            <Grid.Column computer='5' tablet='5'>
+              <div className="text-align-center">
+                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                  <h3 className='color-black-default'>Interviews</h3>
+                </NavLink>
+              </div>
+              {this.getBlogContent(this.props.interviewsPosts, 'small')}
+            </Grid.Column>
+
+            <Grid.Column computer='5' tablet='5'>
               <div className="text-align-center">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <h3 className='color-black-default'>Music Charts</h3>
@@ -217,21 +249,6 @@ class Home extends Component{
               {this.getBlogContent(this.props.musicChartsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='4' tablet='8'>
-              <div className="text-align-center">
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <h3 className='color-black-default'>Giveaways</h3>
-                </NavLink>
-              </div>
-              {this.getBlogContent(this.props.giveawaysPosts, 'small')}
-            </Grid.Column>
-
-            <Grid.Column computer='4' tablet='8'>
-              <div className="text-align-center">
-                <div><h3>Support Local Businesses</h3></div>
-                <Slideshow images={this.state.underwritingImages}/>
-              </div>
-            </Grid.Column>
           </Grid.Row>
 
         </Grid>

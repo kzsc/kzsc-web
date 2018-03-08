@@ -40,3 +40,13 @@
   background-repeat:no-repeat !important;
   background-position: center !important;
 }
+
+/* Spinitron Styles BEGIN */
+#spin-iframe {
+    display: block;
+    border: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+/* Spinitron Styles END */

@@ -10,7 +10,7 @@
 import React, {Component} from 'react';
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../logo_dark_orange_sm.png';
+import logo from '../../assets/images/logo1.png';
 import PlayButton from './PlayButton';
 import '../../App.css'
 import './NavBar.css';

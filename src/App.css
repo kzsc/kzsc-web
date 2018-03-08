@@ -37,62 +37,27 @@
 }
 
 /* Margin and Padding Styles BEGIN */
-.no-padding {
-  padding: 0 !important
-}
-.padding-05rem {
-  padding: 0.25rem !important
-}
-.padding-tb-10 {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.padding-tb-1rem {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
-}
-.margin-5 {
-  margin: 5px;
-}
-.margin-t-5 {
-  margin-top: 5px !important;
-}
-.margin-t-70 {
-  margin-top: 70px;
-}
-.margin-t-100 {
-  margin-top: 100px;
-}
-.margin-r-20 {
-  margin-right: 20px;
-}
-.margin-b-10 {
-  margin-bottom: 10px !important;
-}
-.margin-b-20 {
-  margin-bottom: 20px
-}
-.margin-l-20 {
-  margin-left: 20px
-}
+.no-padding { padding: 0 !important }
+.padding-05rem { padding: 0.25rem !important }
+.padding-t-10 { padding-top: 10px; }
+.padding-tb-10 { padding-top: 10px; padding-bottom: 10px; }
+.padding-tb-1rem { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+.margin-5 { margin: 5px; }
+.margin-t-5 { margin-top: 5px !important; }
+.margin-t-70 { margin-top: 70px; }
+.margin-t-100 { margin-top: 100px; }
+.margin-r-20 { margin-right: 20px; }
+.margin-b-10 { margin-bottom: 10px !important; }
+.margin-b-20 { margin-bottom: 20px }
+.margin-l-20 { margin-left: 20px }
 /* Margin and Padding Styles END */
 
 /* Width and Height Styles BEGIN */
-.width-100pc {
-  width: 100%;
-}
-.width-145 {
-  width: 145px !important;
-}
-.width-190 {
-  width: 190px;
-}
-.height-180 {
-  height: 180px;
-}
-.height-300 {
-  height: 300px;
-}
+.width-100pc { width: 100%; }
+.width-145 { width: 145px !important; }
+.width-190 { width: 190px; }
+.height-180 { height: 180px; }
+.height-300 { height: 300px; }
 /* Width and Height Styles BEGIN */
 
 /* Site Wide Styles BEGIN */
@@ -143,7 +108,7 @@
 }
 .k-divider {
   padding-top: 50px;
-  padding-bottom: 30px;
+  padding-bottom: 5px;
 }
 .k-divider .k-divider-title {
   border-top: 6px solid #507b8c;
