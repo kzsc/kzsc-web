@@ -16,6 +16,25 @@ import buttons from './kzsc-buttons.jpg';
 import donate from './donate-img.jpg';
 import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
+/* Donate Product BEGIN */
+const optionsItems = [
+ { key: '88.1', text: '88.1 FM', value: 'eightyeight' },
+ { key: 'daily-fiddy', text: 'Fiddy', value: 'fiddy' },
+ { key: 'buck-a-day', text: 'Buck-a-day', value: 'buckaday' },
+ { key: '50-years-of-kzsc', text: '50 years of KZSC', value: 'fiftyyears' },
+ { key: 'kzsc-sustainer', text: 'KZSC Sustainer', value: 'kzscsustainer' },
+ { key: 'other', text: 'Give What You Can', value: 'other' }
+]
+const optionsDescription = {
+ eightyeight: { desc: 'Celebrate 88.1 FM -- 20,000 watts of good will', price: '88.10' },
+ fiddy: { desc: 'Fund next 50 years of Student-run Community Radio, with a daily "Fiddy" cents', price: '182.50' },
+ buckaday: { desc: 'Put a Susan B Anthony in the slot every day to keep the KZSC Jukebox jumping!', price: '365.00' },
+ fiftyyears: { desc: 'Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50', price: '600.00' },
+ kzscsustainer: { desc: 'Celebrate KZSC FM with a monthly donation of $88.10', price: '1057.20' },
+ other: { desc: 'What value has KZSC brought into your life?', price: '' }
+}
+/* Donate Product END */
+
 const sizes = [
   { key: 's', text: 'Small', value: 'small' },
   { key: 'm', text: 'Medium', value: 'medium' },
@@ -26,31 +45,23 @@ const sizes = [
 
 const productDesc = [
   {
-    key: 'shirt',
-    header: 'KZSC 88 point 1 Tee',
-    img:{shirt},
-    price: 25,
+    key: 'shirt', header: 'KZSC 88 point 1 Tee',
+    img:{shirt}, price: 25,
     desc: "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station."
   },
   {
-    key: 'shirt2',
-    header: 'KZSC 50th Anniversary t-shirt',
-    img:{shirt2},
-    price: 25,
+    key: 'shirt2', header: 'KZSC 50th Anniversary t-shirt',
+    img:{shirt2}, price: 25,
     desc: "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station."
   },
   {
-    key: 'bag',
-    header: 'KZSC Canvas Tote Bag',
-    img:{bag},
-    price: 30,
+    key: 'bag', header: 'KZSC Canvas Tote Bag',
+    img:{bag}, price: 30,
     desc: "One of KZSC’s most enduring and popular designs, the “PEEL SLOWLY AND SEE” Banana Slug was inspired by Andy Warhol’s cover design for the debut LP by The Velvet Underground. Now KZSC offers a revamp of the design on this sturdy canvas tote bag designed to haul LPs, groceries, or whatever you please.  Its 15.5″ x 14.5″ x 7″ roomy design is topped off with generous 11 inch handles for over-the-shoulder style."
   },
   {
-    key: 'buttons',
-    header: 'KZSC Buttons',
-    img:{buttons},
-    price: 20,
+    key: 'buttons', header: 'KZSC Buttons',
+    img:{buttons}, price: 20,
     desc: "Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive."
   }
 ];
@@ -71,7 +82,10 @@ class Donate extends Component {
       ],
       donateHeader: 'Help us keep noncommercial community radio on the air with a secure pledge today!',
       activeDonateButton: 'eightyeight',
-      donateAmounts: []
+      donateAmounts: [],
+      optionDescription: "Please choose an option to learn more about it",
+      itemprice: '0.00',
+      donationEditable: false
     }
   }
 
@@ -225,53 +239,66 @@ class Donate extends Component {
     })
     return(
       <Grid.Row>
-        <Grid.Column computer='13' tablet='14' mobile='16' textAlign='center'>
+        <Grid.Column computer='13' tablet='14' mobile='16'>
+          <h4>Choose your donation amount:</h4>
           {buttons}
         </Grid.Column>
       </Grid.Row>
     )
   }
+  getOptionDescription(a) {
+    console.log('a: ' + a );
+    this.setState({
+      optionDescription: optionsDescription[a].desc,
+      itemprice: optionsDescription[a].price
+    });
+    if( a === 'other' ) {
+      this.setState({ donationEditable: true });
+    } else {
+      this.setState({ donationEditable: false });
+    }
+  }
 
   donateContent() {
     return (
       <Grid.Row>
-        <Grid.Column computer='13' tablet='14' mobile='16' textAlign='center'>
-          <Segment padded>
+        <Grid.Column computer='6' tablet='7' mobile='8'>
+          <Segment color='grey' tertiary padded>
+            <Image src={donate} fluid/>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column computer='6' tablet='7' mobile='8'>
+          <Segment basic>
+            <h2>Be a part of KZSC:</h2>
+            <div>
+              {this.props.productDesc}
+            </div>
+            <Segment padded color='grey' tertiary>
 
-            <Grid columns='equal' divided stackable>
-              <Grid.Row>
+              <Form>
+                <Form.Group inline>
+                  <Form.Field required control={Select} label='Duration' options={optionsItems}
+                   placeholder='Choose an option' onChange={(e, { value }) => this.getOptionDescription(value)} />
+                </Form.Group>
 
-                <Grid.Column>
-                  <img src={donate} alt=""/>
-                </Grid.Column>
+                {this.state.optionDescription}
 
-                <Grid.Column>
-                  <p className="donateDesc">
-                    {this.state.donateDesc}
-                  </p>
+                <Segment compact className='kblue' contentEditable={this.state.donationEditable}>
+                  { this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }
+                </Segment>
 
-                  <hr />
+                <StripeCheckout
+                  name="KZSC Support"
+                  panelLabel="Donation"
+                  amount = {Number(this.state.itemprice) * 100}
+                  billingAddress = {true}
+                  zipCode = {true}
+                  email={this.state.email}
+                  token={this.onToken}
+                  stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
+              </Form>
 
-                  <p>
-                    Amount: ${(this.state.amount/100).toFixed(2)}
-                  </p>
-
-                  <Form className="form-container">
-                    <StripeCheckout
-                    name="KZSC Support"
-                    panelLabel="Donation"
-                    amount = {this.state.amount}
-                    billingAddress = {true}
-                    zipCode = {true}
-                    email={this.state.email}
-                    token={this.onToken}
-                    stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-                  </Form>
-                </Grid.Column>
-
-              </Grid.Row>
-            </Grid>
-
+            </Segment>
           </Segment>
         </Grid.Column>
       </Grid.Row>
@@ -316,6 +343,14 @@ class Donate extends Component {
 
       </Grid.Row>
     );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { merchAmount } = this.state
+
+    if( prevState.merchAmount !== merchAmount ) {
+      console.log(this.state);
+    }
   }
 
   merchandiseCart(){
@@ -369,7 +404,7 @@ class Donate extends Component {
             </Grid.Column>
           </Grid.Row>
 
-          {this.state.activeMenuItem === "donate" ? this.donateButtons() : null }
+          {/* {this.state.activeMenuItem === "donate" ? this.donateButtons() : null } */}
 
           {this.state.activeMenuItem === "donate" ? this.donateContent() : this.merchandiseContent()}
 
