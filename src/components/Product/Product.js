@@ -8,7 +8,8 @@
  */
 
 import React, { Component } from 'react';
-import { Grid, Image, Segment, Form, Select, Button, Menu } from 'semantic-ui-react';
+import { Grid, Image, Segment, Form, Select, Menu } from 'semantic-ui-react';
+import StripeCheckout from 'react-stripe-checkout';
 import './Product.css';
 import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
@@ -73,7 +74,12 @@ class Product extends Component {
                       { this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }
                     </Segment>
 
-                    <Button className='kblue margin-t-5'>Add to Cart</Button>
+                    <Form className="form-container">
+                      <StripeCheckout name="KZSC Support" panelLabel="Donation"
+                        amount = {this.state.itemprice} billingAddress = {true}
+                        zipCode = {true} email={this.state.email}
+                        token={this.onToken} stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
+                    </Form>
                   </Form>
 
                 </Segment>

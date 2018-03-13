@@ -60,21 +60,25 @@
 .height-300 { height: 300px; }
 /* Width and Height Styles BEGIN */
 
+/* */
+.k-h3 {
+  font-size: 1.28571429rem;
+  line-height: 1.28571429em;
+  font-weight: 700;
+  padding: 10px 0;
+  display: block
+}
+/* */
+
 /* Site Wide Styles BEGIN */
 .centered-block {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
-.text-align-center {
-  text-align: center;
-}
-.font-15 {
-  font-size: 15px
-}
-.font-16 {
-  font-size: 16px;
-}
+.text-align-center { text-align: center; }
+.font-15 { font-size: 15px }
+.font-16 { font-size: 16px; }
 .font-size-22 {
   font-size: 22px;
 }
@@ -107,14 +111,15 @@
   height: auto;
 }
 .k-divider {
-  padding-top: 50px;
+  padding-top: 25px;
   padding-bottom: 5px;
 }
 .k-divider .k-divider-title {
   border-top: 6px solid #507b8c;
   margin: 15px 0 0;
 }
-.k-divider .k-divider-title > a > div {
+.k-divider .k-divider-title > a > div,
+.k-divider .k-divider-title > div {
   margin: -12px 0 0;
   text-align: center;
   text-transform: uppercase;
@@ -129,9 +134,7 @@
 /* Site Wide Styles END */
 
 /* Colors BEGIN */
-.color-apple {
-  color: #999999;
-}
+.color-apple { color: #999999; }
 
 .color-android {
   color: #a4c639;

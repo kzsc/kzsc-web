@@ -135,7 +135,7 @@ class App extends Component {
     this.kzscApiGetCategory(requestString, 'blogPosts');
     this.kzscApiGetPostById('38048', 'homeFeaturedContent');
     this.kzscApiGetPostById('36472', 'homeFeaturedContent2');
-    this.kzscApiGet4FromCategory('get_recent_posts/?count=3', 'homeRecentPosts');
+    this.kzscApiGet4FromCategory('get_recent_posts/?count=4', 'homeRecentPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=1', 'homeMusicChartsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=1', 'homeEventsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=17&count=1', 'homeInterviewsPosts');

@@ -69,9 +69,10 @@ class Home extends Component{
   getBlogContentColumn(item, size, c, t) {
     let blogTiles = item.map(post => {
       let categories = post.categories.map(c => {
-        return c.title + ' ';
+        return ' ' + c.title;
       });
-      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      let dateWithSlashes = post.date.replace(/-/g, '/');
+      let description = this.toDateString(dateWithSlashes) + ' / in' + categories + ' / by ' + post.author.name;
       if (!post.thumbnail_images) {
         post['thumbnail_images'] = {
           full: {
@@ -92,9 +93,10 @@ class Home extends Component{
   getBlogContent(item, size) {
     let blogTiles = item.map(post => {
       let categories = post.categories.map(c => {
-        return c.title + ' ';
+        return ' ' + c.title;
       });
-      let description = this.toDateString(post.date) + ' / in ' + categories + '/ by ' + post.author.name;
+      let dateWithSlashes = post.date.replace(/-/g, '/');
+      let description = this.toDateString(dateWithSlashes) + ' / in' + categories + ' / by ' + post.author.name;
       if (!post.thumbnail_images) {
         post['thumbnail_images'] = {
           full: {
@@ -135,61 +137,63 @@ class Home extends Component{
 
           <Grid.Row>
             <Grid.Column computer={11} tablet={11}>
-              {this.getBlogContent(this.props.featuredContent, 'big')}
+
+              {/* Left Column BEGIN */}
+              <Grid stackable>
+                <Grid.Row>
+                  <Grid.Column width={16}>
+                    {this.getBlogContent(this.props.featuredContent, 'big')}
+                  </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row columns='equal'>
+                  {this.getBlogContentColumn(this.props.recentPosts, 'small', '8', '8')}
+                </Grid.Row>
+              </Grid>
+              {/* Left Column END */}
+
             </Grid.Column>
             <Grid.Column width={4} stretched textAlign="center">
-              <div className="text-align-center">
-                <h3 className="padding-tb-10">Featured Shows</h3>
-                <Slideshow images={this.state.showImages}/>
-              </div>
-            </Grid.Column>
-          </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column width={15} className="k-divider">
-              <div className='k-divider-title'>
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <div><span>
-                    Latest From the Blog
-                    <Icon name='angle right' />
-                  </span></div>
-                </NavLink>
-              </div>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row columns='equal'>
-            {this.getBlogContentColumn(this.props.recentPosts, 'small', '5', '5')}
-          </Grid.Row>
+              {/* Right Column BEGIN */}
+              <Grid stackable>
+                <Grid.Row>
+                  <Grid.Column width={16}>
+                    <div className="text-align-center">
+                      <div className="k-h3">Featured Shows</div>
+                      <Slideshow images={this.state.showImages}/>
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column computer={11} tablet={11}>
+                <Grid.Row>
+                  <Grid.Column width={16}>
+                    <div className="text-align-center">
+                      <div className="k-h3">Recent Tracks</div>
+                      <iframe title="rt" id="spin-iframe" className="spin-songs" src="//spinitron.com/public/newestsong.php?num=5&amp;station=kzsc&amp;time=1&amp;tweets=1&amp;stylesheet=%2F%2Fspinitron.bitbucket.io%2Fspin.css">
+                      </iframe>
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
 
-            </Grid.Column>
-            <Grid.Column computer={4} tablet={4}>
-              <Grid>
-                <Grid.Column computer={16} tablet={16} mobile={6}>
-                  <div className="text-align-center">
-                    <h3 className="padding-t-10">Recent Tracks</h3>
-                    <iframe title="rt" id="spin-iframe" className="spin-songs" src="//spinitron.com/public/newestsong.php?num=5&amp;station=kzsc&amp;time=1&amp;tweets=1&amp;stylesheet=%2F%2Fspinitron.bitbucket.io%2Fspin.css">
-                    </iframe>
-                  </div>
-                </Grid.Column>
-                <Grid.Column computer={16} tablet={16} mobile={6}>
-                  <div className="text-align-center">
-                    <h3 className="padding-tb-10">Support Local Businesses</h3>
-                    <Slideshow images={this.state.underwritingImages}/>
-                  </div>
-                </Grid.Column>
+                <Grid.Row>
+                  <Grid.Column width={16}>
+                    <div className="text-align-center">
+                      <div className="k-h3">Support Local Businesses</div>
+                      <Slideshow images={this.state.underwritingImages}/>
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid>
+              {/* Right Column END */}
+
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
             <Grid.Column width={15} className="k-divider">
               <div className='k-divider-title'>
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <div><span>Follow Us</span></div>
-                </NavLink>
+                <div><span>Follow Us</span></div>
               </div>
             </Grid.Column>
           </Grid.Row>
@@ -223,28 +227,40 @@ class Home extends Component{
 
           <Grid.Row>
             <Grid.Column computer='5' tablet='5'>
-              <div className="text-align-center">
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <h3 className='color-black-default'>Events</h3>
-                </NavLink>
+              <div className="text-align-center k-divider">
+                <div className='k-divider-title'>
+                  <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                    <div className='color-black-default'>
+                      <span>Events</span>
+                    </div>
+                  </NavLink>
+                </div>
               </div>
               {this.getBlogContent(this.props.eventsPosts, 'small')}
             </Grid.Column>
 
             <Grid.Column computer='5' tablet='5'>
-              <div className="text-align-center">
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <h3 className='color-black-default'>Interviews</h3>
-                </NavLink>
+              <div className="text-align-center k-divider">
+                <div className='k-divider-title'>
+                  <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                    <div className='color-black-default'>
+                      <span>Interviews</span>
+                    </div>
+                  </NavLink>
+                </div>
               </div>
               {this.getBlogContent(this.props.interviewsPosts, 'small')}
             </Grid.Column>
 
             <Grid.Column computer='5' tablet='5'>
-              <div className="text-align-center">
-                <NavLink to='/blogs' onClick={this.props.scrollToTop}>
-                  <h3 className='color-black-default'>Music Charts</h3>
-                </NavLink>
+              <div className="text-align-center k-divider">
+                <div className='k-divider-title'>
+                  <NavLink to='/blogs' onClick={this.props.scrollToTop}>
+                    <div className='color-black-default'>
+                      <span>Music Charts</span>
+                    </div>
+                  </NavLink>
+                </div>
               </div>
               {this.getBlogContent(this.props.musicChartsPosts, 'small')}
             </Grid.Column>
