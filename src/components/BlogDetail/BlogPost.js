@@ -112,6 +112,8 @@ class BlogPost extends Component {
           }
         }
       }
+      let dateWithSlashes = post.date.replace(/-/g, '/');
+      let dateString = this.toDateString(dateWithSlashes);
       return (
         <Grid.Row key={post.id}>
           <Grid.Column computer={12} tablet={14} mobile={16}>
@@ -120,7 +122,7 @@ class BlogPost extends Component {
             </div>
             <div className="blogDetailTitle" dangerouslySetInnerHTML={{__html: post.title}}></div>
             <div className="blogDetailDescription">
-              {this.toDateString(post.date)} / in {categories} / by {post.author.name}
+              {dateString} / in {categories} / by {post.author.name}
             </div>
             { post.tags.length ? this.getBlogDataTags(post.tags) : null }
             <div className="wordpressHTML" dangerouslySetInnerHTML={{__html: post.content}}></div>
