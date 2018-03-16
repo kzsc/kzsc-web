@@ -439,7 +439,7 @@ class ItemList extends Component{
                     </Form.Group>
                   </Form>
                   <span className="suggested-donation"> Suggested Donation: ${item.price} </span>
-                  <Button className="remove-btn" onClick={() => this.props.remove(item.id)}>Remove</Button>
+                  {/* <Button className="remove-btn" onClick={() => this.props.remove(item.id)}>Remove</Button> */}
                 </div>
               </List.Content>
               <hr />
