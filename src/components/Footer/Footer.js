@@ -60,7 +60,7 @@ class Footer extends Component{
   firstColumn() {
     return (
       <div className="footerColumnOne">
-        <h3>Join Our Mailing List</h3>
+        <div className="footer-title">Join Our Mailing List</div>
 
         <Form inverted>
           <Form.Field label='Email' control='input' placeholder='Email' required/>
@@ -87,7 +87,7 @@ class Footer extends Component{
 
     return (
       <div className="footerColumnTwo">
-        <h3>Latest from the Blog</h3>
+          <div className="footer-title">Latest Posts</div>
 
         <List divided relaxed inverted>
           {links}
@@ -110,7 +110,7 @@ class Footer extends Component{
 
     return (
       <div className="footerColumnThree">
-        <h3>Support Us</h3>
+        <div className="footer-title">Support Us</div>
         <div id="kzsc-footer-support" className="footer-list">
           {pageLinks}
         </div>
@@ -119,23 +119,9 @@ class Footer extends Component{
   }
 
   fourthColumn() {
-    let socialMediaLinksHtml;
-    socialMediaLinksHtml = this.props.socialMediaLinks.map(contact => {
-      //console.log(project);
-      return (
-        <a key={contact.id} href={contact.link} target="_blank" rel="noopener noreferrer">
-          <Icon name={contact.icon} size='big' link/>
-        </a>
-      );
-    });
-
     return (
       <div id="kzsc-footer-contact" className="footerColumnFour">
-        <h3>Contact Us</h3>
-
-        <div>
-          {socialMediaLinksHtml}
-        </div>
+          <div className="footer-title">Contact Us</div>
 
         <div className="padding-tb-10">
           <h4>
@@ -158,11 +144,25 @@ class Footer extends Component{
     )
   }
 
+  socialMediaSection() {
+    let socialMediaLinksHtml;
+    socialMediaLinksHtml = this.props.socialMediaLinks.map(contact => {
+      //console.log(project);
+      return (
+        <a key={contact.id} href={contact.link} target="_blank" rel="noopener noreferrer">
+          <Icon name={contact.icon} size='big' link/>
+        </a>
+      );
+    });
+
+    return socialMediaLinksHtml;
+  }
+
   render(){
     return(
       <div id="kzsc-footer" className="footer">
         <Grid columns='equal' divided inverted padded stackable>
-          <Grid.Row color='grey' textAlign='center' >
+          <Grid.Row color='grey'>
             <Grid.Column>
               <Segment textAlign={'left'} color='grey' inverted >
                 {this.firstColumn()}
@@ -182,6 +182,17 @@ class Footer extends Component{
               <Segment textAlign={'left'} color='grey' inverted>
                 {this.fourthColumn()}
               </Segment>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row color='grey' textAlign='center'>
+            <Grid.Column width={16}>
+              <Segment color='grey' inverted>
+                {this.socialMediaSection()}
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              © 2018 KZSC Santa Cruz. All Rights Reserved
             </Grid.Column>
           </Grid.Row>
         </Grid>
