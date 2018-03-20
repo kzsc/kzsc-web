@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 import { Grid, Image } from 'semantic-ui-react';
 import axios from 'axios';
 import kzscI from '../../assets/images/kzsc.jpg'
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 import './base.css'
 import './kzsc_santa_cruz.css'
 import './shortcodes.css'
@@ -140,7 +139,7 @@ class BlogPost extends Component {
       <div className="BlogPost">
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           {this.getBlogData(this.state.blogdata)}
         </Grid>

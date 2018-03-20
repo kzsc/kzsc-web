@@ -4,6 +4,7 @@
  *  src/components/App.js
  *
  * Properties (props):
+ * Non-commercial, educational public radio station serving the Santa Cruz, San Benito, and Monterey Counties
  *
  * Copyright (c) 2018-present, KZSC Santa Cruz
  * web@kzsc.org
@@ -18,7 +19,7 @@ class Title extends Component {
 
   render(){
     return(
-      <Container className='Title margin-t-100' textAlign='center'>
+      <Container className='Title padding-t-83 padding-b-15' textAlign='center'>
         <Image src={longLogBlue} size="massive" centered />
       </Container>
     );

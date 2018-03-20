@@ -14,7 +14,7 @@ import shirt2 from './kzsc-shirt-50th.jpg';
 import bag from './kzsc-bag.jpg';
 import buttons from './kzsc-buttons.jpg';
 import donate from './donate-img.jpg';
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
+import LeftSideBar from '../LeftSideBar/LeftSideBar';
 
 /* Donate Product BEGIN */
 const optionsItems = [
@@ -75,22 +75,15 @@ class Donate extends Component {
       amount: 8810,
       merchAmount: 0,
       items: [],
-      activeMenuItem: 'donate',
+      activeItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' }
       ],
-      donateHeader: 'Help us keep noncommercial community radio on the air with a secure pledge today!',
       activeDonateButton: 'eightyeight',
-      donateAmounts: [],
       optionDescription: "Please choose an option to learn more about it",
       itemprice: '0.00',
-      donationEditable: false
-    }
-  }
-
-  componentWillMount() {
-    this.setState({
+      donationEditable: false,
       donateAmounts: [
         {id: "88.1", key: "eightyeight", title: "88.1 FM"},
         {id: "daily-fiddy", key: "fiddy", title: 'Daily "Fiddy"'},
@@ -98,8 +91,15 @@ class Donate extends Component {
         {id: "50-years-of-kzsc", key: "fiftyyears", title: "50 years of KZSC"},
         {id: "kzsc-sustainer", key: "kzscsustainer", title: "KZSC Sustainer"},
         {id: "other", key: "other", title: "Other"}
+      ],
+      merchandiseList: [
+        { id: 'shirt', image: shirt },
+        { id: 'bag', image: bag },
+        { id: 'buttons', image: buttons },
+        { id: 'shirt2', image: shirt2 }
       ]
-    })
+    }
+    this.handleChangeDonateOptions = this.handleChangeDonateOptions.bind(this);
   }
 
   onToken = (token) => {
@@ -120,60 +120,6 @@ class Donate extends Component {
     }).then(response => {
       // Return back to user, redirect to another webpage?
     })
-  }
-
-  toggle(value) {
-    if (value !== this.state.content) {
-      this.setState({
-        content: value
-      })
-    }
-  }
-
-  showDesc(e, req, id) {
-    this.setState({ activeDonateButton: id })
-    e.preventDefault();
-    switch (req) {
-      case '88.1':
-        this.setState({
-          donateDesc: "Celebrate 88.1 FM -- 20,000 watts of good will",
-          amount: 8810
-        })
-        break;
-      case 'daily-fiddy':
-        this.setState({
-          donateDesc: "Fund next 50 years of Student-run Community Radio, with a daily \"Fiddy\" cents",
-          amount: 18250
-        })
-        break;
-      case 'buck-a-day':
-        this.setState({
-          donateDesc: "Put a Susan B Anthony in the slot every day to keep the KZSC Jukebox jumping!",
-          amount: 36500
-        })
-        break;
-      case '50-years-of-kzsc':
-        this.setState({
-          donateDesc: "Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50",
-          amount: 60000
-        })
-        break;
-      case 'kzsc-sustainer':
-        this.setState({
-          donateDesc: "Celebrate KZSC FM with a monthly donation of $88.10",
-          amount: 105720
-        })
-        break;
-      case 'other':
-        this.setState({
-          donateDesc: "Donate what you can!",
-          amount: 0.00
-        })
-        break
-      default:
-        console.log("Nothing selected");
-        break;
-    }
   }
 
   /* Get item description */
@@ -228,26 +174,8 @@ class Donate extends Component {
     })
   }
 
-  donateButtons() {
-    let buttons = this.state.donateAmounts.map(d => {
-      return(
-        <Button key={d.key} className='margin-b-10 kblue' size="large" onClick={(e) => this.showDesc(e, d.id, d.key)}
-         active={this.state.activeDonateButton === d.key}>
-          {d.title}
-        </Button>
-      )
-    })
-    return(
-      <Grid.Row>
-        <Grid.Column computer='13' tablet='14' mobile='16'>
-          <h4>Choose your donation amount:</h4>
-          {buttons}
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
+  /* Donate Content BEGIN */
   getOptionDescription(a) {
-    console.log('a: ' + a );
     this.setState({
       optionDescription: optionsDescription[a].desc,
       itemprice: optionsDescription[a].price
@@ -259,88 +187,65 @@ class Donate extends Component {
     }
   }
 
+  handleChangeDonateOptions(event) {
+    let price = event.target.value
+    let priceToNumber = price.replace('$', '')
+    this.setState({itemprice: priceToNumber})
+  }
+
   donateContent() {
     return (
-      <Grid.Row>
-        <Grid.Column computer='6' tablet='7' mobile='8'>
+      <Grid.Row columns="2">
+        <Grid.Column>
           <Segment color='grey' tertiary padded>
             <Image src={donate} fluid/>
           </Segment>
         </Grid.Column>
-        <Grid.Column computer='6' tablet='7' mobile='8'>
-          <Segment basic>
-            <h2>Be a part of KZSC:</h2>
-            <div>
-              {this.props.productDesc}
-            </div>
-            <Segment padded color='grey' tertiary>
+        <Grid.Column>
+          <Segment padded color='grey' tertiary>
+            <Form>
+              <Form.Group inline>
+                <Form.Field required control={Select} label='Duration' options={optionsItems}
+                 placeholder='Choose an option' onChange={(e, { value }) => this.getOptionDescription(value)} />
+              </Form.Group>
 
-              <Form>
-                <Form.Group inline>
-                  <Form.Field required control={Select} label='Duration' options={optionsItems}
-                   placeholder='Choose an option' onChange={(e, { value }) => this.getOptionDescription(value)} />
-                </Form.Group>
+              {this.state.optionDescription}
 
-                {this.state.optionDescription}
+              { this.state.donationEditable ?
+                <input type="text" className='input-segment-kblue' name="amount" width={3} value={ this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice } onChange={this.handleChangeDonateOptions} />
+                :
+                <Segment compact className='kblue'>{this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }</Segment>
+              }
 
-                <Segment compact className='kblue' contentEditable={this.state.donationEditable}>
-                  { this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }
-                </Segment>
-
-                <StripeCheckout
-                  name="KZSC Support"
-                  panelLabel="Donation"
-                  amount = {Number(this.state.itemprice) * 100}
-                  billingAddress = {true}
-                  zipCode = {true}
-                  email={this.state.email}
-                  token={this.onToken}
-                  stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-              </Form>
-
-            </Segment>
+              <StripeCheckout
+                name="KZSC Support"
+                panelLabel="Donation"
+                amount = {Number(this.state.itemprice) * 100}
+                billingAddress = {true}
+                zipCode = {true}
+                email={this.state.email}
+                token={this.onToken}
+                stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
+            </Form>
           </Segment>
         </Grid.Column>
       </Grid.Row>
     )
   }
+  /* Donate Content END */
 
   merchandiseContent() {
     return (
       <Grid.Row>
-
-        <Grid.Column computer='3' tablet='7' mobile='8' textAlign='center'>
-          <div>
-            <Button className="merch-btn" onClick={() => this.addToCart('shirt')} >
-              <img className="images" src={shirt} alt=""/>
-            </Button>
-          </div>
-        </Grid.Column>
-
-        <Grid.Column computer='3' tablet='7' mobile='8' textAlign='center'>
-          <div>
-            <Button className="merch-btn" onClick={() => this.addToCart('bag')}>
-              <img className="images" src={bag} alt=""/>
-            </Button>
-          </div>
-        </Grid.Column>
-
-        <Grid.Column computer='3' tablet='7' mobile='8' textAlign='center'>
-          <div>
-            <Button className="merch-btn" onClick={() => this.addToCart('buttons')}>
-              <img className="images" src={buttons} alt=""/>
-            </Button>
-          </div>
-        </Grid.Column>
-
-        <Grid.Column computer='3' tablet='7' mobile='8' textAlign='center'>
-          <div>
-            <Button className="merch-btn" onClick={() => this.addToCart('shirt2')} >
-              <img className="images" src={shirt2} alt=""/>
-            </Button>
-          </div>
-        </Grid.Column>
-
+        {this.state.merchandiseList.map((item) =>
+          <Grid.Column key={item.id} computer='4' tablet='8' mobile='8' textAlign='center'>
+            <div>
+              <Button className="merch-btn" onClick={() => this.addToCart(item.id)} >
+                <img className="images" src={item.image} alt=""/>
+              </Button>
+            </div>
+          </Grid.Column>
+        )}
       </Grid.Row>
     );
   }
@@ -378,37 +283,37 @@ class Donate extends Component {
     )
   }
 
-  handleItemClick(name) {
-    let donateHeaderString;
-    if( name === 'donate' ) {
-      donateHeaderString = 'Help us keep noncommercial community radio on the air with a secure pledge today!';
-    } else if ( name === 'merch' ) {
-      donateHeaderString = 'Help us keep noncommercial community radio on the air by donating today!';
-    }
-    this.setState({
-      activeMenuItem: name,
-      donateHeader: donateHeaderString
-    })
-  }
+  handleLeftMenuItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     return (
       <div>
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          <Grid.Row>
+            <Grid.Column computer='3' tablet='3' mobile='16'>
+              <LeftSideBar items={this.state.menuItems} active={this.state.activeItem} handleItemClick={this.handleLeftMenuItemClick.bind(this)}/>
+            </Grid.Column>
 
-          <Grid.Row className="div-donate">
-            <Grid.Column computer='13' tablet='14' mobile='16' textAlign='center'>
-              <span className='donate-header'>{this.state.donateHeader}</span>
+            <Grid.Column computer='12' tablet='12' mobile='16'>
+              <h3>
+                {this.state.activeItem === "donate" ?
+                  'Help us keep noncommercial community radio on the air with a secure pledge today!'
+                  :
+                  'Help us keep noncommercial community radio on the air by donating today!'
+                }
+              </h3>
+
+              <Grid stackable>
+                {this.state.activeItem === "donate" ? this.donateContent() : this.merchandiseContent()}
+              </Grid>
+
             </Grid.Column>
           </Grid.Row>
 
-          {/* {this.state.activeMenuItem === "donate" ? this.donateButtons() : null } */}
-
-          {this.state.activeMenuItem === "donate" ? this.donateContent() : this.merchandiseContent()}
-
-          {this.state.activeMenuItem === "merch" ? this.merchandiseCart() : null }
+          <Grid.Row>
+            {this.state.activeItem === "merch" ? this.merchandiseCart() : null }
+          </Grid.Row>
 
         </Grid>
 

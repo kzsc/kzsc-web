@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 import { Segment, Grid, Button } from 'semantic-ui-react'
 import Tile from '../Tile/Tile';
 import kzscI from '../../assets/images/kzsc.jpg'
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Blogs extends Component {
   constructor(props) {
@@ -135,7 +134,7 @@ class Blogs extends Component {
       <div className="Blogs">
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           <Grid.Row>
             <Grid.Column width={16}>

@@ -8,7 +8,6 @@
 import React, { Component } from 'react';
 import { Grid, Table, Segment, Icon } from 'semantic-ui-react';
 import './Listen.css';
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Listen extends Component {
 
@@ -175,12 +174,17 @@ class Listen extends Component {
       <div className="listen">
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           {this.state.activeMenuItem === 'listen' ? this.infoListen() : null }
           {this.state.activeMenuItem === 'downloadable' ? this.infoDownloadable() : null }
           {this.state.activeMenuItem === 'phone' ? this.infoPhone() : null }
           {this.state.activeMenuItem === 'news' ? this.infoNews() : null }
+
+          {this.infoListen()}
+          {this.infoDownloadable()}
+          {this.infoPhone()}
+          {this.infoNews()}
 
         </Grid>
       </div>

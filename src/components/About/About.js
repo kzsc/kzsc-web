@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 import { Grid, Button, Icon, Image, Form, Select, TextArea, Segment, Container, Reveal } from 'semantic-ui-react'
 import './About.css';
 import govboardmembers from './govboardmembers.json';
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class About extends Component{
 
@@ -250,14 +249,21 @@ class About extends Component{
       <div className="About">
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
-          {this.state.activeMenuItem === 'about' ? this.infoMissionStatement() : null }
+          {/* {this.state.activeMenuItem === 'about' ? this.infoMissionStatement() : null }
           {this.state.activeMenuItem === 'about' ? this.infoPurpose() : null }
           {this.state.activeMenuItem === 'psa' ? this.infoPsa() : null }
           {this.state.activeMenuItem === 'contact' ? this.infoGetInTouch() : null }
           {this.state.activeMenuItem === 'contact' ? this.infoGetMusicDirectors() : null }
-          {this.state.activeMenuItem === 'contact' ? this.infoGetGovMembers() : null }
+          {this.state.activeMenuItem === 'contact' ? this.infoGetGovMembers() : null } */}
+
+          {this.infoMissionStatement()}
+          {this.infoPurpose()}
+          {this.infoPsa()}
+          {this.infoGetInTouch()}
+          {this.infoGetMusicDirectors()}
+          {this.infoGetGovMembers()}
 
           <Grid.Row>
             <Grid.Column computer='12' tablet='14' mobile='16'>

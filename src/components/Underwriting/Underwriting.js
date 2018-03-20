@@ -10,7 +10,6 @@ import { NavLink } from 'react-router-dom';
 import { Grid, Segment, Icon, Button } from 'semantic-ui-react';
 import './Underwriting.css';
 import underwritersList from './underwritersList.json';
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Underwriting extends Component{
 
@@ -74,7 +73,7 @@ class Underwriting extends Component{
 
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           <Grid.Row>
             <Grid.Column width={16} textAlign='center'>

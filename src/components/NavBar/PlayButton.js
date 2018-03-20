@@ -27,14 +27,14 @@ class PlayButton extends Component {
   }
 
   componentWillMount(){
-    
+
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { playing } = this.state
 
     if( prevState.playing !== playing ) {
-      console.log(this.state);
+      // console.log(this.state);
     }
   }
 
@@ -59,19 +59,19 @@ class PlayButton extends Component {
 
   showPlay() {
     return (
-      <Icon size="big" name="video play outline" color="red" fitted link/>
+      <Icon size="big" name="video play outline" color="black" fitted link/>
     )
   };
 
   showPause() {
     return (
-      <Icon size="big" name="pause circle outline" color="red" fitted link/>
+      <Icon size="big" name="pause circle outline" color="black" fitted link/>
     )
   };
 
   getCurrentShowInfo() {
     axios.get('http://localhost:3001/spinitron').then(res => {
-      console.log(res);
+      // console.log(res);
       let showUsers = res.ShowUsers.map(dj => {
         return ' ' + dj.DJName
       })

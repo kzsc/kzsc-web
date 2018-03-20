@@ -26,11 +26,11 @@ class NavBarMobile extends Component{
         { to: '/listen', name: 'listen', title: 'Listen' },
         { to: '/blogs', name: 'blog', title: 'Blog' },
         { to: '/about', name: 'about', title: 'About' },
-        { to: '/concert', name: 'concert', title: 'Concert' },
+        { to: '/concert', name: 'concert', title: 'Concert Calendar' },
         { to: '/psa', name: 'psa', title: 'Psa' },
-        { to: '/schedule', name: 'schedule', title: 'Schedule' },
-        { to: '/sponser', name: 'sponser', title: 'Sponser' },
-        { to: '/studio', name: 'studio', title: 'Studio' }
+        { to: '/schedule', name: 'schedule', title: 'Program Schedule' },
+        { to: '/underwriting', name: 'underwriting', title: 'Business Underwriting' },
+        { to: '/studio', name: 'studio', title: 'Studio Rental' },
       ]
     }
   }
@@ -74,7 +74,7 @@ class NavBarMobile extends Component{
             </Menu.Item>
             <Menu.Item className="center">
               <Icon className="clickable-icon" size="big" name="sidebar"
-              color="red" onClick={this.toggleNavBar.bind(this)} fitted/>
+              color="black" onClick={this.toggleNavBar.bind(this)} fitted/>
             </Menu.Item>
           </Menu.Menu>
         </Menu>

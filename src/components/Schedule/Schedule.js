@@ -7,7 +7,6 @@
 
 import React, {Component} from 'react';
 import { Button, Grid, Segment, Table, Icon } from 'semantic-ui-react';
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 import scheduleData from './scheduleData.json'
 
 import './Schedule.css';
@@ -140,6 +139,19 @@ class Schedule extends Component {
     )
   }
 
+  getWeeklyColumns() {
+    let columns = this.state.daysOfWeek.map(d =>
+      <Table.Cell className="no-padding">
+        <Table columns={1} basic='very'>
+          <Table.Body>
+            {this.getRegularShowsInfoTable(d.id)}
+          </Table.Body>
+        </Table>
+      </Table.Cell>
+    )
+    return columns
+  }
+
   weeklyContent2() {
     return (
       <div className="div-calendar">
@@ -153,61 +165,7 @@ class Schedule extends Component {
           <Table.Body>
             <Table.Row>
 
-              <Table.Cell className="no-padding">
-                <Table columns={1} basic='very'>
-                  <Table.Body>
-                    {this.getRegularShowsInfoTable("Sun")}
-                  </Table.Body>
-                </Table>
-              </Table.Cell>
-
-              <Table.Cell className="no-padding">
-                <Table columns={1} basic='very'>
-                  <Table.Body>
-                    {this.getRegularShowsInfoTable("Mon")}
-                  </Table.Body>
-                </Table>
-              </Table.Cell>
-
-              <Table.Cell className="no-padding">
-                <Table columns={1} basic='very'>
-                  <Table.Body>
-                    {this.getRegularShowsInfoTable("Tue")}
-                  </Table.Body>
-                </Table>
-              </Table.Cell>
-
-              <Table.Cell className="no-padding">
-                <Table columns={1} basic='very'>
-                  <Table.Body>
-                    {this.getRegularShowsInfoTable("Wed")}
-                  </Table.Body>
-                </Table>
-              </Table.Cell>
-
-              <Table.Cell className="no-padding">
-                <Table columns={1} basic='very'>
-                  <Table.Body>
-                    {this.getRegularShowsInfoTable("Thu")}
-                  </Table.Body>
-                </Table>
-              </Table.Cell>
-
-              <Table.Cell className="no-padding">
-                <Table columns={1} basic='very'>
-                  <Table.Body>
-                    {this.getRegularShowsInfoTable("Fri")}
-                  </Table.Body>
-                </Table>
-              </Table.Cell>
-
-              <Table.Cell className="no-padding">
-                <Table columns={1} basic='very'>
-                  <Table.Body>
-                    {this.getRegularShowsInfoTable("Sat")}
-                  </Table.Body>
-                </Table>
-              </Table.Cell>
+              {this.getWeeklyColumns()}
 
             </Table.Row>
           </Table.Body>
@@ -221,7 +179,7 @@ class Schedule extends Component {
       <div className="Schedule">
         <Grid padded centered stackable>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           <Grid.Row>
             <Grid.Column computer='14' tablet='14' mobile='16'>
