@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import { Button, Form, Select, Grid, List, Image, Segment } from 'semantic-ui-react';
+import { Button, Form, Select, Grid, Image, Segment, Popup, Dropdown, Input, Icon } from 'semantic-ui-react';
 import StripeCheckout from 'react-stripe-checkout';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
@@ -15,96 +15,58 @@ import bag from './kzsc-bag.jpg';
 import buttons from './kzsc-buttons.jpg';
 import donate from './donate-img.jpg';
 import LeftSideBar from '../LeftSideBar/LeftSideBar';
-
-/* Donate Product BEGIN */
-const optionsItems = [
- { key: '88.1', text: '88.1 FM', value: 'eightyeight' },
- { key: 'daily-fiddy', text: 'Fiddy', value: 'fiddy' },
- { key: 'buck-a-day', text: 'Buck-a-day', value: 'buckaday' },
- { key: '50-years-of-kzsc', text: '50 years of KZSC', value: 'fiftyyears' },
- { key: 'kzsc-sustainer', text: 'KZSC Sustainer', value: 'kzscsustainer' },
- { key: 'other', text: 'Give What You Can', value: 'other' }
-]
-const optionsDescription = {
- eightyeight: { desc: 'Celebrate 88.1 FM -- 20,000 watts of good will', price: '88.10' },
- fiddy: { desc: 'Fund next 50 years of Student-run Community Radio, with a daily "Fiddy" cents', price: '182.50' },
- buckaday: { desc: 'Put a Susan B Anthony in the slot every day to keep the KZSC Jukebox jumping!', price: '365.00' },
- fiftyyears: { desc: 'Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50', price: '600.00' },
- kzscsustainer: { desc: 'Celebrate KZSC FM with a monthly donation of $88.10', price: '1057.20' },
- other: { desc: 'What value has KZSC brought into your life?', price: '' }
-}
-/* Donate Product END */
-
-const sizes = [
-  { key: 's', text: 'Small', value: 'small' },
-  { key: 'm', text: 'Medium', value: 'medium' },
-  { key: 'l', text: 'Large', value: 'large' },
-  { key: 'xl', text: 'X-Large', value: 'x-large' },
-  { key: '2xl', text: '2XL', value: '2x-large' }
-];
-
-const productDesc = [
-  {
-    key: 'shirt', header: 'KZSC 88 point 1 Tee',
-    img:{shirt}, price: 25,
-    desc: "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station."
-  },
-  {
-    key: 'shirt2', header: 'KZSC 50th Anniversary t-shirt',
-    img:{shirt2}, price: 25,
-    desc: "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station."
-  },
-  {
-    key: 'bag', header: 'KZSC Canvas Tote Bag',
-    img:{bag}, price: 30,
-    desc: "One of KZSC’s most enduring and popular designs, the “PEEL SLOWLY AND SEE” Banana Slug was inspired by Andy Warhol’s cover design for the debut LP by The Velvet Underground. Now KZSC offers a revamp of the design on this sturdy canvas tote bag designed to haul LPs, groceries, or whatever you please.  Its 15.5″ x 14.5″ x 7″ roomy design is topped off with generous 11 inch handles for over-the-shoulder style."
-  },
-  {
-    key: 'buttons', header: 'KZSC Buttons',
-    img:{buttons}, price: 20,
-    desc: "Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive."
-  }
-];
+import donateData from './donateData.json';
+import uuid from 'uuid';
+import Cart from './Cart'
 
 class Donate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: "donate",
-      donateDesc: "Celebrate 88.1 FM -- 20,000 watts of good will",
       amount: 8810,
       merchAmount: 0,
-      items: [],
+      itemsInCart: [],
       activeItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
-        { name: 'merch', title: 'Merchandise' }
+        { name: 'merch', title: 'Merchandise' },
+        { name: "cart", title: "Your Cart", label: '0' }
       ],
       activeDonateButton: 'eightyeight',
       optionDescription: "Please choose an option to learn more about it",
       itemprice: '0.00',
       donationEditable: false,
-      donateAmounts: [
-        {id: "88.1", key: "eightyeight", title: "88.1 FM"},
-        {id: "daily-fiddy", key: "fiddy", title: 'Daily "Fiddy"'},
-        {id: "buck-a-day", key: "buckaday", title: "Buck-a-day"},
-        {id: "50-years-of-kzsc", key: "fiftyyears", title: "50 years of KZSC"},
-        {id: "kzsc-sustainer", key: "kzscsustainer", title: "KZSC Sustainer"},
-        {id: "other", key: "other", title: "Other"}
-      ],
+      quantity: 1,
+      size: 'small',
       merchandiseList: [
-        { id: 'shirt', image: shirt },
-        { id: 'bag', image: bag },
-        { id: 'buttons', image: buttons },
-        { id: 'shirt2', image: shirt2 }
+        {
+          id: 'shirt', image: shirt, title: 'KZSC 88 point 1 Tee', price: 25, sizes: true, merchPopupIsOpen: false,
+          desc: 'KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station'
+        },
+        {
+          id: 'bag', image: bag, title: 'KZSC Canvas Tote Bag', price: 30, sizes: false, merchPopupIsOpen: false,
+          desc: 'One of KZSC’s most enduring and popular designs, the “PEEL SLOWLY AND SEE” Banana Slug was inspired by Andy Warhol’s cover design for the debut LP by The Velvet Underground. Now KZSC offers a revamp of the design on this sturdy canvas tote bag designed to haul LPs, groceries, or whatever you please.  Its 15.5″ x 14.5″ x 7″ roomy design is topped off with generous 11 inch handles for over-the-shoulder style'
+        },
+        {
+          id: 'buttons', image: buttons, title: 'KZSC Buttons', price: 10, sizes: false, merchPopupIsOpen: false,
+          desc: 'Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive'
+        },
+        {
+          id: 'shirt2', image: shirt2, title: 'KZSC 50th Anniversary T-shirt', price: 25, sizes: true, merchPopupIsOpen: false,
+          desc: 'KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station'
+        }
       ]
     }
-    this.handleChangeDonateOptions = this.handleChangeDonateOptions.bind(this);
+    this.handleChangeDonateOptions = this.handleChangeDonateOptions.bind(this)
+    this.updateSize = this.updateSize.bind(this)
+    this.updateQuantity = this.updateQuantity.bind(this)
+    this.removeItem = this.removeItem.bind(this)
+    this.handleQuantityChangeMerchAmount = this.handleQuantityChangeMerchAmount.bind(this)
   }
 
   onToken = (token) => {
     var dAmount = 0;
-    if(this.state.content === "donate"){
+    if(this.state.activeItem === "donate"){
       dAmount = this.state.amount;
     } else{
       dAmount = this.state.merchAmount;
@@ -122,63 +84,11 @@ class Donate extends Component {
     })
   }
 
-  /* Get item description */
-  getItem(value){
-    for(let i = 0; i < productDesc.length; i++){
-      if(value === productDesc[i].key){
-        return productDesc[i];
-      }
-    }
-  }
-
-  /* Check that the current item selected is not already in cart */
-  notinCart(arr, value){
-    if(arr.length !== 0){
-      for(let i = 0; i < arr.length; i++){
-        if(arr[i].id === value ){
-            return false;
-        }
-      }
-    }
-    return true;
-  }
-
-  /* Add item to the cart */
-  addToCart(value){
-    let arr = this.state.items;
-    let item = this.getItem(value);
-    if(this.notinCart(arr, value)){
-      arr.push({ id: item.key, header: item.header, img: item.img, price: item.price, desc: item.desc});
-      this.setState({
-        items: arr
-      })
-      this.setState({
-        merchAmount: this.state.merchAmount + item.price * 100
-      });
-    }
-  }
-
-  /* Remove item from cart */
-  removeItem(value){
-    let arr = this.state.items;
-    let itemPrice = 0;
-    for(let i = 0; i < arr.length; i++){
-      if(arr[i].id === value){
-        itemPrice = arr[i].price;
-        arr.splice(i, 1);
-      }
-    }
-    this.setState({
-      items: arr,
-      merchAmount: this.state.merchAmount - itemPrice *100
-    })
-  }
-
   /* Donate Content BEGIN */
   getOptionDescription(a) {
     this.setState({
-      optionDescription: optionsDescription[a].desc,
-      itemprice: optionsDescription[a].price
+      optionDescription: donateData.optionsDescription[a].desc,
+      itemprice: donateData.optionsDescription[a].price
     });
     if( a === 'other' ) {
       this.setState({ donationEditable: true });
@@ -205,7 +115,7 @@ class Donate extends Component {
           <Segment padded color='grey' tertiary>
             <Form>
               <Form.Group inline>
-                <Form.Field required control={Select} label='Duration' options={optionsItems}
+                <Form.Field required control={Select} label='Duration' options={donateData.optionsItems}
                  placeholder='Choose an option' onChange={(e, { value }) => this.getOptionDescription(value)} />
               </Form.Group>
 
@@ -234,38 +144,141 @@ class Donate extends Component {
   }
   /* Donate Content END */
 
+  /* Merchandise Content BEGIN */
+  merchPopupHandleOpen(i) {
+    let merchandiseListTemp = this.state.merchandiseList
+    let merchTemp = merchandiseListTemp[i] // The item that was opened
+    merchTemp.merchPopupIsOpen = true
+    this.setState({ merchandiseList: merchandiseListTemp })
+  }
+
+  merchPopupHandleClose(i) {
+    let merchandiseListTemp = this.state.merchandiseList
+    let merchTemp = merchandiseListTemp[i] // The item that was opened
+    merchTemp.merchPopupIsOpen = false
+    this.setState({ merchandiseList: merchandiseListTemp })
+  }
+
+  updateSize = (e, { value }) => this.setState({ size: value })
+
+  updateQuantity(event) {
+    this.setState({ quantity: event.target.value })
+  }
+
   merchandiseContent() {
     return (
       <Grid.Row>
-        {this.state.merchandiseList.map((item) =>
-          <Grid.Column key={item.id} computer='4' tablet='8' mobile='8' textAlign='center'>
-            <div>
-              <Button className="merch-btn" onClick={() => this.addToCart(item.id)} >
-                <img className="images" src={item.image} alt=""/>
-              </Button>
-            </div>
+        {this.state.merchandiseList.map((item, index) =>
+          <Grid.Column key={item.id} width='8' textAlign='center'>
+            <Popup className="merchPopup" on='click' basic wide='very'
+              open={item.merchPopupIsOpen} onOpen={this.merchPopupHandleOpen.bind(this, index)} onClose={this.merchPopupHandleClose.bind(this, index)}
+              trigger={
+                <Button>
+                  <Image as='a' size='medium' src={item.image} alt="" />
+                  <h4>
+                    {item.title}<br />
+                    ${(item.price).toFixed(2)}
+                  </h4>
+                </Button>
+              }
+              content={
+                <Grid padded centered stackable>
+                  <Grid.Row>
+                    <Grid.Column width={5}>
+                      <Image size='medium' src={item.image} alt="" />
+                    </Grid.Column>
+                    <Grid.Column width={11}>
+                      <h3>{item.title}</h3>
+                      <h4>${item.price}</h4>
+                      {item.sizes ? <h5>Size: <Dropdown value={this.state.size} selection options={donateData.sizes} onChange={this.updateSize}/></h5> : null}
+                      <h5>Quantity: <Input type="number" value={this.state.quantity} onChange={this.updateQuantity}/></h5>
+                      <p>{item.desc}</p>
+                      <Button icon labelPosition='left' onClick={() => this.addToCart(item, index, this.state.size, this.state.quantity)}>
+                        <Icon name='plus' /> Add to cart
+                      </Button>
+                      <Button icon labelPosition='right' onClick={this.merchPopupHandleClose.bind(this, index)}>
+                        <Icon name='cancel' /> Cancel
+                      </Button>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              }
+            />
           </Grid.Column>
         )}
       </Grid.Row>
-    );
+    )
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { merchAmount } = this.state
+  /* Add item to the cart */
+  addToCart(item, index, size, quantity) {
+    var itemsArray = this.state.itemsInCart;
+    var itemTemp = Object.assign({}, item)
+    itemTemp.key = uuid.v4()
+    itemTemp.size = size
+    itemTemp.quantity = quantity
+    itemsArray.push(itemTemp)
+    this.setState({
+      itemsInCart: itemsArray,
+      merchAmount: this.state.merchAmount + ( (item.price * 100) * quantity)
+    })
+    // Update Left Side Bar
+    let length = this.state.itemsInCart.length
+    this.setState({
+      menuItems: [
+        { name: 'donate', title: 'Donate' },
+        { name: 'merch', title: 'Merchandise' },
+        { name: "cart", title: "Your Cart", label: length }
+      ]
+    })
+    // Reset size and quantity
+    this.setState({
+      size: 'small', quantity: '1'
+    })
+    // Close Merch Popup
+    let merchandiseListTemp = this.state.merchandiseList
+    let merchTemp = merchandiseListTemp[index] // The item that was opened
+    merchTemp.merchPopupIsOpen = false
+  }
+  /* Merchandise Content END */
 
-    if( prevState.merchAmount !== merchAmount ) {
-      console.log(this.state);
+  /* Remove item from cart */
+  removeItem(value){
+    let arr = this.state.itemsInCart;
+    let itemPrice = 0;
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i].id === value){
+        itemPrice = arr[i].price;
+        arr.splice(i, 1);
+      }
+    }
+    this.setState({
+      itemsInCart: arr,
+      merchAmount: this.state.merchAmount - itemPrice * 100,
+      menuItems: [
+        { name: 'donate', title: 'Donate' },
+        { name: 'merch', title: 'Merchandise' },
+        { name: "cart", title: "Your Cart", label: arr.length }
+      ]
+    })
+  }
+
+  handleQuantityChangeMerchAmount(plusOrMinus, price) {
+    if(plusOrMinus === "plus") {
+      this.setState({ merchAmount: this.state.merchAmount + price * 100 })
+    } else if(plusOrMinus === 'minus') {
+      this.setState({ merchAmount: this.state.merchAmount - price * 100 })
     }
   }
 
-  merchandiseCart(){
+  cartContent() {
     return(
       <Grid.Row>
-        <Grid.Column computer='3' tablet='7' mobile='8' textAlign='center'>
-          <ItemList items={this.state.items} remove={this.removeItem}/>
+        <Grid.Column width='16'>
+          <Cart items={this.state.itemsInCart} remove={this.removeItem} onQuantityChange={this.handleQuantityChangeMerchAmount}/>
         </Grid.Column>
 
-        <Grid.Column computer='3' tablet='7' mobile='8' textAlign='center'>
+        <Grid.Column width='16'>
           <div className="subtotal">Subtotal {(this.state.merchAmount/100).toFixed(2)} </div>
           <Form className="merch-form form-container">
             <StripeCheckout
@@ -283,7 +296,9 @@ class Donate extends Component {
     )
   }
 
+  /* LeftSideBar Event BEGIN */
   handleLeftMenuItemClick = (e, { name }) => this.setState({ activeItem: name })
+  /* LeftSideBar Event END */
 
   render() {
     return (
@@ -297,62 +312,27 @@ class Donate extends Component {
 
             <Grid.Column computer='12' tablet='12' mobile='16'>
               <h3>
-                {this.state.activeItem === "donate" ?
-                  'Help us keep noncommercial community radio on the air with a secure pledge today!'
-                  :
-                  'Help us keep noncommercial community radio on the air by donating today!'
-                }
+                {this.state.activeItem === "donate" ? "Help us keep noncommercial community radio on the air with a secure pledge today!" : null }
+                {this.state.activeItem === "merch"  ? "Help us keep noncommercial community radio on the air by donating today!" : null }
+                {this.state.activeItem === "cart"   ? "Review the items in your cart" : null }
               </h3>
+              <p>
+                {this.state.activeItem === "donate" ? "Choose from our options or select 'Give What You Can' below" : null }
+                {this.state.activeItem === "merch"  ? "Click on an item below to view a description and options, then checkout using the left side bar" : null }
+              </p>
 
               <Grid stackable>
-                {this.state.activeItem === "donate" ? this.donateContent() : this.merchandiseContent()}
+                {this.state.activeItem === "donate" ? this.donateContent() : null}
+                {this.state.activeItem === "merch"  ? this.merchandiseContent() : null}
+                {this.state.activeItem === "cart"   ? this.cartContent() : null}
               </Grid>
-
             </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            {this.state.activeItem === "merch" ? this.merchandiseCart() : null }
           </Grid.Row>
 
         </Grid>
 
       </div>
-    );
-  }
-}
-
-class ItemList extends Component{
-  render(){
-    return (
-      <div>
-        <h1> Current Cart </h1>
-        <List>
-          {this.props.items.map(item => (
-            <List.Item key={item.id} className="list-item">
-              <List.Content>
-                <div className="item-header">
-                  <Image className="list-image" src={item.img[item.id]} />
-                  <List.Header className="list-header"> {item.header} </List.Header>
-                </div>
-                <List.Description className="list-description"> {item.desc} </List.Description>
-                <div>
-                  <Form>
-                    <Form.Group inline widths='4'>
-                      <Form.Input label="Quantity" type="number" placeholder="1" />
-                      {item.header === "KZSC Buttons" ? <span> </span>: <Form.Field label="Size" control={Select} options={sizes} placeholder="Medium" />}
-                    </Form.Group>
-                  </Form>
-                  <span className="suggested-donation"> Suggested Donation: ${item.price} </span>
-                  {/* <Button className="remove-btn" onClick={() => this.props.remove(item.id)}>Remove</Button> */}
-                </div>
-              </List.Content>
-              <hr />
-            </List.Item>
-          ))}
-        </List>
-      </div>
-    );
+    )
   }
 }
 

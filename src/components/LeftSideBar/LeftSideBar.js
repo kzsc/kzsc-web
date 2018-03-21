@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Label } from 'semantic-ui-react'
 
 class LeftSideBar extends Component {
 
@@ -16,6 +16,7 @@ class LeftSideBar extends Component {
                    name={item.name}
                    active={this.props.active === item.name}
                    onClick={this.props.handleItemClick}>
+          {item.label ? <Label className='kblue'>{item.label}</Label> : null}
           {item.title}
         </Menu.Item>
       )
