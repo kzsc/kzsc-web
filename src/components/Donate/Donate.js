@@ -6,36 +6,35 @@
  */
 
 import React, { Component } from 'react';
-import { Button, Form, Select, Grid, Image, Segment, Popup, Dropdown, Input, Icon } from 'semantic-ui-react';
+import { Button, Form, Grid, Image, Popup, Dropdown, Input, Icon } from 'semantic-ui-react';
 import StripeCheckout from 'react-stripe-checkout';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
 import shirt2 from './kzsc-shirt-50th.jpg';
 import bag from './kzsc-bag.jpg';
 import buttons from './kzsc-buttons.jpg';
-import donate from './donate-img.jpg';
 import LeftSideBar from '../LeftSideBar/LeftSideBar';
 import donateData from './donateData.json';
 import uuid from 'uuid';
 import Cart from './Cart'
+import Donation from './Donation'
 
 class Donate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: 8810,
+      donationAmount: 0,
       merchAmount: 0,
       itemsInCart: [],
+
+      amount: 0,
       activeItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' },
-        { name: "cart", title: "Your Cart", label: '0' }
+        { name: "cart", title: "Your Cart", label: '0' },
       ],
-      activeDonateButton: 'eightyeight',
-      optionDescription: "Please choose an option to learn more about it",
       itemprice: '0.00',
-      donationEditable: false,
       quantity: 1,
       size: 'small',
       merchandiseList: [
@@ -57,21 +56,29 @@ class Donate extends Component {
         }
       ]
     }
-    this.handleChangeDonateOptions = this.handleChangeDonateOptions.bind(this)
     this.updateSize = this.updateSize.bind(this)
     this.updateQuantity = this.updateQuantity.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.handleQuantityChangeMerchAmount = this.handleQuantityChangeMerchAmount.bind(this)
+    this.updateDonationAmount = this.updateDonationAmount.bind(this)
+  }
+
+  /* updateDonationAmount: updates donation price (not used in Donate Component) */
+  updateDonationAmount(amount) {
+    this.setState({donationAmount: amount})
+  }
+
+  /* updateMerchAmount: uses items in cart array to update total cart price */
+  updateMerchAmount() {
+    let merchAmountArray = this.state.itemsInCart.reduce((sum,item) => {
+      return sum + (Number(item.price) * Number(item.quantity))
+    }, 0)
+    return merchAmountArray
   }
 
   onToken = (token) => {
     var dAmount = 0;
-    if(this.state.activeItem === "donate"){
-      dAmount = this.state.amount;
-    } else{
-      dAmount = this.state.merchAmount;
-    }
-    console.log(token);
+    dAmount = this.state.merchAmount;
     fetch('/payment', {
       method: 'POST',
       headers: new Headers({'content-type': 'application/json'}),
@@ -83,66 +90,6 @@ class Donate extends Component {
       // Return back to user, redirect to another webpage?
     })
   }
-
-  /* Donate Content BEGIN */
-  getOptionDescription(a) {
-    this.setState({
-      optionDescription: donateData.optionsDescription[a].desc,
-      itemprice: donateData.optionsDescription[a].price
-    });
-    if( a === 'other' ) {
-      this.setState({ donationEditable: true });
-    } else {
-      this.setState({ donationEditable: false });
-    }
-  }
-
-  handleChangeDonateOptions(event) {
-    let price = event.target.value
-    let priceToNumber = price.replace('$', '')
-    this.setState({itemprice: priceToNumber})
-  }
-
-  donateContent() {
-    return (
-      <Grid.Row columns="2">
-        <Grid.Column>
-          <Segment color='grey' tertiary padded>
-            <Image src={donate} fluid/>
-          </Segment>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment padded color='grey' tertiary>
-            <Form>
-              <Form.Group inline>
-                <Form.Field required control={Select} label='Duration' options={donateData.optionsItems}
-                 placeholder='Choose an option' onChange={(e, { value }) => this.getOptionDescription(value)} />
-              </Form.Group>
-
-              {this.state.optionDescription}
-
-              { this.state.donationEditable ?
-                <input type="text" className='input-segment-kblue' name="amount" width={3} value={ this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice } onChange={this.handleChangeDonateOptions} />
-                :
-                <Segment compact className='kblue'>{this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }</Segment>
-              }
-
-              <StripeCheckout
-                name="KZSC Support"
-                panelLabel="Donation"
-                amount = {Number(this.state.itemprice) * 100}
-                billingAddress = {true}
-                zipCode = {true}
-                email={this.state.email}
-                token={this.onToken}
-                stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-            </Form>
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
-  /* Donate Content END */
 
   /* Merchandise Content BEGIN */
   merchPopupHandleOpen(i) {
@@ -161,9 +108,7 @@ class Donate extends Component {
 
   updateSize = (e, { value }) => this.setState({ size: value })
 
-  updateQuantity(event) {
-    this.setState({ quantity: event.target.value })
-  }
+  updateQuantity = (e, { value }) => this.setState({ quantity: value })
 
   merchandiseContent() {
     return (
@@ -217,10 +162,12 @@ class Donate extends Component {
     itemTemp.key = uuid.v4()
     itemTemp.size = size
     itemTemp.quantity = quantity
+    itemTemp.donation = itemTemp.price
     itemsArray.push(itemTemp)
     this.setState({
       itemsInCart: itemsArray,
-      merchAmount: this.state.merchAmount + ( (item.price * 100) * quantity)
+      // merchAmount: this.state.merchAmount + ( (item.price * 100) * quantity)
+      merchAmount: this.updateMerchAmount()
     })
     // Update Left Side Bar
     let length = this.state.itemsInCart.length
@@ -254,7 +201,8 @@ class Donate extends Component {
     }
     this.setState({
       itemsInCart: arr,
-      merchAmount: this.state.merchAmount - itemPrice * 100,
+      // merchAmount: this.state.merchAmount - itemPrice * 100,
+      merchAmount: this.updateMerchAmount(),
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' },
@@ -263,12 +211,18 @@ class Donate extends Component {
     })
   }
 
-  handleQuantityChangeMerchAmount(plusOrMinus, price) {
-    if(plusOrMinus === "plus") {
-      this.setState({ merchAmount: this.state.merchAmount + price * 100 })
-    } else if(plusOrMinus === 'minus') {
-      this.setState({ merchAmount: this.state.merchAmount - price * 100 })
-    }
+  // handleQuantityChangeMerchAmount(plusOrMinus, price) {
+  //   if(plusOrMinus === "plus") {
+  //     this.setState({ merchAmount: this.state.merchAmount + price * 100 })
+  //   } else if(plusOrMinus === 'minus') {
+  //     this.setState({ merchAmount: this.state.merchAmount - price * 100 })
+  //   } else { // Expecting a number, quantity
+  //     this.setState({})
+  //   }
+  // }
+
+  handleQuantityChangeMerchAmount(a, b) {
+    this.setState({ merchAmount: this.updateMerchAmount() })
   }
 
   cartContent() {
@@ -279,7 +233,7 @@ class Donate extends Component {
         </Grid.Column>
 
         <Grid.Column width='16'>
-          <div className="subtotal">Subtotal {(this.state.merchAmount/100).toFixed(2)} </div>
+          <div className="subtotal">Subtotal {(this.state.merchAmount).toFixed(2)} </div>
           <Form className="merch-form form-container">
             <StripeCheckout
               name="KZSC Support"
@@ -317,12 +271,12 @@ class Donate extends Component {
                 {this.state.activeItem === "cart"   ? "Review the items in your cart" : null }
               </h3>
               <p>
-                {this.state.activeItem === "donate" ? "Choose from our options or select 'Give What You Can' below" : null }
+                {this.state.activeItem === "donate" ? "Thank you for keeping KZSC—your local and live community radio station—broadcasting at 20,000 watts each day!" : null }
                 {this.state.activeItem === "merch"  ? "Click on an item below to view a description and options, then checkout using the left side bar" : null }
               </p>
 
               <Grid stackable>
-                {this.state.activeItem === "donate" ? this.donateContent() : null}
+                {this.state.activeItem === "donate" ? <Donation updateAmount={this.updateDonationAmount}/> : null}
                 {this.state.activeItem === "merch"  ? this.merchandiseContent() : null}
                 {this.state.activeItem === "cart"   ? this.cartContent() : null}
               </Grid>
