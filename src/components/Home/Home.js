@@ -11,7 +11,6 @@ import { Grid, Segment, Icon, Button } from 'semantic-ui-react';
 import Tile from '../Tile/Tile';
 import kzscI from '../../assets/images/kzsc.jpg';
 import './Home.css';
-import TopMenuBar from '../TopMenuBar/TopMenuBar';
 import RightSideBar from '../RightSideBar/RightSideBar';
 
 class Home extends Component{
@@ -23,7 +22,7 @@ class Home extends Component{
       menuItems: [
         {
           name: 'description',
-          title: 'Non-commercial, educational public radio station serving the Santa Cruz, San Benito, and Monterey Counties'
+          title: ''
         }
       ]
     }
@@ -105,9 +104,9 @@ class Home extends Component{
     }
     return(
       <div className="Home">
-        <Grid stackable centered padded divided>
+        <Grid stackable centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           <Grid.Row>
             <Grid.Column computer={11} tablet={11}>

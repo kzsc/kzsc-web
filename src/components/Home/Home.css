@@ -45,16 +45,3 @@
   font-size: 1.5rem;
   padding: 10px;
 }
-
-/* Spinitron Styles BEGIN */
-#spin-wrap {
-  height: 25em;
-}
-#spin-iframe {
-  display: block;
-  border: none;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-/* Spinitron Styles END */

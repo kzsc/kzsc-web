@@ -11,7 +11,6 @@ import React, { Component } from 'react';
 import { Grid, Image, Segment, Form, Select, Menu } from 'semantic-ui-react';
 import StripeCheckout from 'react-stripe-checkout';
 import './Product.css';
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Product extends Component {
 
@@ -46,7 +45,7 @@ class Product extends Component {
       <div className="Product">
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           <Grid.Row>
             <Grid.Column computer='6' tablet='7' mobile='8'>
@@ -74,7 +73,7 @@ class Product extends Component {
                       { this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }
                     </Segment>
 
-                    <Form className="form-container">
+                    <Form>
                       <StripeCheckout name="KZSC Support" panelLabel="Donation"
                         amount = {this.state.itemprice} billingAddress = {true}
                         zipCode = {true} email={this.state.email}

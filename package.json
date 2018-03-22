@@ -13,6 +13,7 @@
     "react-scripts": "1.0.14",
     "react-stripe-checkout": "^2.6.3",
     "scss-compile": "^0.1.7",
+    "semantic-ui-css": "^2.3.1",
     "semantic-ui-react": "^0.74.2",
     "stripe": "^5.3.0",
     "uuid": "^3.1.0"

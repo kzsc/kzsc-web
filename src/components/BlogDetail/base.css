@@ -134,7 +134,7 @@ mark{ background-color: transparent; color:inherit; }
 
 /* #Buttons
 ================================================== */
-.wordpressHTML input[type="submit"], .wordpressHTML #submit, .button{
+.wordpressHTML input[type="submit"], .wordpressHTML #submit, .wordpressHTML .button{
 	padding:9px 22px; cursor:pointer; border:none; -webkit-appearance: none; border-radius: 0px;
 }
 

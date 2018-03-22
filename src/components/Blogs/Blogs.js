@@ -6,10 +6,9 @@
  */
 
 import React, { Component } from 'react';
-import { Segment, Grid, Button } from 'semantic-ui-react'
+import { Segment, Grid, Button, Dropdown } from 'semantic-ui-react'
 import Tile from '../Tile/Tile';
 import kzscI from '../../assets/images/kzsc.jpg'
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
 class Blogs extends Component {
   constructor(props) {
@@ -18,13 +17,15 @@ class Blogs extends Component {
       requestStringState: 'get_recent_posts/?',
       numberOfPostsRestart: 15,
       numberPostsToIncreaseBy: 6,
-      activeCategoryButton: 'All',
+      // activeCategoryButton: 'All',
       currentCategoryId: 0,
       activeMenuItem: 'none',
       menuItems: [
         { name: 'blog', title: 'KZSC Blog' }
-      ]
-    };
+      ],
+      categoryDropdownOptions: []
+    }
+    this.onChangeCategory = this.onChangeCategory.bind(this)
   }
 
   handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
@@ -39,8 +40,17 @@ class Blogs extends Component {
     });
   }
 
+  componentDidMount() {
+    this.getCategoryDropdownOptions()
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { numberPostsToLoad, requestStringState, currentCategoryId } = this.state
+    const { blogCategories } = this.props
+
+    if( prevProps.blogCategories !== blogCategories ) {
+      this.getCategoryDropdownOptions()
+    }
 
     if( prevState.currentCategoryId !== currentCategoryId ) {
       this.props.truePostsLoading();
@@ -87,15 +97,39 @@ class Blogs extends Component {
     return blogTiles
   }
 
-  changeCategory(cid, cname) {
-    this.setState({ activeCategoryButton: cname });
+  // changeCategory(cid, cname) {
+  //   this.setState({ activeCategoryButton: cname });
+  //   let numberOfPosts;
+  //   if( this.state.currentCategoryId === cid ) {
+  //     numberOfPosts = this.state.numberPostsToLoad;
+  //   } else {
+  //     numberOfPosts = this.state.numberOfPostsRestart;
+  //   }
+  //   if( cname === 'All' ){
+  //     this.setState({
+  //       requestStringState: 'get_recent_posts/?',
+  //       numberPostsToLoad: numberOfPosts,
+  //       currentCategoryId: 0
+  //     });
+  //   } else {
+  //     this.setState({
+  //       requestStringState: 'get_category_posts/?',
+  //       numberPostsToLoad: numberOfPosts,
+  //       currentCategoryId: cid
+  //     });
+  //   }
+  // }
+
+  onChangeCategory(event, data) {
+    let categoryId = data.value
     let numberOfPosts;
-    if( this.state.currentCategoryId === cid ) {
+    if( this.state.currentCategoryId === categoryId ) {
       numberOfPosts = this.state.numberPostsToLoad;
     } else {
       numberOfPosts = this.state.numberOfPostsRestart;
     }
-    if( cname === 'All' ){
+
+    if( categoryId === '0' ){
       this.setState({
         requestStringState: 'get_recent_posts/?',
         numberPostsToLoad: numberOfPosts,
@@ -105,24 +139,41 @@ class Blogs extends Component {
       this.setState({
         requestStringState: 'get_category_posts/?',
         numberPostsToLoad: numberOfPosts,
-        currentCategoryId: cid
+        currentCategoryId: categoryId
       });
     }
   }
 
-  getCategoryButtons() {
-    let categoryButtons = this.props.blogCategories.map((c, i) => {
-      return (
-        <div className='margin-5 display-inline-block' key={c.id}>
-          <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === c.title}
-           onClick={this.changeCategory.bind(this, c.id, c.title)}>
-            <span dangerouslySetInnerHTML={{__html: c.title}}></span>
-          </Button>
-        </div>
-      );
-    });
-    return categoryButtons;
+  getCategoryDropdownOptions() {
+    let options = this.props.blogCategories.map((c,i) => {
+      let title = c.title.replace("&amp;", "&")
+      var obj = { key: c.id, text: title, value: c.id }
+      return obj
+    })
+    options.push({ key: '0',text: 'All', value: '0' })
+    options.sort(function(a, b){
+      var x = a.text.toLowerCase();
+      var y = b.text.toLowerCase();
+      if (x < y) {return -1;}
+      if (x > y) {return 1;}
+      return 0;
+    })
+    this.setState({ categoryDropdownOptions: options })
   }
+
+  // getCategoryButtons() {
+  //   let categoryButtons = this.props.blogCategories.map((c, i) => {
+  //     return (
+  //       <div className='margin-5 display-inline-block' key={c.id}>
+  //         <Button compact color='black' secondary size='small' active={this.state.activeCategoryButton === c.title}
+  //          onClick={this.changeCategory.bind(this, c.id, c.title)}>
+  //           <span dangerouslySetInnerHTML={{__html: c.title}}></span>
+  //         </Button>
+  //       </div>
+  //     );
+  //   });
+  //   return categoryButtons;
+  // }
 
   loadMorePosts() {
     this.setState({
@@ -135,13 +186,19 @@ class Blogs extends Component {
       <div className="Blogs">
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
-
           <Grid.Row>
+            <Grid.Column width="15">
+              <Dropdown placeholder='Category' search selection fluid
+                options={this.state.categoryDropdownOptions}
+                onChange={this.onChangeCategory} />
+            </Grid.Column>
+          </Grid.Row>
+
+          {/* <Grid.Row>
             <Grid.Column width={16}>
               <Segment padded textAlign='center' basic>
                 <div className='margin-5 display-inline-block' key='all'>
-                  <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === 'All'}
+                  <Button compact color='black' size='small' active={this.state.activeCategoryButton === 'All'}
                    onClick={this.changeCategory.bind(this, 0, 'All')}>
                     <span>All</span>
                   </Button>
@@ -149,7 +206,7 @@ class Blogs extends Component {
                {this.getCategoryButtons()}
               </Segment>
             </Grid.Column>
-          </Grid.Row>
+          </Grid.Row> */}
 
           <Grid.Row>
             <Grid.Column width={16}>
@@ -166,7 +223,7 @@ class Blogs extends Component {
           <Grid.Row>
             <Grid.Column width={16} textAlign='center'>
               <Button disabled={this.props.buttonLoading} loading={this.props.buttonLoading}
-               color='red' onClick={this.loadMorePosts.bind(this)}>
+               className='kblue' onClick={this.loadMorePosts.bind(this)}>
                 Load More
               </Button>
             </Grid.Column>

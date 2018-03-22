@@ -10,7 +10,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import {  } from 'semantic-ui-react'
 import axios from 'axios';
 
-import './App.css'
+// import './App.css'
 import NavBar from './components/NavBar/NavBar'
 import Home from './components/Home/Home'
 import Listen from './components/Listen/Listen'
@@ -27,6 +27,7 @@ import TestBackend from './components/TestBackend'
 import Slideshow from './components/Slideshow/Slideshow'
 import BlogDetail from './components/BlogDetail/BlogDetail'
 import Title from './components/Title/Title'
+import TopMenuBar from './components/TopMenuBar/TopMenuBar'
 
 class App extends Component {
 
@@ -211,7 +212,8 @@ class App extends Component {
            toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
            hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
           <Title />
-          <div className="k-container" onClick={this.hideVisibilityNavBar.bind(this)}>
+          <TopMenuBar onActiveNavItemChange={this.updateActiveNavItem.bind(this)} />
+          <div className="k-container margin-t-20" onClick={this.hideVisibilityNavBar.bind(this)}>
             <Route exact path='/home' render={() =>
               <Home convertDate={this.toDateString.bind(this)}
                     requestsLoaded={this.state.homeRequestsLoaded}

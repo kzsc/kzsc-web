@@ -72,11 +72,11 @@ class NavBarFull extends Component {
               <Image src={logo} width='107px'/>
             </Menu.Item>
             {this.getMenuItems()}
-            <Dropdown id="navBarFullIcon" item text=''>
+            {/* <Dropdown id="navBarFullIcon" item text=''>
               <Dropdown.Menu>
                 {this.getDropdownItems()}
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
           </Menu.Menu>
           <Menu.Menu position='right'>
             <Menu.Item id="playButtonItem" className="center">

@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import { Grid, Form, Segment, Icon, List, Image } from 'semantic-ui-react';
+import { Grid, Form, Segment, Icon, List, Image, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import kzscI from '../../assets/images/kzsc.jpg'
 import uuid from 'uuid';
@@ -16,11 +16,10 @@ class Footer extends Component{
 
   constructor(){
     super();
-    this.state = { }
-  }
-
-  getPageInformation(){
-    this.setState({
+    this.state = {
+      FNAME: '',
+      LNAME: '',
+      EMAIL: '',
       pageLinks: [
         { id: uuid.v4(), link: '/underwriting', name: 'Business Underwriting' },
         { id: uuid.v4(), link: '/schedule', name: 'Program Schedule' },
@@ -50,24 +49,38 @@ class Footer extends Component{
           imageSrc: 'https://mk0kzsc0r04nd5wp46sq.kinstacdn.com/wp-content/uploads/2013/02/Shop-Small-120x120.jpeg'
         }
       ]
-    });
+    }
   }
 
-  componentWillMount(){
-    this.getPageInformation();
-  }
+  handleChangeSubscribe = (e, { name, value }) => this.setState({ [name]: value })
+
+  handleSubmitSubscribe = () => this.setState({ FNAME: '', LNAME: '', EMAIL: '' })
 
   firstColumn() {
+    const { FNAME, LNAME, EMAIL } = this.state
+
+    let mcStyle = {
+      "position": "absolute", "left": "-5000px"
+    }
     return (
       <div className="footerColumnOne">
         <div className="footer-title">Join Our Mailing List</div>
 
-        <Form inverted>
-          <Form.Field label='Email' control='input' placeholder='Email' required/>
-          <Form.Field label='First Name' control='input' placeholder='First name' required/>
-          <Form.Field label='Last Name' control='input' placeholder='Last Name' required/>
-          <Form.Button>Subscribe</Form.Button>
-        </Form>
+        <div id="mc_embed_signup">
+          <Form inverted onSubmit={this.handleSubmitSubscribe} action="https://kzsc.us1.list-manage.com/subscribe/post?u=9a675d0a0067e2707ffbb7ffb&amp;id=735dcc9562" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
+            <Form.Input id="mce-FNAME" name="FNAME" label='First Name' placeholder='first name' value={FNAME} onChange={this.handleChangeSubscribe} required/>
+            <Form.Input id="mce-LNAME" name="LNAME" label='Last Name' placeholder='last name' value={LNAME} onChange={this.handleChangeSubscribe} required />
+            <Form.Input id="mce-EMAIL" name="EMAIL" label='Email Address' placeholder='email' value={EMAIL} onChange={this.handleChangeSubscribe} required />
+            <div id="mce-responses" className="clear display-none">
+              <div className="response display-none" id="mce-error-response"></div>
+              <div className="response display-none" id="mce-success-response"></div>
+            </div>
+            <div style={mcStyle} aria-hidden="true">
+              <input type="text" name="b_9a675d0a0067e2707ffbb7ffb_735dcc9562" tabIndex="-1" />
+            </div>
+            <Button type='submit' value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button">Submit</Button>
+          </Form>
+        </div>
       </div>
     )
   }
@@ -87,7 +100,7 @@ class Footer extends Component{
 
     return (
       <div className="footerColumnTwo">
-          <div className="footer-title">Latest Posts</div>
+        <div className="footer-title">Latest Posts</div>
 
         <List divided relaxed inverted>
           {links}
@@ -121,23 +134,23 @@ class Footer extends Component{
   fourthColumn() {
     return (
       <div id="kzsc-footer-contact" className="footerColumnFour">
-          <div className="footer-title">Contact Us</div>
+        <div className="footer-title">Contact Us</div>
 
-        <div className="padding-tb-10">
-          <h4>
+        <div>
+          <p>
             Air room and the Current DJ:<br />
             (831) 459-4036
-          </h4>
+          </p>
 
-           <h4>
+          <p>
             Lobby line for any questions:<br />
-            (831) 459-2811.
-           </h4>
+            (831) 459-2811
+          </p>
 
-           <h4>
+          <p>
             KZSC Radio, UC Santa Cruz, <br />
-            1156 High St., Santa Cruz, CA 95064.
-           </h4>
+            1156 High St., Santa Cruz, CA 95064
+          </p>
         </div>
 
       </div>
@@ -161,24 +174,24 @@ class Footer extends Component{
   render(){
     return(
       <div id="kzsc-footer" className="footer">
-        <Grid columns='equal' divided inverted padded stackable>
+        <Grid columns='equal' divided inverted padded>
           <Grid.Row color='grey'>
-            <Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={8}>
               <Segment textAlign={'left'} color='grey' inverted >
                 {this.firstColumn()}
               </Segment>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={8}>
               <Segment textAlign={'left'} color='grey' inverted>
                 {this.secondColumn()}
               </Segment>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={8}>
               <Segment textAlign={'left'} color='grey' inverted>
                 {this.thirdColumn()}
               </Segment>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={8}>
               <Segment textAlign={'left'} color='grey' inverted>
                 {this.fourthColumn()}
               </Segment>

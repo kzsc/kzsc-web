@@ -7,9 +7,8 @@
 
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
-import TopMenuBar from '../TopMenuBar/TopMenuBar'
 
-class Concert extends Component{
+class Concert extends Component {
 
   constructor(props){
     super(props);
@@ -32,7 +31,7 @@ class Concert extends Component{
       <div className="concert">
         <Grid centered padded>
 
-          <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/>
+          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           <Grid.Row>
             <Grid.Column computer='12' tablet='14' mobile='16'>
