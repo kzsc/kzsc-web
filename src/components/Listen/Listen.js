@@ -29,14 +29,11 @@ class Listen extends Component {
   infoListen() {
     return(
       <Grid.Row>
-        <Grid.Column stretched computer='13' tablet='14' mobile='16'>
-          <Segment>
+        <Grid.Column stretched computer='15' tablet='15' mobile='16'>
+          <Segment raised>
             <h1>Listen to KZSC 88.1 fm </h1>
             <p>
-              KZSC doesn’t just broadcast to 3 million people over the radio
-              airwaves at 88.1FM, we also broadcast to the entire world over
-              the internet tubes! Navigate through the tabs above to learn how
-              you can tune in, even when you’re not in lovely Santa Cruz
+              KZSC doesn’t just broadcast to 3 million people over the radio airwaves at 88.1FM, we also broadcast to the entire world over the internet tubes! Navigate through the tabs above to learn how you can tune in, even when you’re not in lovely Santa Cruz
             </p>
           </Segment>
         </Grid.Column>
@@ -47,7 +44,7 @@ class Listen extends Component {
   infoDownloadable() {
     return (
       <Grid.Row>
-        <Grid.Column computer='13' tablet='14' mobile='16'>
+        <Grid.Column computer='15' tablet='15' mobile='16'>
           <h3 className="centered-block">
             KZSC Main Stream Downloadable Files
           </h3>
@@ -85,7 +82,7 @@ class Listen extends Component {
           <div className="k-hr-spacer"></div>
         </Grid.Column>
 
-        <Grid.Column computer='13' tablet='14' mobile='16'>
+        <Grid.Column computer='15' tablet='15' mobile='16'>
           <h3 className="centered-block">
             Webstream Suggested Softwares
           </h3>
@@ -126,8 +123,8 @@ class Listen extends Component {
   infoPhone() {
     return (
       <Grid.Row>
-        <Grid.Column computer='13' tablet='14' mobile='16' stretched>
-          <Segment>
+        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
+          <Segment raised>
             <div className='float-right'>
               <a href="https://play.google.com/store/apps/details?id=org.kzsc.streaming">
                 <Icon className="color-android" name='android' size='massive' link />
@@ -151,8 +148,8 @@ class Listen extends Component {
   infoNews() {
     return (
       <Grid.Row>
-        <Grid.Column computer='13' tablet='14' mobile='16' stretched>
-          <Segment>
+        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
+          <Segment raised>
             <div className='float-right'>
               <a href="https://soundcloud.com/kzsc" target='_blank' rel="noopener noreferrer">
                 <Icon className="color-soundcloud width-145" name='soundcloud' size='massive' link />
@@ -171,21 +168,12 @@ class Listen extends Component {
 
   render(){
     return(
-      <div className="listen">
+      <div className="Listen">
         <Grid centered padded>
-
-          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
-
-          {this.state.activeMenuItem === 'listen' ? this.infoListen() : null }
-          {this.state.activeMenuItem === 'downloadable' ? this.infoDownloadable() : null }
-          {this.state.activeMenuItem === 'phone' ? this.infoPhone() : null }
-          {this.state.activeMenuItem === 'news' ? this.infoNews() : null }
-
           {this.infoListen()}
-          {this.infoDownloadable()}
           {this.infoPhone()}
           {this.infoNews()}
-
+          {this.infoDownloadable()}
         </Grid>
       </div>
     );

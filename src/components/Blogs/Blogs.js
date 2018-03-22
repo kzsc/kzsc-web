@@ -113,7 +113,7 @@ class Blogs extends Component {
     let categoryButtons = this.props.blogCategories.map((c, i) => {
       return (
         <div className='margin-5 display-inline-block' key={c.id}>
-          <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === c.title}
+          <Button compact color='black' secondary size='small' active={this.state.activeCategoryButton === c.title}
            onClick={this.changeCategory.bind(this, c.id, c.title)}>
             <span dangerouslySetInnerHTML={{__html: c.title}}></span>
           </Button>
@@ -134,13 +134,11 @@ class Blogs extends Component {
       <div className="Blogs">
         <Grid centered padded>
 
-          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
-
           <Grid.Row>
             <Grid.Column width={16}>
               <Segment padded textAlign='center' basic>
                 <div className='margin-5 display-inline-block' key='all'>
-                  <Button inverted compact color='red' size='small' active={this.state.activeCategoryButton === 'All'}
+                  <Button compact color='black' size='small' active={this.state.activeCategoryButton === 'All'}
                    onClick={this.changeCategory.bind(this, 0, 'All')}>
                     <span>All</span>
                   </Button>

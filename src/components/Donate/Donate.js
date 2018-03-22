@@ -30,8 +30,9 @@ class Donate extends Component {
       activeItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
+        { name: 'bills', title: 'KZSC Bills to be filled' },
         { name: 'merch', title: 'KZSC Products' },
-        { name: "cart", title: "Your Cart", label: '0' },
+        { name: "cart", title: "Your Cart", label: 0 },
       ],
       merchandiseList: [
         {
@@ -145,9 +146,10 @@ class Donate extends Component {
 
           <Grid.Column computer='12' tablet='12' mobile='16'>
             <h3>
-              {this.state.activeItem === "donate" ? "Help us keep noncommercial community radio on the air with a secure pledge today!" : null }
-              {this.state.activeItem === "merch"  ? "Help us keep noncommercial community radio on the air by donating today!" : null }
-              {this.state.activeItem === "cart"   ? "Review the items in your cart" : null }
+              {this.state.activeItem === "donate"  ? "Help us keep noncommercial community radio on the air with a secure pledge today!" : null }
+              {this.state.activeItem === "merch"   ? "Help us keep noncommercial community radio on the air by donating today!" : null }
+              {this.state.activeItem === "cart" && this.state.itemsInCart.length !== 0 ? "Review the items in your cart" : null }
+              {this.state.activeItem === "cart" && this.state.itemsInCart.length === 0 ? "Your cart is empty, use the \"KZSC Products\" tab to view our shnazy merchandise" : null }
             </h3>
             <p>
               {this.state.activeItem === "donate" ? "Thank you for keeping KZSC—your local and live community radio station—broadcasting at 20,000 watts each day!" : null }

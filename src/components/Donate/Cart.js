@@ -19,12 +19,13 @@ class Cart extends Component{
     this.handlePriceTyping = this.handlePriceTyping.bind(this)
     this.handlePriceBlurOut = this.handlePriceBlurOut.bind(this)
     this.hangleChangeDropdownSize = this.hangleChangeDropdownSize.bind(this)
+    this.handleQuantityBlur = this.handleQuantityBlur.bind(this)
   }
 
   handleClickPlus(item, index) {
     let newQuantity = Number(item.quantity) + 1
-    item.quantity = newQuantity
-    item.donation = item.price * newQuantity
+    item.quantity = Math.floor(newQuantity)
+    item.donation = Number(item.price * newQuantity).toFixed(2)
     this.props.onQuantityChange()
   }
 
@@ -38,8 +39,8 @@ class Cart extends Component{
         }
       }
     }
-    item.quantity = newQuantity
-    item.donation = item.price * newQuantity
+    item.quantity = Math.floor(newQuantity)
+    item.donation = Number(item.price * newQuantity).toFixed(2)
     this.props.updateItemsInCart(items)
     this.props.remove(item.key)
     this.props.onQuantityChange()
@@ -50,7 +51,19 @@ class Cart extends Component{
     for(var i = 0; i < items.length; i++) {
       if(items[i].key === event.target.name) {
         items[i].quantity = event.target.value
-        items[i].donation = items[i].price * items[i].quantity
+        items[i].donation = Number(items[i].price * items[i].quantity).toFixed(2)
+      }
+    }
+    this.props.updateItemsInCart(items)
+    this.props.onQuantityChange()
+  }
+
+  handleQuantityBlur(event) {
+    let items = this.props.items
+    for(var i = 0; i < items.length; i++) {
+      if(items[i].key === event.target.name) {
+        items[i].quantity = Math.floor(Math.abs(event.target.value))
+        items[i].donation = Number(items[i].price * items[i].quantity).toFixed(2)
       }
     }
     this.props.updateItemsInCart(items)
@@ -85,6 +98,10 @@ class Cart extends Component{
         } else {
           items[i].donation = Number(donation).toFixed(2)
         }
+        var d = items[i].donation, p = items[i].price, q = items[i].quantity;
+        if(d < (p * q)) {
+          items[i].donation = Number(p * q).toFixed(2)
+        }
       }
     }
     this.props.updateItemsInCart(items)
@@ -102,9 +119,7 @@ class Cart extends Component{
   }
 
   getListOfCartItems() {
-    if(this.props.items.length === 0) {
-      return <h3>Your cart is empty, use the "KZSC Products" tab to view our shnazy merchandise</h3>
-    } else {
+    if(this.props.items.length !== 0) {
       return (
         <Grid>
           {this.props.items.map((item, index) => (
@@ -124,7 +139,7 @@ class Cart extends Component{
                 <div className="cart-quantity">
                   Quantity:
                   <br/>
-                  <Input type='number' value={item.quantity} name={item.key} onChange={this.handleQuantityChange}>
+                  <Input type='number' value={item.quantity} name={item.key} onChange={this.handleQuantityChange} onBlur={this.handleQuantityBlur}>
                     <Button icon="minus" onClick={this.handleClickMinus.bind(this, item, index)}/>
                     <input />
                     <Button icon="plus" onClick={this.handleClickPlus.bind(this, item, index)}/>
@@ -164,10 +179,12 @@ class Cart extends Component{
   render(){
     return (
       <Grid.Row>
+
         <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
           {this.getListOfCartItems()}
         </Grid.Column>
 
+        {this.props.items.length !== 0 ?
         <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
           <div className="merch-subtotal">Subtotal {(this.props.merchAmount).toFixed(2)} </div>
           <Form>
@@ -185,6 +202,8 @@ class Cart extends Component{
               stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
           </Form>
         </Grid.Column>
+        : null }
+
       </Grid.Row>
     )
   }
