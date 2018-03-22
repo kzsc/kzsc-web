@@ -41,6 +41,49 @@ class Listen extends Component {
     )
   }
 
+  infoPhone() {
+    return (
+      <Grid.Row>
+        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
+          <Segment raised>
+            <div className='float-right'>
+              <a href="https://play.google.com/store/apps/details?id=org.kzsc.streaming">
+                <Icon className="color-android" name='android' size='massive' link />
+              </a>
+              <a href="https://itunes.apple.com/us/app/kzsc-radio/id371572770?mt=8#">
+                <Icon className="color-apple" name='apple' size='massive' link />
+              </a>
+            </div>
+            <h1>Listen to KZSC 88.1 fm on your smart phone</h1>
+            <p>
+              On the iPhone, KZSC Radio is simple and easy to use – one click and you’re listening! You’ll have access to the main station, our secondary webstream, and current playlist information.
+            </p>
+          </Segment>
+        </Grid.Column>
+      </Grid.Row>
+    )
+  }
+
+  infoNews() {
+    return (
+      <Grid.Row>
+        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
+          <Segment raised>
+            <div className='float-right'>
+              <a href="https://soundcloud.com/kzsc" target='_blank' rel="noopener noreferrer">
+                <Icon className="color-soundcloud width-145" name='soundcloud' size='massive' link />
+              </a>
+            </div>
+            <h1>KZSC News and Interviews</h1>
+            <p>
+              Our Soundcloud documents our volunteer&#39;s News and Interview work
+            </p>
+          </Segment>
+        </Grid.Column>
+      </Grid.Row>
+    )
+  }
+
   infoDownloadable() {
     return (
       <Grid.Row>
@@ -48,6 +91,7 @@ class Listen extends Component {
           <h3 className="centered-block">
             KZSC Main Stream Downloadable Files
           </h3>
+
           <Table size="large" unstackable className='kblue' striped selectable>
             <Table.Header>
               <Table.Row>
@@ -77,11 +121,13 @@ class Listen extends Component {
             </Table.Body>
           </Table>
         </Grid.Column>
+      </Grid.Row>
+    )
+  }
 
-        <Grid.Column width='16'>
-          <div className="k-hr-spacer"></div>
-        </Grid.Column>
-
+  infoWebstreamSoftwares() {
+    return (
+      <Grid.Row>
         <Grid.Column computer='15' tablet='15' mobile='16'>
           <h3 className="centered-block">
             Webstream Suggested Softwares
@@ -120,52 +166,6 @@ class Listen extends Component {
     )
   }
 
-  infoPhone() {
-    return (
-      <Grid.Row>
-        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
-          <Segment raised>
-            <div className='float-right'>
-              <a href="https://play.google.com/store/apps/details?id=org.kzsc.streaming">
-                <Icon className="color-android" name='android' size='massive' link />
-              </a>
-              <a href="https://itunes.apple.com/us/app/kzsc-radio/id371572770?mt=8#">
-                <Icon className="color-apple" name='apple' size='massive' link />
-              </a>
-            </div>
-            <h2>Listen to KZSC 88.1 fm on your smart phone</h2>
-            <p>
-              On the iPhone, KZSC Radio is simple and easy to use – one click
-              and you’re listening! You’ll have access to the main station,
-              our secondary webstream, and current playlist information.
-            </p>
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
-
-  infoNews() {
-    return (
-      <Grid.Row>
-        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
-          <Segment raised>
-            <div className='float-right'>
-              <a href="https://soundcloud.com/kzsc" target='_blank' rel="noopener noreferrer">
-                <Icon className="color-soundcloud width-145" name='soundcloud' size='massive' link />
-              </a>
-            </div>
-            <h2>KZSC News and Interviews</h2>
-            <p>
-              Our Soundcloud documents our volunteer&#39;s News and Interview
-              work
-            </p>
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
-
   render(){
     return(
       <div className="Listen">
@@ -174,6 +174,7 @@ class Listen extends Component {
           {this.infoPhone()}
           {this.infoNews()}
           {this.infoDownloadable()}
+          {this.infoWebstreamSoftwares()}
         </Grid>
       </div>
     );

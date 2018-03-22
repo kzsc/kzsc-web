@@ -104,6 +104,7 @@ class Donate extends Component {
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' },
+        { name: 'bills', title: 'KZSC Bills to be filled' },
         { name: "cart", title: "Your Cart", label: length }
       ]
     })
