@@ -14,34 +14,35 @@ import donateData from './donateData.json';
 class Cart extends Component{
 
   componentWillMount() {
-    this.setState({ })
+    this.setState({
+      items: this.props.items
+    })
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
     this.handlePriceTyping = this.handlePriceTyping.bind(this)
-    this.handlePriceBlurOut = this.handlePriceBlurOut.bind(this)
   }
 
-  handleClickPlus(item, index) {
-    let newQuantity = Number(item.quantity) + 1
-    item.quantity = newQuantity
-    item.donation = item.price * newQuantity
-    this.props.onQuantityChange()
-  }
-
-  handleClickMinus(item, index) {
-    let newQuantity = Number(item.quantity) - 1
+  handleClickMinus(i, index) {
+    let newQuantity = Number(i.quantity) - 1
     if(newQuantity < 1) {
       var items = this.props.items
-      for(var i = 0; i < items.length; i++) {
-        if(i === index) {
-          items = items.splice(i, 1)
+      for(var j = 0; j < items.length; j++) {
+        if(j === index) {
+          items = items.splice(j, 1)
         }
       }
     }
-    item.quantity = newQuantity
-    item.donation = item.price * newQuantity
-    this.props.updateItemsInCart(items)
-    this.props.remove(item.key)
-    this.props.onQuantityChange()
+    i.quantity = newQuantity
+    i.donation = i.price * newQuantity
+    this.setState({ items: items })
+    this.props.remove(i.key)
+    this.props.onQuantityChange("minus", i.price)
+  }
+
+  handleClickPlus(i) {
+    let newQuantity = Number(i.quantity) + 1
+    i.quantity = newQuantity
+    i.donation = i.price * newQuantity
+    this.props.onQuantityChange("plus", i.price)
   }
 
   handleQuantityChange(event) {
@@ -50,47 +51,42 @@ class Cart extends Component{
       if(items[i].key === event.target.name) {
         items[i].quantity = event.target.value
         items[i].donation = items[i].price * items[i].quantity
+        this.props.onQuantityChange(items[i].quantity, items[i].price)
       }
     }
-    this.props.updateItemsInCart(items)
-    this.props.onQuantityChange()
+    this.setState({ items: items })
   }
 
   handlePriceTyping(event) {
+    console.log('handlePriceTyping')
+    console.log(event.target)
     let items = this.props.items
     for(var i = 0; i < items.length; i++) {
       if(items[i].key === event.target.name) {
-        items[i].donation = String(event.target.value).replace(/[^0-9.]/g, "")
+        console.log(items[i].donation)
+        console.log(event.target.value)
+        console.log(items[i].quantity)
+        items[i].donation = Number(event.target.value).replace(/[$]/g,"")
+        console.log(items[i].donation)
       }
     }
-    this.props.updateItemsInCart(items)
-    this.props.onQuantityChange()
+    this.setState({ items: items })
   }
 
-  handlePriceBlurOut(event) {
+  handlePriceChange(price, quantity, proxy, event) {
+    console.log('handlePriceChange')
+    console.log(event)
     let items = this.props.items
     for(var i = 0; i < items.length; i++) {
-      if(items[i].key === event.target.name) {
-        let donation = String(event.target.value).replace(/[^0-9.]/g, "")
-        var numberOfDecimalPlacesArray = donation.match(/[.]/g)
-        if(numberOfDecimalPlacesArray) {
-          var numberOfDecimalPlaces = numberOfDecimalPlacesArray.length
-          if(numberOfDecimalPlaces > 1) {
-            let removeDecimals = donation.replace(/[.]/g, "")
-            items[i].donation = Number(removeDecimals / 100).toFixed(2)
-            console.log('1')
-          } else {
-            items[i].donation = Number(donation).toFixed(2)
-            console.log('1')
-          }
-        } else {
-          items[i].donation = Number(donation).toFixed(2)
-          console.log('2')
-        }
-      }
+      // if(items[i].key === event.name) {
+      //   let donation = event.value
+      //   if(donation*quantity < price*quantity) {
+      //     donation = price * quantity
+      //   }
+      //   items[i].donation = Number(donation/quantity)
+      // }
     }
-    this.props.updateItemsInCart(items)
-    this.props.onQuantityChange()
+    this.setState({ items: items })
   }
 
   getListOfCartItems() {
@@ -115,11 +111,11 @@ class Cart extends Component{
                 <Input type='number' value={item.quantity} name={item.key} onChange={this.handleQuantityChange}>
                   <Button icon="minus" onClick={this.handleClickMinus.bind(this, item, index)}/>
                   <input />
-                  <Button icon="plus" onClick={this.handleClickPlus.bind(this, item, index)}/>
+                  <Button icon="plus" onClick={this.handleClickPlus.bind(this, item)}/>
                 </Input>
               </div>
               <div className="cart-donation">
-                Enter Donation Amount: <Input name={item.key} type="text" value={"$" + item.donation} onChange={this.handlePriceTyping} onBlur={this.handlePriceBlurOut} />
+                Enter Donation Amount: <Input name={item.key} type="text" value={"$" + Number(item.donation)} onChange={this.handlePriceTyping}  />
                 <span>Minimum Donation: ${(item.price * item.quantity).toFixed(2)}</span>
               </div>
             </Grid.Column>
@@ -133,7 +129,7 @@ class Cart extends Component{
   onToken = (token) => {
     console.log(token)
     var dAmount = 0;
-    dAmount = this.props.merchAmount;
+    dAmount = this.state.merchAmount;
     console.log(token);
     fetch('/payment', {
       method: 'POST',
@@ -150,32 +146,12 @@ class Cart extends Component{
   render(){
     return (
       <div>
-        <Grid.Row>
-          <Grid.Column width='16'>
-            {this.getListOfCartItems()}
-          </Grid.Column>
-
-          <Grid.Column width='16'>
-            <div className="subtotal">Subtotal {(this.props.merchAmount).toFixed(2)} </div>
-            <Form className="merch-form form-container">
-              <StripeCheckout
-                name="KZSC Support"
-                panelLabel="Donation"
-                amount = {this.props.merchAmount} // donation in cents
-                currency = "USD"
-                shippingAddress
-                billingAddress = {true}
-                zipCode = {true}
-                opened = {this.onStripeCheckoutOpened}
-                closed = {this.onStripeCheckoutClosed}
-                token={this.onToken}
-                stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-            </Form>
-          </Grid.Column>
-        </Grid.Row>
+        {this.getListOfCartItems()}
       </div>
     )
   }
 }
 
 export default Cart
+
+// onBlur={this.handlePriceChange.bind(this, item.price, item.quantity)}

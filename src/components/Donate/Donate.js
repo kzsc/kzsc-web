@@ -6,18 +6,17 @@
  */
 
 import React, { Component } from 'react';
-import { Button, Form, Grid, Image, Popup, Dropdown, Input, Icon } from 'semantic-ui-react';
-import StripeCheckout from 'react-stripe-checkout';
+import { Grid } from 'semantic-ui-react';
 import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
 import shirt2 from './kzsc-shirt-50th.jpg';
 import bag from './kzsc-bag.jpg';
 import buttons from './kzsc-buttons.jpg';
 import LeftSideBar from '../LeftSideBar/LeftSideBar';
-import donateData from './donateData.json';
 import uuid from 'uuid';
 import Cart from './Cart'
 import Donation from './Donation'
+import Merchandise from './Merchandise'
 
 class Donate extends Component {
   constructor(props) {
@@ -26,17 +25,12 @@ class Donate extends Component {
       donationAmount: 0,
       merchAmount: 0,
       itemsInCart: [],
-
-      amount: 0,
       activeItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' },
         { name: "cart", title: "Your Cart", label: '0' },
       ],
-      itemprice: '0.00',
-      quantity: 1,
-      size: 'small',
       merchandiseList: [
         {
           id: 'shirt', image: shirt, title: 'KZSC 88 point 1 Tee', price: 25, sizes: true, merchPopupIsOpen: false,
@@ -54,13 +48,19 @@ class Donate extends Component {
           id: 'shirt2', image: shirt2, title: 'KZSC 50th Anniversary T-shirt', price: 25, sizes: true, merchPopupIsOpen: false,
           desc: 'KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station'
         }
-      ]
+      ],
+
+      amount: 0,
+      itemprice: '0.00'
     }
-    this.updateSize = this.updateSize.bind(this)
-    this.updateQuantity = this.updateQuantity.bind(this)
+    // this.updateSize = this.updateSize.bind(this)
+    // this.updateQuantity = this.updateQuantity.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.handleQuantityChangeMerchAmount = this.handleQuantityChangeMerchAmount.bind(this)
     this.updateDonationAmount = this.updateDonationAmount.bind(this)
+    this.addToCart = this.addToCart.bind(this)
+    this.updateMerchList = this.updateMerchList.bind(this)
+    this.updateItemsInCart = this.updateItemsInCart.bind(this)
   }
 
   /* updateDonationAmount: updates donation price (not used in Donate Component) */
@@ -70,105 +70,31 @@ class Donate extends Component {
 
   /* updateMerchAmount: uses items in cart array to update total cart price */
   updateMerchAmount() {
-    let merchAmountArray = this.state.itemsInCart.reduce((sum,item) => {
-      return sum + (Number(item.price) * Number(item.quantity))
+    let merchAmountSum = this.state.itemsInCart.reduce((sum,item) => {
+      return sum + Number(item.donation)
     }, 0)
-    return merchAmountArray
+    this.setState({ merchAmount: merchAmountSum })
   }
 
-  onToken = (token) => {
-    var dAmount = 0;
-    dAmount = this.state.merchAmount;
-    fetch('/payment', {
-      method: 'POST',
-      headers: new Headers({'content-type': 'application/json'}),
-      body: JSON.stringify({
-          rtoken: token,
-          amount: dAmount
-      })
-    }).then(response => {
-      // Return back to user, redirect to another webpage?
-    })
+  updateMerchList(tempList) {
+    this.setState({ merchandiseList: tempList })
   }
 
-  /* Merchandise Content BEGIN */
-  merchPopupHandleOpen(i) {
-    let merchandiseListTemp = this.state.merchandiseList
-    let merchTemp = merchandiseListTemp[i] // The item that was opened
-    merchTemp.merchPopupIsOpen = true
-    this.setState({ merchandiseList: merchandiseListTemp })
+  updateItemsInCart(tempList) {
+    this.setState({ itemsInCart: tempList })
   }
 
-  merchPopupHandleClose(i) {
-    let merchandiseListTemp = this.state.merchandiseList
-    let merchTemp = merchandiseListTemp[i] // The item that was opened
-    merchTemp.merchPopupIsOpen = false
-    this.setState({ merchandiseList: merchandiseListTemp })
-  }
-
-  updateSize = (e, { value }) => this.setState({ size: value })
-
-  updateQuantity = (e, { value }) => this.setState({ quantity: value })
-
-  merchandiseContent() {
-    return (
-      <Grid.Row>
-        {this.state.merchandiseList.map((item, index) =>
-          <Grid.Column key={item.id} width='8' textAlign='center'>
-            <Popup className="merchPopup" on='click' basic wide='very'
-              open={item.merchPopupIsOpen} onOpen={this.merchPopupHandleOpen.bind(this, index)} onClose={this.merchPopupHandleClose.bind(this, index)}
-              trigger={
-                <Button>
-                  <Image as='a' size='medium' src={item.image} alt="" />
-                  <h4>
-                    {item.title}<br />
-                    ${(item.price).toFixed(2)}
-                  </h4>
-                </Button>
-              }
-              content={
-                <Grid padded centered stackable>
-                  <Grid.Row>
-                    <Grid.Column width={5}>
-                      <Image size='medium' src={item.image} alt="" />
-                    </Grid.Column>
-                    <Grid.Column width={11}>
-                      <h3>{item.title}</h3>
-                      <h4>${item.price}</h4>
-                      {item.sizes ? <h5>Size: <Dropdown value={this.state.size} selection options={donateData.sizes} onChange={this.updateSize}/></h5> : null}
-                      <h5>Quantity: <Input type="number" value={this.state.quantity} onChange={this.updateQuantity}/></h5>
-                      <p>{item.desc}</p>
-                      <Button icon labelPosition='left' onClick={() => this.addToCart(item, index, this.state.size, this.state.quantity)}>
-                        <Icon name='plus' /> Add to cart
-                      </Button>
-                      <Button icon labelPosition='right' onClick={this.merchPopupHandleClose.bind(this, index)}>
-                        <Icon name='cancel' /> Cancel
-                      </Button>
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
-              }
-            />
-          </Grid.Column>
-        )}
-      </Grid.Row>
-    )
-  }
-
-  /* Add item to the cart */
+  /* addToCart: add an item to the cart */
   addToCart(item, index, size, quantity) {
     var itemsArray = this.state.itemsInCart;
     var itemTemp = Object.assign({}, item)
     itemTemp.key = uuid.v4()
     itemTemp.size = size
     itemTemp.quantity = quantity
-    itemTemp.donation = itemTemp.price
+    itemTemp.donation = (itemTemp.price * quantity)
     itemsArray.push(itemTemp)
-    this.setState({
-      itemsInCart: itemsArray,
-      // merchAmount: this.state.merchAmount + ( (item.price * 100) * quantity)
-      merchAmount: this.updateMerchAmount()
-    })
+    this.setState({ itemsInCart: itemsArray })
+    this.updateMerchAmount()
     // Update Left Side Bar
     let length = this.state.itemsInCart.length
     this.setState({
@@ -178,81 +104,33 @@ class Donate extends Component {
         { name: "cart", title: "Your Cart", label: length }
       ]
     })
-    // Reset size and quantity
-    this.setState({
-      size: 'small', quantity: '1'
-    })
-    // Close Merch Popup
-    let merchandiseListTemp = this.state.merchandiseList
-    let merchTemp = merchandiseListTemp[index] // The item that was opened
-    merchTemp.merchPopupIsOpen = false
   }
-  /* Merchandise Content END */
 
-  /* Remove item from cart */
+  /* removeItem: remove item from cart */
   removeItem(value){
-    let arr = this.state.itemsInCart;
-    let itemPrice = 0;
-    for(let i = 0; i < arr.length; i++){
-      if(arr[i].id === value){
-        itemPrice = arr[i].price;
-        arr.splice(i, 1);
+    var itemsInCartTemp = this.state.itemsInCart;
+    for(let i = 0; i < itemsInCartTemp.length; i++){
+      if(itemsInCartTemp[i].id === value){
+        itemsInCartTemp.splice(i, 1);
       }
     }
     this.setState({
-      itemsInCart: arr,
-      // merchAmount: this.state.merchAmount - itemPrice * 100,
-      merchAmount: this.updateMerchAmount(),
+      itemsInCart: itemsInCartTemp,
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' },
-        { name: "cart", title: "Your Cart", label: arr.length }
+        { name: "cart", title: "Your Cart", label: itemsInCartTemp.length }
       ]
     })
+    this.updateMerchAmount()
   }
 
-  // handleQuantityChangeMerchAmount(plusOrMinus, price) {
-  //   if(plusOrMinus === "plus") {
-  //     this.setState({ merchAmount: this.state.merchAmount + price * 100 })
-  //   } else if(plusOrMinus === 'minus') {
-  //     this.setState({ merchAmount: this.state.merchAmount - price * 100 })
-  //   } else { // Expecting a number, quantity
-  //     this.setState({})
-  //   }
-  // }
-
-  handleQuantityChangeMerchAmount(a, b) {
-    this.setState({ merchAmount: this.updateMerchAmount() })
+  handleQuantityChangeMerchAmount() {
+    this.updateMerchAmount()
   }
 
-  cartContent() {
-    return(
-      <Grid.Row>
-        <Grid.Column width='16'>
-          <Cart items={this.state.itemsInCart} remove={this.removeItem} onQuantityChange={this.handleQuantityChangeMerchAmount}/>
-        </Grid.Column>
-
-        <Grid.Column width='16'>
-          <div className="subtotal">Subtotal {(this.state.merchAmount).toFixed(2)} </div>
-          <Form className="merch-form form-container">
-            <StripeCheckout
-              name="KZSC Support"
-              panelLabel="Donation"
-              amount = {this.state.merchAmount}
-              // billingAddress = {true}
-              // zipCode = {true}
-              // email={this.state.email}
-              token={this.onToken}
-              stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-          </Form>
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
-
-  /* LeftSideBar Event BEGIN */
+  /* LeftSideBar Event */
   handleLeftMenuItemClick = (e, { name }) => this.setState({ activeItem: name })
-  /* LeftSideBar Event END */
 
   render() {
     return (
@@ -277,8 +155,8 @@ class Donate extends Component {
 
               <Grid stackable>
                 {this.state.activeItem === "donate" ? <Donation updateAmount={this.updateDonationAmount}/> : null}
-                {this.state.activeItem === "merch"  ? this.merchandiseContent() : null}
-                {this.state.activeItem === "cart"   ? this.cartContent() : null}
+                {this.state.activeItem === "merch"  ? <Merchandise merchandiseList={this.state.merchandiseList} addToCart={this.addToCart} updateMerchList={this.updateMerchList}/> : null}
+                {this.state.activeItem === "cart"   ? <Cart items={this.state.itemsInCart} updateItemsInCart={this.updateItemsInCart} merchAmount={this.state.merchAmount} remove={this.removeItem} onQuantityChange={this.handleQuantityChangeMerchAmount}/> : null}
               </Grid>
             </Grid.Column>
           </Grid.Row>

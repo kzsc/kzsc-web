@@ -1,0 +1,124 @@
+/*
+ * src/components/Donate/Donate.css
+ * Used by:
+ *  src/components/Donate/Donate.js
+ *
+ * Copyright (c) 2018-present, KZSC Santa Cruz
+ * web@kzsc.org
+ */
+
+.merchPopup {
+  position: fixed !important;
+  left: 50px !important;
+  top: 90px !important;
+  bottom: auto !important;
+  right: auto !important;
+  max-width: none !important;
+  width: calc(100% - 100px) !important;
+}
+
+.cart-image{
+  width: 200px;
+  height: 200px;
+  margin-right: 10px;
+}
+
+.cart-header {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1.28571429rem;
+  line-height: 1.28571429em;
+  font-weight: 700;
+}
+.cart-size {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.cart-size > .dropdown {
+  display: block !important;
+  width: 190px;
+  max-width: 190px;
+}
+.cart-quantity {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.cart-quantity input {
+  max-width: 100px !important;
+  width: 100px !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}
+.cart-quantity > button {
+  margin: 0;
+}
+.cart-donation {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.cart-donation input {
+  max-width: 200px !important;
+  width: 200px !important;
+}
+.cart-donation > span {
+  font-weight: normal;
+}
+/******************************************************************************/
+.donateDesc{
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.form-container{
+    text-align: left !important;
+    font-size: 16px !important;
+}
+
+.form-input{
+    width: 50%;
+}
+
+.form-input2{
+    width: 25%;
+}
+
+div.ui.input{
+    width: 100% !important;
+}
+
+.merch-btn{
+    background-color: #FFFFFF !important;
+}
+
+.donateDesc{
+    text-align: left;
+}
+
+.div-beneath-img{
+    width:100%;
+    background-color: #e0e1e2;
+}
+
+.fa-dollar{
+    position: absolute;
+    top: 8px;
+    height: 1.25em;
+    width: 1.25em;
+}
+
+.donation-amount-box{
+    padding-left:15px;
+    font-size: 24px;
+    width: 200px;
+}
+
+
+.subtotal{
+    font-size: 18px;
+}
