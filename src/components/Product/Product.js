@@ -73,7 +73,7 @@ class Product extends Component {
                       { this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }
                     </Segment>
 
-                    <Form className="form-container">
+                    <Form>
                       <StripeCheckout name="KZSC Support" panelLabel="Donation"
                         amount = {this.state.itemprice} billingAddress = {true}
                         zipCode = {true} email={this.state.email}

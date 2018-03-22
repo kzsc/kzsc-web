@@ -18,6 +18,7 @@ class Cart extends Component{
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
     this.handlePriceTyping = this.handlePriceTyping.bind(this)
     this.handlePriceBlurOut = this.handlePriceBlurOut.bind(this)
+    this.hangleChangeDropdownSize = this.hangleChangeDropdownSize.bind(this)
   }
 
   handleClickPlus(item, index) {
@@ -78,14 +79,11 @@ class Cart extends Component{
           if(numberOfDecimalPlaces > 1) {
             let removeDecimals = donation.replace(/[.]/g, "")
             items[i].donation = Number(removeDecimals / 100).toFixed(2)
-            console.log('1')
           } else {
             items[i].donation = Number(donation).toFixed(2)
-            console.log('1')
           }
         } else {
           items[i].donation = Number(donation).toFixed(2)
-          console.log('2')
         }
       }
     }
@@ -93,41 +91,57 @@ class Cart extends Component{
     this.props.onQuantityChange()
   }
 
+  hangleChangeDropdownSize = (e, { value, name }) => {
+    let items = this.props.items
+    for(var i = 0; i < items.length; i++) {
+      if(items[i].key === name) {
+        items[i].size = value
+      }
+    }
+    this.props.updateItemsInCart(items)
+  }
+
   getListOfCartItems() {
-    return (
-      <Grid>
-        {this.props.items.map((item, index) => (
-          <Grid.Row key={item.key}>
-            <Grid.Column computer='7' tablet='8' mobile='6'>
-              <Image className="cart-image" src={item.image} />
-            </Grid.Column>
-            <Grid.Column computer='9' tablet='8' mobile='10'>
-              <div className="cart-header">
-                {item.title}<br/>
-                ${(item.price).toFixed(2)}
-              </div>
-              <div className="cart-size">
-                {item.sizes ? "Size:" : null }
-                {item.sizes ? <Dropdown placeholder='Size' value={item.size} selection options={donateData.sizes} /> : null}
-              </div>
-              <div className="cart-quantity">
-                Quantity:
-                <Input type='number' value={item.quantity} name={item.key} onChange={this.handleQuantityChange}>
-                  <Button icon="minus" onClick={this.handleClickMinus.bind(this, item, index)}/>
-                  <input />
-                  <Button icon="plus" onClick={this.handleClickPlus.bind(this, item, index)}/>
-                </Input>
-              </div>
-              <div className="cart-donation">
-                Enter Donation Amount: <Input name={item.key} type="text" value={"$" + item.donation} onChange={this.handlePriceTyping} onBlur={this.handlePriceBlurOut} />
-                <span>Minimum Donation: ${(item.price * item.quantity).toFixed(2)}</span>
-              </div>
-            </Grid.Column>
-            <hr />
-          </Grid.Row>
-        ))}
-      </Grid>
-    )
+    if(this.props.items.length === 0) {
+      return <h3>Your cart is empty, use the "KZSC Products" tab to view our shnazy merchandise</h3>
+    } else {
+      return (
+        <Grid>
+          {this.props.items.map((item, index) => (
+            <Grid.Row key={item.key}>
+              <Grid.Column computer='7' tablet='8' mobile='6'>
+                <Image className="cart-image" src={item.image} />
+              </Grid.Column>
+              <Grid.Column computer='9' tablet='8' mobile='10'>
+                <div className="cart-header">
+                  {item.title}<br/>
+                  ${(item.price).toFixed(2)}
+                </div>
+                <div className="cart-size">
+                  {item.sizes ? "Size:" : null }
+                  {item.sizes ? <Dropdown name={item.key} placeholder='Size' value={item.size} selection options={donateData.sizes} onChange={this.hangleChangeDropdownSize}/> : null}
+                </div>
+                <div className="cart-quantity">
+                  Quantity:
+                  <br/>
+                  <Input type='number' value={item.quantity} name={item.key} onChange={this.handleQuantityChange}>
+                    <Button icon="minus" onClick={this.handleClickMinus.bind(this, item, index)}/>
+                    <input />
+                    <Button icon="plus" onClick={this.handleClickPlus.bind(this, item, index)}/>
+                  </Input>
+                  <br/>
+                  <span>Use the minus button to remove this item</span>
+                </div>
+                <div className="cart-donation">
+                  Enter Donation Amount: <Input name={item.key} type="text" value={"$" + item.donation} onChange={this.handlePriceTyping} onBlur={this.handlePriceBlurOut} />
+                  <span>Minimum Donation: ${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+          ))}
+        </Grid>
+      )
+    }
   }
 
   onToken = (token) => {
@@ -149,31 +163,29 @@ class Cart extends Component{
 
   render(){
     return (
-      <div>
-        <Grid.Row>
-          <Grid.Column width='16'>
-            {this.getListOfCartItems()}
-          </Grid.Column>
+      <Grid.Row>
+        <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
+          {this.getListOfCartItems()}
+        </Grid.Column>
 
-          <Grid.Column width='16'>
-            <div className="subtotal">Subtotal {(this.props.merchAmount).toFixed(2)} </div>
-            <Form className="merch-form form-container">
-              <StripeCheckout
-                name="KZSC Support"
-                panelLabel="Donation"
-                amount = {this.props.merchAmount} // donation in cents
-                currency = "USD"
-                shippingAddress
-                billingAddress = {true}
-                zipCode = {true}
-                opened = {this.onStripeCheckoutOpened}
-                closed = {this.onStripeCheckoutClosed}
-                token={this.onToken}
-                stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-            </Form>
-          </Grid.Column>
-        </Grid.Row>
-      </div>
+        <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
+          <div className="merch-subtotal">Subtotal {(this.props.merchAmount).toFixed(2)} </div>
+          <Form>
+            <StripeCheckout
+              name="KZSC Support"
+              panelLabel="Donation"
+              amount = {Number(this.props.merchAmount) * 100} // donation in cents
+              currency = "USD"
+              shippingAddress
+              billingAddress = {true}
+              zipCode = {true}
+              opened = {this.onStripeCheckoutOpened}
+              closed = {this.onStripeCheckoutClosed}
+              token={this.onToken}
+              stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
+          </Form>
+        </Grid.Column>
+      </Grid.Row>
     )
   }
 }

@@ -33,6 +33,24 @@ body {
   font-size: large;
 }
 
+@media (max-width: 830px) {
+  .TopMenuBar .ui.massive.menu {
+    font-size: 1.17rem !important
+  }
+}
+
+@media (max-width: 950px) {
+  .Merchandise .ui.medium.image {
+    width: auto !important
+  }
+}
+
+@media (max-width: 767px) {
+  .Merchandise .ui.medium.image {
+    width: 100%
+  }
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -40,10 +58,12 @@ body {
 
 /* Margin and Padding Styles BEGIN */
 .no-padding { padding: 0 !important }
-.padding-t-10 { padding-top: 10px; }
+.padding-t-1rem { padding-top: 1rem }
+.padding-t-10 { padding-top: 10px }
 .padding-t-83 { padding-top: 83px }
 .padding-tb-10 { padding-top: 10px; padding-bottom: 10px; }
 .padding-tb-1rem { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+.padding-b-1rem { padding-bottom: 1rem }
 .padding-b-15 { padding-bottom: 15px }
 .margin-5 { margin: 5px; }
 .margin-t-5 { margin-top: 5px !important; }

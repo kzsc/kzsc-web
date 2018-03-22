@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Popup, Button, Image, Icon, Input, Dropdown } from 'semantic-ui-react'
+import { Grid, Popup, Button, Image, Icon, Input, Dropdown, Reveal } from 'semantic-ui-react'
 import donateData from './donateData.json'
 
 class Merchandise extends Component {
@@ -19,9 +19,9 @@ class Merchandise extends Component {
     this.props.updateMerchList(merchandiseListTemp)
   }
 
-  merchPopupHandleClose(i) {
+  merchPopupHandleClose(index) {
     let merchandiseListTemp = this.props.merchandiseList
-    let merchTemp = merchandiseListTemp[i] // The item that was opened
+    let merchTemp = merchandiseListTemp[index] // The item that was opened
     merchTemp.merchPopupIsOpen = false
     this.props.updateMerchList(merchandiseListTemp)
   }
@@ -31,39 +31,40 @@ class Merchandise extends Component {
   updateQuantity = (e, { value }) => this.setState({ quantity: value })
 
   addToCart(item, index, size, quantity) {
-    this.props.addToCart(item, index, size, quantity)
+    // If quantity is positive
+    if(quantity > 0) {
+      this.props.addToCart(item, index, size, quantity)
+    }
     // Reset size and quantity
-    this.setState({
-      size: 'small', quantity: '1'
-    })
+    this.setState({ size: 'small', quantity: '1' })
     // Close Merch Popup
-    let merchandiseListTemp = this.props.merchandiseList
-    let merchTemp = merchandiseListTemp[index] // The item that was opened
-    merchTemp.merchPopupIsOpen = false
-    this.props.updateMerchList(merchandiseListTemp)
+    this.merchPopupHandleClose(index)
   }
 
   render() {
     return (
-      <Grid.Row>
+      <Grid.Row className="Merchandise">
         {this.props.merchandiseList.map((item, index) =>
-          <Grid.Column key={item.id} width='8' textAlign='center'>
-            <Popup className="merchPopup" on='click' basic wide='very'
+          <Grid.Column key={item.id} width='8' textAlign='center' className="padding-t-1rem padding-b-1rem">
+            <Popup className="merch-popup" on='click' basic wide='very'
               open={item.merchPopupIsOpen} onOpen={this.merchPopupHandleOpen.bind(this, index)} onClose={this.merchPopupHandleClose.bind(this, index)}
               trigger={
-                <Button>
-                  <Image as='a' size='medium' src={item.image} alt="" />
-                  <h4>
+                <Button basic color='grey'>
+                  {item.imageReveal ?
+                    <RevealImage image={item.image} imageReveal={item.imageReveal} />
+                    : <Image size='medium' src={item.image} alt="" />
+                  }
+                  <div className="merch-header">
                     {item.title}<br />
                     ${(item.price).toFixed(2)}
-                  </h4>
+                  </div>
                 </Button>
               }
               content={
                 <Grid padded centered stackable>
                   <Grid.Row>
                     <Grid.Column width={5}>
-                      <Image size='medium' src={item.image} alt="" />
+                      {item.imageReveal ? <RevealImage image={item.image} imageReveal={item.imageReveal} /> : <Image size='medium' src={item.image} alt="" /> }
                     </Grid.Column>
                     <Grid.Column width={11}>
                       <h3>{item.title}</h3>
@@ -90,3 +91,16 @@ class Merchandise extends Component {
 }
 
 export default Merchandise
+
+function RevealImage(props) {
+  return (
+    <Reveal animated='small fade'>
+      <Reveal.Content visible>
+        <Image size='medium' src={props.image} alt="" />
+      </Reveal.Content>
+      <Reveal.Content hidden>
+        <Image size='medium' src={props.imageReveal} alt="" />
+      </Reveal.Content>
+    </Reveal>
+  );
+}

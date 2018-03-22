@@ -43,8 +43,8 @@ class TopMenuBar extends Component {
 
   render(){
     return(
-      <Grid>
-        <Grid.Row columns={1} only='computer'>
+      <Grid className="TopMenuBar">
+        <Grid.Row columns={1} only='computer tablet'>
           <Grid.Column className='bg-color-grey-1 text-align-center'>
             <Menu size='massive' pointing secondary compact stackable>
               {this.getMenuItems()}

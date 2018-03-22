@@ -11,7 +11,9 @@ import './Donate.css';
 import shirt from './kzsc-shirt.jpg';
 import shirt2 from './kzsc-shirt-50th.jpg';
 import bag from './kzsc-bag.jpg';
+import bagReveal from './kzsc-bag2.jpg';
 import buttons from './kzsc-buttons.jpg';
+import buttonsReveal from './kzsc-buttons2.jpg';
 import LeftSideBar from '../LeftSideBar/LeftSideBar';
 import uuid from 'uuid';
 import Cart from './Cart'
@@ -28,7 +30,7 @@ class Donate extends Component {
       activeItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
-        { name: 'merch', title: 'Merchandise' },
+        { name: 'merch', title: 'KZSC Products' },
         { name: "cart", title: "Your Cart", label: '0' },
       ],
       merchandiseList: [
@@ -37,11 +39,11 @@ class Donate extends Component {
           desc: 'KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station'
         },
         {
-          id: 'bag', image: bag, title: 'KZSC Canvas Tote Bag', price: 30, sizes: false, merchPopupIsOpen: false,
+          id: 'bag', image: bag, imageReveal: bagReveal, title: 'KZSC Canvas Tote Bag', price: 30, sizes: false, merchPopupIsOpen: false,
           desc: 'One of KZSC’s most enduring and popular designs, the “PEEL SLOWLY AND SEE” Banana Slug was inspired by Andy Warhol’s cover design for the debut LP by The Velvet Underground. Now KZSC offers a revamp of the design on this sturdy canvas tote bag designed to haul LPs, groceries, or whatever you please.  Its 15.5″ x 14.5″ x 7″ roomy design is topped off with generous 11 inch handles for over-the-shoulder style'
         },
         {
-          id: 'buttons', image: buttons, title: 'KZSC Buttons', price: 10, sizes: false, merchPopupIsOpen: false,
+          id: 'buttons', image: buttons, imageReveal: buttonsReveal, title: 'KZSC Buttons', price: 10, sizes: false, merchPopupIsOpen: false,
           desc: 'Love the Great 88? Grab some KZSC buttons for your hat, shirt, jacket or backpack! Donate a minimum of $10 and receive three unique KZSC buttons, handmade by your favorite DJs. These are 1 inch buttons, protected from the elements with a plastic cover. The pin on the back is also removable in case you’d prefer to make your button a magnet — simply add a magnet to the backside! Some DJs have made pins specific to their show! If you donate during a program that has made specialty pins, we will give you a pin featuring that show’s design in one of the three you receive'
         },
         {
@@ -90,7 +92,7 @@ class Donate extends Component {
     var itemTemp = Object.assign({}, item)
     itemTemp.key = uuid.v4()
     itemTemp.size = size
-    itemTemp.quantity = quantity
+    itemTemp.quantity = Math.floor(Math.abs(quantity))
     itemTemp.donation = (itemTemp.price * quantity)
     itemsArray.push(itemTemp)
     this.setState({ itemsInCart: itemsArray })
@@ -134,36 +136,33 @@ class Donate extends Component {
 
   render() {
     return (
-      <div>
-        <Grid centered padded>
+      <Grid centered padded>
 
-          <Grid.Row>
-            <Grid.Column computer='3' tablet='3' mobile='16'>
-              <LeftSideBar items={this.state.menuItems} active={this.state.activeItem} handleItemClick={this.handleLeftMenuItemClick.bind(this)}/>
-            </Grid.Column>
+        <Grid.Row>
+          <Grid.Column computer='3' tablet='3' mobile='16'>
+            <LeftSideBar items={this.state.menuItems} active={this.state.activeItem} handleItemClick={this.handleLeftMenuItemClick.bind(this)}/>
+          </Grid.Column>
 
-            <Grid.Column computer='12' tablet='12' mobile='16'>
-              <h3>
-                {this.state.activeItem === "donate" ? "Help us keep noncommercial community radio on the air with a secure pledge today!" : null }
-                {this.state.activeItem === "merch"  ? "Help us keep noncommercial community radio on the air by donating today!" : null }
-                {this.state.activeItem === "cart"   ? "Review the items in your cart" : null }
-              </h3>
-              <p>
-                {this.state.activeItem === "donate" ? "Thank you for keeping KZSC—your local and live community radio station—broadcasting at 20,000 watts each day!" : null }
-                {this.state.activeItem === "merch"  ? "Click on an item below to view a description and options, then checkout using the left side bar" : null }
-              </p>
+          <Grid.Column computer='12' tablet='12' mobile='16'>
+            <h3>
+              {this.state.activeItem === "donate" ? "Help us keep noncommercial community radio on the air with a secure pledge today!" : null }
+              {this.state.activeItem === "merch"  ? "Help us keep noncommercial community radio on the air by donating today!" : null }
+              {this.state.activeItem === "cart"   ? "Review the items in your cart" : null }
+            </h3>
+            <p>
+              {this.state.activeItem === "donate" ? "Thank you for keeping KZSC—your local and live community radio station—broadcasting at 20,000 watts each day!" : null }
+              {this.state.activeItem === "merch"  ? "Click on an item below to view a description and options, then checkout using the left side bar" : null }
+            </p>
 
-              <Grid stackable>
-                {this.state.activeItem === "donate" ? <Donation updateAmount={this.updateDonationAmount}/> : null}
-                {this.state.activeItem === "merch"  ? <Merchandise merchandiseList={this.state.merchandiseList} addToCart={this.addToCart} updateMerchList={this.updateMerchList}/> : null}
-                {this.state.activeItem === "cart"   ? <Cart items={this.state.itemsInCart} updateItemsInCart={this.updateItemsInCart} merchAmount={this.state.merchAmount} remove={this.removeItem} onQuantityChange={this.handleQuantityChangeMerchAmount}/> : null}
-              </Grid>
-            </Grid.Column>
-          </Grid.Row>
+            <Grid stackable>
+              {this.state.activeItem === "donate" ? <Donation updateAmount={this.updateDonationAmount}/> : null}
+              {this.state.activeItem === "merch"  ? <Merchandise merchandiseList={this.state.merchandiseList} addToCart={this.addToCart} updateMerchList={this.updateMerchList}/> : null}
+              {this.state.activeItem === "cart"   ? <Cart items={this.state.itemsInCart} updateItemsInCart={this.updateItemsInCart} merchAmount={this.state.merchAmount} remove={this.removeItem} onQuantityChange={this.handleQuantityChangeMerchAmount}/> : null}
+            </Grid>
+          </Grid.Column>
+        </Grid.Row>
 
-        </Grid>
-
-      </div>
+      </Grid>
     )
   }
 }
