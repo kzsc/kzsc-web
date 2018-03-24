@@ -14,11 +14,14 @@ import bag from './kzsc-bag.jpg';
 import bagReveal from './kzsc-bag2.jpg';
 import buttons from './kzsc-buttons.jpg';
 import buttonsReveal from './kzsc-buttons2.jpg';
+import billsImage from '../../assets/images/bills1.jpg'
 import LeftSideBar from '../LeftSideBar/LeftSideBar';
 import uuid from 'uuid';
 import Cart from './Cart'
 import Donation from './Donation'
 import Merchandise from './Merchandise'
+import Product from '../Product/Product'
+import donateData from './donateData'
 
 class Donate extends Component {
   constructor(props) {
@@ -30,7 +33,7 @@ class Donate extends Component {
       activeItem: 'donate',
       menuItems: [
         { name: 'donate', title: 'Donate' },
-        { name: 'bills', title: 'KZSC Bills to be filled' },
+        { name: 'bills', title: 'KZSC Bills' },
         { name: 'merch', title: 'KZSC Products' },
         { name: "cart", title: "Your Cart", label: 0 },
       ],
@@ -123,6 +126,7 @@ class Donate extends Component {
       menuItems: [
         { name: 'donate', title: 'Donate' },
         { name: 'merch', title: 'Merchandise' },
+        { name: 'bills', title: 'KZSC Bills' },
         { name: "cart", title: "Your Cart", label: itemsInCartTemp.length }
       ]
     })
@@ -138,17 +142,18 @@ class Donate extends Component {
 
   render() {
     return (
-      <Grid centered padded>
+      <Grid centered padded stackable>
 
         <Grid.Row>
-          <Grid.Column computer='3' tablet='3' mobile='16'>
+          <Grid.Column width='4'>
             <LeftSideBar items={this.state.menuItems} active={this.state.activeItem} handleItemClick={this.handleLeftMenuItemClick.bind(this)}/>
           </Grid.Column>
 
-          <Grid.Column computer='12' tablet='12' mobile='16'>
+          <Grid.Column width='12'>
             <h3>
               {this.state.activeItem === "donate"  ? "Help us keep noncommercial community radio on the air with a secure pledge today!" : null }
               {this.state.activeItem === "merch"   ? "Help us keep noncommercial community radio on the air by donating today!" : null }
+              {this.state.activeItem === "bills"   ? "Help KZSC to pay the bills! It costs $250,000 to run our station every year" : null }
               {this.state.activeItem === "cart" && this.state.itemsInCart.length !== 0 ? "Review the items in your cart" : null }
               {this.state.activeItem === "cart" && this.state.itemsInCart.length === 0 ? "Your cart is empty, use the \"KZSC Products\" tab to view our shnazy merchandise" : null }
             </h3>
@@ -157,11 +162,11 @@ class Donate extends Component {
               {this.state.activeItem === "merch"  ? "Click on an item below to view a description and options, then checkout using the left side bar" : null }
             </p>
 
-            <Grid stackable>
-              {this.state.activeItem === "donate" ? <Donation updateAmount={this.updateDonationAmount}/> : null}
-              {this.state.activeItem === "merch"  ? <Merchandise merchandiseList={this.state.merchandiseList} addToCart={this.addToCart} updateMerchList={this.updateMerchList}/> : null}
-              {this.state.activeItem === "cart"   ? <Cart items={this.state.itemsInCart} updateItemsInCart={this.updateItemsInCart} merchAmount={this.state.merchAmount} remove={this.removeItem} onQuantityChange={this.handleQuantityChangeMerchAmount}/> : null}
-            </Grid>
+            {this.state.activeItem === "donate" ? <Donation updateAmount={this.updateDonationAmount}/> : null}
+            {this.state.activeItem === "merch"  ? <Merchandise merchandiseList={this.state.merchandiseList} addToCart={this.addToCart} updateMerchList={this.updateMerchList}/> : null}
+            {this.state.activeItem === "bills"  ? <Product options={donateData.bills.billsOptions} optionsDescription={donateData.bills.billsOptionsDescription} productTitle={donateData.bills.billsProductTitle} productDesc={donateData.bills.billsProductDesc} additionalInfoTabTitle={donateData.bills.billsAdditionalInfoTabTitle} additionalInfoTitle={donateData.bills.billsAdditionalInfoTitle} additionalInfoDesc={donateData.bills.billsAdditionalInfoDesc} image={billsImage}/> : null }
+            {this.state.activeItem === "cart"   ? <Cart items={this.state.itemsInCart} updateItemsInCart={this.updateItemsInCart} merchAmount={this.state.merchAmount} remove={this.removeItem} onQuantityChange={this.handleQuantityChangeMerchAmount}/> : null}
+
           </Grid.Column>
         </Grid.Row>
 

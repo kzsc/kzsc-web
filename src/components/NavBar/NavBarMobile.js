@@ -64,7 +64,7 @@ class NavBarMobile extends Component{
         <Menu inverted size="massive" className="kblue customnav" fixed='top'>
           <Menu.Menu position="left" onClick={this.hideNavBar.bind(this)}>
             <Menu.Item>
-              <Image src={logo} width='107px'/>
+              <Image id="navbar-mobile-logo" src={logo} width='107px'/>
             </Menu.Item>
           </Menu.Menu>
           <Menu.Menu position='right'>

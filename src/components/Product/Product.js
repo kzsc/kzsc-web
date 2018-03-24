@@ -36,6 +36,19 @@ class Product extends Component {
     });
   }
 
+  onToken = (token) => {
+    var dAmount = 0;
+    dAmount = this.state.itemprice;
+    fetch('/payment', {
+      method: 'POST',
+      headers: new Headers({'content-type': 'application/json'}),
+      body: JSON.stringify({
+          rtoken: token,
+          amount: dAmount
+      })
+    }).then(response => { })
+  }
+
   handleAdditionalItemClick = (e, { name }) => this.setState({ additionalActiveItem: name })
 
   render(){
@@ -48,12 +61,12 @@ class Product extends Component {
           {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
 
           <Grid.Row>
-            <Grid.Column computer='6' tablet='7' mobile='8'>
+            <Grid.Column computer='7' tablet='7' mobile='8'>
               <Segment color='grey' tertiary padded>
                 <Image src={this.props.image} fluid/>
               </Segment>
             </Grid.Column>
-            <Grid.Column computer='6' tablet='7' mobile='8'>
+            <Grid.Column computer='8' tablet='8' mobile='8'>
               <Segment basic>
                 <h2>{this.props.productTitle}</h2>
                 <div>
@@ -72,13 +85,17 @@ class Product extends Component {
                     <Segment compact className='kblue'>
                       { this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }
                     </Segment>
+                  </Form>
 
-                    <Form>
-                      <StripeCheckout name="KZSC Support" panelLabel="Donation"
-                        amount = {this.state.itemprice} billingAddress = {true}
-                        zipCode = {true} email={this.state.email}
-                        token={this.onToken} stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-                    </Form>
+                  <Form>
+                    <StripeCheckout
+                      name="KZSC Support"
+                      panelLabel="Donation"
+                      amount = {Number(this.state.itemprice) * 100}
+                      billingAddress = {true}
+                      zipCode = {true}
+                      token={this.onToken}
+                      stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
                   </Form>
 
                 </Segment>
@@ -87,7 +104,7 @@ class Product extends Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column computer='12' tablet='14' mobile='16'>
+            <Grid.Column computer='15' tablet='15' mobile='16'>
               <Menu attached='top' tabular>
                 <Menu.Item name='additionalinfo' active={additionalActiveItem === 'additionalinfo'} onClick={this.handleAdditionalItemClick}>
                   {this.props.additionalInfoTabTitle}

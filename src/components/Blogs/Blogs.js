@@ -6,9 +6,10 @@
  */
 
 import React, { Component } from 'react';
-import { Segment, Grid, Button, Dropdown } from 'semantic-ui-react'
+import { Segment, Grid, Button, Input, Dropdown } from 'semantic-ui-react'
 import Tile from '../Tile/Tile';
 import kzscI from '../../assets/images/kzsc.jpg'
+import date from '../date.json'
 
 class Blogs extends Component {
   constructor(props) {
@@ -17,22 +18,26 @@ class Blogs extends Component {
       requestStringState: 'get_recent_posts/?',
       numberOfPostsRestart: 15,
       numberPostsToIncreaseBy: 6,
-      // activeCategoryButton: 'All',
       currentCategoryId: 0,
-      activeMenuItem: 'none',
-      menuItems: [
-        { name: 'blog', title: 'KZSC Blog' }
-      ],
-      categoryDropdownOptions: []
+      categoryDropdownOptions: [],
+      searchString: '',
+      selectedCategory: '',
+      searchOptions: false,
+      searchOptionsArrow: 'chevron down',
+      searchYear: '2018',
+      searchMonth: '',
+      searchDate: ''
     }
     this.onChangeCategory = this.onChangeCategory.bind(this)
+    this.newBlogPosts = this.newBlogPosts.bind(this)
+    this.onSearchPosts = this.onSearchPosts.bind(this)
+    this.toggleSearchOptions = this.toggleSearchOptions.bind(this)
   }
-
-  handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
 
   newBlogPosts(newPost) {
     this.props.updateBlogPosts(newPost);
   }
+
   componentWillMount() {
     this.setState({
       domain: this.props.domain,
@@ -45,27 +50,35 @@ class Blogs extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { numberPostsToLoad, requestStringState, currentCategoryId } = this.state
+    const { numberPostsToLoad, requestStringState, currentCategoryId, searchString, searchDate } = this.state
     const { blogCategories } = this.props
 
     if( prevProps.blogCategories !== blogCategories ) {
       this.getCategoryDropdownOptions()
     }
 
-    if( prevState.currentCategoryId !== currentCategoryId ) {
+    if( prevState.currentCategoryId !== currentCategoryId ||
+        prevState.searchString !== searchString  ||
+        prevState.searchDate !== searchDate ) {
       this.props.truePostsLoading();
     }
 
     if(prevState.numberPostsToLoad !== numberPostsToLoad ||
        prevState.requestStringState !== requestStringState ||
-       prevState.currentCategoryId !== currentCategoryId) {
-      let requestForACategory = '';
+       prevState.currentCategoryId !== currentCategoryId ||
+       prevState.searchString !== searchString ||
+       prevState.searchDate !== searchDate ) {
+      let optionalArgs = ''
       if( requestStringState === 'get_category_posts/?' ) {
-        requestForACategory = '&id=' + currentCategoryId;
+        optionalArgs = '&id=' + currentCategoryId
+      } else if ( requestStringState === 'get_search_results/?' ) {
+        optionalArgs = '&search=' + searchString
+      } else if ( requestStringState === 'get_date_posts/?' ) {
+        optionalArgs = '&date=' + searchDate
       }
-      let requestString = requestStringState + requestForACategory + '&count=' + numberPostsToLoad;
+      let requestString = requestStringState + optionalArgs + '&count=' + numberPostsToLoad;
       this.props.trueButtonLoading();
-      this.props.kzscApiGetCategory(requestString, 'blogPosts');
+      this.props.kzscApiGetRequest(requestString, 'blogPosts');
     }
   }
 
@@ -97,38 +110,20 @@ class Blogs extends Component {
     return blogTiles
   }
 
-  // changeCategory(cid, cname) {
-  //   this.setState({ activeCategoryButton: cname });
-  //   let numberOfPosts;
-  //   if( this.state.currentCategoryId === cid ) {
-  //     numberOfPosts = this.state.numberPostsToLoad;
-  //   } else {
-  //     numberOfPosts = this.state.numberOfPostsRestart;
-  //   }
-  //   if( cname === 'All' ){
-  //     this.setState({
-  //       requestStringState: 'get_recent_posts/?',
-  //       numberPostsToLoad: numberOfPosts,
-  //       currentCategoryId: 0
-  //     });
-  //   } else {
-  //     this.setState({
-  //       requestStringState: 'get_category_posts/?',
-  //       numberPostsToLoad: numberOfPosts,
-  //       currentCategoryId: cid
-  //     });
-  //   }
-  // }
-
-  onChangeCategory(event, data) {
-    let categoryId = data.value
-    let numberOfPosts;
+  onChangeCategory = (e, { value }) => {
+    // Reset Other Search Fields
+    this.setState({
+      searchString: ""
+    })
+    // Generate Request String
+    let categoryId = value
+    this.setState({selectedCategory: value})
+    let numberOfPosts
     if( this.state.currentCategoryId === categoryId ) {
       numberOfPosts = this.state.numberPostsToLoad;
     } else {
       numberOfPosts = this.state.numberOfPostsRestart;
     }
-
     if( categoryId === '0' ){
       this.setState({
         requestStringState: 'get_recent_posts/?',
@@ -142,6 +137,50 @@ class Blogs extends Component {
         currentCategoryId: categoryId
       });
     }
+  }
+
+  onSearchPosts = (e, { value }) => {
+    // Reset Other Search Fields
+    this.setState({selectedCategory: ""})
+    // Generate Request String
+    let numberOfPosts = this.state.numberOfPostsRestart;
+    this.setState({
+      requestStringState: 'get_search_results/?',
+      numberPostsToLoad: numberOfPosts,
+      searchString: value
+    });
+  }
+
+  onChangeMonth = (e, { value }) => {
+    // Reset and Set Other Search Fields
+    this.setState({
+      selectedCategory: "",
+      searchString: "",
+      searchMonth: value
+    })
+    // Generate Request String
+    let numberOfPosts = this.state.numberOfPostsRestart
+    this.setState({
+      requestStringState: 'get_date_posts/?',
+      numberPostsToLoad: numberOfPosts,
+      searchDate: this.state.searchYear + '' + value
+    })
+  }
+
+  onChangeYear = (e, { value }) => {
+    // Reset Other Search Fields
+    this.setState({
+      selectedCategory: "",
+      searchString: "",
+      searchYear: value
+    })
+    // Generate Request String
+    let numberOfPosts = this.state.numberOfPostsRestart
+    this.setState({
+      requestStringState: 'get_date_posts/?',
+      numberPostsToLoad: numberOfPosts,
+      searchDate: value + '' + this.state.searchMonth
+    })
   }
 
   getCategoryDropdownOptions() {
@@ -161,77 +200,89 @@ class Blogs extends Component {
     this.setState({ categoryDropdownOptions: options })
   }
 
-  // getCategoryButtons() {
-  //   let categoryButtons = this.props.blogCategories.map((c, i) => {
-  //     return (
-  //       <div className='margin-5 display-inline-block' key={c.id}>
-  //         <Button compact color='black' secondary size='small' active={this.state.activeCategoryButton === c.title}
-  //          onClick={this.changeCategory.bind(this, c.id, c.title)}>
-  //           <span dangerouslySetInnerHTML={{__html: c.title}}></span>
-  //         </Button>
-  //       </div>
-  //     );
-  //   });
-  //   return categoryButtons;
-  // }
-
   loadMorePosts() {
     this.setState({
       numberPostsToLoad: this.state.numberPostsToLoad + this.state.numberPostsToIncreaseBy
     });
   }
 
+  toggleSearchOptions() {
+    let icon;
+    if( this.state.searchOptionsArrow === 'chevron down' ) {
+      icon = 'chevron up'
+    } else {
+      icon = 'chevron down'
+    }
+    this.setState({
+      searchOptions: !this.state.searchOptions,
+      searchOptionsArrow: icon
+    })
+  }
+
   render() {
     return (
-      <div className="Blogs">
-        <Grid centered padded>
+      <Grid centered padded stackable className="Blogs">
 
-          <Grid.Row>
-            <Grid.Column width="15">
-              <Dropdown placeholder='Category' search selection fluid
-                options={this.state.categoryDropdownOptions}
-                onChange={this.onChangeCategory} />
-            </Grid.Column>
-          </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width="15">
+            <Input placeholder='Search...' icon='search' className="margin-r-20 margin-t-5"
+              iconPosition='left'
+              onChange={this.onSearchPosts} />
+            <Button labelPosition='right' className="kblue margin-t-5"
+              icon={this.state.searchOptionsArrow}
+              content='More search options'
+              onClick={this.toggleSearchOptions} />
+          </Grid.Column>
+        </Grid.Row>
 
-          {/* <Grid.Row>
-            <Grid.Column width={16}>
-              <Segment padded textAlign='center' basic>
-                <div className='margin-5 display-inline-block' key='all'>
-                  <Button compact color='black' size='small' active={this.state.activeCategoryButton === 'All'}
-                   onClick={this.changeCategory.bind(this, 0, 'All')}>
-                    <span>All</span>
-                  </Button>
-                </div>
-               {this.getCategoryButtons()}
-              </Segment>
-            </Grid.Column>
-          </Grid.Row> */}
+        { this.state.searchOptions ?
+        <Grid.Row>
+          <Grid.Column width="5">
+            <Dropdown search selection fluid
+              placeholder='By category'
+              options={this.state.categoryDropdownOptions}
+              onChange={this.onChangeCategory}
+              value={this.state.selectedCategory} />
+          </Grid.Column>
+          <Grid.Column width="5">
+            <Dropdown search selection fluid
+              placeholder='By month'
+              options={date.month}
+              onChange={this.onChangeMonth} />
+          </Grid.Column>
+          <Grid.Column width="5">
+            <Dropdown search selection fluid
+              placeholder='By year'
+              options={date.year}
+              onChange={this.onChangeYear} />
+          </Grid.Column>
+        </Grid.Row>
+        : null }
 
-          <Grid.Row>
-            <Grid.Column width={16}>
-              <Segment loading={this.props.postsLoading} basic>
-                <Grid stackable columns='3' doubling>
-                  <Grid.Row>
-                    {this.blogContent()}
-                  </Grid.Row>
-                </Grid>
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width="16">
+            <Segment loading={this.props.postsLoading} basic>
+              <Grid stackable columns='3' doubling>
+                <Grid.Row>
+                  {this.blogContent()}
+                </Grid.Row>
+              </Grid>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column width={16} textAlign='center'>
-              <Button disabled={this.props.buttonLoading} loading={this.props.buttonLoading}
-               className='kblue' onClick={this.loadMorePosts.bind(this)}>
-                Load More
-              </Button>
-            </Grid.Column>
-          </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width="16" textAlign='center'>
+            <Button disabled={this.props.buttonLoading}
+              loading={this.props.buttonLoading}
+              className='kblue'
+              onClick={this.loadMorePosts.bind(this)}>
+              Load More
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
 
-        </Grid>
-
-      </div>
+      </Grid>
     );
   }
 }

@@ -87,47 +87,49 @@ class Donation extends Component {
 
   render() {
     return (
-      <Grid.Row columns="2">
-        <Grid.Column>
-          <Segment color='grey' tertiary padded>
-            <Image src={donate} fluid/>
-          </Segment>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment padded color='grey' tertiary>
-            <Form>
-              <Form.Group inline>
-                <Form.Field required control={Select} label='Donar Levels' options={donateData.optionsItems}
-                 placeholder='Choose an option' onChange={(e, { value }) => this.getOptionDescription(value)} />
-              </Form.Group>
+      <Grid stackable>
+        <Grid.Row columns="2">
+          <Grid.Column>
+            <Segment color='grey' tertiary padded>
+              <Image src={donate} fluid/>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment padded color='grey' tertiary>
+              <Form>
+                <Form.Group inline>
+                  <Form.Field required control={Select} label='Donar Levels' options={donateData.optionsItems}
+                   placeholder='Choose an option' onChange={(e, { value }) => this.getOptionDescription(value)} />
+                </Form.Group>
 
-              {this.state.optionDescription}
+                {this.state.optionDescription}
 
-              { this.state.donationEditable ?
-                <input type="text" className='input-segment-kblue' name="donationAmount" width={3}
-                  value={this.state.donationAmount === 0 ? '$0.00' : '$' + this.state.donationAmount}
-                  onChange={this.handleChangeDonateOptions}
-                  onBlur={this.handleBlurDonateOptions} />
-                :
-                <Segment compact className='kblue'>{this.state.donationAmount === 0 ? '$0.00' : '$' + this.state.donationAmount }</Segment>
-              }
+                { this.state.donationEditable ?
+                  <input type="text" className='input-segment-kblue' name="donationAmount" width={3}
+                    value={this.state.donationAmount === 0 ? '$0.00' : '$' + this.state.donationAmount}
+                    onChange={this.handleChangeDonateOptions}
+                    onBlur={this.handleBlurDonateOptions} />
+                  :
+                  <Segment compact className='kblue'>{this.state.donationAmount === 0 ? '$0.00' : '$' + this.state.donationAmount }</Segment>
+                }
 
-              <StripeCheckout
-                name="KZSC Support"
-                panelLabel="Donation"
-                amount = {Number(this.state.donationAmount) * 100} // donation in cents
-                currency = "USD"
-                shippingAddress
-                billingAddress = {true}
-                zipCode = {true}
-                opened = {this.onStripeCheckoutOpened}
-                closed = {this.onStripeCheckoutClosed}
-                token={this.onToken}
-                stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-            </Form>
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
+                <StripeCheckout
+                  name="KZSC Support"
+                  panelLabel="Donation"
+                  amount = {Number(this.state.donationAmount) * 100} // donation in cents
+                  currency = "USD"
+                  shippingAddress
+                  billingAddress = {true}
+                  zipCode = {true}
+                  opened = {this.onStripeCheckoutOpened}
+                  closed = {this.onStripeCheckoutClosed}
+                  token={this.onToken}
+                  stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
+              </Form>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 

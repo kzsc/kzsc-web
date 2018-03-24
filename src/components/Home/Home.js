@@ -17,18 +17,8 @@ class Home extends Component{
 
   constructor(props){
     super(props);
-    this.state = {
-      activeMenuItem: 'none',
-      menuItems: [
-        {
-          name: 'description',
-          title: ''
-        }
-      ]
-    }
+    this.state = { }
   }
-
-  handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
 
   toDateString(date){
     return this.props.convertDate(date);
@@ -106,10 +96,8 @@ class Home extends Component{
       <div className="Home">
         <Grid stackable centered padded>
 
-          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
-
           <Grid.Row>
-            <Grid.Column computer={11} tablet={11}>
+            <Grid.Column computer={12} tablet={12}>
 
               {/* Left Column BEGIN */}
               <Grid stackable>
@@ -126,12 +114,8 @@ class Home extends Component{
               {/* Left Column END */}
 
             </Grid.Column>
-            <Grid.Column width={4} stretched textAlign="center">
-
-              {/* Right Column BEGIN */}
+            <Grid.Column width={4} stretched>
               <RightSideBar />
-              {/* Right Column END */}
-
             </Grid.Column>
           </Grid.Row>
 
@@ -140,7 +124,7 @@ class Home extends Component{
         <Grid stackable centered padded>
 
           <Grid.Row>
-            <Grid.Column width={15} className="k-divider">
+            <Grid.Column width={16} className="k-divider">
               <div className='k-divider-title'>
                 <div><span>Follow Us</span></div>
               </div>
@@ -148,14 +132,14 @@ class Home extends Component{
           </Grid.Row>
 
           <Grid.Row columns={3}>
-            <Grid.Column computer={5} tablet={5} stretched>
+            <Grid.Column stretched>
               <Segment className='kblue' tertiary>
                 <h3>{'Follow us on Social Media'.toUpperCase()}</h3>
                 {this.getSocialMediaLinks()}
               </Segment>
             </Grid.Column>
 
-            <Grid.Column computer={5} tablet={5} stretched>
+            <Grid.Column stretched>
               <Segment className='kblue' secondary>
                 <h3>RADIO FREE AMERICA ARCHIVES</h3>
                 <Button color='blue' as='a' href='http://www.radiofreeamerica.com/station/kzsc'>
@@ -164,7 +148,7 @@ class Home extends Component{
               </Segment>
             </Grid.Column>
 
-            <Grid.Column computer={5} tablet={5} stretched>
+            <Grid.Column stretched>
               <Segment className='kblue' tertiary>
                 <h3>Like Us On Facebook</h3>
                 <div>
@@ -174,8 +158,8 @@ class Home extends Component{
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column computer='5' tablet='5'>
+          <Grid.Row columns={3}>
+            <Grid.Column>
               <div className="text-align-center k-divider">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <div className='color-black-default'>
@@ -186,7 +170,7 @@ class Home extends Component{
               {this.getBlogContent(this.props.eventsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='5' tablet='5'>
+            <Grid.Column>
               <div className="text-align-center k-divider">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <div className='color-black-default'>
@@ -197,7 +181,7 @@ class Home extends Component{
               {this.getBlogContent(this.props.interviewsPosts, 'small')}
             </Grid.Column>
 
-            <Grid.Column computer='5' tablet='5'>
+            <Grid.Column>
               <div className="text-align-center k-divider">
                 <NavLink to='/blogs' onClick={this.props.scrollToTop}>
                   <div className='color-black-default'>

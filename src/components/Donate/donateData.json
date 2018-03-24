@@ -63,5 +63,18 @@
       "id": "shirt2", "image": "kzsc-shirt-50th.jpg", "title": "KZSC 50th Anniversary T-shirt", "price": 25,
       "desc": "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station"
     }
-  ]
+  ],
+  "bills" : {
+    "billsOptions": [
+      { "key": "one", "text": "Bills", "value": "bills" }
+    ],
+    "billsOptionsDescription": {
+      "bills": { "desc": "Suggested Donation $1,500.00", "price": 1500.00 }
+    },
+    "billsProductTitle": "KZSC Bills: Radio field trips",
+    "billsProductDesc": "",
+    "billsAdditionalInfoTitle": "Description",
+    "billsAdditionalInfoTabTitle": "Description",
+    "billsAdditionalInfoDesc" : "<p>We need your help to pay our bills!</p><p>KZSC is licensed as a non-commercial, educational radio station. We teach the legal, technical, and creative aspects of radio programming every day. Our news and talk department, our graphic design, website, social media, and even our computer network are all run by volunteers and they all learned their skills, on-the-job, at KZSC!</p><p>We spend an average of $26,000 on our training programs every year. This includes teaching materials, field trips to other radio stations and conferences, and pay for our radio and journalism teachers. That’s roughly 10 per cent of our overall operating costs!</p><p>Can you help us to take care of this bill? Any amount helps. But if you are in a position to give $1,500, you can fund an educational field trip to other California radio stations like the one we just took.</p><p>KZSC volunteers visited KCPR at Cal Poly San Luis Obispo, KCSB in Santa Barbara and KHDC, Radio Bilingue, in Salinas! Our volunteers interacted with more than 100 radio programmers from all over California, at the UC Radio Network conference, and we are bringing back a ton of energy and ideas to make KZSC do more for you!</p><p>We’d like to visit KDVS in Davis, KALX in Berkeley, and KALW in San Francisco next. Can you make that happen?</p>"
+  }
 }

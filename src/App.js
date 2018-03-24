@@ -88,7 +88,7 @@ class App extends Component {
     });
   }
 
-  kzscApiGetCategory(request, stateVar) {
+  kzscApiGetRequest(request, stateVar) {
     let postCategoryUrl = this.state.domain + 'api/' + request;
     axios.get(postCategoryUrl).then(res => {
       const holdData = res.data.posts.map(obj => obj);
@@ -133,7 +133,7 @@ class App extends Component {
   componentWillMount(){
     this.kzscApiGetCategoryList('get_category_index');
     let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
-    this.kzscApiGetCategory(requestString, 'blogPosts');
+    this.kzscApiGetRequest(requestString, 'blogPosts');
     this.kzscApiGetPostById('38048', 'homeFeaturedContent');
     this.kzscApiGetPostById('36472', 'homeFeaturedContent2');
     this.kzscApiGet4FromCategory('get_recent_posts/?count=4', 'homeRecentPosts');
@@ -245,7 +245,7 @@ class App extends Component {
                      blogCategories={this.state.blogCategories}
                      blogPosts={this.state.blogPosts}
                      updateBlogPosts={this.updateBlogPosts.bind(this)}
-                     kzscApiGetCategory={this.kzscApiGetCategory.bind(this)}
+                     kzscApiGetRequest={this.kzscApiGetRequest.bind(this)}
                      postsLoading={this.state.blogsPostsLoading}
                      buttonLoading={this.state.blogsButtonLoading}
                      truePostsLoading={this.trueBlogsPostsLoading.bind(this)}

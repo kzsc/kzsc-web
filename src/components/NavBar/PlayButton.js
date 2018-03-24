@@ -92,12 +92,12 @@ class PlayButton extends Component {
 
     return(
       <div>
-        <div className="playButtonShowInformation">
+        <div className="play-button-info">
           <span dangerouslySetInnerHTML={{__html: currentShowName}}></span><br/>
           with <span dangerouslySetInnerHTML={{__html: currentShowDJ}}></span><br/>
           {currentShowStart} - {currentShowEnd}
         </div>
-        <div className="playButtonDiv" onClick={this.playButtonClicked}>
+        <div className="play-button-div" onClick={this.playButtonClicked}>
           {playing ? this.showPause() : this.showPlay()}
         </div>
       </div>

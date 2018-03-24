@@ -178,33 +178,35 @@ class Cart extends Component{
 
   render(){
     return (
-      <Grid.Row>
+      <Grid stackable>
+        <Grid.Row>
 
-        <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
-          {this.getListOfCartItems()}
-        </Grid.Column>
+          <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
+            {this.getListOfCartItems()}
+          </Grid.Column>
 
-        {this.props.items.length !== 0 ?
-        <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
-          <div className="merch-subtotal">Subtotal {(this.props.merchAmount).toFixed(2)} </div>
-          <Form>
-            <StripeCheckout
-              name="KZSC Support"
-              panelLabel="Donation"
-              amount = {Number(this.props.merchAmount) * 100} // donation in cents
-              currency = "USD"
-              shippingAddress
-              billingAddress = {true}
-              zipCode = {true}
-              opened = {this.onStripeCheckoutOpened}
-              closed = {this.onStripeCheckoutClosed}
-              token={this.onToken}
-              stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-          </Form>
-        </Grid.Column>
-        : null }
+          {this.props.items.length !== 0 ?
+          <Grid.Column width='16' className="padding-t-1rem padding-b-1rem">
+            <div className="merch-subtotal">Subtotal {(this.props.merchAmount).toFixed(2)} </div>
+            <Form>
+              <StripeCheckout
+                name="KZSC Support"
+                panelLabel="Donation"
+                amount = {Number(this.props.merchAmount) * 100} // donation in cents
+                currency = "USD"
+                shippingAddress
+                billingAddress = {true}
+                zipCode = {true}
+                opened = {this.onStripeCheckoutOpened}
+                closed = {this.onStripeCheckoutClosed}
+                token={this.onToken}
+                stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
+            </Form>
+          </Grid.Column>
+          : null }
 
-      </Grid.Row>
+        </Grid.Row>
+      </Grid>
     )
   }
 }
