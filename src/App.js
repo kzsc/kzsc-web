@@ -38,6 +38,7 @@ class App extends Component {
       domain: "https://www.kzsc.org/",
       blogCategories: [],
       blogPosts: [],
+      count: 15,
       requestStringState: 'get_recent_posts/?',
       numberPostsToLoad: 15,
       blogsPostsLoading: false,
@@ -91,12 +92,12 @@ class App extends Component {
   kzscApiGetRequest(request, stateVar) {
     let postCategoryUrl = this.state.domain + 'api/' + request;
     axios.get(postCategoryUrl).then(res => {
-      const holdData = res.data.posts.map(obj => obj);
-      this.updateBlogPosts(holdData);
-      this.setState({ blogsButtonLoading: false, blogsPostsLoading: false });
+      const holdData = res.data.posts.map(obj => obj)
+      this.updateBlogPosts(holdData, res.data.count_total)
+      this.setState({ blogsButtonLoading: false, blogsPostsLoading: false })
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     });
   }
 
@@ -197,10 +198,11 @@ class App extends Component {
     return fullDate
   }
 
-  updateBlogPosts(newPosts) {
-    this.setState({
-      blogPosts: newPosts
-    });
+  updateBlogPosts(newPosts, countTotal) {
+    if( typeof(countTotal) === "number" ) {
+      this.setState({ count: countTotal })
+    }
+    this.setState({ blogPosts: newPosts })
   }
 
   render() {
@@ -244,13 +246,14 @@ class App extends Component {
               <Blogs convertDate={this.toDateString.bind(this)}
                      blogCategories={this.state.blogCategories}
                      blogPosts={this.state.blogPosts}
-                     updateBlogPosts={this.updateBlogPosts.bind(this)}
                      kzscApiGetRequest={this.kzscApiGetRequest.bind(this)}
                      postsLoading={this.state.blogsPostsLoading}
                      buttonLoading={this.state.blogsButtonLoading}
                      truePostsLoading={this.trueBlogsPostsLoading.bind(this)}
                      trueButtonLoading={this.trueBlogsButtonLoading.bind(this)}
-                     domain={this.state.domain} numberPostsToLoad={this.state.numberPostsToLoad}
+                     domain={this.state.domain}
+                     numberPostsToLoad={this.state.numberPostsToLoad}
+                     count={this.state.count}
               />
             } />
             <Route path='/schedule' render={() => <Schedule /> } />

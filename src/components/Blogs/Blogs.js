@@ -5,9 +5,9 @@
  * web@kzsc.org
  */
 
-import React, { Component } from 'react';
-import { Segment, Grid, Button, Input, Dropdown } from 'semantic-ui-react'
-import Tile from '../Tile/Tile';
+import React, { Component } from 'react'
+import { Segment, Grid, Button, Input, Dropdown, Icon } from 'semantic-ui-react'
+import Tile from '../Tile/Tile'
 import kzscI from '../../assets/images/kzsc.jpg'
 import date from '../date.json'
 
@@ -24,18 +24,15 @@ class Blogs extends Component {
       selectedCategory: '',
       searchOptions: false,
       searchOptionsArrow: 'chevron down',
-      searchYear: '2018',
+      searchYear: '',
       searchMonth: '',
       searchDate: ''
     }
     this.onChangeCategory = this.onChangeCategory.bind(this)
-    this.newBlogPosts = this.newBlogPosts.bind(this)
-    this.onSearchPosts = this.onSearchPosts.bind(this)
+    this.onClickSearchPosts = this.onClickSearchPosts.bind(this)
     this.toggleSearchOptions = this.toggleSearchOptions.bind(this)
-  }
-
-  newBlogPosts(newPost) {
-    this.props.updateBlogPosts(newPost);
+    this.loadMorePosts = this.loadMorePosts.bind(this)
+    this.resetSearch = this.resetSearch.bind(this)
   }
 
   componentWillMount() {
@@ -59,7 +56,8 @@ class Blogs extends Component {
 
     if( prevState.currentCategoryId !== currentCategoryId ||
         prevState.searchString !== searchString  ||
-        prevState.searchDate !== searchDate ) {
+        prevState.searchDate !== searchDate ||
+        prevState.requestStringState !== requestStringState ) {
       this.props.truePostsLoading();
     }
 
@@ -105,9 +103,17 @@ class Blogs extends Component {
           <Tile image={post.thumbnail_images.full.url} title={post.title}
           type='small' desc={description} url={`/blogdetail/${post.id}`} post={post}/>
         </Grid.Column>
-       );
+       )
     });
     return blogTiles
+  }
+
+  resetSearch() {
+    this.setState({
+      requestStringState: 'get_recent_posts/?',
+      numberPostsToLoad: this.state.numberOfPostsRestart,
+      currentCategoryId: 0
+    });
   }
 
   onChangeCategory = (e, { value }) => {
@@ -117,7 +123,7 @@ class Blogs extends Component {
     })
     // Generate Request String
     let categoryId = value
-    this.setState({selectedCategory: value})
+    this.setState({ selectedCategory: value })
     let numberOfPosts
     if( this.state.currentCategoryId === categoryId ) {
       numberOfPosts = this.state.numberPostsToLoad;
@@ -139,16 +145,21 @@ class Blogs extends Component {
     }
   }
 
-  onSearchPosts = (e, { value }) => {
+  onClickSearchPosts = (e) => {
+    let value = e.target.previousSibling.value
     // Reset Other Search Fields
-    this.setState({selectedCategory: ""})
+    this.setState({
+      selectedCategory: "",
+      searchMonth: "",
+      searchYear: ""
+    })
     // Generate Request String
     let numberOfPosts = this.state.numberOfPostsRestart;
     this.setState({
       requestStringState: 'get_search_results/?',
       numberPostsToLoad: numberOfPosts,
       searchString: value
-    });
+    })
   }
 
   onChangeMonth = (e, { value }) => {
@@ -160,10 +171,11 @@ class Blogs extends Component {
     })
     // Generate Request String
     let numberOfPosts = this.state.numberOfPostsRestart
+    let year = this.state.searchYear ? this.state.searchYear : '2018'
     this.setState({
       requestStringState: 'get_date_posts/?',
       numberPostsToLoad: numberOfPosts,
-      searchDate: this.state.searchYear + '' + value
+      searchDate: year + '' + value
     })
   }
 
@@ -225,13 +237,24 @@ class Blogs extends Component {
 
         <Grid.Row>
           <Grid.Column width="15">
-            <Input placeholder='Search...' icon='search' className="margin-r-20 margin-t-5"
-              iconPosition='left'
-              onChange={this.onSearchPosts} />
+            <Input className="margin-r-20 margin-t-5"
+              icon={
+                <Icon inverted circular link
+                  name='search'
+                  onClick={this.onClickSearchPosts}
+                />
+              }
+              placeholder='Search...'
+            />
             <Button labelPosition='right' className="kblue margin-t-5"
               icon={this.state.searchOptionsArrow}
               content='More search options'
-              onClick={this.toggleSearchOptions} />
+              onClick={this.toggleSearchOptions}
+            />
+            <Button className="kblue margin-t-5"
+              content='Reset'
+              onClick={this.resetSearch}
+            />
           </Grid.Column>
         </Grid.Row>
 
@@ -242,19 +265,24 @@ class Blogs extends Component {
               placeholder='By category'
               options={this.state.categoryDropdownOptions}
               onChange={this.onChangeCategory}
-              value={this.state.selectedCategory} />
+              value={this.state.selectedCategory}
+            />
           </Grid.Column>
           <Grid.Column width="5">
             <Dropdown search selection fluid
               placeholder='By month'
               options={date.month}
-              onChange={this.onChangeMonth} />
+              onChange={this.onChangeMonth}
+              value={this.state.searchMonth}
+            />
           </Grid.Column>
           <Grid.Column width="5">
             <Dropdown search selection fluid
               placeholder='By year'
               options={date.year}
-              onChange={this.onChangeYear} />
+              onChange={this.onChangeYear}
+              value={this.state.searchYear}
+            />
           </Grid.Column>
         </Grid.Row>
         : null }
@@ -273,12 +301,19 @@ class Blogs extends Component {
 
         <Grid.Row>
           <Grid.Column width="16" textAlign='center'>
+            { this.state.numberPostsToLoad < this.props.count ?
             <Button disabled={this.props.buttonLoading}
               loading={this.props.buttonLoading}
               className='kblue'
-              onClick={this.loadMorePosts.bind(this)}>
+              onClick={this.loadMorePosts}>
               Load More
             </Button>
+            :
+            <Button disabled={true}
+              className='kblue'>
+              All Posts Loaded
+            </Button>
+            }
           </Grid.Column>
         </Grid.Row>
 

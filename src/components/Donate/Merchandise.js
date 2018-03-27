@@ -50,7 +50,7 @@ class Merchandise extends Component {
               <Popup className="merch-popup" on='click' basic wide='very'
                 open={item.merchPopupIsOpen} onOpen={this.merchPopupHandleOpen.bind(this, index)} onClose={this.merchPopupHandleClose.bind(this, index)}
                 trigger={
-                  <Button basic color='grey'>
+                  <Button basic color='black'>
                     {item.imageReveal ?
                       <RevealImage image={item.image} imageReveal={item.imageReveal} />
                       : <Image size='medium' src={item.image} alt="" />

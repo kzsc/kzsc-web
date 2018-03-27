@@ -55,9 +55,9 @@ class RightSideBar extends Component {
 
         <Grid.Row>
           <Grid.Column width={16}>
-            <div>
-              <div className="k-h3">Support Local Businesses</div>
-              <div className="bg-color-grey-4 padding-5">
+            <div className="grey-box">
+              <div className="header">Support Local Businesses</div>
+              <div className="content">
                 <Slideshow images={this.state.underwritingImages} className="bg-color-grey-4 padding-5"/>
               </div>
             </div>
@@ -66,9 +66,9 @@ class RightSideBar extends Component {
 
         <Grid.Row>
           <Grid.Column width={16}>
-            <div>
-              <div className="k-h3">Featured Shows</div>
-              <div className="bg-color-grey-4 padding-5">
+            <div className="grey-box">
+              <div className="header">Featured Shows</div>
+              <div className="content">
                 <Slideshow images={this.state.showImages}/>
               </div>
             </div>
@@ -77,9 +77,9 @@ class RightSideBar extends Component {
 
         <Grid.Row>
           <Grid.Column width={16}>
-            <div id="spin-wrap">
-              <div className="k-h3">Recent Tracks</div>
-              <iframe title="rt" id="spin-iframe" className="spin-songs" src="//spinitron.com/public/newestsong.php?num=5&amp;station=kzsc&amp;time=1&amp;tweets=1&amp;stylesheet=%2F%2Fspinitron.bitbucket.io%2Fspin.css">
+            <div id="spin-wrap" className="grey-box">
+              <div className="header">Recent Tracks</div>
+              <iframe title="rt" id="spin-iframe" className="spin-songs content" src="//spinitron.com/public/newestsong.php?num=5&amp;station=kzsc&amp;time=1&amp;tweets=1&amp;stylesheet=%2F%2Fspinitron.bitbucket.io%2Fspin.css">
               </iframe>
             </div>
           </Grid.Column>
