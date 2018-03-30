@@ -50,6 +50,7 @@ class App extends Component {
       homeInterviewsPosts: [],
       homeFeaturedContent: [],
       homeFeaturedContent2: [],
+      currentShowData: { ShowUsers: [] },
       socialMediaLinks: [
         {
           id: 'facebook', link: 'https://www.facebook.com/kzscradio', icon: 'facebook square',
@@ -131,6 +132,16 @@ class App extends Component {
     this.setState({ blogsButtonLoading: true });
   }
 
+  getCurrentShowInfo() {
+    axios.get('http://localhost:3001/currentShowInfo').then(res => {
+      let data = res.data
+      this.setState({ currentShowData: data })
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
   componentWillMount(){
     this.kzscApiGetCategoryList('get_category_index');
     let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
@@ -141,6 +152,16 @@ class App extends Component {
     this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=1', 'homeMusicChartsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=1', 'homeEventsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=17&count=1', 'homeInterviewsPosts');
+  }
+
+  componentDidMount() {
+    this.updateCurrentShowData = setInterval(
+      () => this.getCurrentShowInfo(), 120000
+    )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.updateCurrentShowData);
   }
 
   toggleVisibilityNavBar() {
@@ -210,9 +231,12 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar activeItem={this.activeNavMenuItem} onActiveNavItemChange={this.updateActiveNavItem.bind(this)}
-           toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
-           hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
+          <NavBar activeItem={this.activeNavMenuItem}
+            onActiveNavItemChange={this.updateActiveNavItem.bind(this)}
+            toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
+            hideVisibility={this.hideVisibilityNavBar.bind(this)}
+            navBarVisible={this.state.navBarVisible}
+            currentShow={this.state.currentShowData} />
           <Title />
           <TopMenuBar onActiveNavItemChange={this.updateActiveNavItem.bind(this)} />
           <div className="k-container margin-t-20" onClick={this.hideVisibilityNavBar.bind(this)}>

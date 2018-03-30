@@ -146,7 +146,7 @@ class Donate extends Component {
 
         <Grid.Row>
           <Grid.Column width='4'>
-            <LeftSideBar items={this.state.menuItems} active={this.state.activeItem} handleItemClick={this.handleLeftMenuItemClick.bind(this)}/>
+            <LeftSideBar items={this.state.menuItems} active={this.state.activeItem} handleItemClick={this.handleLeftMenuItemClick.bind(this)} vertical={true} />
           </Grid.Column>
 
           <Grid.Column width='12'>

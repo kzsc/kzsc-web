@@ -94,12 +94,12 @@ class Product extends Component {
         <Grid centered padded>
 
           <Grid.Row>
-            <Grid.Column computer='7' tablet='7' mobile='8'>
+            <Grid.Column width='7'>
               <Segment color='grey' tertiary padded>
                 <Image src={this.props.image} fluid/>
               </Segment>
             </Grid.Column>
-            <Grid.Column computer='8' tablet='8' mobile='8'>
+            <Grid.Column width='9'>
               <div>
                 { this.props.productTitle ? <h2>{this.props.productTitle}</h2> : null }
                 { this.props.productDesc ? <div>{this.props.productDesc}</div> : null }
@@ -144,8 +144,8 @@ class Product extends Component {
           </Grid.Row>
 
           { this.props.additionalInfoTabTitle && this.props.additionalInfoTitle ?
-          <Grid.Row>
-            <Grid.Column computer='15' tablet='15' mobile='16'>
+          <Grid.Row columns="1">
+            <Grid.Column>
               <Menu attached='top' tabular>
                 <Menu.Item name='additionalinfo' active={additionalActiveItem === 'additionalinfo'} onClick={this.handleAdditionalItemClick}>
                   {this.props.additionalInfoTabTitle}

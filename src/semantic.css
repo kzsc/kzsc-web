@@ -1476,6 +1476,14 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
   padding: 0.58928571em 3.69642857em 0.58928571em;
 }
 
+/*--------------------
+       Less Padding
+--------------------*/
+.ui.less-padding.buttons .button,
+.ui.less-padding.button {
+  padding: 0.78571429em 0.2em 0.78571429em;
+}
+
 /*-------------------
         Sizes
 --------------------*/

@@ -26,7 +26,7 @@ class LeftSideBar extends Component {
 
   render() {
     return (
-      <Menu fluid vertical> {this.getMenuItem()} </Menu>
+      <Menu fluid vertical={this.props.vertical}> {this.getMenuItem()} </Menu>
     )
   }
 }

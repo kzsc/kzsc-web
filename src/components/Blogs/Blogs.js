@@ -109,6 +109,14 @@ class Blogs extends Component {
   }
 
   resetSearch() {
+    // Reset input fields
+    this.setState({
+      selectedCategory: "",
+      searchString: "",
+      searchMonth: "",
+      searchYear: ""
+    })
+    // Set request
     this.setState({
       requestStringState: 'get_recent_posts/?',
       numberPostsToLoad: this.state.numberOfPostsRestart,
@@ -119,7 +127,9 @@ class Blogs extends Component {
   onChangeCategory = (e, { value }) => {
     // Reset Other Search Fields
     this.setState({
-      searchString: ""
+      searchString: "",
+      searchMonth: "",
+      searchYear: ""
     })
     // Generate Request String
     let categoryId = value

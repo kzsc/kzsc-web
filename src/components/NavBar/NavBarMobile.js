@@ -70,7 +70,7 @@ class NavBarMobile extends Component{
           <Menu.Menu position='right'>
             <Menu.Item id="playButtonItem" className="center"
              onClick={this.hideNavBar.bind(this)}>
-                <PlayButton></PlayButton>
+              <PlayButton currentShow={this.props.currentShow} />
             </Menu.Item>
             <Menu.Item className="center">
               <Icon className="clickable-icon" size="big" name="sidebar"
