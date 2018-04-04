@@ -46,7 +46,6 @@ class PlayButton extends Component {
 
   getShowText() {
     const { currentShow } = this.props
-    console.log(currentShow)
     let programmers = currentShow.ShowUsers.map(dj => {
       return " " + dj.DJName
     })

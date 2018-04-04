@@ -160,7 +160,7 @@ class Cart extends Component{
   }
 
   onToken = (token) => {
-    console.log(token)
+    // console.log(token)
     var dAmount = 0;
     dAmount = this.props.merchAmount;
     console.log(token);

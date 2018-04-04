@@ -133,13 +133,23 @@ class App extends Component {
   }
 
   getCurrentShowInfo() {
-    axios.get('http://localhost:3001/currentShowInfo').then(res => {
-      let data = res.data
-      this.setState({ currentShowData: data })
+    this.setState({
+      currentShowData: {
+        ShowUsers: [
+          {DJName: "Crux"}
+        ],
+        ShowName: "Breakfast with the Beatles",
+        OnairTime: "8:00 am",
+        OffairTime: "9:00 am"
+      }
     })
-    .catch(function (error) {
-      console.log(error);
-    })
+    // axios.get('http://localhost:3001/currentShowInfo').then(res => {
+    //   let data = res.data
+    //   this.setState({ currentShowData: data })
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // })
   }
 
   componentWillMount(){
@@ -155,9 +165,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.updateCurrentShowData = setInterval(
-      () => this.getCurrentShowInfo(), 120000
-    )
+    this.getCurrentShowInfo()
+    // this.updateCurrentShowData = setInterval(
+    //   () => this.getCurrentShowInfo(), 120000
+    // )
   }
 
   componentWillUnmount() {
