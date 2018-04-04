@@ -6,46 +6,6 @@
     { "key": "xl", "text": "X-Large", "value": "x-large" },
     { "key": "2xl", "text": "2XL", "value": "2x-large" }
   ],
-  "optionsItems": [
-    { "key": "88.1", "text": "88.1 FM", "value": "eightyeight" },
-    { "key": "daily-fiddy", "text": "Fiddy", "value": "fiddy" },
-    { "key": "buck-a-day", "text": "Buck-a-day", "value": "buckaday" },
-    { "key": "50-years-of-kzsc", "text": "50 years of KZSC", "value": "fiftyyears" },
-    { "key": "kzsc-sustainer", "text": "KZSC Sustainer", "value": "kzscsustainer" },
-    { "key": "other", "text": "Give What You Can", "value": "other" }
-  ],
-  "optionsDescription": {
-    "eightyeight":
-      {
-        "desc": "Celebrate 88.1 FM -- 20,000 watts of good will",
-        "price": "88.10"
-      },
-    "fiddy":
-      {
-        "desc": "Fund next 50 years of Student-run Community Radio, with a daily \"Fiddy\" cents",
-        "price": "182.50"
-      },
-    "buckaday":
-      {
-        "desc": "Put a Susan B Anthony in the slot every day to keep the KZSC Jukebox jumping!",
-        "price": "365.00"
-      },
-    "fiftyyears":
-      {
-        "desc": "Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50",
-        "price": "600.00"
-      },
-    "kzscsustainer":
-      {
-        "desc": "Celebrate KZSC FM with a monthly donation of $88.10",
-        "price": "1057.20"
-      },
-    "other":
-      {
-        "desc": "What value has KZSC brought into your life?",
-        "price": ""
-      }
-  },
   "merchandiseList": [
     {
       "id": "shirt", "image": "kzsc-shirt.jpg", "title": "KZSC 88 point 1 Tee", "price": 25,
@@ -63,5 +23,61 @@
       "id": "shirt2", "image": "kzsc-shirt-50th.jpg", "title": "KZSC 50th Anniversary T-shirt", "price": 25,
       "desc": "KZSC’s newest tee shirt is a nod to a legendary college radio station in NYC that provided early exposure for what became some of the biggest names in hip-hop. Our shirt is printed on a 50/50 blend modern-style shirt that won’t shrink, if you treat it well. So you’ll look great and feel comfortable when you represent KZSC, the Monterey Bay’s most unique station"
     }
-  ]
+  ],
+  "donation" : {
+    "donationOptions": [
+      { "key": "88.1", "text": "88.1 FM", "value": "eightyeight" },
+      { "key": "daily-fiddy", "text": "Fiddy", "value": "fiddy" },
+      { "key": "buck-a-day", "text": "Buck-a-day", "value": "buckaday" },
+      { "key": "50-years-of-kzsc", "text": "50 years of KZSC", "value": "fiftyyears" },
+      { "key": "kzsc-sustainer", "text": "KZSC Sustainer", "value": "kzscsustainer" },
+      { "key": "other", "text": "Give What You Can", "value": "other" }
+    ],
+    "donationOptionsDescription": {
+      "eightyeight": {
+        "desc": "Celebrate 88.1 FM -- 20,000 watts of good will",
+        "price": "88.10"
+      },
+      "fiddy": {
+        "desc": "Fund next 50 years of Student-run Community Radio, with a daily \"Fiddy\" cents",
+        "price": "182.50"
+      },
+      "buckaday": {
+        "desc": "Put a Susan B Anthony in the slot every day to keep the KZSC Jukebox jumping!",
+        "price": "365.00"
+      },
+      "fiftyyears": {
+        "desc": "Celebrate 50 years of Student-Run Community Radio with a monthly donation of $50",
+        "price": "600.00"
+      },
+      "kzscsustainer": {
+        "desc": "Celebrate KZSC FM with a monthly donation of $88.10",
+        "price": "1057.20"
+      },
+      "other": {
+        "desc": "What value has KZSC brought into your life?",
+        "price": ""
+      }
+    }
+  },
+  "bills" : {
+    "billsOptions": [
+      { "key": "one", "text": "Bills", "value": "bills" },
+      { "key": "other", "text": "Give What You Can", "value": "other" }
+    ],
+    "billsOptionsDescription": {
+      "bills": {
+        "desc": "Suggested Donation $1,500.00",
+        "price": 1500.00
+      },
+      "other": {
+        "desc": "What value has KZSC brought into your life?",
+        "price": ""
+      }
+    },
+    "billsProductTitle": "KZSC Bills: Radio field trips",
+    "billsAdditionalInfoTitle": "Description",
+    "billsAdditionalInfoTabTitle": "Description",
+    "billsAdditionalInfoDesc" : "<p>We need your help to pay our bills!</p><p>KZSC is licensed as a non-commercial, educational radio station. We teach the legal, technical, and creative aspects of radio programming every day. Our news and talk department, our graphic design, website, social media, and even our computer network are all run by volunteers and they all learned their skills, on-the-job, at KZSC!</p><p>We spend an average of $26,000 on our training programs every year. This includes teaching materials, field trips to other radio stations and conferences, and pay for our radio and journalism teachers. That’s roughly 10 per cent of our overall operating costs!</p><p>Can you help us to take care of this bill? Any amount helps. But if you are in a position to give $1,500, you can fund an educational field trip to other California radio stations like the one we just took.</p><p>KZSC volunteers visited KCPR at Cal Poly San Luis Obispo, KCSB in Santa Barbara and KHDC, Radio Bilingue, in Salinas! Our volunteers interacted with more than 100 radio programmers from all over California, at the UC Radio Network conference, and we are bringing back a ton of energy and ideas to make KZSC do more for you!</p><p>We’d like to visit KDVS in Davis, KALX in Berkeley, and KALW in San Francisco next. Can you make that happen?</p>"
+  }
 }

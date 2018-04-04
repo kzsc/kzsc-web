@@ -38,6 +38,7 @@ class App extends Component {
       domain: "https://www.kzsc.org/",
       blogCategories: [],
       blogPosts: [],
+      count: 15,
       requestStringState: 'get_recent_posts/?',
       numberPostsToLoad: 15,
       blogsPostsLoading: false,
@@ -49,6 +50,7 @@ class App extends Component {
       homeInterviewsPosts: [],
       homeFeaturedContent: [],
       homeFeaturedContent2: [],
+      currentShowData: { ShowUsers: [] },
       socialMediaLinks: [
         {
           id: 'facebook', link: 'https://www.facebook.com/kzscradio', icon: 'facebook square',
@@ -88,15 +90,15 @@ class App extends Component {
     });
   }
 
-  kzscApiGetCategory(request, stateVar) {
+  kzscApiGetRequest(request, stateVar) {
     let postCategoryUrl = this.state.domain + 'api/' + request;
     axios.get(postCategoryUrl).then(res => {
-      const holdData = res.data.posts.map(obj => obj);
-      this.updateBlogPosts(holdData);
-      this.setState({ blogsButtonLoading: false, blogsPostsLoading: false });
+      const holdData = res.data.posts.map(obj => obj)
+      this.updateBlogPosts(holdData, res.data.count_total)
+      this.setState({ blogsButtonLoading: false, blogsPostsLoading: false })
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     });
   }
 
@@ -130,16 +132,47 @@ class App extends Component {
     this.setState({ blogsButtonLoading: true });
   }
 
+  getCurrentShowInfo() {
+    this.setState({
+      currentShowData: {
+        ShowUsers: [
+          {DJName: "Crux"}
+        ],
+        ShowName: "Breakfast with the Beatles",
+        OnairTime: "8:00 am",
+        OffairTime: "9:00 am"
+      }
+    })
+    // axios.get('http://localhost:3001/currentShowInfo').then(res => {
+    //   let data = res.data
+    //   this.setState({ currentShowData: data })
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // })
+  }
+
   componentWillMount(){
     this.kzscApiGetCategoryList('get_category_index');
     let requestString = this.state.requestStringState + 'count=' + this.state.numberPostsToLoad;
-    this.kzscApiGetCategory(requestString, 'blogPosts');
+    this.kzscApiGetRequest(requestString, 'blogPosts');
     this.kzscApiGetPostById('38048', 'homeFeaturedContent');
     this.kzscApiGetPostById('36472', 'homeFeaturedContent2');
     this.kzscApiGet4FromCategory('get_recent_posts/?count=4', 'homeRecentPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=5&count=1', 'homeMusicChartsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=15&count=1', 'homeEventsPosts');
     this.kzscApiGet4FromCategory('get_category_posts/?id=17&count=1', 'homeInterviewsPosts');
+  }
+
+  componentDidMount() {
+    this.getCurrentShowInfo()
+    // this.updateCurrentShowData = setInterval(
+    //   () => this.getCurrentShowInfo(), 120000
+    // )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.updateCurrentShowData);
   }
 
   toggleVisibilityNavBar() {
@@ -197,10 +230,11 @@ class App extends Component {
     return fullDate
   }
 
-  updateBlogPosts(newPosts) {
-    this.setState({
-      blogPosts: newPosts
-    });
+  updateBlogPosts(newPosts, countTotal) {
+    if( typeof(countTotal) === "number" ) {
+      this.setState({ count: countTotal })
+    }
+    this.setState({ blogPosts: newPosts })
   }
 
   render() {
@@ -208,9 +242,12 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar activeItem={this.activeNavMenuItem} onActiveNavItemChange={this.updateActiveNavItem.bind(this)}
-           toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
-           hideVisibility={this.hideVisibilityNavBar.bind(this)} navBarVisible={this.state.navBarVisible}/>
+          <NavBar activeItem={this.activeNavMenuItem}
+            onActiveNavItemChange={this.updateActiveNavItem.bind(this)}
+            toggleVisibility={this.toggleVisibilityNavBar.bind(this)}
+            hideVisibility={this.hideVisibilityNavBar.bind(this)}
+            navBarVisible={this.state.navBarVisible}
+            currentShow={this.state.currentShowData} />
           <Title />
           <TopMenuBar onActiveNavItemChange={this.updateActiveNavItem.bind(this)} />
           <div className="k-container margin-t-20" onClick={this.hideVisibilityNavBar.bind(this)}>
@@ -244,13 +281,14 @@ class App extends Component {
               <Blogs convertDate={this.toDateString.bind(this)}
                      blogCategories={this.state.blogCategories}
                      blogPosts={this.state.blogPosts}
-                     updateBlogPosts={this.updateBlogPosts.bind(this)}
-                     kzscApiGetCategory={this.kzscApiGetCategory.bind(this)}
+                     kzscApiGetRequest={this.kzscApiGetRequest.bind(this)}
                      postsLoading={this.state.blogsPostsLoading}
                      buttonLoading={this.state.blogsButtonLoading}
                      truePostsLoading={this.trueBlogsPostsLoading.bind(this)}
                      trueButtonLoading={this.trueBlogsButtonLoading.bind(this)}
-                     domain={this.state.domain} numberPostsToLoad={this.state.numberPostsToLoad}
+                     domain={this.state.domain}
+                     numberPostsToLoad={this.state.numberPostsToLoad}
+                     count={this.state.count}
               />
             } />
             <Route path='/schedule' render={() => <Schedule /> } />

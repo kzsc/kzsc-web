@@ -11,6 +11,15 @@
   margin: 0 !important;
 }
 
+#navbar-mobile-logo {
+  width: 107px
+}
+@media (max-width: 555px) {
+  #navbar-mobile-logo {
+    width: 95px
+  }
+}
+
 .clickable-icon {
   cursor: pointer;
 }
@@ -19,7 +28,7 @@
   padding: 2px 20px 2px 5px !important;
 }
 
-.playButtonShowInformation {
+.play-button-info {
   display: block;
   font-size: 15px;
   float: left;
@@ -28,7 +37,19 @@
   margin-right: 8px;
 }
 
-.playButtonDiv {
+@media (max-width: 555px) {
+  .play-button-info {
+    font-size: 13px;
+    padding: 15px
+  }
+}
+
+.play-button-div {
   float: right;
   padding: 11px 0;
+}
+@media (max-width: 555px) {
+  .play-button-div {
+    padding: 0.92857143em 0
+  }
 }

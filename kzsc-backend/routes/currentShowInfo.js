@@ -19,9 +19,10 @@ router.get('/', function(req, res, next) {
     secret: config.secret
   });
 
-  spinitron.getRegularShowsInfo(function (error, response) {
-    res.send(response.results)
-  })
+  spinitron.getShowInfo(function (error, response) {
+    console.log(response.results);
+    res.send(response.results);
+  });
 });
 
 module.exports = router;

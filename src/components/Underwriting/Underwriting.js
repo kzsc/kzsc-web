@@ -8,22 +8,14 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import { Grid, Segment, Icon, Button } from 'semantic-ui-react';
-import './Underwriting.css';
 import underwritersList from './underwritersList.json';
 
 class Underwriting extends Component{
 
   constructor(){
     super();
-    this.state = {
-      activeMenuItem: 'none',
-      menuItems: [
-        { name: 'title', title: 'Become a Patron of the Airwaves: Be a KZSC Underwriter!' }
-      ]
-    }
+    this.state = { }
   }
-
-  handleItemClick(name) { this.setState({ activeMenuItem: 'none' }) }
 
   getUnderwriters() {
     let underwriters = underwritersList.map((u, i) => {
@@ -71,18 +63,16 @@ class Underwriting extends Component{
     return(
       <div className="Underwriting">
 
-        <Grid centered padded>
+        <Grid centered padded stackable>
 
-          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
-
-          <Grid.Row>
-            <Grid.Column width={16} textAlign='center'>
+          <Grid.Row columns="1">
+            <Grid.Column textAlign='center'>
               <h2>LOYALTY AND REACH</h2>
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column computer='6' tablet='7' mobile='8'>
+          <Grid.Row columns="2">
+            <Grid.Column>
               <Segment padded>
                 <h3>MAKE A CONNECTION</h3>
                 <div>
@@ -98,7 +88,7 @@ class Underwriting extends Component{
                 </div>
               </Segment>
             </Grid.Column>
-            <Grid.Column computer='6' tablet='7' mobile='8' stretched>
+            <Grid.Column stretched>
               <Segment padded>
                 <div>
                   We offer a variety of underwriting opportunities with on-air, online, and in print options.
@@ -114,61 +104,55 @@ class Underwriting extends Component{
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row centered>
-            <Grid.Column computer='12' tablet='14' mobile='16'>
-
-              <Grid columns='3'>
-                <Grid.Column>
-                  <div>
-                    <h2>
-                      <Icon name='microphone' /> On Air
-                    </h2>
-                    <p className="p-desc">
-                      Your on-air announcements can be aired during your choice of
-                      programs or specific times. With over 60 different music and
-                      public affairs programs, KZSC’s Underwriting Program offers a
-                      unique opportunity for you or your company to reach a targeted
-                      audience
-                    </p>
-                  </div>
-                </Grid.Column>
-                <Grid.Column>
-                  <div>
-                    <h2>
-                      <Icon name='computer' /> Online
-                    </h2>
-                    <p className="p-desc">
-                      All KZSC underwriters are featured on our website including your
-                      phone number, address, and website if desired
-                    </p>
-                  </div>
-                </Grid.Column>
-                <Grid.Column>
-                  <div>
-                    <h2>
-                      <Icon name='newspaper' /> In Print
-                    </h2>
-                    <p className="p-desc">
-                      Underwriting space in the quarterly KZSC Program Guide is available
-                      on a first-come, first-serve basis as part of specific underwriting
-                      contracts. The guide is available at locations on campus and
-                      throughout the community
-                    </p>
-                  </div>
-                </Grid.Column>
-              </Grid>
-
+          <Grid.Row centered columns='3'>
+            <Grid.Column>
+              <div>
+                <h2>
+                  <Icon name='microphone' /> On Air
+                </h2>
+                <p className="p-desc">
+                  Your on-air announcements can be aired during your choice of
+                  programs or specific times. With over 60 different music and
+                  public affairs programs, KZSC’s Underwriting Program offers a
+                  unique opportunity for you or your company to reach a targeted
+                  audience
+                </p>
+              </div>
+            </Grid.Column>
+            <Grid.Column>
+              <div>
+                <h2>
+                  <Icon name='computer' /> Online
+                </h2>
+                <p className="p-desc">
+                  All KZSC underwriters are featured on our website including your
+                  phone number, address, and website if desired
+                </p>
+              </div>
+            </Grid.Column>
+            <Grid.Column>
+              <div>
+                <h2>
+                  <Icon name='newspaper' /> In Print
+                </h2>
+                <p className="p-desc">
+                  Underwriting space in the quarterly KZSC Program Guide is available
+                  on a first-come, first-serve basis as part of specific underwriting
+                  contracts. The guide is available at locations on campus and
+                  throughout the community
+                </p>
+              </div>
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column width={16} textAlign='center'>
+          <Grid.Row columns="1">
+            <Grid.Column textAlign='center'>
               <h2>ONGOING UNDERWRITING</h2>
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column computer='6' tablet='7' mobile='8' stretched>
+          <Grid.Row columns="2">
+            <Grid.Column stretched>
               <Segment padded>
                 You can save money and increase your exposure on KZSC by getting a
                 customized contract. For more information, please email Luisa Cardoza
@@ -176,7 +160,7 @@ class Underwriting extends Component{
                 call (831) 471-7830
               </Segment>
             </Grid.Column>
-            <Grid.Column computer='6' tablet='7' mobile='8' stretched>
+            <Grid.Column stretched>
               <Segment padded>
                 <h3>Support KZSC Santa Cruz Radio</h3>
                 <div>
@@ -196,16 +180,8 @@ class Underwriting extends Component{
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column computer='12' tablet='14' mobile='16'>
-
-              <Grid columns={4} doubling>
-                <Grid.Row>
-                  {this.getUnderwriters()}
-                </Grid.Row>
-              </Grid>
-
-            </Grid.Column>
+          <Grid.Row columns="4">
+            {this.getUnderwriters()}
           </Grid.Row>
 
         </Grid>

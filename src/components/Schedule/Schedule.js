@@ -7,7 +7,9 @@
 
 import React, {Component} from 'react';
 import { Button, Grid, Segment, Table, Icon } from 'semantic-ui-react';
+import LeftSideBar from '../LeftSideBar/LeftSideBar';
 import scheduleData from './scheduleData.json'
+import axios from 'axios';
 
 import './Schedule.css';
 
@@ -15,13 +17,14 @@ class Schedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      requestShowInfo: false,
       content: "daily",
       activeDay: "Sun",
-      activeMenuItem: 'daily',
+      activeItem: 'daily',
+      programSchedule: [],
       menuItems: [
         { name: 'daily', title: 'Daily Calendar' },
-        { name: 'full', title: 'Full Calendar' },
-        { name: 'full2', title: 'Full Calendar Custom'}
+        { name: 'full', title: 'Full Calendar' }
       ],
       daysOfWeek: [
         { id: "Sun", name: "Sunday" },
@@ -35,7 +38,17 @@ class Schedule extends Component {
     }
   }
 
-  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
+  getProgramSchedule() {
+    axios.get('http://localhost:3001/spinitron').then(res => {
+      let data = res.data
+      this.setState({
+        programSchedule: data
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   componentWillMount() {
     let dayToday = (String(new Date())).substring(0, 3);
@@ -43,20 +56,56 @@ class Schedule extends Component {
       programSchedule: scheduleData,
       activeDay: dayToday
     })
+    // this.getProgramSchedule()
+  }
+
+  convertToStandardTime(time) {
+    let hhmm = time.split(":")
+    let hour = hhmm[0]
+    let hourNum = Number(hour)
+    let min = hhmm[1]
+    let returnH, returnM = min, returnAP;
+    if( hourNum === 0 ) { returnH = 12; returnAP = "am" }
+    if( hourNum < 12 && hourNum > 0 ) { returnH = hourNum; returnAP = "am" }
+    if( hourNum === 12 ) { returnH = hour; returnAP = "pm" }
+    if( hourNum > 12 ) { returnH = hour - 12; returnAP = "pm" }
+    return returnH + ":" + returnM + " " + returnAP
   }
 
   getRegularShowsInfo(day) {
-    let showsList = this.state.programSchedule.map(s => {
+    let sortedShowList = this.state.programSchedule.map(s => {
+      let onTime = this.convertToStandardTime(s.OnairTime)
+      let offTime = this.convertToStandardTime(s.OffairTime)
+      let showUsers = s.ShowUsers.map((dj, i) => {
+        if( i === 0 ) {
+          return dj.DJName
+        }
+        return  ', ' + dj.DJName
+      })
+      var obj = { ShowID: s.ShowID,
+                  ShowName: s.ShowName,
+                  ShowUsers: showUsers,
+                  OnairTime: s.OnairTime,
+                  OnTime: onTime,
+                  OffTime: offTime,
+                  OffairTime: s.OffairTime,
+                  Weekdays: s.Weekdays }
+      return obj
+    })
+    sortedShowList.sort(function(a, b){
+      var aOnairTime = (a.OnairTime).replace(/[:]/g, "")
+      var bOnairTime = (b.OnairTime).replace(/[:]/g, "")
+      return aOnairTime - bOnairTime
+    })
+
+    let showsList = sortedShowList.map(s => {
       if( s.Weekdays.includes( day ) ) {
         return (
           <Segment key={s.ShowID} className='kblue'>
-            <Icon.Group size='huge'>
-              <Icon size='small' name='thin circle' />
-              <Icon name='user' />
-            </Icon.Group>
+            <Icon size="large" name='user circle' />
             {s.ShowName}<br/>
             {s.ShowUsers}<br/>
-            {s.OnairTime} - {s.OffairTime}
+            {s.OnTime} - {s.OffTime}
           </Segment>
         )
       }
@@ -92,7 +141,7 @@ class Schedule extends Component {
     let buttons = this.state.daysOfWeek.map(d => {
       return (
         <Grid.Column key={d.id}>
-          <Button fluid active={this.state.activeDay === d.id} onClick={this.changeDay.bind(this, d.id)}>{d.name}</Button>
+          <Button className="less-padding" fluid active={this.state.activeDay === d.id} onClick={this.changeDay.bind(this, d.id)}>{d.name}</Button>
         </Grid.Column>
       )
     })
@@ -102,10 +151,9 @@ class Schedule extends Component {
   dailyContent() {
     return (
       <div className="div-calendar">
-        <p className="calendar-text">Program Schedule &amp; Playlists</p>
         <Grid stackable>
 
-          <Grid.Row columns='equal'>
+          <Grid.Row columns="7">
             {this.getDayOfWeekButtons()}
           </Grid.Row>
         </Grid>
@@ -120,76 +168,76 @@ class Schedule extends Component {
     )
   }
 
-  getDayOfWeekHeaderCell() {
-    let headerCell = this.state.daysOfWeek.map(d => {
-      return (
-        <Table.HeaderCell key={d.id}>{d.name}</Table.HeaderCell>
-      )
-    })
-    return headerCell
-  }
+  // getDayOfWeekHeaderCell() {
+  //   let headerCell = this.state.daysOfWeek.map(d => {
+  //     return (
+  //       <Table.HeaderCell key={d.id}>{d.name}</Table.HeaderCell>
+  //     )
+  //   })
+  //   return headerCell
+  // }
 
   weeklyContent() {
     let style = {
       width: "100%",
-      height: "1400px"
+      height: "1040px"
     }
     return(
-      <iframe title="schedule" src="https://spinitron.com/radio/playlist.php?station=kzsc&amp;show=schedule&amp;ptype=d&amp;css=https://www.kzsc.org/wp-content/plugins/kzsc-spinitron/css/spinitron.css" style={style} frameBorder="0" scrolling="auto" onLoad="scro11me(this)"></iframe>
+      <iframe id="weeklySchedule" title="schedule" src="https://spinitron.com/radio/playlist.php?station=kzsc&amp;show=schedule&amp;ptype=d&amp" style={style} frameBorder="0" scrolling="auto"></iframe>
     )
   }
 
-  getWeeklyColumns() {
-    let columns = this.state.daysOfWeek.map(d =>
-      <Table.Cell className="no-padding">
-        <Table columns={1} basic='very'>
-          <Table.Body>
-            {this.getRegularShowsInfoTable(d.id)}
-          </Table.Body>
-        </Table>
-      </Table.Cell>
-    )
-    return columns
-  }
+  // getWeeklyColumns() {
+  //   let columns = this.state.daysOfWeek.map(d =>
+  //     <Table.Cell key={d.id} className="no-padding">
+  //       <Table columns={1} basic='very'>
+  //         <Table.Body>
+  //           {this.getRegularShowsInfoTable(d.id)}
+  //         </Table.Body>
+  //       </Table>
+  //     </Table.Cell>
+  //   )
+  //   return columns
+  // }
 
-  weeklyContent2() {
-    return (
-      <div className="div-calendar">
-        <Table celled structured>
-          <Table.Header>
-            <Table.Row>
-              {this.getDayOfWeekHeaderCell()}
-            </Table.Row>
-          </Table.Header>
+  // weeklyContent2() {
+  //   return (
+  //     <div className="div-calendar">
+  //       <Table celled structured>
+  //         <Table.Header>
+  //           <Table.Row>
+  //             {this.getDayOfWeekHeaderCell()}
+  //           </Table.Row>
+  //         </Table.Header>
+  //
+  //         <Table.Body>
+  //           <Table.Row>
+  //             {this.getWeeklyColumns()}
+  //           </Table.Row>
+  //         </Table.Body>
+  //       </Table>
+  //     </div>
+  //   );
+  // }
 
-          <Table.Body>
-            <Table.Row>
-
-              {this.getWeeklyColumns()}
-
-            </Table.Row>
-          </Table.Body>
-        </Table>
-      </div>
-    );
-  }
+  /* LeftSideBar Event */
+  handleLeftMenuItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     return (
-      <div className="Schedule">
-        <Grid padded centered stackable>
-
-          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
-
-          <Grid.Row>
-            <Grid.Column computer='14' tablet='14' mobile='16'>
-              {this.state.activeMenuItem === "daily" ? this.dailyContent() : null }
-              {this.state.activeMenuItem === "full" ? this.weeklyContent() : null }
-              {this.state.activeMenuItem === "full2" ? this.weeklyContent2() : null }
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </div>
+      <Grid className="Schedule" padded centered stackable>
+        <Grid.Row>
+          <Grid.Column width='16'>
+            <LeftSideBar items={this.state.menuItems} active={this.state.activeItem} handleItemClick={this.handleLeftMenuItemClick.bind(this)} vertical={false} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width='16'>
+            {this.state.activeItem === "daily" ? this.dailyContent() : null }
+            {this.state.activeItem === "full" ? this.weeklyContent() : null }
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

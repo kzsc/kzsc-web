@@ -962,7 +962,8 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.disabled.button:hover,
 .ui.disabled.active.button {
   cursor: default;
-  opacity: 0.45 !important;
+  /* opacity: 0.45 !important; */
+  opacity: 0.85 !important;
   background-image: none !important;
   box-shadow: none !important;
   pointer-events: none !important;
@@ -1473,6 +1474,14 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.compact.labeled.icon.buttons .button,
 .ui.compact.labeled.icon.button {
   padding: 0.58928571em 3.69642857em 0.58928571em;
+}
+
+/*--------------------
+       Less Padding
+--------------------*/
+.ui.less-padding.buttons .button,
+.ui.less-padding.button {
+  padding: 0.78571429em 0.2em 0.78571429em;
 }
 
 /*-------------------
@@ -18632,8 +18641,8 @@ ol.ui.horizontal.list li:before,
 .ui.grid {
   margin-top: -1rem;
   margin-bottom: -1rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
+  /* margin-left: -1rem; */
+  /* margin-right: -1rem; */
 }
 
 .ui.relaxed.grid {
@@ -18666,6 +18675,24 @@ ol.ui.horizontal.list li:before,
   padding-left: 1rem;
   padding-right: 1rem;
   vertical-align: top;
+}
+
+.Home .ui.grid > .row > .column > .ui.grid > .row > .column {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.Home .ui.grid > .row > .column > .ui.grid > .row > .column.eight:nth-child(odd) {
+  padding-left: .1rem;
+}
+
+.Home .ui.grid > .row > .column > .ui.grid > .row > .column.eight:nth-child(even) {
+  padding-right: .1rem;
+}
+
+.Home .ui.grid > .row > .column > .ui.grid > .row > .column.sixteen {
+  padding-left: .1rem;
+  padding-right: .1rem;
 }
 
 .ui.grid > * {

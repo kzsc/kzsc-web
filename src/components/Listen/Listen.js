@@ -13,27 +13,18 @@ class Listen extends Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      activeMenuItem: 'listen',
-      menuItems: [
-        { name: 'listen', title: 'Listen' },
-        { name: 'downloadable', title: 'Downloadable Stream Files' },
-        { name: 'phone', title: 'Listen on Your Smart Phone' },
-        { name: 'news', title: 'KZSC News' }
-      ]
-    }
+    this.state = { }
   }
 
-  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
 
   infoListen() {
     return(
       <Grid.Row>
-        <Grid.Column stretched computer='15' tablet='15' mobile='16'>
+        <Grid.Column width="15" stretched>
           <Segment raised>
             <h1>Listen to KZSC 88.1 fm </h1>
             <p>
-              KZSC doesn’t just broadcast to 3 million people over the radio airwaves at 88.1FM, we also broadcast to the entire world over the internet tubes! Navigate through the tabs above to learn how you can tune in, even when you’re not in lovely Santa Cruz
+              KZSC doesn’t just broadcast to 3 million people over the radio airwaves at 88.1FM, we also broadcast to the entire world over the internet tubes! Keep scrolling to learn how you can tune in, even when you’re not in lovely Santa Cruz
             </p>
           </Segment>
         </Grid.Column>
@@ -44,7 +35,7 @@ class Listen extends Component {
   infoPhone() {
     return (
       <Grid.Row>
-        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
+        <Grid.Column width="15" stretched>
           <Segment raised>
             <div className='float-right'>
               <a href="https://play.google.com/store/apps/details?id=org.kzsc.streaming">
@@ -67,7 +58,7 @@ class Listen extends Component {
   infoNews() {
     return (
       <Grid.Row>
-        <Grid.Column computer='15' tablet='15' mobile='16' stretched>
+        <Grid.Column width="15" stretched>
           <Segment raised>
             <div className='float-right'>
               <a href="https://soundcloud.com/kzsc" target='_blank' rel="noopener noreferrer">
@@ -87,7 +78,7 @@ class Listen extends Component {
   infoDownloadable() {
     return (
       <Grid.Row>
-        <Grid.Column computer='15' tablet='15' mobile='16'>
+        <Grid.Column width="15">
           <h3 className="centered-block">
             KZSC Main Stream Downloadable Files
           </h3>
@@ -128,7 +119,7 @@ class Listen extends Component {
   infoWebstreamSoftwares() {
     return (
       <Grid.Row>
-        <Grid.Column computer='15' tablet='15' mobile='16'>
+        <Grid.Column width="15">
           <h3 className="centered-block">
             Webstream Suggested Softwares
           </h3>
@@ -169,7 +160,7 @@ class Listen extends Component {
   render(){
     return(
       <div className="Listen">
-        <Grid centered padded>
+        <Grid centered padded colums="1" stackable>
           {this.infoListen()}
           {this.infoPhone()}
           {this.infoNews()}

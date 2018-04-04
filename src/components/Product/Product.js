@@ -19,21 +19,69 @@ class Product extends Component {
     this.state = {
       additionalActiveItem: 'additionalinfo',
       optionDescription: "Please choose an option to learn more about it",
-      itemprice: '0.00',
-      activeMenuItem: 'title',
-      menuItems: [
-        { name: 'title', title: this.props.productTitle }
-      ]
+      donationAmount: 0,
+      donationEditable: false
     }
+    this.getOptionDescription = this.getOptionDescription.bind(this)
+    this.handleChangeDonateOptions = this.handleChangeDonateOptions.bind(this)
+    this.handleBlurDonateOptions = this.handleBlurDonateOptions.bind(this)
   }
-
-  handleItemClick(name) { this.setState({ activeMenuItem: name }) }
 
   getOptionDescription(a) {
     this.setState({
       optionDescription: this.props.optionsDescription[a].desc,
-      itemprice: this.props.optionsDescription[a].price
-    });
+      donationAmount: this.props.optionsDescription[a].price
+    })
+    if( a === 'other' ) {
+      this.setState({ donationEditable: true });
+    } else {
+      this.setState({ donationEditable: false });
+    }
+  }
+
+  handleChangeDonateOptions(event) {
+    let price = event.target.value
+    let priceToNumber = price.replace(/[^0-9.]/g, "")
+    this.setState({ donationAmount: priceToNumber })
+  }
+
+  handleBlurDonateOptions(event) {
+    var price = event.target.value
+    var priceToNumber = price.replace(/[^0-9.]/g, "")
+    var numberOfDecimalPlacesArray = priceToNumber.match(/[.]/g)
+    if(numberOfDecimalPlacesArray) {
+      var numberOfDecimalPlaces = numberOfDecimalPlacesArray.length
+      if(numberOfDecimalPlaces > 1) {
+        let removeDecimals = priceToNumber.replace(/[.]/g, "")
+        priceToNumber = Number(removeDecimals / 100).toFixed(2)
+      } else {
+        priceToNumber = Number(priceToNumber).toFixed(2)
+      }
+    } else {
+      priceToNumber = Number(priceToNumber).toFixed(2)
+    }
+    this.setState({donationAmount: priceToNumber})
+  }
+
+  onToken = (token) => {
+    var dAmount = 0;
+    dAmount = this.state.donationAmount;
+    fetch('/payment', {
+      method: 'POST',
+      headers: new Headers({'content-type': 'application/json'}),
+      body: JSON.stringify({
+          rtoken: token,
+          amount: dAmount
+      })
+    }).then(response => { })
+  }
+
+  onStripeCheckoutOpened(){
+    // opened stripe checkout
+  }
+
+  onStripeCheckoutClosed(){
+    // cloed stripe checkout
   }
 
   handleAdditionalItemClick = (e, { name }) => this.setState({ additionalActiveItem: name })
@@ -45,20 +93,16 @@ class Product extends Component {
       <div className="Product">
         <Grid centered padded>
 
-          {/* <TopMenuBar handleItemClick={this.handleItemClick.bind(this)} activeMenuItem={this.state.activeMenuItem} menuItems={this.state.menuItems}/> */}
-
           <Grid.Row>
-            <Grid.Column computer='6' tablet='7' mobile='8'>
+            <Grid.Column width='7'>
               <Segment color='grey' tertiary padded>
                 <Image src={this.props.image} fluid/>
               </Segment>
             </Grid.Column>
-            <Grid.Column computer='6' tablet='7' mobile='8'>
-              <Segment basic>
-                <h2>{this.props.productTitle}</h2>
-                <div>
-                  {this.props.productDesc}
-                </div>
+            <Grid.Column width='9'>
+              <div>
+                { this.props.productTitle ? <h2>{this.props.productTitle}</h2> : null }
+                { this.props.productDesc ? <div>{this.props.productDesc}</div> : null }
                 <Segment padded color='grey' tertiary>
 
                   <Form>
@@ -69,25 +113,39 @@ class Product extends Component {
 
                     {this.state.optionDescription}
 
-                    <Segment compact className='kblue'>
-                      { this.state.itemprice === 0 ? '$0.00' : '$' + this.state.itemprice }
-                    </Segment>
+                    { this.state.donationEditable ?
+                      <input type="text" className='input-segment-kblue' name="donationAmount" width={3}
+                        value={this.state.donationAmount === 0 ? '$0.00' : '$' + this.state.donationAmount}
+                        onChange={this.handleChangeDonateOptions}
+                        onBlur={this.handleBlurDonateOptions}
+                      />
+                      :
+                      <Segment compact className='kblue'>{this.state.donationAmount === 0 ? '$0.00' : '$' + this.state.donationAmount }</Segment>
+                    }
 
-                    <Form>
-                      <StripeCheckout name="KZSC Support" panelLabel="Donation"
-                        amount = {this.state.itemprice} billingAddress = {true}
-                        zipCode = {true} email={this.state.email}
-                        token={this.onToken} stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI" />
-                    </Form>
+                    <StripeCheckout
+                      name="KZSC Support"
+                      panelLabel="Donation"
+                      amount = {Number(this.state.donationAmount) * 100} // donation in cents
+                      currency = "USD"
+                      shippingAddress
+                      billingAddress = {true}
+                      zipCode = {true}
+                      opened = {this.onStripeCheckoutOpened}
+                      closed = {this.onStripeCheckoutClosed}
+                      token={this.onToken}
+                      stripeKey="pk_test_S4C4guamv81sRN307sjfPMRI"
+                    />
                   </Form>
 
                 </Segment>
-              </Segment>
+              </div>
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column computer='12' tablet='14' mobile='16'>
+          { this.props.additionalInfoTabTitle && this.props.additionalInfoTitle ?
+          <Grid.Row columns="1">
+            <Grid.Column>
               <Menu attached='top' tabular>
                 <Menu.Item name='additionalinfo' active={additionalActiveItem === 'additionalinfo'} onClick={this.handleAdditionalItemClick}>
                   {this.props.additionalInfoTabTitle}
@@ -99,6 +157,7 @@ class Product extends Component {
               </Segment>
             </Grid.Column>
           </Grid.Row>
+          : null }
 
         </Grid>
       </div>

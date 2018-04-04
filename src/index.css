@@ -58,6 +58,7 @@ body {
 
 /* Margin and Padding Styles BEGIN */
 .no-padding { padding: 0 !important }
+.padding-5 { padding: 5px }
 .padding-t-1rem { padding-top: 1rem }
 .padding-t-10 { padding-top: 10px }
 .padding-t-83 { padding-top: 83px }
@@ -89,7 +90,7 @@ body {
 /* */
 .k-h3 {
   font-size: 1.28571429rem;
-  line-height: 1.28571429em;
+  line-height: 1.1em;
   font-weight: 700;
   padding: 10px 0;
   display: block
@@ -140,7 +141,7 @@ body {
   height: auto;
 }
 .k-divider {
-  padding-top: 25px;
+  padding-top: 5px;
   padding-bottom: 5px;
 }
 .k-divider .k-divider-title {
@@ -176,22 +177,24 @@ body {
   font-size: 1rem !important;
   width: inherit !important;
 }
-.yellow-box-1 {
-  background: #f5ee80;
-  border: rgba(0, 0, 0, .1) solid 3px;
+.grey-box .header {
+  background: #e4e4e4;
+  display: block;
+  font-size: 1.28571429rem;
+  font-weight: 700;
+  line-height: 1.1em;
+  padding: 7px 5px;
+}
+.grey-box .content {
+  background-color: #f7f7f7;
+  padding: 5px;
 }
 /* Site Wide Styles END */
 
 /* Colors BEGIN */
 .color-apple { color: #999999; }
-
-.color-android {
-  color: #a4c639;
-}
-
-.color-soundcloud {
-  color: #ff5500;
-}
+.color-android { color: #a4c639; }
+.color-soundcloud { color: #ff5500; }
 .color-black-default {
   color: rgba(0,0,0,.9) !important;
 }
@@ -210,6 +213,9 @@ body {
 .bg-color-grey-3 {
   background-color: #767676
 }
+.bg-color-grey-4 {
+  background-color: #f7f7f7
+}
 /* Colors END */
 
 /* Spinitron Styles BEGIN */
@@ -220,10 +226,33 @@ body {
   display: block;
   border: none;
   width: 100%;
-  height: 100%;
+  height: 90%;
   margin: 0;
-  background: #efefef;
-  padding: 3px;
+}
+@media (max-width: 767px) {
+  #spin-wrap {
+    height: 15em;
+  }
+}
+@media (max-width: 655px) {
+  #spin-wrap {
+    height: 17em
+  }
+}
+@media (max-width: 615px) {
+  #spin-wrap {
+    height: 19em
+  }
+}
+@media (max-width: 410px) {
+  #spin-wrap {
+    height: 20em
+  }
+}
+@media (max-width: 380px) {
+  #spin-wrap {
+    height: 22em
+  }
 }
 /* Spinitron Styles END */
 
@@ -267,7 +296,7 @@ body {
 
 .ui.kblue.buttons .button,
 .ui.kblue.button {
-  background-color: #82c0d8; color: #FFFFFF; text-shadow: none;background-image: none;}
+  background-color: #368db0; color: #FFFFFF; text-shadow: none;background-image: none;}
 .ui.kblue.button { box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;}
 .ui.kblue.buttons .button:hover, .ui.kblue.button:hover { background-color: #1678c2; color: #FFFFFF; text-shadow: none;}
 .ui.kblue.buttons .button:focus, .ui.kblue.button:focus { background-color: #0d71bb; color: #FFFFFF; text-shadow: none;}
